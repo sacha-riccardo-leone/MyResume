@@ -2,7 +2,7 @@ import { useState, useEffect, Fragment } from "react";
 import { Linkedin, Github, Printer } from "lucide-react";
 import profilePic from "../assets/pfplinkedin-removebg-preview.png";
 
-type Lang = "fr" | "en" | "de";
+type Lang = "fr" | "en" | "de" | "it";
 type Phase = "cursor" | "typing" | "done";
 
 const FULL_NAME = "Sacha Riccardo Leone";
@@ -215,14 +215,83 @@ const translations = {
       },
     ],
   },
+  it: {
+    title: "Sviluppatore di Applicazioni",
+    intro:
+      "Sviluppatore di applicazioni diplomato (AFC + maturità professionale), già impegnato nella progettazione di un prodotto SaaS personale. Competenze in sviluppo full-stack, integrazione di IA generativa e API di terze parti. Quadrilingue: francese e italiano madrelingua, inglese C1, tedesco B2.",
+    sections: {
+      contact: "Contatto",
+      experience: "Esperienza",
+      languages: "Lingue",
+      skills: "Competenze",
+      education: "Formazione",
+    },
+    contact: {
+      location: "La Chaux-de-Fonds, NE",
+      email: "leonesachariccardo@gmail.com",
+      phone: "+41 78 400 01 68",
+      linkedin: "linkedin.com/in/sacha-leone",
+      github: "@sacha-riccardo-leone",
+    },
+    experience: [
+      {
+        date: "2025 – presente",
+        company: "Ordine AI",
+        description:
+          "Progettazione e sviluppo di un prodotto SaaS full-stack: frontend Next.js, backend FastAPI (Python), database vettoriale, IA generativa e integrazioni di terze parti (OAuth, API Microsoft, Google Cloud).",
+      },
+      {
+        date: "ago. 2025 – gen. 2026",
+        company: "CPNE-AA",
+        description:
+          "Immersione interdisciplinare in design, moda e industria. Utilizzo di strumenti digitali per la ricerca documentale, il ritocco di immagini e i calcoli di progettazione.",
+      },
+      {
+        date: "apr. 2025 – giu. 2025",
+        company: "CPNE-TI – LPI",
+        description:
+          "Sviluppo in C#/Raylib di una versione digitale del gioco \"Indovina chi?\", con un algoritmo di generazione di personaggi unici tramite confronto di profili DNA e un sistema di rarità dell'abbigliamento. Voto: 5,5/6.",
+      },
+      {
+        date: "2023 – presente",
+        company: "SourShots",
+        description:
+          "Creazione di contenuti visivi per un gruppo musicale locale: servizi fotografici, montaggi video, manifesti, brochure e post sui social media. Strumenti: Krita, Sony.",
+      },
+    ],
+    languages: [
+      { name: "Francese", level: "Madrelingua" },
+      { name: "Italiano", level: "Madrelingua" },
+      { name: "Inglese", level: "C1" },
+      { name: "Tedesco", level: "B2" },
+    ],
+    education: [
+      {
+        date: "2022–2025",
+        institution: "CPNE-TI",
+        description:
+          "Formazione informatica (Sviluppo di applicazioni), AFC e maturità professionale",
+      },
+      {
+        date: "2020–2021",
+        institution: "Scuola secondaria di Erlach (BE)",
+        description: "Immersione annuale in tedesco",
+      },
+      {
+        date: "2018–2022",
+        institution: "Scuola secondaria, Le Landeron (NE)",
+        description: "PRIMA (programma bilingue tedesco/francese)",
+      },
+    ],
+  },
 };
 
 const skillGroups = [
-  { category: { fr: "POO", en: "OOP", de: "OOP" }, items: ["C#", "PHP"] },
-  { category: { fr: "Web", en: "Web", de: "Web" }, items: ["Python", "JavaScript", "HTML/CSS", "FastAPI"] },
-  { category: { fr: "Base de données", en: "Databases", de: "Datenbanken" }, items: ["SQL/NoSQL"] },
-  { category: { fr: "Outils", en: "Tools", de: "Werkzeuge" }, items: ["Git", "Krita", "Microsoft 365"] },
-  { category: { fr: "IA", en: "AI", de: "KI" }, items: ["Meta-prompting", "Few-shot Prompting", "System Prompting"] },
+  { category: { fr: "POO", en: "OOP", de: "OOP", it: "OOP" }, items: ["C#", "PHP"] },
+  { category: { fr: "Web", en: "Web", de: "Web", it: "Web" }, items: ["Python", "JavaScript", "HTML/CSS", "FastAPI"] },
+  { category: { fr: "Base de données", en: "Databases", de: "Datenbanken", it: "Database" }, items: ["SQL/NoSQL"] },
+  { category: { fr: "Outils", en: "Tools", de: "Werkzeuge", it: "Strumenti" }, items: ["Git", "Krita", "Microsoft 365"] },
+  { category: { fr: "IA", en: "AI", de: "KI", it: "IA" }, items: ["Meta-prompting", "Few-shot Prompting", "System Prompting"] },
 ];
 
 /* ────────────────────────────────────────── */
@@ -300,7 +369,7 @@ export default function MainComponentNameCv() {
         PDF
       </button>
       <div className="w-px h-4 bg-white/20" />
-      {(["fr", "en", "de"] as Lang[]).map((l) => (
+      {(["fr", "en", "de", "it"] as Lang[]).map((l) => (
         <button
           key={l}
           onClick={() => setLang(l)}
