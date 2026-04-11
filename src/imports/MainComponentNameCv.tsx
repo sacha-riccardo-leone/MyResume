@@ -31,7 +31,7 @@ const translations = {
         date: "2025 – présent",
         company: "Ordine AI",
         description:
-          "Conception et développement d'un produit SaaS full-stack : frontend Next.js, backend FastAPI (Python), base de données vectorielle, IA générative et intégrations tierces (OAuth, APIs Microsoft).",
+          "Conception et développement d'un produit SaaS full-stack : frontend Next.js, backend FastAPI (Python), base de données vectorielle, IA générative et intégrations tierces (OAuth, APIs Microsoft, Google Cloud).",
       },
       {
         date: "août 2025 – janvier 2026",
@@ -100,7 +100,7 @@ const translations = {
         date: "2025 – present",
         company: "Ordine AI",
         description:
-          "Design and development of a full-stack SaaS product: Next.js frontend, FastAPI (Python) backend, vector database, generative AI and third-party integrations (OAuth, Microsoft APIs).",
+          "Design and development of a full-stack SaaS product: Next.js frontend, FastAPI (Python) backend, vector database, generative AI and third-party integrations (OAuth, Microsoft APIs, Google Cloud).",
       },
       {
         date: "Aug 2025 – Jan 2026",
@@ -169,7 +169,7 @@ const translations = {
         date: "2025 – heute",
         company: "Ordine AI",
         description:
-          "Konzeption und Entwicklung eines Full-Stack-SaaS-Produkts: Next.js-Frontend, FastAPI (Python)-Backend, Vektordatenbank, generative KI und Drittanbieter-Integrationen (OAuth, Microsoft-APIs).",
+          "Konzeption und Entwicklung eines Full-Stack-SaaS-Produkts: Next.js-Frontend, FastAPI (Python)-Backend, Vektordatenbank, generative KI und Drittanbieter-Integrationen (OAuth, Microsoft-APIs, Google Cloud).",
       },
       {
         date: "Aug. 2025 – Jan. 2026",
