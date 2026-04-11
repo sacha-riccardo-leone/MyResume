@@ -217,15 +217,12 @@ const translations = {
   },
 };
 
-const skills: [string, string | null][] = [
-  ["C#", "Python"],
-  ["PHP", "JavaScript"],
-  ["SQL", "HTML/CSS"],
-  ["Next.js", "FastAPI"],
-  ["PostgreSQL", "NoSQL"],
-  ["Git", "Krita"],
-  ["Microsoft 365", null],
-  ["Prompt Engineering", null],
+const skillGroups = [
+  { category: { fr: "POO", en: "OOP", de: "OOP" }, items: ["C#", "PHP"] },
+  { category: { fr: "Web", en: "Web", de: "Web" }, items: ["Python", "JavaScript", "HTML/CSS", "FastAPI"] },
+  { category: { fr: "Base de données", en: "Databases", de: "Datenbanken" }, items: ["SQL/NoSQL"] },
+  { category: { fr: "Outils", en: "Tools", de: "Werkzeuge" }, items: ["Git", "Krita", "Microsoft 365"] },
+  { category: { fr: "IA", en: "AI", de: "KI" }, items: ["Prompt Engineering", "Meta-prompting", "Few-shot Prompting", "System Prompting"] },
 ];
 
 /* ────────────────────────────────────────── */
@@ -410,18 +407,22 @@ export default function MainComponentNameCv() {
             <section>
               <SectionHead title={t.sections.skills} num="04" />
 
-              <div className="flex flex-wrap gap-2 mb-8">
-                {skills
-                  .flat()
-                  .filter(Boolean)
-                  .map((skill, i) => (
-                    <span
-                      key={i}
-                      className="text-[12px] px-2.5 py-1 rounded bg-white/5 border border-white/10"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+              <div className="space-y-4 mb-8">
+                {skillGroups.map((group, i) => (
+                  <div key={i}>
+                    <p className="text-[10px] uppercase tracking-[0.15em] text-white/35 mb-2">{group.category[lang]}</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {group.items.map((skill, j) => (
+                        <span
+                          key={j}
+                          className="text-[12px] px-2.5 py-1 rounded bg-white/5 border border-white/10"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
 
               <SectionHead title={t.sections.languages} num="05" />
@@ -584,27 +585,13 @@ export default function MainComponentNameCv() {
                     </p>
                   </div>
                   <div
-                    className="content-stretch flex flex-col font-['Space_Grotesk',sans-serif] font-normal gap-[12px] items-start not-italic relative shrink-0 text-[9px] text-center text-white"
+                    className="content-stretch flex flex-col font-['Space_Grotesk',sans-serif] font-normal gap-[10px] items-start not-italic relative shrink-0 text-[9px] text-white"
                     data-name="Skills"
                   >
-                    {skills.map(([left, right], i) => (
-                      <div
-                        key={i}
-                        className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0"
-                        data-name="Skills"
-                      >
-                        <p
-                          className={`col-1 leading-[115.69953155517578%] ml-0 mt-0 relative row-1 ${
-                            right ? "w-[75px]" : "w-[169px]"
-                          }`}
-                        >
-                          {left}
-                        </p>
-                        {right && (
-                          <p className="col-1 leading-[115.69953155517578%] ml-[95px] mt-0 relative row-1 w-[74px]">
-                            {right}
-                          </p>
-                        )}
+                    {skillGroups.map((group, i) => (
+                      <div key={i}>
+                        <p className="text-[7px] uppercase tracking-[0.1em] text-white/50 mb-[4px]">{group.category[lang]}</p>
+                        <p className="leading-[150%] w-[169px]">{group.items.join(" · ")}</p>
                       </div>
                     ))}
                   </div>
