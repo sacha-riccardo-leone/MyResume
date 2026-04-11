@@ -222,7 +222,7 @@ const skillGroups = [
   { category: { fr: "Web", en: "Web", de: "Web" }, items: ["Python", "JavaScript", "HTML/CSS", "FastAPI"] },
   { category: { fr: "Base de données", en: "Databases", de: "Datenbanken" }, items: ["SQL/NoSQL"] },
   { category: { fr: "Outils", en: "Tools", de: "Werkzeuge" }, items: ["Git", "Krita", "Microsoft 365"] },
-  { category: { fr: "IA", en: "AI", de: "KI" }, items: ["Prompt Engineering", "Meta-prompting", "Few-shot Prompting", "System Prompting"] },
+  { category: { fr: "IA", en: "AI", de: "KI" }, items: ["Meta-prompting", "Few-shot Prompting", "System Prompting"] },
 ];
 
 /* ────────────────────────────────────────── */
