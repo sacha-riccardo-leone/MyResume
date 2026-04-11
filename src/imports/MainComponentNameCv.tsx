@@ -436,10 +436,10 @@ export default function MainComponentNameCv() {
                   <Linkedin className="h-3.5 w-3.5 shrink-0" />
                   <p>{t.contact.linkedin}</p>
                 </a>
-                <div className="flex items-center gap-2">
+                <a href={`https://github.com/${t.contact.github.replace("@", "")}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white underline">
                   <Github className="h-3.5 w-3.5 shrink-0" />
                   <p>{t.contact.github}</p>
-                </div>
+                </a>
               </div>
 
               <SectionHead title={t.sections.education} num="02" />
@@ -745,10 +745,10 @@ export default function MainComponentNameCv() {
                 <Linkedin className="h-3.5 w-3.5" />
                 <p className="leading-[normal]">{t.contact.linkedin}</p>
               </a>
-              <div className="flex items-center gap-2 relative shrink-0 w-[169px]">
+              <a href={`https://github.com/${t.contact.github.replace("@", "")}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 relative shrink-0 w-[169px] text-white underline">
                 <Github className="h-3.5 w-3.5" />
                 <p className="leading-[normal]">{t.contact.github}</p>
-              </div>
+              </a>
             </div>
           </div>
 
