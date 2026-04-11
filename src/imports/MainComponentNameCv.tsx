@@ -432,10 +432,10 @@ export default function MainComponentNameCv() {
                 <p>{t.contact.location}</p>
                 <p>{t.contact.email}</p>
                 <p>{t.contact.phone}</p>
-                <div className="flex items-center gap-2">
+                <a href={`https://${t.contact.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white underline">
                   <Linkedin className="h-3.5 w-3.5 shrink-0" />
                   <p>{t.contact.linkedin}</p>
-                </div>
+                </a>
                 <div className="flex items-center gap-2">
                   <Github className="h-3.5 w-3.5 shrink-0" />
                   <p>{t.contact.github}</p>
@@ -741,10 +741,10 @@ export default function MainComponentNameCv() {
               <div className="flex flex-col justify-center relative shrink-0 w-[169px]">
                 <p className="leading-[normal]">{t.contact.phone}</p>
               </div>
-              <div className="flex items-center gap-2 relative shrink-0 w-[169px]">
+              <a href={`https://${t.contact.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 relative shrink-0 w-[169px] text-white underline">
                 <Linkedin className="h-3.5 w-3.5" />
                 <p className="leading-[normal]">{t.contact.linkedin}</p>
-              </div>
+              </a>
               <div className="flex items-center gap-2 relative shrink-0 w-[169px]">
                 <Github className="h-3.5 w-3.5" />
                 <p className="leading-[normal]">{t.contact.github}</p>
