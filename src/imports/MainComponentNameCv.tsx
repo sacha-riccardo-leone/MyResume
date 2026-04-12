@@ -504,7 +504,7 @@ export default function MainComponentNameCv() {
       <div className="print-only">
         <div
           className="bg-[#262626] relative"
-          style={{ width: "210mm", minHeight: "297mm" }}
+          style={{ width: "210mm", height: "297mm", overflow: "hidden" }}
           data-name="Main Component - Name - CV"
         >
           {/* Name + Columns */}

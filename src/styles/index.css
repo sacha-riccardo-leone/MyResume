@@ -24,8 +24,8 @@
   /* Force all animations complete */
   * { opacity: 1 !important; transition: none !important; }
 
-  /* Force white background */
-  html, body, #root { background: white !important; }
+  /* Force white background and single page */
+  html, body, #root { background: white !important; height: 297mm !important; overflow: hidden !important; }
   [data-name="Main Component - Name - CV"] { background: white !important; }
 
   /* Force all text to black */
