@@ -325,10 +325,10 @@ export default function MainComponentNameCv() {
     </div>
   );
 
-  /* Profile picture with corner brackets */
+  /* Profile picture */
   const ProfilePic = ({ size }: { size: string }) => (
     <div className={`relative shrink-0 ${size}`} data-name="Elements">
-      <div className="absolute inset-0 overflow-hidden rounded-sm ring-1 ring-white/25">
+      <div className="absolute inset-0 overflow-hidden rounded-sm ring-2 ring-white/25">
         <img
           src={profilePic}
           alt="Sacha Riccardo Leone"
@@ -336,10 +336,6 @@ export default function MainComponentNameCv() {
           style={{ transform: "scale(1)" }}
         />
       </div>
-      <span className="absolute -top-[5px] -left-[5px] w-[16px] h-[16px] border-t-2 border-l-2 border-white/80" />
-      <span className="absolute -top-[5px] -right-[5px] w-[16px] h-[16px] border-t-2 border-r-2 border-white/80" />
-      <span className="absolute -bottom-[5px] -left-[5px] w-[16px] h-[16px] border-b-2 border-l-2 border-white/80" />
-      <span className="absolute -bottom-[5px] -right-[5px] w-[16px] h-[16px] border-b-2 border-r-2 border-white/80" />
     </div>
   );
 
@@ -754,7 +750,7 @@ export default function MainComponentNameCv() {
             className="absolute left-[24px] top-[51px] size-[165px]"
             data-name="Elements"
           >
-            <div className="absolute inset-0 overflow-hidden rounded-sm ring-1 ring-white/25">
+            <div className="absolute inset-0 overflow-hidden rounded-sm ring-2 ring-white/25">
               <img
                 src={profilePic}
                 alt="Sacha Riccardo Leone"
@@ -762,10 +758,6 @@ export default function MainComponentNameCv() {
                 style={{ transform: "scale(1)" }}
               />
             </div>
-            <span className="absolute -top-[5px] -left-[5px] w-[16px] h-[16px] border-t-2 border-l-2 border-white/80" />
-            <span className="absolute -top-[5px] -right-[5px] w-[16px] h-[16px] border-t-2 border-r-2 border-white/80" />
-            <span className="absolute -bottom-[5px] -left-[5px] w-[16px] h-[16px] border-b-2 border-l-2 border-white/80" />
-            <span className="absolute -bottom-[5px] -right-[5px] w-[16px] h-[16px] border-b-2 border-r-2 border-white/80" />
           </div>
         </div>
       </div>
