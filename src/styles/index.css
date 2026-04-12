@@ -19,7 +19,7 @@
 
   /* Show/hide layout switches */
   .print-hidden { display: none !important; }
-  .print-only { display: block !important; }
+  .print-only { display: block !important; height: 297mm !important; overflow: hidden !important; }
 
   /* Force all animations complete */
   * { opacity: 1 !important; transition: none !important; }
@@ -27,10 +27,11 @@
   /* Allow backgrounds to print */
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
-  /* Single page, white background */
-  html, body, #root { background: white !important; margin: 0 !important; padding: 0 !important; height: 297mm !important; overflow: hidden !important; }
+  /* Single page, white background — max-height prevents 1px overflow creating a blank second page */
+  html, body, #root { background: white !important; margin: 0 !important; padding: 0 !important; height: 297mm !important; max-height: 297mm !important; overflow: hidden !important; }
 
-  [data-name="Main Component - Name - CV"] { background: white !important; }
+  /* Prevent any page break after the A4 container */
+  [data-name="Main Component - Name - CV"] { background: white !important; break-after: avoid !important; page-break-after: avoid !important; }
 
   /* Force all text to black */
   * { color: black !important; }
