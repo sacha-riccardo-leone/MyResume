@@ -66,14 +66,9 @@ const translations = {
           "Formation d'informatique (Dév. d'applications), CFC et maturité professionnelle",
       },
       {
-        date: "2020–2021",
-        institution: "École secondaire d'Erlach (BE)",
-        description: "Immersion d'une année en allemand",
-      },
-      {
         date: "2018–2022",
         institution: "École secondaire, Le Landeron (NE)",
-        description: "PRIMA (programme bilingue allemand/français)",
+        description: "PRIMA bilingue FR/DE, avec une année d'immersion à Erlach (BE)",
       },
     ],
   },
@@ -135,14 +130,9 @@ const translations = {
           "IT training (Application Development), federal vocational diploma (CFC) and professional baccalaureate",
       },
       {
-        date: "2020–2021",
-        institution: "Secondary School, Erlach (BE)",
-        description: "Full-year German immersion programme",
-      },
-      {
         date: "2018–2022",
         institution: "Secondary School, Le Landeron (NE)",
-        description: "PRIMA bilingual programme (German/French)",
+        description: "PRIMA bilingual programme (FR/DE), including a year of German immersion in Erlach (BE)",
       },
     ],
   },
@@ -204,14 +194,9 @@ const translations = {
           "Informatikausbildung (Applikationsentwicklung), EFZ und Berufsmaturität",
       },
       {
-        date: "2020–2021",
-        institution: "Sekundarschule Erlach (BE)",
-        description: "Einjähriges Deutschimmersionsprogramm",
-      },
-      {
         date: "2018–2022",
         institution: "Sekundarschule Le Landeron (NE)",
-        description: "PRIMA (zweisprachiges Programm Deutsch/Französisch)",
+        description: "PRIMA (zweisprachiges Programm FR/DE), mit einem Immersionsjahr in Erlach (BE)",
       },
     ],
   },
