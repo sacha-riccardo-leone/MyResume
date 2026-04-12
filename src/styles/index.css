@@ -30,12 +30,7 @@
   /* Single page, white background */
   html, body, #root { background: white !important; margin: 0 !important; padding: 0 !important; height: 297mm !important; overflow: hidden !important; }
 
-  /* Scale content up to fill the A4 page */
-  [data-name="Main Component - Name - CV"] {
-    background: white !important;
-    transform: scale(1.18) !important;
-    transform-origin: top left !important;
-  }
+  [data-name="Main Component - Name - CV"] { background: white !important; }
 
   /* Force all text to black */
   * { color: black !important; }
