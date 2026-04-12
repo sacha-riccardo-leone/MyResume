@@ -67,8 +67,8 @@ const translations = {
       },
       {
         date: "2018–2022",
-        institution: "École secondaire, Le Landeron (NE)",
-        description: "PRIMA bilingue FR/DE, avec une année d'immersion à Erlach (BE)",
+        institution: "École secondaire — Le Landeron (NE) & Erlach (BE)",
+        description: "PRIMA bilingue FR/DE · Immersion 100% allemand à Erlach (BE)",
       },
     ],
   },
@@ -131,8 +131,8 @@ const translations = {
       },
       {
         date: "2018–2022",
-        institution: "Secondary School, Le Landeron (NE)",
-        description: "PRIMA bilingual programme (FR/DE), including a year of German immersion in Erlach (BE)",
+        institution: "Secondary School — Le Landeron (NE) & Erlach (BE)",
+        description: "PRIMA bilingual programme (FR/DE) · 100% German immersion in Erlach (BE)",
       },
     ],
   },
@@ -195,8 +195,8 @@ const translations = {
       },
       {
         date: "2018–2022",
-        institution: "Sekundarschule Le Landeron (NE)",
-        description: "PRIMA (zweisprachiges Programm FR/DE), mit einem Immersionsjahr in Erlach (BE)",
+        institution: "Sekundarschule — Le Landeron (NE) & Erlach (BE)",
+        description: "PRIMA (FR/DE) · 100% Deutschimmersion in Erlach (BE)",
       },
     ],
   },
@@ -264,8 +264,8 @@ const translations = {
       },
       {
         date: "2018–2022",
-        institution: "Scuola secondaria, Le Landeron (NE)",
-        description: "PRIMA (programma bilingue tedesco/francese)",
+        institution: "Scuola secondaria — Le Landeron (NE) & Erlach (BE)",
+        description: "PRIMA bilingue FR/DE · Immersione 100% tedesco a Erlach (BE)",
       },
     ],
   },
