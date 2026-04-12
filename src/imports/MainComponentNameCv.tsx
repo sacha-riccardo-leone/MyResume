@@ -53,10 +53,10 @@ const translations = {
       },
     ],
     languages: [
-      { name: "Français", level: "Maternelle" },
-      { name: "Italien", level: "Maternelle" },
       { name: "Anglais", level: "C1" },
       { name: "Allemand", level: "B2" },
+      { name: "Français", level: "Maternelle" },
+      { name: "Italien", level: "Maternelle" },
     ],
     education: [
       {
@@ -117,10 +117,10 @@ const translations = {
       },
     ],
     languages: [
-      { name: "French", level: "Native" },
-      { name: "Italian", level: "Native" },
       { name: "English", level: "C1" },
       { name: "German", level: "B2" },
+      { name: "French", level: "Native" },
+      { name: "Italian", level: "Native" },
     ],
     education: [
       {
@@ -181,10 +181,10 @@ const translations = {
       },
     ],
     languages: [
-      { name: "Französisch", level: "Muttersprache" },
-      { name: "Italienisch", level: "Muttersprache" },
       { name: "Englisch", level: "C1" },
       { name: "Deutsch", level: "B2" },
+      { name: "Französisch", level: "Muttersprache" },
+      { name: "Italienisch", level: "Muttersprache" },
     ],
     education: [
       {
@@ -245,10 +245,10 @@ const translations = {
       },
     ],
     languages: [
-      { name: "Francese", level: "Madrelingua" },
-      { name: "Italiano", level: "Madrelingua" },
       { name: "Inglese", level: "C1" },
       { name: "Tedesco", level: "B2" },
+      { name: "Francese", level: "Madrelingua" },
+      { name: "Italiano", level: "Madrelingua" },
     ],
     education: [
       {
