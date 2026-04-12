@@ -24,20 +24,12 @@
   /* Force all animations complete */
   * { opacity: 1 !important; transition: none !important; }
 
-  /* Force white background and single page */
-  html, body, #root { background: white !important; height: 297mm !important; overflow: hidden !important; }
-  [data-name="Main Component - Name - CV"] { background: white !important; }
+  /* Preserve all background colors and images */
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
-  /* Force all text to black */
-  * { color: black !important; }
+  /* Single page, no margin */
+  html, body, #root { margin: 0 !important; padding: 0 !important; height: 297mm !important; overflow: hidden !important; }
 
-  /* Make frame borders visible on print */
-  [data-name="Elements"] .ring-white\/25 { --tw-ring-color: #222 !important; }
-  [data-name="Elements"] span { border-color: #222 !important; }
-
-  /* Make separator lines dark and visible on print */
-  .separator { background-color: #222 !important; height: 1px !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-
-  /* Profile picture: remove dark background tint for print */
-  [data-name="Elements"] { background: white !important; }
+  /* Separator lines */
+  .separator { height: 1px !important; }
 }
