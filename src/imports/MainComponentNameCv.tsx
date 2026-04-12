@@ -1,5 +1,5 @@
 import { useState, useEffect, Fragment } from "react";
-import { Linkedin, Github, Printer } from "lucide-react";
+import { Linkedin, Github, Printer, MapPin, Mail, Phone } from "lucide-react";
 import profilePic from "../assets/pfplinkedin-removebg-preview.png";
 
 type Lang = "fr" | "en" | "de" | "it";
@@ -414,9 +414,18 @@ export default function MainComponentNameCv() {
             <section>
               <SectionHead title={t.sections.contact} num="01" />
               <div className="space-y-3 text-xs uppercase mb-8">
-                <p>{t.contact.location}</p>
-                <p>{t.contact.email}</p>
-                <p>{t.contact.phone}</p>
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-3.5 w-3.5 shrink-0" />
+                  <p>{t.contact.location}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Mail className="h-3.5 w-3.5 shrink-0" />
+                  <p>{t.contact.email}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Phone className="h-3.5 w-3.5 shrink-0" />
+                  <p>{t.contact.phone}</p>
+                </div>
                 <a href={`https://${t.contact.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white underline">
                   <Linkedin className="h-3.5 w-3.5 shrink-0" />
                   <p>{t.contact.linkedin}</p>
@@ -717,13 +726,16 @@ export default function MainComponentNameCv() {
               className="content-stretch flex flex-col font-['Space_Grotesk',sans-serif] gap-[8px] items-start not-italic relative shrink-0 text-[8px] text-white uppercase"
               data-name="Contacts"
             >
-              <div className="flex flex-col justify-center relative shrink-0 w-[169px]">
+              <div className="flex items-center gap-2 relative shrink-0 w-[169px]">
+                <MapPin className="h-3 w-3 shrink-0" />
                 <p className="leading-[normal]">{t.contact.location}</p>
               </div>
-              <div className="flex flex-col justify-center relative shrink-0 w-[169px]">
+              <div className="flex items-center gap-2 relative shrink-0 w-[169px]">
+                <Mail className="h-3 w-3 shrink-0" />
                 <p className="leading-[normal]">{t.contact.email}</p>
               </div>
-              <div className="flex flex-col justify-center relative shrink-0 w-[169px]">
+              <div className="flex items-center gap-2 relative shrink-0 w-[169px]">
+                <Phone className="h-3 w-3 shrink-0" />
                 <p className="leading-[normal]">{t.contact.phone}</p>
               </div>
               <a href={`https://${t.contact.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 relative shrink-0 w-[169px] text-white underline">
