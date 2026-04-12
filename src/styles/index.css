@@ -33,12 +33,15 @@
   /* Scale content up to fill the A4 page */
   [data-name="Main Component - Name - CV"] {
     background: white !important;
-    transform: scale(1.25) !important;
+    transform: scale(1.18) !important;
     transform-origin: top left !important;
   }
 
   /* Force all text to black */
   * { color: black !important; }
+
+  /* Profile picture ring: make visible on white background */
+  [data-name="Elements"] > div { --tw-ring-color: #555 !important; }
 
   /* Separator lines */
   .separator { background-color: #222 !important; height: 1px !important; }
