@@ -28,6 +28,12 @@ const translations = {
     },
     experience: [
       {
+        date: "4–24 mai 2026",
+        company: "Xefi",
+        description:
+          "Stage en ESN — pilotage et configuration d'un déploiement Odoo 19 : analyse fonctionnelle, paramétrage des modules métier et gestion de projet client.",
+      },
+      {
         date: "2025 – présent",
         company: "Ordine AI",
         description:
@@ -91,6 +97,12 @@ const translations = {
       github: "@sacha-riccardo-leone",
     },
     experience: [
+      {
+        date: "4–24 May 2026",
+        company: "Xefi",
+        description:
+          "Internship at an IT services firm — led configuration of an Odoo 19 ERP deployment: functional analysis, business module setup and client project management.",
+      },
       {
         date: "2025 – present",
         company: "Ordine AI",
@@ -156,6 +168,12 @@ const translations = {
     },
     experience: [
       {
+        date: "4.–24. Mai 2026",
+        company: "Xefi",
+        description:
+          "Praktikum bei einem IT-Dienstleister — Steuerung und Konfiguration eines Odoo-19-ERP-Deployments: Funktionsanalyse, Modulkonfiguration und Projektmanagement.",
+      },
+      {
         date: "2025 – heute",
         company: "Ordine AI",
         description:
@@ -219,6 +237,12 @@ const translations = {
       github: "@sacha-riccardo-leone",
     },
     experience: [
+      {
+        date: "4–24 maggio 2026",
+        company: "Xefi",
+        description:
+          "Stage presso un'ESN — configurazione e gestione di un deployment Odoo 19: analisi funzionale, parametrizzazione dei moduli aziendali e gestione del progetto cliente.",
+      },
       {
         date: "2025 – presente",
         company: "Ordine AI",
