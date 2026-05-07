@@ -1,5 +1,5 @@
-import { useState, useEffect, Fragment } from "react";
-import { Linkedin, Github, Printer, MapPin, Mail, Phone } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Linkedin, Github, Printer, MapPin, Mail, Phone, ChevronDown } from "lucide-react";
 import profilePic from "../assets/pfplinkedin-removebg-preview.png";
 
 type Lang = "fr" | "en" | "de" | "it";
@@ -282,11 +282,6 @@ const translations = {
           "Formazione informatica (Sviluppo di applicazioni), AFC e maturità professionale",
       },
       {
-        date: "2020–2021",
-        institution: "Scuola secondaria di Erlach (BE)",
-        description: "Immersione annuale in tedesco",
-      },
-      {
         date: "2018–2022",
         institution: "Scuola secondaria — Le Landeron (NE) & Erlach (BE)",
         description: "PRIMA bilingue FR/DE · Immersione 100% tedesco a Erlach (BE)",
@@ -296,28 +291,172 @@ const translations = {
 };
 
 const skillGroups = [
-  { category: { fr: "POO", en: "OOP", de: "OOP", it: "OOP" }, items: ["C#", "PHP"] },
-  { category: { fr: "Web", en: "Web", de: "Web", it: "Web" }, items: ["Python", "JavaScript", "HTML/CSS", "FastAPI"] },
-  { category: { fr: "Base de données", en: "Databases", de: "Datenbanken", it: "Database" }, items: ["SQL/NoSQL"] },
-  { category: { fr: "Outils", en: "Tools", de: "Werkzeuge", it: "Strumenti" }, items: ["Git", "Krita", "Microsoft 365"] },
-  { category: { fr: "IA", en: "AI", de: "KI", it: "IA" }, items: ["Meta-prompting", "Few-shot Prompting", "System Prompting"] },
+  {
+    category: { fr: "POO", en: "OOP", de: "OOP", it: "OOP" },
+    color: "#60a5fa",
+    items: [
+      { name: "C#", level: 80 },
+      { name: "PHP", level: 65 },
+    ],
+  },
+  {
+    category: { fr: "Web", en: "Web", de: "Web", it: "Web" },
+    color: "#34d399",
+    items: [
+      { name: "Python", level: 75 },
+      { name: "JavaScript", level: 78 },
+      { name: "HTML/CSS", level: 85 },
+      { name: "FastAPI", level: 72 },
+    ],
+  },
+  {
+    category: { fr: "Base de données", en: "Databases", de: "Datenbanken", it: "Database" },
+    color: "#fbbf24",
+    items: [{ name: "SQL/NoSQL", level: 70 }],
+  },
+  {
+    category: { fr: "Outils", en: "Tools", de: "Werkzeuge", it: "Strumenti" },
+    color: "#a78bfa",
+    items: [
+      { name: "Git", level: 82 },
+      { name: "Krita", level: 68 },
+      { name: "Microsoft 365", level: 75 },
+    ],
+  },
+  {
+    category: { fr: "IA", en: "AI", de: "KI", it: "IA" },
+    color: "#22d3ee",
+    items: [
+      { name: "Meta-prompting", level: 82 },
+      { name: "Few-shot Prompting", level: 78 },
+      { name: "System Prompting", level: 80 },
+    ],
+  },
 ];
 
-/* ────────────────────────────────────────── */
+/* ────────────────────────────────────────────────────── */
+/* Scroll reveal wrapper                                  */
+/* ────────────────────────────────────────────────────── */
+function ScrollReveal({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
 
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.08 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(24px)",
+        transition: `opacity 0.65s ease ${delay}ms, transform 0.65s ease ${delay}ms`,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────────────── */
+/* Animated skill bars                                    */
+/* ────────────────────────────────────────────────────── */
+function SkillBars({ groups, lang }: { groups: typeof skillGroups; lang: Lang }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {groups.map((group, gi) => (
+        <div key={gi}>
+          <p
+            className="text-[10px] uppercase tracking-[0.18em] font-medium mb-3"
+            style={{ color: group.color }}
+          >
+            {group.category[lang]}
+          </p>
+          <div className="space-y-3">
+            {group.items.map((skill, si) => (
+              <div key={si}>
+                <div className="flex justify-between text-[12px] mb-1.5">
+                  <span className="text-white/75">{skill.name}</span>
+                  <span className="text-white/30 font-mono text-[11px]">{skill.level}%</span>
+                </div>
+                <div className="h-[1.5px] bg-white/10 rounded-full overflow-hidden">
+                  <div
+                    className="h-full rounded-full"
+                    style={{
+                      width: visible ? `${skill.level}%` : "0%",
+                      backgroundColor: group.color,
+                      opacity: 0.7,
+                      transition: `width 0.9s cubic-bezier(0.4,0,0.2,1) ${(gi * 3 + si) * 70}ms`,
+                    }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────────────── */
+/* Section heading                                        */
+/* ────────────────────────────────────────────────────── */
+function SectionHead({ title, num }: { title: string; num: string }) {
+  return (
+    <div className="mb-10">
+      <p className="text-[10px] font-mono text-white/25 mb-1 tracking-widest">/ {num}</p>
+      <h2 className="text-2xl font-medium">{title}</h2>
+      <div className="w-10 h-[1.5px] bg-white/25 mt-3" />
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────────────── */
+/* Main component                                         */
+/* ────────────────────────────────────────────────────── */
 export default function MainComponentNameCv() {
   const [lang, setLang] = useState<Lang>("fr");
   const [phase, setPhase] = useState<Phase>("cursor");
   const [displayedName, setDisplayedName] = useState("");
   const t = translations[lang];
 
-  // Step 1 — show cursor alone for 700ms
   useEffect(() => {
     const timer = setTimeout(() => setPhase("typing"), 700);
     return () => clearTimeout(timer);
   }, []);
 
-  // Step 2 — type out the name character by character
   useEffect(() => {
     if (phase !== "typing") return;
     if (displayedName.length < FULL_NAME.length) {
@@ -331,57 +470,36 @@ export default function MainComponentNameCv() {
     }
   }, [phase, displayedName]);
 
+  const done = phase === "done";
   const fadeIn = (delay: number) => ({
-    opacity: phase === "done" ? 1 : 0,
+    opacity: done ? 1 : 0,
     transition: `opacity 0.7s ease ${delay}ms`,
   });
 
-  /* Cursor element */
   const cursor = phase !== "done" && (
-    <span className="cursor-blink inline-block w-[2px] h-[0.75em] bg-white ml-[3px] align-middle" />
-  );
-
-  /* Reusable section heading for web */
-  const SectionHead = ({ title, num }: { title: string; num: string }) => (
-    <div className="flex items-baseline justify-between border-b border-white/25 pb-1.5 mb-5">
-      <span className="text-[11px] uppercase tracking-[0.15em] font-medium">{title}</span>
-      <span className="text-[11px] text-white/40">{num}</span>
-    </div>
+    <span className="cursor-blink inline-block w-[2px] h-[0.85em] bg-white ml-[2px] align-middle" />
   );
 
   /* Profile picture */
   const ProfilePic = ({ size }: { size: string }) => (
     <div className={`relative shrink-0 ${size}`} data-name="Elements">
-      <div className="absolute inset-0 overflow-hidden rounded-sm ring-2 ring-white/25">
-        <img
-          src={profilePic}
-          alt="Sacha Riccardo Leone"
-          className="size-full object-cover"
-          style={{ transform: "scale(1)" }}
-        />
+      <div className="absolute inset-0 overflow-hidden rounded-sm ring-2 ring-white/20">
+        <img src={profilePic} alt={FULL_NAME} className="size-full object-cover" />
       </div>
     </div>
   );
 
-  /* Lang + print controls */
-  const Controls = ({ className = "" }: { className?: string }) => (
-    <div className={`print-hidden flex items-center gap-2 ${className}`}>
-      <button
-        onClick={() => window.print()}
-        className="flex items-center gap-1.5 text-[10px] font-['Space_Grotesk',sans-serif] uppercase px-2.5 py-1.5 rounded-sm text-white border border-white/30 hover:border-white/70 transition-colors cursor-pointer"
-      >
-        <Printer className="h-3 w-3" />
-        PDF
-      </button>
-      <div className="w-px h-4 bg-white/20" />
+  /* Lang switcher */
+  const LangSwitcher = () => (
+    <div className="flex items-center gap-1.5">
       {(["fr", "en", "de", "it"] as Lang[]).map((l) => (
         <button
           key={l}
           onClick={() => setLang(l)}
-          className={`text-[10px] font-['Space_Grotesk',sans-serif] uppercase px-2.5 py-1.5 rounded-sm transition-colors cursor-pointer ${
+          className={`text-[10px] font-['Space_Grotesk',sans-serif] uppercase px-2 py-1 rounded-sm transition-all cursor-pointer ${
             lang === l
-              ? "bg-white text-[#262626]"
-              : "text-white border border-white/30 hover:border-white/70"
+              ? "bg-white text-[#262626] font-medium"
+              : "text-white/40 hover:text-white/80 border border-white/15 hover:border-white/40"
           }`}
         >
           {l}
@@ -392,139 +510,194 @@ export default function MainComponentNameCv() {
 
   return (
     <>
-      {/* ═══════════════════════════════════════════
-          WEB LAYOUT — responsive, horizontal
-          ═══════════════════════════════════════════ */}
-      <div className="print-hidden min-h-screen bg-[#262626] text-white font-['Space_Grotesk',sans-serif]">
-        <div className="max-w-7xl mx-auto px-5 py-8 sm:px-8 sm:py-10 md:px-10 md:py-14 lg:px-16 lg:py-16">
+      {/* ═══════════════════════════════════════════════════════
+          WEB LAYOUT — portfolio dev, scroll animations
+          ═══════════════════════════════════════════════════════ */}
+      <div className="print-hidden bg-[#262626] text-white font-['Space_Grotesk',sans-serif]">
 
-          {/* Controls — top right */}
-          <div className="flex justify-end mb-8" style={fadeIn(0)}>
-            <Controls />
+        {/* ── Sticky nav ── */}
+        <nav className="sticky top-0 z-50 flex justify-between items-center px-6 sm:px-10 py-4 bg-[#262626]/90 backdrop-blur-sm border-b border-white/[0.06]">
+          <span className="text-[11px] font-mono text-white/20 tracking-widest">srl.dev</span>
+          <div className="flex items-center gap-3">
+            <LangSwitcher />
+            <div className="w-px h-4 bg-white/15" />
+            <button
+              onClick={() => window.print()}
+              className="flex items-center gap-1.5 text-[10px] uppercase px-2.5 py-1.5 rounded-sm text-white/60 border border-white/15 hover:border-white/50 hover:text-white transition-all cursor-pointer"
+            >
+              <Printer className="h-3 w-3" />
+              PDF
+            </button>
+          </div>
+        </nav>
+
+        {/* ── Hero ── */}
+        <section className="min-h-[calc(100vh-57px)] flex flex-col">
+          <div className="flex-1 flex items-center">
+            <div className="w-full max-w-5xl mx-auto px-6 sm:px-10 py-16">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-10 sm:gap-14">
+
+                {/* Photo */}
+                <div style={fadeIn(0)}>
+                  <ProfilePic size="size-36 sm:size-44 md:size-52" />
+                </div>
+
+                {/* Text */}
+                <div className="flex-1 text-center sm:text-left">
+                  <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-medium leading-tight tracking-tight">
+                    {displayedName}{cursor}
+                  </h1>
+                  <p className="text-base sm:text-lg text-white/45 mt-3" style={fadeIn(100)}>
+                    {t.title}
+                  </p>
+                  <p className="text-sm leading-relaxed mt-4 max-w-xl text-white/30" style={fadeIn(250)}>
+                    {t.intro}
+                  </p>
+
+                  {/* CTA buttons */}
+                  <div
+                    className="mt-8 flex flex-wrap justify-center sm:justify-start gap-3"
+                    style={fadeIn(400)}
+                  >
+                    <button
+                      onClick={() => window.print()}
+                      className="flex items-center gap-2 px-5 py-2.5 bg-white text-[#262626] rounded-sm text-sm font-medium hover:bg-white/90 transition-colors cursor-pointer"
+                    >
+                      <Printer className="h-3.5 w-3.5" />
+                      Download PDF
+                    </button>
+                    <a
+                      href={`https://${t.contact.linkedin}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-5 py-2.5 border border-white/20 rounded-sm text-sm text-white/60 hover:border-white/50 hover:text-white transition-all"
+                    >
+                      <Linkedin className="h-3.5 w-3.5" />
+                      LinkedIn
+                    </a>
+                    <a
+                      href={`https://github.com/${t.contact.github.replace("@", "")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-5 py-2.5 border border-white/20 rounded-sm text-sm text-white/60 hover:border-white/50 hover:text-white transition-all"
+                    >
+                      <Github className="h-3.5 w-3.5" />
+                      GitHub
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Header: photo + name + intro */}
-          <header className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8 mb-12 md:mb-14">
-            <div style={fadeIn(0)}>
-              <ProfilePic size="size-36 sm:size-40 md:size-44" />
+          {/* Scroll indicator */}
+          <div className="flex justify-center pb-8" style={fadeIn(600)}>
+            <ChevronDown className="h-5 w-5 text-white/20 animate-bounce" />
+          </div>
+        </section>
+
+        {/* ── Content sections ── */}
+        <div className="w-full max-w-5xl mx-auto px-6 sm:px-10 pb-32 space-y-28">
+
+          {/* 01 — Contact */}
+          <ScrollReveal>
+            <SectionHead title={t.sections.contact} num="01" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              {(
+                [
+                  { Icon: MapPin, label: t.contact.location, href: undefined },
+                  { Icon: Mail, label: t.contact.email, href: `mailto:${t.contact.email}` },
+                  { Icon: Phone, label: t.contact.phone, href: `tel:${t.contact.phone}` },
+                  { Icon: Linkedin, label: t.contact.linkedin, href: `https://${t.contact.linkedin}` },
+                  { Icon: Github, label: t.contact.github, href: `https://github.com/${t.contact.github.replace("@", "")}` },
+                ] as const
+              ).map(({ Icon, label, href }, i) => {
+                const cls =
+                  "flex items-center gap-3 px-4 py-3 rounded border border-white/10 bg-white/[0.02] hover:border-white/25 hover:bg-white/[0.05] transition-all text-sm text-white/55 hover:text-white/90 group";
+                const inner = (
+                  <>
+                    <Icon className="h-3.5 w-3.5 shrink-0 text-white/25 group-hover:text-white/55 transition-colors" />
+                    <span className="truncate">{label}</span>
+                  </>
+                );
+                return href ? (
+                  <a key={i} href={href} target="_blank" rel="noopener noreferrer" className={cls}>
+                    {inner}
+                  </a>
+                ) : (
+                  <div key={i} className={cls}>{inner}</div>
+                );
+              })}
             </div>
-            <div className="flex-1 text-center sm:text-left">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-medium leading-tight">
-                {displayedName}
-                {cursor}
-              </h1>
-              <p className="text-base lg:text-lg mt-2 text-white/70" style={fadeIn(0)}>
-                {t.title}
-              </p>
-              <p
-                className="text-sm leading-relaxed mt-4 max-w-2xl text-white/50"
-                style={fadeIn(150)}
-              >
-                {t.intro}
-              </p>
-            </div>
-          </header>
+          </ScrollReveal>
 
-          {/* Sections grid */}
-          <div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1.5fr_1fr_1fr] gap-8 lg:gap-10"
-            style={fadeIn(300)}
-          >
-            {/* ── Contact + Education ── */}
-            <section>
-              <SectionHead title={t.sections.contact} num="01" />
-              <div className="space-y-3 text-xs uppercase mb-8">
-                <div className="flex items-center gap-2">
-                  <MapPin className="h-3.5 w-3.5 shrink-0" />
-                  <p>{t.contact.location}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Mail className="h-3.5 w-3.5 shrink-0" />
-                  <p>{t.contact.email}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Phone className="h-3.5 w-3.5 shrink-0" />
-                  <p>{t.contact.phone}</p>
-                </div>
-                <a href={`https://${t.contact.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white underline">
-                  <Linkedin className="h-3.5 w-3.5 shrink-0" />
-                  <p>{t.contact.linkedin}</p>
-                </a>
-                <a href={`https://github.com/${t.contact.github.replace("@", "")}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white underline">
-                  <Github className="h-3.5 w-3.5 shrink-0" />
-                  <p>{t.contact.github}</p>
-                </a>
-              </div>
-
-              <SectionHead title={t.sections.education} num="02" />
-              <div className="space-y-5">
-                {t.education.map((edu, i) => (
-                  <div key={i}>
-                    <p className="text-[11px] text-white/40 capitalize">{edu.date}</p>
-                    <p className="text-sm font-medium mt-1">{edu.institution}</p>
-                    <p className="text-[13px] text-white/60 leading-relaxed mt-1">
-                      {edu.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* ── Experience ── */}
-            <section>
-              <SectionHead title={t.sections.experience} num="03" />
-              <div className="space-y-6">
-                {t.experience.map((exp, i) => (
-                  <div key={i}>
-                    <p className="text-[11px] text-white/40 capitalize">{exp.date}</p>
-                    <p className="text-sm font-medium mt-1">{exp.company}</p>
-                    <p className="text-[13px] text-white/60 leading-relaxed mt-1">
-                      {exp.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* ── Skills + Languages ── */}
-            <section>
-              <SectionHead title={t.sections.skills} num="04" />
-
-              <div className="space-y-4 mb-8">
-                {skillGroups.map((group, i) => (
-                  <div key={i}>
-                    <p className="text-[10px] uppercase tracking-[0.15em] text-white/35 mb-2">{group.category[lang]}</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {group.items.map((skill, j) => (
-                        <span
-                          key={j}
-                          className="text-[12px] px-2.5 py-1 rounded bg-white/5 border border-white/10"
-                        >
-                          {skill}
-                        </span>
-                      ))}
+          {/* 02 — Experience */}
+          <div>
+            <ScrollReveal>
+              <SectionHead title={t.sections.experience} num="02" />
+            </ScrollReveal>
+            <div className="space-y-3">
+              {t.experience.map((exp, i) => (
+                <ScrollReveal key={i} delay={i * 70}>
+                  <div className="group px-5 py-4 rounded border border-white/10 hover:border-white/25 hover:bg-white/[0.03] hover:-translate-y-0.5 transition-all duration-200 cursor-default">
+                    <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+                      <p className="text-base font-medium">{exp.company}</p>
+                      <p className="text-[11px] font-mono text-white/25">{exp.date}</p>
                     </div>
+                    <p className="text-sm text-white/45 leading-relaxed">{exp.description}</p>
                   </div>
-                ))}
-              </div>
-
-              <SectionHead title={t.sections.languages} num="05" />
-              <div className="space-y-2.5">
-                {t.languages.map((language, i) => (
-                  <div key={i} className="flex justify-between text-[13px]">
-                    <span>{language.name}</span>
-                    <span className="text-white/50">{language.level}</span>
-                  </div>
-                ))}
-              </div>
-            </section>
+                </ScrollReveal>
+              ))}
+            </div>
           </div>
+
+          {/* 03 — Skills */}
+          <ScrollReveal>
+            <SectionHead title={t.sections.skills} num="03" />
+            <SkillBars groups={skillGroups} lang={lang} />
+          </ScrollReveal>
+
+          {/* 04 — Languages */}
+          <ScrollReveal>
+            <SectionHead title={t.sections.languages} num="04" />
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {t.languages.map((language, i) => (
+                <div
+                  key={i}
+                  className="px-4 py-3.5 rounded border border-white/10 bg-white/[0.02] hover:border-white/20 transition-colors"
+                >
+                  <p className="text-sm font-medium">{language.name}</p>
+                  <p className="text-[11px] text-white/35 mt-0.5">{language.level}</p>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+
+          {/* 05 — Education */}
+          <div>
+            <ScrollReveal>
+              <SectionHead title={t.sections.education} num="05" />
+            </ScrollReveal>
+            <div className="border-l border-white/10 pl-6 space-y-7">
+              {t.education.map((edu, i) => (
+                <ScrollReveal key={i} delay={i * 100}>
+                  <div className="relative">
+                    <div className="absolute -left-[28px] top-[7px] w-[5px] h-[5px] rounded-full bg-white/25" />
+                    <p className="text-[11px] font-mono text-white/25 mb-1">{edu.date}</p>
+                    <p className="text-sm font-medium">{edu.institution}</p>
+                    <p className="text-sm text-white/40 mt-1 leading-relaxed">{edu.description}</p>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
 
-      {/* ═══════════════════════════════════════════
+      {/* ═══════════════════════════════════════════════════════
           PRINT LAYOUT — A4 portrait, fixed positioning
-          ═══════════════════════════════════════════ */}
+          ═══════════════════════════════════════════════════════ */}
       <div className="print-only">
         <div
           className="bg-[#262626] relative"
@@ -674,7 +847,7 @@ export default function MainComponentNameCv() {
                     {skillGroups.map((group, i) => (
                       <div key={i}>
                         <p className="text-[7px] uppercase tracking-[0.1em] text-white/50 mb-[4px]">{group.category[lang]}</p>
-                        <p className="leading-[150%] w-[169px]">{group.items.join(" · ")}</p>
+                        <p className="leading-[150%] w-[169px]">{group.items.map(s => s.name).join(" · ")}</p>
                       </div>
                     ))}
                   </div>
