@@ -761,7 +761,7 @@ export default function MainComponentNameCv() {
                 const isOpen = openExp.has(i);
                 return (
                   <ScrollReveal key={i} delay={i * 60}>
-                    <div className="glass-card glass-card--highlight rounded-2xl overflow-hidden"
+                    <div className="glass-card rounded-2xl overflow-hidden"
                       onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}>
                       {/* Header — always visible */}
                       <button
@@ -830,7 +830,7 @@ export default function MainComponentNameCv() {
               {t.education.map((edu, i) => (
                 <ScrollReveal key={i} delay={i * 100}>
                   <div className="relative">
-                    <div className="absolute -left-[28px] top-[7px] w-[5px] h-[5px] rounded-full bg-white/25" />
+                    <div className="absolute -left-[27px] top-[7px] w-[5px] h-[5px] rounded-full bg-white/25" />
                     <p className="text-[11px] font-mono text-white/25 mb-1">{edu.date}</p>
                     <p className="text-sm font-medium">{edu.institution}</p>
                     <p className="text-sm text-white/40 mt-1 leading-relaxed">{edu.description}</p>
