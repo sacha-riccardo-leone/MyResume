@@ -12,8 +12,11 @@
 }
 
 /* ─── Dark base for screen (canvas provides the wave visuals) ─── */
+/* Only html gets the dark background — body and #root must stay
+   transparent so the fixed canvas at z-index:-1 shows through them. */
 @media screen {
-  html, body, #root { background: #080808; }
+  html          { background: #080808; }
+  body, #root   { background: transparent; }
 }
 
 /* ─── Liquid Glass ─── */
