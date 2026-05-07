@@ -416,9 +416,12 @@ function getLangDots(level: string): number {
 /* ────────────────────────────────────────────────────── */
 function SkillSection({ groups, lang }: { groups: typeof skillGroups; lang: Lang }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {groups.map((group, gi) => (
-        <div key={gi}>
+        <div
+          key={gi}
+          className="px-4 py-4 rounded-xl border border-white/10 bg-white/[0.02] backdrop-blur-sm hover:border-white/28 hover:bg-white/[0.06] hover:shadow-[0_0_22px_rgba(255,255,255,0.05)] transition-all"
+        >
           <p
             className="text-[10px] uppercase tracking-[0.18em] font-medium mb-4"
             style={{ color: group.color }}
@@ -500,7 +503,7 @@ export default function MainComponentNameCv() {
   /* Profile picture */
   const ProfilePic = ({ size }: { size: string }) => (
     <div className={`relative shrink-0 ${size}`} data-name="Elements">
-      <div className="absolute inset-0 overflow-hidden rounded-sm ring-2 ring-white/20">
+      <div className="absolute inset-0 overflow-hidden rounded-2xl ring-2 ring-white/20">
         <img src={profilePic} alt={FULL_NAME} className="size-full object-cover" />
       </div>
     </div>
@@ -513,7 +516,7 @@ export default function MainComponentNameCv() {
         <button
           key={l}
           onClick={() => setLang(l)}
-          className={`text-[10px] font-['Space_Grotesk',sans-serif] uppercase px-2 py-1 rounded-sm transition-all cursor-pointer ${
+          className={`text-[10px] font-['Space_Grotesk',sans-serif] uppercase px-2 py-1 rounded-lg transition-all cursor-pointer ${
             lang === l
               ? "bg-white text-[#262626] font-medium"
               : "text-white/40 hover:text-white/80 border border-white/15 hover:border-white/40"
@@ -540,7 +543,7 @@ export default function MainComponentNameCv() {
             <div className="w-px h-4 bg-white/15" />
             <button
               onClick={() => window.print()}
-              className="flex items-center gap-1.5 text-[10px] uppercase px-2.5 py-1.5 rounded-sm text-white/60 border border-white/15 hover:border-white/50 hover:text-white transition-all cursor-pointer"
+              className="flex items-center gap-1.5 text-[10px] uppercase px-2.5 py-1.5 rounded-lg text-white/60 border border-white/15 hover:border-white/50 hover:text-white transition-all cursor-pointer"
             >
               <Printer className="h-3 w-3" />
               PDF
@@ -578,7 +581,7 @@ export default function MainComponentNameCv() {
                   >
                     <button
                       onClick={() => window.print()}
-                      className="flex items-center gap-2 px-5 py-2.5 bg-white text-[#262626] rounded-sm text-sm font-medium hover:bg-white/90 transition-colors cursor-pointer"
+                      className="flex items-center gap-2 px-5 py-2.5 bg-white text-[#262626] rounded-xl text-sm font-medium hover:bg-white/90 transition-colors cursor-pointer"
                     >
                       <Printer className="h-3.5 w-3.5" />
                       Download PDF
@@ -587,7 +590,7 @@ export default function MainComponentNameCv() {
                       href={`https://${t.contact.linkedin}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-5 py-2.5 border border-white/20 rounded-sm text-sm text-white/60 hover:border-white/50 hover:text-white transition-all"
+                      className="flex items-center gap-2 px-5 py-2.5 border border-white/20 rounded-xl text-sm text-white/60 hover:border-white/50 hover:text-white transition-all"
                     >
                       <Linkedin className="h-3.5 w-3.5" />
                       LinkedIn
@@ -596,7 +599,7 @@ export default function MainComponentNameCv() {
                       href={`https://github.com/${t.contact.github.replace("@", "")}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-5 py-2.5 border border-white/20 rounded-sm text-sm text-white/60 hover:border-white/50 hover:text-white transition-all"
+                      className="flex items-center gap-2 px-5 py-2.5 border border-white/20 rounded-xl text-sm text-white/60 hover:border-white/50 hover:text-white transition-all"
                     >
                       <Github className="h-3.5 w-3.5" />
                       GitHub
@@ -630,7 +633,7 @@ export default function MainComponentNameCv() {
                 ] as const
               ).map(({ Icon, label, href }, i) => {
                 const cls =
-                  "flex items-center gap-3 px-4 py-3 rounded border border-white/10 bg-white/[0.02] hover:border-white/25 hover:bg-white/[0.05] transition-all text-sm text-white/55 hover:text-white/90 group";
+                  "flex items-center gap-3 px-4 py-3 rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-sm hover:border-white/30 hover:bg-white/[0.08] hover:shadow-[0_0_22px_rgba(255,255,255,0.06)] transition-all text-sm text-white/55 hover:text-white/90 group";
                 const inner = (
                   <>
                     <Icon className="h-3.5 w-3.5 shrink-0 text-white/25 group-hover:text-white/55 transition-colors" />
@@ -658,10 +661,10 @@ export default function MainComponentNameCv() {
                 const isOpen = openExp.has(i);
                 return (
                   <ScrollReveal key={i} delay={i * 60}>
-                    <div className="rounded border border-white/10 hover:border-white/20 transition-colors overflow-hidden">
+                    <div className="rounded-xl border border-white/10 bg-white/[0.02] backdrop-blur-sm hover:border-white/28 hover:shadow-[0_0_22px_rgba(255,255,255,0.05)] transition-all overflow-hidden">
                       {/* Header — always visible */}
                       <button
-                        className="w-full flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-white/[0.03] transition-colors text-left"
+                        className="w-full flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-white/[0.05] transition-colors text-left"
                         onClick={() => toggleExp(i)}
                       >
                         <div>
@@ -702,11 +705,11 @@ export default function MainComponentNameCv() {
           {/* 04 — Languages (dots) */}
           <ScrollReveal>
             <SectionHead title={t.sections.languages} num="04" />
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {t.languages.map((language, i) => (
                 <div
                   key={i}
-                  className="px-4 py-4 rounded border border-white/10 bg-white/[0.02] hover:border-white/20 transition-colors"
+                  className="px-4 py-4 rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-sm hover:border-white/30 hover:bg-white/[0.08] hover:shadow-[0_0_22px_rgba(255,255,255,0.06)] transition-all"
                 >
                   <p className="text-sm font-medium mb-2.5">{language.name}</p>
                   <SkillDots filled={getLangDots(language.level)} color="rgba(255,255,255,0.55)" />
@@ -990,7 +993,7 @@ export default function MainComponentNameCv() {
             className="absolute left-[24px] top-[51px] size-[165px]"
             data-name="Elements"
           >
-            <div className="absolute inset-0 overflow-hidden rounded-sm ring-2 ring-white/25">
+            <div className="absolute inset-0 overflow-hidden rounded-2xl ring-2 ring-white/25">
               <img
                 src={profilePic}
                 alt="Sacha Riccardo Leone"
