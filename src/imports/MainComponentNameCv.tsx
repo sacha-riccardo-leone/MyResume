@@ -421,6 +421,7 @@ function SkillSection({ groups, lang }: { groups: typeof skillGroups; lang: Lang
         <div
           key={gi}
           className="glass-card px-4 py-4 rounded-2xl"
+          onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
         >
           <p
             className="text-[10px] uppercase tracking-[0.18em] font-medium mb-4"
@@ -441,6 +442,20 @@ function SkillSection({ groups, lang }: { groups: typeof skillGroups; lang: Lang
     </div>
   );
 }
+
+/* ────────────────────────────────────────────────────── */
+/* Glass card interaction — cursor-as-light-source        */
+/* ────────────────────────────────────────────────────── */
+function glassMove(e: React.MouseEvent<HTMLElement>) {
+  const el = e.currentTarget;
+  const { left, top, width, height } = el.getBoundingClientRect();
+  el.style.setProperty("--mouse-x", `${((e.clientX - left) / width) * 100}%`);
+  el.style.setProperty("--mouse-y", `${((e.clientY - top) / height) * 100}%`);
+}
+const glassEnter = (e: React.MouseEvent<HTMLElement>) =>
+  e.currentTarget.style.setProperty("--glow-opacity", "1");
+const glassLeave = (e: React.MouseEvent<HTMLElement>) =>
+  e.currentTarget.style.setProperty("--glow-opacity", "0");
 
 /* ────────────────────────────────────────────────────── */
 /* Section heading                                        */
@@ -641,11 +656,15 @@ export default function MainComponentNameCv() {
                   </>
                 );
                 return href ? (
-                  <a key={i} href={href} target="_blank" rel="noopener noreferrer" className={cls}>
+                  <a key={i} href={href} target="_blank" rel="noopener noreferrer" className={cls}
+                    onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}>
                     {inner}
                   </a>
                 ) : (
-                  <div key={i} className={cls}>{inner}</div>
+                  <div key={i} className={cls}
+                    onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}>
+                    {inner}
+                  </div>
                 );
               })}
             </div>
@@ -661,7 +680,8 @@ export default function MainComponentNameCv() {
                 const isOpen = openExp.has(i);
                 return (
                   <ScrollReveal key={i} delay={i * 60}>
-                    <div className="glass-card rounded-2xl overflow-hidden">
+                    <div className="glass-card rounded-2xl overflow-hidden"
+                      onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}>
                       {/* Header — always visible */}
                       <button
                         className="w-full flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-white/[0.05] transition-colors text-left"
@@ -710,6 +730,7 @@ export default function MainComponentNameCv() {
                 <div
                   key={i}
                   className="glass-card px-4 py-4 rounded-2xl"
+                  onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
                 >
                   <p className="text-sm font-medium mb-2.5">{language.name}</p>
                   <SkillDots filled={getLangDots(language.level)} color="rgba(255,255,255,0.55)" />
