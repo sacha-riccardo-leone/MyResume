@@ -378,6 +378,13 @@ function WaveBackground() {
       const h = canvas.height;
       ctx.clearRect(0, 0, w, h);
 
+      // Grey veil at the very top so no bare black shows above the first wave
+      const topGrad = ctx.createLinearGradient(0, 0, 0, h * 0.22);
+      topGrad.addColorStop(0.0, "rgba(62,62,62,0.55)");
+      topGrad.addColorStop(1.0, "rgba(0,0,0,0)");
+      ctx.fillStyle = topGrad;
+      ctx.fillRect(0, 0, w, h);
+
       // Global energy pulse — whole system breathes in/out slowly
       const globalAmp = 1.0 + 0.35 * sn(t * 0.004) + 0.15 * sn(t * 0.006 + 2.1);
 
@@ -790,7 +797,7 @@ export default function MainComponentNameCv() {
                       onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}>
                       {/* Header — always visible */}
                       <button
-                        className="w-full flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-white/[0.05] transition-colors text-left"
+                        className="w-full flex items-center justify-between px-5 py-4 cursor-pointer transition-colors text-left"
                         onClick={() => toggleExp(i)}
                       >
                         <div>
