@@ -295,32 +295,32 @@ const skillGroups = [
     category: { fr: "POO", en: "OOP", de: "OOP", it: "OOP" },
     color: "#60a5fa",
     items: [
-      { name: "C#", level: 80 },
-      { name: "PHP", level: 65 },
+      { name: "C#", level: 80 },   // 4/5
+      { name: "PHP", level: 75 },  // 4/5
     ],
   },
   {
     category: { fr: "Web", en: "Web", de: "Web", it: "Web" },
     color: "#34d399",
     items: [
-      { name: "Python", level: 75 },
-      { name: "JavaScript", level: 78 },
-      { name: "HTML/CSS", level: 85 },
-      { name: "FastAPI", level: 72 },
+      { name: "Python", level: 60 },      // 3/5
+      { name: "JavaScript", level: 65 },  // 3/5
+      { name: "HTML/CSS", level: 85 },    // 4/5
+      { name: "FastAPI", level: 60 },     // 3/5
     ],
   },
   {
     category: { fr: "Base de données", en: "Databases", de: "Datenbanken", it: "Database" },
     color: "#fbbf24",
-    items: [{ name: "SQL/NoSQL", level: 70 }],
+    items: [{ name: "SQL/NoSQL", level: 60 }],  // 3/5
   },
   {
     category: { fr: "Outils", en: "Tools", de: "Werkzeuge", it: "Strumenti" },
     color: "#a78bfa",
     items: [
-      { name: "Git", level: 82 },
-      { name: "Krita", level: 68 },
-      { name: "Microsoft 365", level: 75 },
+      { name: "Git", level: 82 },           // 4/5
+      { name: "Krita", level: 95 },         // 5/5
+      { name: "Microsoft 365", level: 95 },  // 5/5
     ],
   },
   {
@@ -381,13 +381,24 @@ function ScrollReveal({
 function SkillDots({ filled, color }: { filled: number; color: string }) {
   return (
     <div className="flex gap-[5px] items-center">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <div
-          key={i}
-          className="w-[7px] h-[7px] rounded-full transition-colors"
-          style={{ backgroundColor: i < filled ? color : "rgba(255,255,255,0.1)" }}
-        />
-      ))}
+      {Array.from({ length: 5 }).map((_, i) => {
+        const diff = filled - i;
+        const isHalf = diff > 0 && diff < 1;
+        const isFull = diff >= 1;
+        return (
+          <div
+            key={i}
+            className="w-[7px] h-[7px] rounded-full"
+            style={{
+              background: isFull
+                ? color
+                : isHalf
+                ? `linear-gradient(to right, ${color} 50%, rgba(255,255,255,0.1) 50%)`
+                : "rgba(255,255,255,0.1)",
+            }}
+          />
+        );
+      })}
     </div>
   );
 }
@@ -395,7 +406,7 @@ function SkillDots({ filled, color }: { filled: number; color: string }) {
 function getLangDots(level: string): number {
   const map: Record<string, number> = {
     Maternelle: 5, Native: 5, Madrelingua: 5, Muttersprache: 5,
-    C2: 5, C1: 4, B2: 3, B1: 2, A2: 1, A1: 1,
+    C2: 5, C1: 4.5, B2: 3, B1: 2, A2: 1, A1: 1,
   };
   return map[level] ?? 3;
 }
