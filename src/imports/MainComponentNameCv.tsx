@@ -406,7 +406,7 @@ function SkillDots({ filled, color }: { filled: number; color: string }) {
 function getLangDots(level: string): number {
   const map: Record<string, number> = {
     Maternelle: 5, Native: 5, Madrelingua: 5, Muttersprache: 5,
-    C2: 5, C1: 4.5, B2: 3, B1: 2, A2: 1, A1: 1,
+    C2: 5, C1: 4.5, B2: 3.5, B1: 2, A2: 1, A1: 1,
   };
   return map[level] ?? 3;
 }
@@ -420,7 +420,7 @@ function SkillSection({ groups, lang }: { groups: typeof skillGroups; lang: Lang
       {groups.map((group, gi) => (
         <div
           key={gi}
-          className="px-4 py-4 rounded-xl border border-white/10 bg-white/[0.02] backdrop-blur-sm hover:border-white/28 hover:bg-white/[0.06] hover:shadow-[0_0_22px_rgba(255,255,255,0.05)] transition-all"
+          className="glass-card px-4 py-4 rounded-2xl"
         >
           <p
             className="text-[10px] uppercase tracking-[0.18em] font-medium mb-4"
@@ -633,7 +633,7 @@ export default function MainComponentNameCv() {
                 ] as const
               ).map(({ Icon, label, href }, i) => {
                 const cls =
-                  "flex items-center gap-3 px-4 py-3 rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-sm hover:border-white/30 hover:bg-white/[0.08] hover:shadow-[0_0_22px_rgba(255,255,255,0.06)] transition-all text-sm text-white/55 hover:text-white/90 group";
+                  "glass-card flex items-center gap-3 px-4 py-3 rounded-2xl text-sm text-white/55 hover:text-white/90 group";
                 const inner = (
                   <>
                     <Icon className="h-3.5 w-3.5 shrink-0 text-white/25 group-hover:text-white/55 transition-colors" />
@@ -661,7 +661,7 @@ export default function MainComponentNameCv() {
                 const isOpen = openExp.has(i);
                 return (
                   <ScrollReveal key={i} delay={i * 60}>
-                    <div className="rounded-xl border border-white/10 bg-white/[0.02] backdrop-blur-sm hover:border-white/28 hover:shadow-[0_0_22px_rgba(255,255,255,0.05)] transition-all overflow-hidden">
+                    <div className="glass-card rounded-2xl overflow-hidden">
                       {/* Header — always visible */}
                       <button
                         className="w-full flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-white/[0.05] transition-colors text-left"
@@ -709,7 +709,7 @@ export default function MainComponentNameCv() {
               {t.languages.map((language, i) => (
                 <div
                   key={i}
-                  className="px-4 py-4 rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-sm hover:border-white/30 hover:bg-white/[0.08] hover:shadow-[0_0_22px_rgba(255,255,255,0.06)] transition-all"
+                  className="glass-card px-4 py-4 rounded-2xl"
                 >
                   <p className="text-sm font-medium mb-2.5">{language.name}</p>
                   <SkillDots filled={getLangDots(language.level)} color="rgba(255,255,255,0.55)" />
