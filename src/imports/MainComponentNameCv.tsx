@@ -336,6 +336,9 @@ const skillGroups = [
 
 /* ────────────────────────────────────────────────────── */
 /* Animated wave background (canvas)                      */
+/* Inspired by: noise-modulated amplitudes + speeds,      */
+/* global energy pulse, harmonic wave composition,        */
+/* gradient fills from crest to transparent.              */
 /* ────────────────────────────────────────────────────── */
 function WaveBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -356,13 +359,18 @@ function WaveBackground() {
     resize();
     window.addEventListener("resize", resize);
 
-    // Each wave: amplitude (px), horizontal frequency, animation speed,
-    // vertical centre (0–1 of canvas height), fill colour
+    // Smooth pseudo-noise: 3 layered sines → organic, non-repeating variation
+    // (mirrors the simplex noise modulation from the GLSL shader)
+    const sn = (x: number) =>
+      (Math.sin(x * 1.31) + Math.sin(x * 2.73 + 1.0) + Math.sin(x * 5.09 + 2.3)) / 3;
+
+    // g = base grey level, a = peak opacity
     const waves = [
-      { amp: 52, freq: 0.0028, speed: 0.38, y: 0.22, color: "rgba(70,70,70,0.52)" },
-      { amp: 68, freq: 0.0020, speed: 0.26, y: 0.42, color: "rgba(55,55,55,0.46)" },
-      { amp: 46, freq: 0.0035, speed: 0.50, y: 0.60, color: "rgba(62,62,62,0.40)" },
-      { amp: 60, freq: 0.0022, speed: 0.32, y: 0.78, color: "rgba(45,45,45,0.36)" },
+      { baseAmp: 55, freq: 0.0025, baseSpd: 0.42, y: 0.18, nOff: 0.00, g: 72, a: 0.52 },
+      { baseAmp: 72, freq: 0.0018, baseSpd: 0.28, y: 0.38, nOff: 1.73, g: 58, a: 0.45 },
+      { baseAmp: 50, freq: 0.0033, baseSpd: 0.55, y: 0.55, nOff: 3.30, g: 64, a: 0.40 },
+      { baseAmp: 65, freq: 0.0021, baseSpd: 0.35, y: 0.70, nOff: 5.10, g: 48, a: 0.35 },
+      { baseAmp: 35, freq: 0.0042, baseSpd: 0.65, y: 0.85, nOff: 2.54, g: 55, a: 0.28 },
     ];
 
     const draw = () => {
@@ -370,20 +378,39 @@ function WaveBackground() {
       const h = canvas.height;
       ctx.clearRect(0, 0, w, h);
 
+      // Global energy pulse — whole system breathes in/out slowly
+      const globalAmp = 1.0 + 0.35 * sn(t * 0.004) + 0.15 * sn(t * 0.006 + 2.1);
+
       for (const wave of waves) {
+        // Per-wave amplitude noise — each wave surges and calms independently
+        const ampMod = 0.65 + 0.55 * (0.5 + 0.5 * sn(t * 0.011 + wave.nOff));
+        const amp = wave.baseAmp * globalAmp * ampMod;
+
+        // Per-wave speed noise — pace drifts faster/slower organically
+        const spdMod = 1.0 + 0.22 * sn(t * 0.009 + wave.nOff * 1.3);
+        const spd = wave.baseSpd * spdMod;
+
         const baseY = h * wave.y;
+
         ctx.beginPath();
         ctx.moveTo(0, h);
         for (let x = 0; x <= w; x += 4) {
           const y =
-            baseY +
-            Math.sin(x * wave.freq + t * wave.speed) * wave.amp +
-            Math.sin(x * wave.freq * 1.65 + t * wave.speed * 0.7 + 2.1) * wave.amp * 0.32;
+            baseY
+            + Math.sin(x * wave.freq + t * spd)                             * amp          // primary
+            + Math.sin(x * wave.freq * 1.67 + t * spd * 0.74 + 2.1)        * amp * 0.35   // 2nd harmonic
+            + Math.sin(x * wave.freq * 2.83 + t * spd * 0.53 + 4.8)        * amp * 0.15;  // 3rd harmonic
           ctx.lineTo(x, y);
         }
         ctx.lineTo(w, h);
         ctx.closePath();
-        ctx.fillStyle = wave.color;
+
+        // Gradient fill: bright at crest → near-transparent at canvas bottom
+        const grad = ctx.createLinearGradient(0, baseY - wave.baseAmp * 2, 0, h);
+        grad.addColorStop(0.0, `rgba(${wave.g},${wave.g},${wave.g},${wave.a})`);
+        grad.addColorStop(0.4, `rgba(${wave.g},${wave.g},${wave.g},${+(wave.a * 0.3).toFixed(2)})`);
+        grad.addColorStop(1.0, `rgba(10,10,10,0.03)`);
+        ctx.fillStyle = grad;
         ctx.fill();
       }
 
@@ -403,10 +430,8 @@ function WaveBackground() {
       ref={canvasRef}
       style={{
         position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
+        top: 0, left: 0,
+        width: "100%", height: "100%",
         zIndex: -1,
         pointerEvents: "none",
       }}
