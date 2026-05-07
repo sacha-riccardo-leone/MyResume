@@ -40,16 +40,16 @@ const translations = {
           "Conception et développement d'un produit SaaS full-stack : frontend Next.js, backend FastAPI (Python), base de données vectorielle, IA générative et intégrations tierces (OAuth, APIs Microsoft, Google Cloud).",
       },
       {
-        date: "août 2025 – janvier 2026",
-        company: "CPNE-AA",
-        description:
-          "Immersion interdisciplinaire en design, couture et industrie. Utilisation d'outils numériques pour la recherche documentaire, la retouche d'image et les calculs de conception.",
-      },
-      {
         date: "avril 2025 – juin 2025",
         company: "CPNE-TI – TPI",
         description:
           "Développement en C#/Raylib d'une version numérisée du jeu \"Qui est-ce ?\", incluant un algorithme de génération de personnages uniques par comparaison de profils ADN et un système de rareté vestimentaire. Note : 5,5/6.",
+      },
+      {
+        date: "août 2025 – janvier 2026",
+        company: "CPNE-AA",
+        description:
+          "Immersion interdisciplinaire en design, couture et industrie. Utilisation d'outils numériques pour la recherche documentaire, la retouche d'image et les calculs de conception.",
       },
       {
         date: "2023 – présent",
@@ -110,16 +110,16 @@ const translations = {
           "Design and development of a full-stack SaaS product: Next.js frontend, FastAPI (Python) backend, vector database, generative AI and third-party integrations (OAuth, Microsoft APIs, Google Cloud).",
       },
       {
-        date: "Aug 2025 – Jan 2026",
-        company: "CPNE-AA",
-        description:
-          "Interdisciplinary immersion in design, fashion and industry. Use of digital tools for documentation, image editing and measurement calculations.",
-      },
-      {
         date: "Apr 2025 – Jun 2025",
         company: "CPNE-TI – Final Project",
         description:
           "Developed a digitised version of \"Guess Who?\" in C#/Raylib, featuring a unique character generation algorithm using DNA profile comparison and a clothing rarity system. Grade: 5.5/6.",
+      },
+      {
+        date: "Aug 2025 – Jan 2026",
+        company: "CPNE-AA",
+        description:
+          "Interdisciplinary immersion in design, fashion and industry. Use of digital tools for documentation, image editing and measurement calculations.",
       },
       {
         date: "2023 – present",
@@ -180,16 +180,16 @@ const translations = {
           "Konzeption und Entwicklung eines Full-Stack-SaaS-Produkts: Next.js-Frontend, FastAPI (Python)-Backend, Vektordatenbank, generative KI und Drittanbieter-Integrationen (OAuth, Microsoft-APIs, Google Cloud).",
       },
       {
-        date: "Aug. 2025 – Jan. 2026",
-        company: "CPNE-AA",
-        description:
-          "Interdisziplinäre Vertiefung in Design, Mode und Industrie. Einsatz digitaler Werkzeuge für Dokumentenrecherche, Bildbearbeitung und Berechnungen.",
-      },
-      {
         date: "Apr. 2025 – Jun. 2025",
         company: "CPNE-TI – IPA",
         description:
           "Entwicklung einer digitalisierten Version von \"Wer bin ich?\" in C#/Raylib, mit einem Algorithmus zur Generierung einzigartiger Charaktere durch DNS-Profilvergleich und einem Seltenheitssystem für Kleidung. Note: 5,5/6.",
+      },
+      {
+        date: "Aug. 2025 – Jan. 2026",
+        company: "CPNE-AA",
+        description:
+          "Interdisziplinäre Vertiefung in Design, Mode und Industrie. Einsatz digitaler Werkzeuge für Dokumentenrecherche, Bildbearbeitung und Berechnungen.",
       },
       {
         date: "2023 – heute",
@@ -250,16 +250,16 @@ const translations = {
           "Progettazione e sviluppo di un prodotto SaaS full-stack: frontend Next.js, backend FastAPI (Python), database vettoriale, IA generativa e integrazioni di terze parti (OAuth, API Microsoft, Google Cloud).",
       },
       {
-        date: "ago. 2025 – gen. 2026",
-        company: "CPNE-AA",
-        description:
-          "Immersione interdisciplinare in design, moda e industria. Utilizzo di strumenti digitali per la ricerca documentale, il ritocco di immagini e i calcoli di progettazione.",
-      },
-      {
         date: "apr. 2025 – giu. 2025",
         company: "CPNE-TI – LPI",
         description:
           "Sviluppo in C#/Raylib di una versione digitale del gioco \"Indovina chi?\", con un algoritmo di generazione di personaggi unici tramite confronto di profili DNA e un sistema di rarità dell'abbigliamento. Voto: 5,5/6.",
+      },
+      {
+        date: "ago. 2025 – gen. 2026",
+        company: "CPNE-AA",
+        description:
+          "Immersione interdisciplinare in design, moda e industria. Utilizzo di strumenti digitali per la ricerca documentale, il ritocco di immagini e i calcoli di progettazione.",
       },
       {
         date: "2023 – presente",
