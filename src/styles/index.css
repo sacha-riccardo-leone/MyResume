@@ -11,15 +11,9 @@
   animation: cursor-blink 0.8s step-end infinite;
 }
 
-/* ─── Wave / abstract dark background ─── */
-.wave-bg {
-  background-color: #080808;
-  background-image:
-    radial-gradient(ellipse 200% 55% at -10% 18%, rgba(65,65,65,0.60) 0%, rgba(25,25,25,0.1) 40%, transparent 62%),
-    radial-gradient(ellipse 110% 170% at 108% -8%, rgba(50,50,50,0.50) 0%, transparent 52%),
-    radial-gradient(ellipse 180% 52% at 50% 110%, rgba(58,58,58,0.55) 0%, transparent 58%),
-    radial-gradient(ellipse 100% 80% at 80% 50%, rgba(32,32,32,0.35) 0%, transparent 52%),
-    radial-gradient(ellipse 75% 50% at 18% 72%, rgba(42,42,42,0.28) 0%, transparent 48%);
+/* ─── Dark base for screen (canvas provides the wave visuals) ─── */
+@media screen {
+  html, body, #root { background: #080808; }
 }
 
 /* ─── Liquid Glass ─── */

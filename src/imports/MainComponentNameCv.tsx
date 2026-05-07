@@ -335,6 +335,86 @@ const skillGroups = [
 ];
 
 /* ────────────────────────────────────────────────────── */
+/* Animated wave background (canvas)                      */
+/* ────────────────────────────────────────────────────── */
+function WaveBackground() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animId: number;
+    let t = 0;
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    // Each wave: amplitude (px), horizontal frequency, animation speed,
+    // vertical centre (0–1 of canvas height), fill colour
+    const waves = [
+      { amp: 52, freq: 0.0028, speed: 0.38, y: 0.22, color: "rgba(70,70,70,0.52)" },
+      { amp: 68, freq: 0.0020, speed: 0.26, y: 0.42, color: "rgba(55,55,55,0.46)" },
+      { amp: 46, freq: 0.0035, speed: 0.50, y: 0.60, color: "rgba(62,62,62,0.40)" },
+      { amp: 60, freq: 0.0022, speed: 0.32, y: 0.78, color: "rgba(45,45,45,0.36)" },
+    ];
+
+    const draw = () => {
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      for (const wave of waves) {
+        const baseY = h * wave.y;
+        ctx.beginPath();
+        ctx.moveTo(0, h);
+        for (let x = 0; x <= w; x += 4) {
+          const y =
+            baseY +
+            Math.sin(x * wave.freq + t * wave.speed) * wave.amp +
+            Math.sin(x * wave.freq * 1.65 + t * wave.speed * 0.7 + 2.1) * wave.amp * 0.32;
+          ctx.lineTo(x, y);
+        }
+        ctx.lineTo(w, h);
+        ctx.closePath();
+        ctx.fillStyle = wave.color;
+        ctx.fill();
+      }
+
+      t += 0.02;
+      animId = requestAnimationFrame(draw);
+    };
+
+    animId = requestAnimationFrame(draw);
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        zIndex: -1,
+        pointerEvents: "none",
+      }}
+    />
+  );
+}
+
+/* ────────────────────────────────────────────────────── */
 /* Scroll reveal wrapper                                  */
 /* ────────────────────────────────────────────────────── */
 function ScrollReveal({
@@ -548,7 +628,8 @@ export default function MainComponentNameCv() {
       {/* ═══════════════════════════════════════════════════════
           WEB LAYOUT — portfolio dev, scroll animations
           ═══════════════════════════════════════════════════════ */}
-      <div className="print-hidden wave-bg text-white font-['Space_Grotesk',sans-serif]">
+      <div className="print-hidden text-white font-['Space_Grotesk',sans-serif]">
+        <WaveBackground />
 
         {/* ── Sticky nav ── */}
         <nav className="sticky top-0 z-50 flex justify-between items-center px-6 sm:px-10 py-4 bg-black/60 backdrop-blur-md border-b border-white/[0.06]">
