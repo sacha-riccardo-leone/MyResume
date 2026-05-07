@@ -548,10 +548,10 @@ export default function MainComponentNameCv() {
       {/* ═══════════════════════════════════════════════════════
           WEB LAYOUT — portfolio dev, scroll animations
           ═══════════════════════════════════════════════════════ */}
-      <div className="print-hidden bg-[#262626] text-white font-['Space_Grotesk',sans-serif]">
+      <div className="print-hidden wave-bg text-white font-['Space_Grotesk',sans-serif]">
 
         {/* ── Sticky nav ── */}
-        <nav className="sticky top-0 z-50 flex justify-between items-center px-6 sm:px-10 py-4 bg-[#262626]/90 backdrop-blur-sm border-b border-white/[0.06]">
+        <nav className="sticky top-0 z-50 flex justify-between items-center px-6 sm:px-10 py-4 bg-black/60 backdrop-blur-md border-b border-white/[0.06]">
           <span className="text-[11px] font-mono text-white/20 tracking-widest">srl.dev</span>
           <div className="flex items-center gap-3">
             <LangSwitcher />
@@ -680,7 +680,7 @@ export default function MainComponentNameCv() {
                 const isOpen = openExp.has(i);
                 return (
                   <ScrollReveal key={i} delay={i * 60}>
-                    <div className="glass-card rounded-2xl overflow-hidden"
+                    <div className="glass-card glass-card--highlight rounded-2xl overflow-hidden"
                       onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}>
                       {/* Header — always visible */}
                       <button
