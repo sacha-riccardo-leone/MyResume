@@ -376,51 +376,49 @@ function ScrollReveal({
 }
 
 /* ────────────────────────────────────────────────────── */
-/* Animated skill bars                                    */
+/* Skill dots (5-dot level indicator)                     */
 /* ────────────────────────────────────────────────────── */
-function SkillBars({ groups, lang }: { groups: typeof skillGroups; lang: Lang }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.1 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
+function SkillDots({ filled, color }: { filled: number; color: string }) {
   return (
-    <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="flex gap-[5px] items-center">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <div
+          key={i}
+          className="w-[7px] h-[7px] rounded-full transition-colors"
+          style={{ backgroundColor: i < filled ? color : "rgba(255,255,255,0.1)" }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function getLangDots(level: string): number {
+  const map: Record<string, number> = {
+    Maternelle: 5, Native: 5, Madrelingua: 5, Muttersprache: 5,
+    C2: 5, C1: 4, B2: 3, B1: 2, A2: 1, A1: 1,
+  };
+  return map[level] ?? 3;
+}
+
+/* ────────────────────────────────────────────────────── */
+/* Skill section (dots grid)                              */
+/* ────────────────────────────────────────────────────── */
+function SkillSection({ groups, lang }: { groups: typeof skillGroups; lang: Lang }) {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {groups.map((group, gi) => (
         <div key={gi}>
           <p
-            className="text-[10px] uppercase tracking-[0.18em] font-medium mb-3"
+            className="text-[10px] uppercase tracking-[0.18em] font-medium mb-4"
             style={{ color: group.color }}
           >
             {group.category[lang]}
           </p>
-          <div className="space-y-3">
+          <div className="space-y-3.5">
             {group.items.map((skill, si) => (
-              <div key={si}>
-                <div className="flex justify-between text-[12px] mb-1.5">
-                  <span className="text-white/75">{skill.name}</span>
-                  <span className="text-white/30 font-mono text-[11px]">{skill.level}%</span>
-                </div>
-                <div className="h-[1.5px] bg-white/10 rounded-full overflow-hidden">
-                  <div
-                    className="h-full rounded-full"
-                    style={{
-                      width: visible ? `${skill.level}%` : "0%",
-                      backgroundColor: group.color,
-                      opacity: 0.7,
-                      transition: `width 0.9s cubic-bezier(0.4,0,0.2,1) ${(gi * 3 + si) * 70}ms`,
-                    }}
-                  />
-                </div>
+              <div key={si} className="flex items-center justify-between gap-4">
+                <span className="text-sm text-white/70">{skill.name}</span>
+                <SkillDots filled={Math.round(skill.level / 20)} color={group.color} />
               </div>
             ))}
           </div>
@@ -450,7 +448,15 @@ export default function MainComponentNameCv() {
   const [lang, setLang] = useState<Lang>("fr");
   const [phase, setPhase] = useState<Phase>("cursor");
   const [displayedName, setDisplayedName] = useState("");
+  const [openExp, setOpenExp] = useState<Set<number>>(new Set([0]));
   const t = translations[lang];
+
+  const toggleExp = (i: number) =>
+    setOpenExp(prev => {
+      const next = new Set(prev);
+      next.has(i) ? next.delete(i) : next.add(i);
+      return next;
+    });
 
   useEffect(() => {
     const timer = setTimeout(() => setPhase("typing"), 700);
@@ -631,43 +637,69 @@ export default function MainComponentNameCv() {
             </div>
           </ScrollReveal>
 
-          {/* 02 — Experience */}
+          {/* 02 — Experience (accordion) */}
           <div>
             <ScrollReveal>
               <SectionHead title={t.sections.experience} num="02" />
             </ScrollReveal>
-            <div className="space-y-3">
-              {t.experience.map((exp, i) => (
-                <ScrollReveal key={i} delay={i * 70}>
-                  <div className="group px-5 py-4 rounded border border-white/10 hover:border-white/25 hover:bg-white/[0.03] hover:-translate-y-0.5 transition-all duration-200 cursor-default">
-                    <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2">
-                      <p className="text-base font-medium">{exp.company}</p>
-                      <p className="text-[11px] font-mono text-white/25">{exp.date}</p>
+            <div className="space-y-2">
+              {t.experience.map((exp, i) => {
+                const isOpen = openExp.has(i);
+                return (
+                  <ScrollReveal key={i} delay={i * 60}>
+                    <div className="rounded border border-white/10 hover:border-white/20 transition-colors overflow-hidden">
+                      {/* Header — always visible */}
+                      <button
+                        className="w-full flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-white/[0.03] transition-colors text-left"
+                        onClick={() => toggleExp(i)}
+                      >
+                        <div>
+                          <p className="text-base font-medium">{exp.company}</p>
+                          <p className="text-[11px] font-mono text-white/30 mt-0.5">{exp.date}</p>
+                        </div>
+                        <ChevronDown
+                          className="h-4 w-4 text-white/25 shrink-0 ml-4 transition-transform duration-300"
+                          style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+                        />
+                      </button>
+                      {/* Body — collapses */}
+                      <div
+                        style={{
+                          maxHeight: isOpen ? "200px" : "0px",
+                          opacity: isOpen ? 1 : 0,
+                          transition: "max-height 0.3s ease, opacity 0.25s ease",
+                          overflow: "hidden",
+                        }}
+                      >
+                        <p className="px-5 pb-4 text-sm text-white/45 leading-relaxed">
+                          {exp.description}
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-sm text-white/45 leading-relaxed">{exp.description}</p>
-                  </div>
-                </ScrollReveal>
-              ))}
+                  </ScrollReveal>
+                );
+              })}
             </div>
           </div>
 
-          {/* 03 — Skills */}
+          {/* 03 — Skills (dots) */}
           <ScrollReveal>
             <SectionHead title={t.sections.skills} num="03" />
-            <SkillBars groups={skillGroups} lang={lang} />
+            <SkillSection groups={skillGroups} lang={lang} />
           </ScrollReveal>
 
-          {/* 04 — Languages */}
+          {/* 04 — Languages (dots) */}
           <ScrollReveal>
             <SectionHead title={t.sections.languages} num="04" />
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {t.languages.map((language, i) => (
                 <div
                   key={i}
-                  className="px-4 py-3.5 rounded border border-white/10 bg-white/[0.02] hover:border-white/20 transition-colors"
+                  className="px-4 py-4 rounded border border-white/10 bg-white/[0.02] hover:border-white/20 transition-colors"
                 >
-                  <p className="text-sm font-medium">{language.name}</p>
-                  <p className="text-[11px] text-white/35 mt-0.5">{language.level}</p>
+                  <p className="text-sm font-medium mb-2.5">{language.name}</p>
+                  <SkillDots filled={getLangDots(language.level)} color="rgba(255,255,255,0.55)" />
+                  <p className="text-[10px] text-white/30 mt-2">{language.level}</p>
                 </div>
               ))}
             </div>
