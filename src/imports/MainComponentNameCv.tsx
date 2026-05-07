@@ -387,7 +387,7 @@ function WaveBackground() {
         ctx.fill();
       }
 
-      t += 0.02;
+      t += 0.007;
       animId = requestAnimationFrame(draw);
     };
 
