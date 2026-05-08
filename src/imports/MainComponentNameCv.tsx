@@ -1329,7 +1329,7 @@ export default function MainComponentNameCv() {
                   <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
                 </div>
 
-                <div style={{ display: "flex", flexDirection: "column", gap: "5mm" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "3.5mm" }}>
                   {skillGroups.map((group, gi) => (
                     <div key={gi}>
                       <p style={{
@@ -1342,24 +1342,19 @@ export default function MainComponentNameCv() {
                       }}>
                         {group.category[lang]}
                       </p>
-                      <div style={{ display: "flex", flexDirection: "column", gap: "2.2mm" }}>
-                        {group.items.map((skill, si) => (
-                          <div key={si} style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                          }}>
-                            <span style={{ fontSize: "7.5pt", color: "#333" }}>{skill.name}</span>
-                            <SkillDots
-                              filled={Math.round(skill.level / 10) / 2}
-                              color="#2a2a2a"
-                              emptyColor="rgba(0,0,0,0.12)"
-                              size={5}
-                              gap={3}
-                            />
-                          </div>
-                        ))}
-                      </div>
+                      <p style={{ fontSize: "6.5pt", color: "#666", margin: "0 0 2mm 0", lineHeight: 1.5 }}>
+                        {group.items.map(s => s.name).join(" · ")}
+                      </p>
+                      <SkillDots
+                        filled={Math.round(
+                          group.items.reduce((sum, s) => sum + Math.round(s.level / 10) / 2, 0) /
+                          group.items.length * 2
+                        ) / 2}
+                        color="#2a2a2a"
+                        emptyColor="rgba(0,0,0,0.12)"
+                        size={5}
+                        gap={3}
+                      />
                     </div>
                   ))}
                 </div>
