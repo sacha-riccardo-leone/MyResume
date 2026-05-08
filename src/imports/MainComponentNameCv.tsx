@@ -360,37 +360,37 @@ const skillGroups = [
     color: "#fbbf24",
     items: [
       { name: "SQL/NoSQL", level: 80 },
-      { name: "Supabase", level: 80 },
+      { name: "Supabase", level: 60 },
     ],
   },
   {
     category: { fr: "IA / LLM", en: "AI / LLM", de: "KI / LLM", it: "IA / LLM" },
     color: "#22d3ee",
     items: [
-      { name: "Claude API", level: 90 },
-      { name: "RAG / Vector DB", level: 75 },
+      { name: "Claude API", level: 75 },
+      { name: "RAG / Vector DB", level: 60 },
       { name: "Prompt engineering", level: 80 },
-      { name: "Eval harness", level: 80 },
+      { name: "Eval harness", level: 60 },
     ],
   },
   {
     category: { fr: "Sécurité", en: "Security", de: "Sicherheit", it: "Sicurezza" },
     color: "#f87171",
     items: [
-      { name: "OAuth / JWT", level: 80 },
-      { name: "FADP / GDPR", level: 75 },
-      { name: "AES-GCM", level: 70 },
-      { name: "RLS / Hardening", level: 75 },
+      { name: "OAuth / JWT", level: 60 },
+      { name: "FADP / GDPR", level: 60 },
+      { name: "AES-GCM", level: 50 },
+      { name: "RLS / Hardening", level: 60 },
     ],
   },
   {
     category: { fr: "Infrastructure", en: "Infrastructure", de: "Infrastruktur", it: "Infrastruttura" },
     color: "#818cf8",
     items: [
-      { name: "Cloud Run / GCP", level: 75 },
-      { name: "Vercel", level: 85 },
-      { name: "Docker", level: 70 },
-      { name: "Sentry / PostHog", level: 70 },
+      { name: "Cloud Run / GCP", level: 60 },
+      { name: "Vercel", level: 75 },
+      { name: "Docker", level: 50 },
+      { name: "Sentry / PostHog", level: 50 },
     ],
   },
   {
@@ -398,7 +398,7 @@ const skillGroups = [
     color: "#fb923c",
     items: [
       { name: "Figma", level: 85 },
-      { name: "UI/UX", level: 75 },
+      { name: "UI/UX", level: 60 },
       { name: "Krita", level: 95 },
     ],
   },
