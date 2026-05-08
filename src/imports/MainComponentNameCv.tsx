@@ -659,7 +659,7 @@ export default function MainComponentNameCv() {
           key={l}
           onClick={() => setLang(l)}
           onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
-          className={`glass-card glass-card--sm text-[10px] font-['Space_Grotesk',sans-serif] uppercase px-2 py-1 rounded-lg cursor-pointer ${
+          className={`glass-card glass-card--sm text-[10px] font-['Geist',sans-serif] uppercase px-2 py-1 rounded-lg cursor-pointer ${
             lang === l
               ? "glass-card--active text-white font-medium"
               : "text-white/50"
@@ -676,7 +676,7 @@ export default function MainComponentNameCv() {
       {/* ═══════════════════════════════════════════════════════
           WEB LAYOUT — portfolio dev, scroll animations
           ═══════════════════════════════════════════════════════ */}
-      <div className="print-hidden text-white font-['Space_Grotesk',sans-serif]">
+      <div className="print-hidden text-white font-['Geist',sans-serif]">
         <WaveBackground />
 
         {/* ── Sticky nav ── */}
@@ -910,13 +910,13 @@ export default function MainComponentNameCv() {
             data-name="Name + Columns"
           >
             {/* Name */}
-            <div className="flex flex-col font-['Space_Grotesk',sans-serif] justify-end leading-[0] not-italic relative shrink-0 text-[40px] text-white w-[358px]">
+            <div className="flex flex-col font-['Geist',sans-serif] justify-end leading-[0] not-italic relative shrink-0 text-[40px] text-white w-[358px]">
               <p className="leading-[32px]">{FULL_NAME}</p>
               <p className="leading-[20px] text-[16px] mt-2">{t.title}</p>
             </div>
 
             {/* Intro */}
-            <div className="font-['Space_Grotesk',sans-serif] font-normal not-italic relative shrink-0 text-[9px] text-white w-[358px]">
+            <div className="font-['Geist',sans-serif] font-normal not-italic relative shrink-0 text-[9px] text-white w-[358px]">
               <p className="leading-[150%]">{t.intro}</p>
             </div>
 
@@ -943,10 +943,10 @@ export default function MainComponentNameCv() {
                       className="separator bg-white col-1 h-[0.5px] ml-0 mt-[16px] row-1 w-[169px]"
                       data-name="Separator"
                     />
-                    <p className="col-1 font-['Space_Grotesk',sans-serif] leading-[normal] ml-0 mt-0 not-italic relative row-1 text-[9px] text-white uppercase whitespace-nowrap">
+                    <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-0 mt-0 not-italic relative row-1 text-[9px] text-white uppercase whitespace-nowrap">
                       {t.sections.experience}
                     </p>
-                    <p className="col-1 font-['Space_Grotesk',sans-serif] leading-[normal] ml-[152px] mt-0 not-italic relative row-1 text-[9px] text-right text-white uppercase whitespace-nowrap">
+                    <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-[152px] mt-0 not-italic relative row-1 text-[9px] text-right text-white uppercase whitespace-nowrap">
                       02
                     </p>
                   </div>
@@ -956,13 +956,13 @@ export default function MainComponentNameCv() {
                       className="content-stretch flex flex-col gap-[5px] items-start not-italic relative shrink-0 text-white"
                       data-name="Experience"
                     >
-                      <p className="capitalize font-['Space_Grotesk',sans-serif] font-normal leading-[normal] relative shrink-0 text-[8px] w-[169px] whitespace-pre-wrap">
+                      <p className="capitalize font-['Geist',sans-serif] font-normal leading-[normal] relative shrink-0 text-[8px] w-[169px] whitespace-pre-wrap">
                         {exp.date}
                       </p>
-                      <p className="font-['Space_Grotesk',sans-serif] font-medium leading-[normal] relative shrink-0 text-[12px] w-[169px]">
+                      <p className="font-['Geist',sans-serif] font-medium leading-[normal] relative shrink-0 text-[12px] w-[169px]">
                         {exp.company}
                       </p>
-                      <p className="font-['Space_Grotesk',sans-serif] font-normal leading-[115.69953155517578%] relative shrink-0 text-[9px] w-[169px]">
+                      <p className="font-['Geist',sans-serif] font-normal leading-[115.69953155517578%] relative shrink-0 text-[9px] w-[169px]">
                         {exp.description}
                       </p>
                     </div>
@@ -983,10 +983,10 @@ export default function MainComponentNameCv() {
                         className="separator bg-white col-1 h-[0.5px] ml-0 mt-[16px] row-1 w-[169px]"
                         data-name="Separator"
                       />
-                      <p className="col-1 font-['Space_Grotesk',sans-serif] leading-[normal] ml-0 mt-0 not-italic relative row-1 text-[9px] text-white uppercase whitespace-nowrap">
+                      <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-0 mt-0 not-italic relative row-1 text-[9px] text-white uppercase whitespace-nowrap">
                         {t.sections.languages}
                       </p>
-                      <p className="col-1 font-['Space_Grotesk',sans-serif] leading-[normal] ml-[152px] mt-0 not-italic relative row-1 text-[9px] text-right text-white uppercase whitespace-nowrap">
+                      <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-[152px] mt-0 not-italic relative row-1 text-[9px] text-right text-white uppercase whitespace-nowrap">
                         03
                       </p>
                     </div>
@@ -1001,7 +1001,7 @@ export default function MainComponentNameCv() {
                         className="flex items-center justify-between w-[169px]"
                         data-name="Language"
                       >
-                        <div className="font-['Space_Grotesk',sans-serif] font-normal not-italic text-white">
+                        <div className="font-['Geist',sans-serif] font-normal not-italic text-white">
                           <p className="text-[9px] leading-[130%]">{language.name}</p>
                           <p className="text-[7px] leading-[130%] text-white/50">{language.level}</p>
                         </div>
@@ -1030,15 +1030,15 @@ export default function MainComponentNameCv() {
                       className="separator bg-white col-1 h-[0.5px] ml-0 mt-[16px] row-1 w-[169px]"
                       data-name="Separator"
                     />
-                    <p className="col-1 font-['Space_Grotesk',sans-serif] leading-[normal] ml-0 mt-0 not-italic relative row-1 text-[9px] text-white uppercase whitespace-nowrap">
+                    <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-0 mt-0 not-italic relative row-1 text-[9px] text-white uppercase whitespace-nowrap">
                       {t.sections.skills}
                     </p>
-                    <p className="col-1 font-['Space_Grotesk',sans-serif] leading-[normal] ml-[151px] mt-0 not-italic relative row-1 text-[9px] text-right text-white uppercase whitespace-nowrap">
+                    <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-[151px] mt-0 not-italic relative row-1 text-[9px] text-right text-white uppercase whitespace-nowrap">
                       04
                     </p>
                   </div>
                   <div
-                    className="content-stretch flex flex-col font-['Space_Grotesk',sans-serif] font-normal gap-[10px] items-start not-italic relative shrink-0 text-[9px] text-white"
+                    className="content-stretch flex flex-col font-['Geist',sans-serif] font-normal gap-[10px] items-start not-italic relative shrink-0 text-[9px] text-white"
                     data-name="Skills"
                   >
                     {skillGroups.map((group, i) => (
@@ -1070,10 +1070,10 @@ export default function MainComponentNameCv() {
                       className="separator bg-white col-1 h-[0.5px] ml-0 mt-[16px] row-1 w-[169px]"
                       data-name="Separator"
                     />
-                    <p className="col-1 font-['Space_Grotesk',sans-serif] leading-[normal] ml-0 mt-0 not-italic relative row-1 text-[9px] text-white uppercase whitespace-nowrap">
+                    <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-0 mt-0 not-italic relative row-1 text-[9px] text-white uppercase whitespace-nowrap">
                       {t.sections.education}
                     </p>
-                    <p className="col-1 font-['Space_Grotesk',sans-serif] leading-[normal] ml-[152px] mt-0 not-italic relative row-1 text-[9px] text-right text-white uppercase whitespace-nowrap">
+                    <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-[152px] mt-0 not-italic relative row-1 text-[9px] text-right text-white uppercase whitespace-nowrap">
                       05
                     </p>
                   </div>
@@ -1083,13 +1083,13 @@ export default function MainComponentNameCv() {
                       className="content-stretch flex flex-col gap-[5px] items-start not-italic relative shrink-0 text-white"
                       data-name="Education"
                     >
-                      <p className="capitalize font-['Space_Grotesk',sans-serif] font-normal leading-[normal] relative shrink-0 text-[8px] w-[169px]">
+                      <p className="capitalize font-['Geist',sans-serif] font-normal leading-[normal] relative shrink-0 text-[8px] w-[169px]">
                         {edu.date}
                       </p>
-                      <p className="font-['Space_Grotesk',sans-serif] font-medium leading-[normal] relative shrink-0 text-[12px] w-[169px]">
+                      <p className="font-['Geist',sans-serif] font-medium leading-[normal] relative shrink-0 text-[12px] w-[169px]">
                         {edu.institution}
                       </p>
-                      <p className="font-['Space_Grotesk',sans-serif] font-normal leading-[115.69953155517578%] relative shrink-0 text-[9px] w-[169px]">
+                      <p className="font-['Geist',sans-serif] font-normal leading-[115.69953155517578%] relative shrink-0 text-[9px] w-[169px]">
                         {edu.description}
                       </p>
                     </div>
@@ -1112,15 +1112,15 @@ export default function MainComponentNameCv() {
                 className="separator bg-white col-1 h-[0.5px] ml-0 mt-[16px] row-1 w-[169px]"
                 data-name="Separator"
               />
-              <p className="col-1 font-['Space_Grotesk',sans-serif] leading-[normal] ml-0 mt-0 not-italic relative row-1 text-[9px] text-white uppercase whitespace-nowrap">
+              <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-0 mt-0 not-italic relative row-1 text-[9px] text-white uppercase whitespace-nowrap">
                 {t.sections.contact}
               </p>
-              <p className="col-1 font-['Space_Grotesk',sans-serif] leading-[normal] ml-[154px] mt-0 not-italic relative row-1 text-[9px] text-right text-white uppercase whitespace-nowrap">
+              <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-[154px] mt-0 not-italic relative row-1 text-[9px] text-right text-white uppercase whitespace-nowrap">
                 01
               </p>
             </div>
             <div
-              className="content-stretch flex flex-col font-['Space_Grotesk',sans-serif] gap-[8px] items-start not-italic relative shrink-0 text-[8px] text-white uppercase"
+              className="content-stretch flex flex-col font-['Geist',sans-serif] gap-[8px] items-start not-italic relative shrink-0 text-[8px] text-white uppercase"
               data-name="Contacts"
             >
               <div className="flex items-center gap-2 relative shrink-0 w-[169px]">
