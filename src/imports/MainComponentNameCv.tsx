@@ -379,7 +379,6 @@ const skillGroups = [
     items: [
       { name: "OAuth / JWT", level: 60 },
       { name: "FADP / GDPR", level: 60 },
-      { name: "AES-GCM", level: 50 },
       { name: "RLS / Hardening", level: 60 },
     ],
   },
