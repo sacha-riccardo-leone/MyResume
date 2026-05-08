@@ -490,9 +490,21 @@ function ScrollReveal({
 /* ────────────────────────────────────────────────────── */
 /* Skill dots (5-dot level indicator)                     */
 /* ────────────────────────────────────────────────────── */
-function SkillDots({ filled, color }: { filled: number; color: string }) {
+function SkillDots({
+  filled,
+  color,
+  emptyColor = "rgba(255,255,255,0.1)",
+  size = 7,
+  gap = 5,
+}: {
+  filled: number;
+  color: string;
+  emptyColor?: string;
+  size?: number;
+  gap?: number;
+}) {
   return (
-    <div className="flex gap-[5px] items-center">
+    <div className="flex items-center" style={{ gap: `${gap}px` }}>
       {Array.from({ length: 5 }).map((_, i) => {
         const diff = filled - i;
         const isHalf = diff > 0 && diff < 1;
@@ -500,13 +512,16 @@ function SkillDots({ filled, color }: { filled: number; color: string }) {
         return (
           <div
             key={i}
-            className="w-[7px] h-[7px] rounded-full"
             style={{
+              width: `${size}px`,
+              height: `${size}px`,
+              borderRadius: "50%",
               background: isFull
                 ? color
                 : isHalf
-                ? `linear-gradient(to right, ${color} 50%, rgba(255,255,255,0.1) 50%)`
-                : "rgba(255,255,255,0.1)",
+                ? `linear-gradient(to right, ${color} 50%, ${emptyColor} 50%)`
+                : emptyColor,
+              flexShrink: 0,
             }}
           />
         );
@@ -983,17 +998,14 @@ export default function MainComponentNameCv() {
                     {t.languages.map((language, i) => (
                       <div
                         key={i}
-                        className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0"
+                        className="flex items-center justify-between w-[169px]"
                         data-name="Language"
                       >
-                        <div className="col-1 font-['Space_Grotesk',sans-serif] font-normal grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-0 not-italic place-items-start relative row-1 text-[9px] text-white">
-                          <p className="col-1 leading-[115.69953155517578%] ml-0 mt-0 relative row-1 w-[126px]">
-                            {language.name}
-                          </p>
-                          <p className="col-1 leading-[115.69953155517578%] ml-[95px] mt-0 relative row-1 text-right w-[74px]">
-                            {language.level}
-                          </p>
+                        <div className="font-['Space_Grotesk',sans-serif] font-normal not-italic text-white">
+                          <p className="text-[9px] leading-[130%]">{language.name}</p>
+                          <p className="text-[7px] leading-[130%] text-white/50">{language.level}</p>
                         </div>
+                        <SkillDots filled={getLangDots(language.level)} color="rgba(255,255,255,0.85)" emptyColor="rgba(255,255,255,0.18)" size={5} gap={3} />
                       </div>
                     ))}
                   </div>
@@ -1032,7 +1044,14 @@ export default function MainComponentNameCv() {
                     {skillGroups.map((group, i) => (
                       <div key={i}>
                         <p className="text-[7px] uppercase tracking-[0.1em] text-white/50 mb-[4px]">{group.category[lang]}</p>
-                        <p className="leading-[150%] w-[169px]">{group.items.map(s => s.name).join(" · ")}</p>
+                        <div className="flex flex-col gap-[4px]">
+                          {group.items.map((skill, si) => (
+                            <div key={si} className="flex items-center justify-between w-[169px]">
+                              <span className="text-[9px]">{skill.name}</span>
+                              <SkillDots filled={Math.round(skill.level / 20)} color={group.color} emptyColor="rgba(255,255,255,0.18)" size={5} gap={3} />
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     ))}
                   </div>
