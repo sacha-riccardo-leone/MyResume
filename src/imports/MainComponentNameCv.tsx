@@ -346,13 +346,13 @@ const skillGroups = [
       { name: "Python", level: 60 },      // 3/5
       { name: "JavaScript", level: 65 },  // 3/5
       { name: "HTML/CSS", level: 85 },    // 4/5
-      { name: "FastAPI", level: 60 },     // 3/5
+      { name: "FastAPI", level: 80 },     // 4/5
     ],
   },
   {
     category: { fr: "Base de données", en: "Databases", de: "Datenbanken", it: "Database" },
     color: "#fbbf24",
-    items: [{ name: "SQL/NoSQL", level: 60 }],  // 3/5
+    items: [{ name: "SQL/NoSQL", level: 80 }],  // 4/5
   },
   {
     category: { fr: "Outils", en: "Tools", de: "Werkzeuge", it: "Strumenti" },
