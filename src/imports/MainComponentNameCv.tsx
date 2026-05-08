@@ -72,9 +72,9 @@ const translations = {
           "Formation d'informatique (Dév. d'applications), CFC et maturité professionnelle",
       },
       {
-        date: "2018–2020",
+        date: "2021–2022",
         institution: "École secondaire (NE) — Le Landeron, C2T",
-        description: "PRIMA bilingue FR/DE",
+        description: "Fin du cycle obligatoire · Diplôme cantonal neuchâtelois · PRIMA bilingue FR/DE",
       },
       {
         date: "2020–2021",
@@ -82,9 +82,9 @@ const translations = {
         description: "Immersion 100% en allemand à Erlach",
       },
       {
-        date: "2021–2022",
+        date: "2018–2020",
         institution: "École secondaire (NE) — Le Landeron, C2T",
-        description: "Fin du cycle obligatoire · Diplôme cantonal neuchâtelois · PRIMA bilingue FR/DE",
+        description: "PRIMA bilingue FR/DE",
       },
     ],
   },
@@ -152,9 +152,9 @@ const translations = {
           "IT training (Application Development), federal vocational diploma (CFC) and professional baccalaureate",
       },
       {
-        date: "2018–2020",
+        date: "2021–2022",
         institution: "Secondary School (NE) — Le Landeron, C2T",
-        description: "PRIMA bilingual programme (FR/DE)",
+        description: "Final year of compulsory schooling · Neuchâtel cantonal diploma · PRIMA bilingual programme (FR/DE)",
       },
       {
         date: "2020–2021",
@@ -162,9 +162,9 @@ const translations = {
         description: "100% German immersion in Erlach",
       },
       {
-        date: "2021–2022",
+        date: "2018–2020",
         institution: "Secondary School (NE) — Le Landeron, C2T",
-        description: "Final year of compulsory schooling · Neuchâtel cantonal diploma · PRIMA bilingual programme (FR/DE)",
+        description: "PRIMA bilingual programme (FR/DE)",
       },
     ],
   },
@@ -232,9 +232,9 @@ const translations = {
           "Informatikausbildung (Applikationsentwicklung), EFZ und Berufsmaturität",
       },
       {
-        date: "2018–2020",
+        date: "2021–2022",
         institution: "Sekundarschule (NE) — Le Landeron, C2T",
-        description: "PRIMA bilinguale Ausbildung (FR/DE)",
+        description: "Abschlussjahr der obligatorischen Schulzeit · Kantonales Diplom Neuenburg · PRIMA bilinguale Ausbildung (FR/DE)",
       },
       {
         date: "2020–2021",
@@ -242,9 +242,9 @@ const translations = {
         description: "100% Deutschimmersion in Erlach",
       },
       {
-        date: "2021–2022",
+        date: "2018–2020",
         institution: "Sekundarschule (NE) — Le Landeron, C2T",
-        description: "Abschlussjahr der obligatorischen Schulzeit · Kantonales Diplom Neuenburg · PRIMA bilinguale Ausbildung (FR/DE)",
+        description: "PRIMA bilinguale Ausbildung (FR/DE)",
       },
     ],
   },
@@ -312,9 +312,9 @@ const translations = {
           "Formazione informatica (Sviluppo di applicazioni), AFC e maturità professionale",
       },
       {
-        date: "2018–2020",
+        date: "2021–2022",
         institution: "Scuola secondaria (NE) — Le Landeron, C2T",
-        description: "PRIMA bilingue FR/DE",
+        description: "Anno finale della scolarità obbligatoria · Diploma cantonale Neuchâtelois · PRIMA bilingue FR/DE",
       },
       {
         date: "2020–2021",
@@ -322,9 +322,9 @@ const translations = {
         description: "Immersione 100% tedesco a Erlach",
       },
       {
-        date: "2021–2022",
+        date: "2018–2020",
         institution: "Scuola secondaria (NE) — Le Landeron, C2T",
-        description: "Anno finale della scolarità obbligatoria · Diploma cantonale Neuchâtelois · PRIMA bilingue FR/DE",
+        description: "PRIMA bilingue FR/DE",
       },
     ],
   },
