@@ -896,268 +896,344 @@ export default function MainComponentNameCv() {
       </div>
 
       {/* ═══════════════════════════════════════════════════════
-          PRINT LAYOUT — A4 portrait, fixed positioning
+          PRINT LAYOUT — A4 portrait, flex-based, monochrome
           ═══════════════════════════════════════════════════════ */}
       <div className="print-only">
         <div
-          className="bg-[#262626] relative"
-          style={{ width: "210mm", height: "297mm", overflow: "hidden" }}
           data-name="Main Component - Name - CV"
+          style={{
+            width: "210mm",
+            height: "297mm",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+            background: "white",
+            fontFamily: "'Geist', sans-serif",
+            color: "#111",
+          }}
         >
-          {/* Name + Columns */}
-          <div
-            className="absolute content-stretch flex flex-col gap-[25px] items-start left-[calc(33.33%+14.67px)] top-[61px]"
-            data-name="Name + Columns"
-          >
-            {/* Name */}
-            <div className="flex flex-col font-['Geist',sans-serif] justify-end leading-[0] not-italic relative shrink-0 text-[40px] text-white w-[358px]">
-              <p className="leading-[32px]">{FULL_NAME}</p>
-              <p className="leading-[20px] text-[16px] mt-2">{t.title}</p>
+
+          {/* ── HEADER ── dark strip with photo + name + contact ── */}
+          <div style={{
+            background: "#141414",
+            padding: "9mm 14mm",
+            display: "flex",
+            alignItems: "center",
+            gap: "9mm",
+            flexShrink: 0,
+          }}>
+            {/* Photo */}
+            <div style={{
+              width: "22mm",
+              height: "22mm",
+              borderRadius: "3.5mm",
+              overflow: "hidden",
+              flexShrink: 0,
+              border: "0.4px solid rgba(255,255,255,0.18)",
+            }}>
+              <img
+                src={profilePic}
+                alt={FULL_NAME}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
             </div>
 
-            {/* Intro */}
-            <div className="font-['Geist',sans-serif] font-normal not-italic relative shrink-0 text-[9px] text-white w-[358px]">
-              <p className="leading-[150%]">{t.intro}</p>
+            {/* Name + title */}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <p style={{
+                fontSize: "19pt",
+                fontWeight: 600,
+                color: "white",
+                lineHeight: 1.05,
+                letterSpacing: "-0.02em",
+                margin: 0,
+              }}>
+                {FULL_NAME}
+              </p>
+              <p style={{
+                fontSize: "7.5pt",
+                color: "rgba(255,255,255,0.45)",
+                marginTop: "2mm",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                margin: "2mm 0 0",
+              }}>
+                {t.title}
+              </p>
             </div>
 
-            {/* Column 2 + 3 */}
-            <div
-              className="content-stretch flex gap-[20px] items-start relative shrink-0"
-              data-name="Column 2 + 3"
-            >
-              {/* Column 2 — Experience + Languages */}
-              <div
-                className="content-stretch flex flex-col gap-[33px] items-start relative shrink-0"
-                data-name="Column 2"
-              >
-                {/* Experience */}
-                <div
-                  className="content-stretch flex flex-col gap-[18px] items-start relative shrink-0"
-                  data-name="Experience"
-                >
-                  <div
-                    className="grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] place-items-start relative shrink-0"
-                    data-name="Headline"
-                  >
-                    <div
-                      className="separator bg-white col-1 h-[0.5px] ml-0 mt-[16px] row-1 w-[169px]"
-                      data-name="Separator"
-                    />
-                    <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-0 mt-0 not-italic relative row-1 text-[9px] text-white uppercase whitespace-nowrap">
-                      {t.sections.experience}
-                    </p>
-                    <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-[152px] mt-0 not-italic relative row-1 text-[9px] text-right text-white uppercase whitespace-nowrap">
-                      02
-                    </p>
-                  </div>
+            {/* Contact details — right-aligned column */}
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "1.6mm",
+              fontSize: "6.5pt",
+              color: "rgba(255,255,255,0.55)",
+              textAlign: "right",
+              flexShrink: 0,
+              lineHeight: 1.3,
+            }}>
+              <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
+                <MapPin style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
+                {t.contact.location}
+              </span>
+              <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
+                <Mail style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
+                {t.contact.email}
+              </span>
+              <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
+                <Phone style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
+                {t.contact.phone}
+              </span>
+              <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
+                <Linkedin style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
+                {t.contact.linkedin}
+              </span>
+              <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
+                <Github style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
+                {t.contact.github}
+              </span>
+            </div>
+          </div>
+
+          {/* ── INTRO STRIP ── light gray band ── */}
+          <div style={{
+            background: "#f2f2f2",
+            padding: "4.5mm 14mm",
+            borderBottom: "0.5px solid #d8d8d8",
+            flexShrink: 0,
+          }}>
+            <p style={{
+              fontSize: "7.5pt",
+              color: "#444",
+              lineHeight: 1.58,
+              margin: 0,
+            }}>
+              {t.intro}
+            </p>
+          </div>
+
+          {/* ── BODY — two-column flex ── */}
+          <div style={{ flex: 1, display: "flex", overflow: "hidden" }}>
+
+            {/* LEFT COLUMN — Experience + Education */}
+            <div style={{
+              flex: 1,
+              padding: "8mm 9mm 8mm 14mm",
+              borderRight: "0.5px solid #e2e2e2",
+              display: "flex",
+              flexDirection: "column",
+              gap: "8mm",
+              overflow: "hidden",
+            }}>
+
+              {/* ── Section: Experience ── */}
+              <div>
+                {/* Section label + rule */}
+                <div style={{ display: "flex", alignItems: "center", gap: "3mm", marginBottom: "5mm" }}>
+                  <p style={{
+                    fontSize: "5.5pt",
+                    fontWeight: 700,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color: "#999",
+                    margin: 0,
+                    flexShrink: 0,
+                    whiteSpace: "nowrap",
+                  }}>
+                    {t.sections.experience}
+                  </p>
+                  <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "5.5mm" }}>
                   {t.experience.map((exp, i) => (
-                    <div
-                      key={i}
-                      className="content-stretch flex flex-col gap-[5px] items-start not-italic relative shrink-0 text-white"
-                      data-name="Experience"
-                    >
-                      <p className="capitalize font-['Geist',sans-serif] font-normal leading-[normal] relative shrink-0 text-[8px] w-[169px] whitespace-pre-wrap">
-                        {exp.date}
-                      </p>
-                      <p className="font-['Geist',sans-serif] font-medium leading-[normal] relative shrink-0 text-[12px] w-[169px]">
-                        {exp.company}
-                      </p>
-                      <p className="font-['Geist',sans-serif] font-normal leading-[115.69953155517578%] relative shrink-0 text-[9px] w-[169px]">
+                    <div key={i}>
+                      <div style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "baseline",
+                        marginBottom: "1mm",
+                      }}>
+                        <p style={{ fontSize: "8.5pt", fontWeight: 600, color: "#111", margin: 0 }}>
+                          {exp.company}
+                        </p>
+                        <p style={{
+                          fontSize: "6pt",
+                          color: "#999",
+                          margin: "0 0 0 3mm",
+                          flexShrink: 0,
+                          fontVariantNumeric: "tabular-nums",
+                        }}>
+                          {exp.date}
+                        </p>
+                      </div>
+                      <p style={{ fontSize: "7pt", color: "#555", lineHeight: 1.5, margin: 0 }}>
                         {exp.description}
                       </p>
                     </div>
                   ))}
                 </div>
-
-                {/* Languages */}
-                <div
-                  className="content-stretch flex flex-col gap-[15px] items-start relative shrink-0"
-                  data-name="Languages"
-                >
-                  <div
-                    className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0"
-                    data-name="Headline"
-                  >
-                    <div className="col-1 grid-cols-[max-content] grid-rows-[max-content] inline-grid ml-0 mt-0 place-items-start relative row-1">
-                      <div
-                        className="separator bg-white col-1 h-[0.5px] ml-0 mt-[16px] row-1 w-[169px]"
-                        data-name="Separator"
-                      />
-                      <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-0 mt-0 not-italic relative row-1 text-[9px] text-white uppercase whitespace-nowrap">
-                        {t.sections.languages}
-                      </p>
-                      <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-[152px] mt-0 not-italic relative row-1 text-[9px] text-right text-white uppercase whitespace-nowrap">
-                        03
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0"
-                    data-name="Languages"
-                  >
-                    {t.languages.map((language, i) => (
-                      <div
-                        key={i}
-                        className="flex items-center justify-between w-[169px]"
-                        data-name="Language"
-                      >
-                        <div className="font-['Geist',sans-serif] font-normal not-italic text-white">
-                          <p className="text-[9px] leading-[130%]">{language.name}</p>
-                          <p className="text-[7px] leading-[130%] text-white/50">{language.level}</p>
-                        </div>
-                        <SkillDots filled={getLangDots(language.level)} color="rgba(255,255,255,0.85)" emptyColor="rgba(255,255,255,0.18)" size={5} gap={3} />
-                      </div>
-                    ))}
-                  </div>
-                </div>
               </div>
 
-              {/* Column 3 — Skills + Education */}
-              <div
-                className="content-stretch flex flex-col gap-[32px] items-start leading-[0] relative shrink-0"
-                data-name="Column 3"
-              >
-                {/* Skills */}
-                <div
-                  className="content-stretch flex flex-col gap-[15px] items-start relative shrink-0"
-                  data-name="Skills"
-                >
-                  <div
-                    className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0"
-                    data-name="Headline"
-                  >
-                    <div
-                      className="separator bg-white col-1 h-[0.5px] ml-0 mt-[16px] row-1 w-[169px]"
-                      data-name="Separator"
-                    />
-                    <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-0 mt-0 not-italic relative row-1 text-[9px] text-white uppercase whitespace-nowrap">
-                      {t.sections.skills}
-                    </p>
-                    <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-[151px] mt-0 not-italic relative row-1 text-[9px] text-right text-white uppercase whitespace-nowrap">
-                      04
-                    </p>
-                  </div>
-                  <div
-                    className="content-stretch flex flex-col font-['Geist',sans-serif] font-normal gap-[10px] items-start not-italic relative shrink-0 text-[9px] text-white"
-                    data-name="Skills"
-                  >
-                    {skillGroups.map((group, i) => (
-                      <div key={i}>
-                        <p className="text-[7px] uppercase tracking-[0.1em] text-white/50 mb-[4px]">{group.category[lang]}</p>
-                        <div className="flex flex-col gap-[4px]">
-                          {group.items.map((skill, si) => (
-                            <div key={si} className="flex items-center justify-between w-[169px]">
-                              <span className="text-[9px]">{skill.name}</span>
-                              <SkillDots filled={Math.round(skill.level / 20)} color={group.color} emptyColor="rgba(255,255,255,0.18)" size={5} gap={3} />
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+              {/* ── Section: Education ── */}
+              <div>
+                <div style={{ display: "flex", alignItems: "center", gap: "3mm", marginBottom: "5mm" }}>
+                  <p style={{
+                    fontSize: "5.5pt",
+                    fontWeight: 700,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color: "#999",
+                    margin: 0,
+                    flexShrink: 0,
+                    whiteSpace: "nowrap",
+                  }}>
+                    {t.sections.education}
+                  </p>
+                  <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
                 </div>
 
-                {/* Education */}
-                <div
-                  className="content-stretch flex flex-col gap-[15px] items-start relative shrink-0"
-                  data-name="Education"
-                >
-                  <div
-                    className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0"
-                    data-name="Headline"
-                  >
-                    <div
-                      className="separator bg-white col-1 h-[0.5px] ml-0 mt-[16px] row-1 w-[169px]"
-                      data-name="Separator"
-                    />
-                    <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-0 mt-0 not-italic relative row-1 text-[9px] text-white uppercase whitespace-nowrap">
-                      {t.sections.education}
-                    </p>
-                    <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-[152px] mt-0 not-italic relative row-1 text-[9px] text-right text-white uppercase whitespace-nowrap">
-                      05
-                    </p>
-                  </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: "5.5mm" }}>
                   {t.education.map((edu, i) => (
-                    <div
-                      key={i}
-                      className="content-stretch flex flex-col gap-[5px] items-start not-italic relative shrink-0 text-white"
-                      data-name="Education"
-                    >
-                      <p className="capitalize font-['Geist',sans-serif] font-normal leading-[normal] relative shrink-0 text-[8px] w-[169px]">
-                        {edu.date}
-                      </p>
-                      <p className="font-['Geist',sans-serif] font-medium leading-[normal] relative shrink-0 text-[12px] w-[169px]">
-                        {edu.institution}
-                      </p>
-                      <p className="font-['Geist',sans-serif] font-normal leading-[115.69953155517578%] relative shrink-0 text-[9px] w-[169px]">
+                    <div key={i}>
+                      <div style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "baseline",
+                        marginBottom: "1mm",
+                      }}>
+                        <p style={{ fontSize: "8.5pt", fontWeight: 600, color: "#111", margin: 0 }}>
+                          {edu.institution}
+                        </p>
+                        <p style={{
+                          fontSize: "6pt",
+                          color: "#999",
+                          margin: "0 0 0 3mm",
+                          flexShrink: 0,
+                        }}>
+                          {edu.date}
+                        </p>
+                      </div>
+                      <p style={{ fontSize: "7pt", color: "#555", lineHeight: 1.5, margin: 0 }}>
                         {edu.description}
                       </p>
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
 
-          {/* Column 1 — Contact */}
-          <div
-            className="absolute content-stretch flex flex-col gap-[18px] items-start leading-[0] left-[24px] top-[248px]"
-            data-name="Column 1"
-          >
-            <div
-              className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0"
-              data-name="Headline"
-            >
-              <div
-                className="separator bg-white col-1 h-[0.5px] ml-0 mt-[16px] row-1 w-[169px]"
-                data-name="Separator"
-              />
-              <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-0 mt-0 not-italic relative row-1 text-[9px] text-white uppercase whitespace-nowrap">
-                {t.sections.contact}
-              </p>
-              <p className="col-1 font-['Geist',sans-serif] leading-[normal] ml-[154px] mt-0 not-italic relative row-1 text-[9px] text-right text-white uppercase whitespace-nowrap">
-                01
-              </p>
             </div>
-            <div
-              className="content-stretch flex flex-col font-['Geist',sans-serif] gap-[8px] items-start not-italic relative shrink-0 text-[8px] text-white uppercase"
-              data-name="Contacts"
-            >
-              <div className="flex items-center gap-2 relative shrink-0 w-[169px]">
-                <MapPin className="h-3 w-3 shrink-0" />
-                <p className="leading-[normal]">{t.contact.location}</p>
-              </div>
-              <div className="flex items-center gap-2 relative shrink-0 w-[169px]">
-                <Mail className="h-3 w-3 shrink-0" />
-                <p className="leading-[normal]">{t.contact.email}</p>
-              </div>
-              <div className="flex items-center gap-2 relative shrink-0 w-[169px]">
-                <Phone className="h-3 w-3 shrink-0" />
-                <p className="leading-[normal]">{t.contact.phone}</p>
-              </div>
-              <a href={`https://${t.contact.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 relative shrink-0 w-[169px] text-white underline">
-                <Linkedin className="h-3.5 w-3.5" />
-                <p className="leading-[normal]">{t.contact.linkedin}</p>
-              </a>
-              <a href={`https://github.com/${t.contact.github.replace("@", "")}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 relative shrink-0 w-[169px] text-white underline">
-                <Github className="h-3.5 w-3.5" />
-                <p className="leading-[normal]">{t.contact.github}</p>
-              </a>
-            </div>
-          </div>
 
-          {/* Profile picture */}
-          <div
-            className="absolute left-[24px] top-[51px] size-[165px]"
-            data-name="Elements"
-          >
-            <div className="absolute inset-0 overflow-hidden rounded-2xl ring-2 ring-white/25">
-              <img
-                src={profilePic}
-                alt="Sacha Riccardo Leone"
-                className="size-full object-cover"
-                style={{ transform: "scale(1)" }}
-              />
+            {/* RIGHT COLUMN — Skills + Languages */}
+            <div style={{
+              width: "72mm",
+              flexShrink: 0,
+              padding: "8mm 14mm 8mm 9mm",
+              background: "#f8f8f8",
+              display: "flex",
+              flexDirection: "column",
+              gap: "8mm",
+              overflow: "hidden",
+            }}>
+
+              {/* ── Section: Skills ── */}
+              <div>
+                <div style={{ display: "flex", alignItems: "center", gap: "3mm", marginBottom: "5mm" }}>
+                  <p style={{
+                    fontSize: "5.5pt",
+                    fontWeight: 700,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color: "#999",
+                    margin: 0,
+                    flexShrink: 0,
+                  }}>
+                    {t.sections.skills}
+                  </p>
+                  <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "5mm" }}>
+                  {skillGroups.map((group, gi) => (
+                    <div key={gi}>
+                      <p style={{
+                        fontSize: "5pt",
+                        fontWeight: 700,
+                        letterSpacing: "0.14em",
+                        textTransform: "uppercase",
+                        color: "#bbb",
+                        margin: "0 0 2mm 0",
+                      }}>
+                        {group.category[lang]}
+                      </p>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "2.2mm" }}>
+                        {group.items.map((skill, si) => (
+                          <div key={si} style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                          }}>
+                            <span style={{ fontSize: "7.5pt", color: "#333" }}>{skill.name}</span>
+                            <SkillDots
+                              filled={Math.round(skill.level / 20)}
+                              color="#2a2a2a"
+                              emptyColor="rgba(0,0,0,0.12)"
+                              size={5}
+                              gap={3}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* ── Section: Languages ── */}
+              <div>
+                <div style={{ display: "flex", alignItems: "center", gap: "3mm", marginBottom: "5mm" }}>
+                  <p style={{
+                    fontSize: "5.5pt",
+                    fontWeight: 700,
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    color: "#999",
+                    margin: 0,
+                    flexShrink: 0,
+                  }}>
+                    {t.sections.languages}
+                  </p>
+                  <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "4mm" }}>
+                  {t.languages.map((language, i) => (
+                    <div key={i} style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}>
+                      <div>
+                        <p style={{ fontSize: "8pt", fontWeight: 500, color: "#222", margin: 0, lineHeight: 1.2 }}>
+                          {language.name}
+                        </p>
+                        <p style={{ fontSize: "6pt", color: "#aaa", margin: 0, lineHeight: 1.3 }}>
+                          {language.level}
+                        </p>
+                      </div>
+                      <SkillDots
+                        filled={getLangDots(language.level)}
+                        color="#2a2a2a"
+                        emptyColor="rgba(0,0,0,0.12)"
+                        size={5}
+                        gap={3}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

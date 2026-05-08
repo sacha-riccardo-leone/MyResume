@@ -118,12 +118,6 @@
   /* Prevent any page break after the A4 container */
   [data-name="Main Component - Name - CV"] { background: white !important; break-after: avoid !important; page-break-after: avoid !important; }
 
-  /* Force all text to black */
-  * { color: black !important; }
-
   /* Profile picture ring: make visible on white background */
   [data-name="Elements"] > div { --tw-ring-color: #555 !important; }
-
-  /* Separator lines */
-  .separator { background-color: #222 !important; height: 1px !important; }
 }
