@@ -389,7 +389,6 @@ const skillGroups = [
     items: [
       { name: "Cloud Run / GCP", level: 60 },
       { name: "Vercel", level: 75 },
-      { name: "Docker", level: 50 },
       { name: "Sentry / PostHog", level: 50 },
     ],
   },
