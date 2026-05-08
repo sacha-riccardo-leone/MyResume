@@ -341,8 +341,8 @@ const skillGroups = [
     items: [
       { name: "Next.js", level: 75 },
       { name: "TypeScript", level: 75 },
-      { name: "JavaScript", level: 65 },
-      { name: "HTML/CSS", level: 85 },
+      { name: "JavaScript", level: 60 },
+      { name: "HTML/CSS", level: 80 },
     ],
   },
   {
@@ -388,14 +388,14 @@ const skillGroups = [
     items: [
       { name: "Cloud Run / GCP", level: 60 },
       { name: "Vercel", level: 75 },
-      { name: "Sentry / PostHog", level: 50 },
+      { name: "Sentry / PostHog", level: 60 },
     ],
   },
   {
     category: { fr: "Design", en: "Design", de: "Design", it: "Design" },
     color: "#fb923c",
     items: [
-      { name: "Figma", level: 85 },
+      { name: "Figma", level: 50 },
       { name: "UI/UX", level: 60 },
       { name: "Krita", level: 95 },
     ],
@@ -405,7 +405,7 @@ const skillGroups = [
     color: "#a78bfa",
     items: [
       { name: "Git", level: 82 },
-      { name: "VS Code", level: 90 },
+      { name: "VS Code", level: 100 },
       { name: "Microsoft 365", level: 95 },
     ],
   },
@@ -680,7 +680,7 @@ function SkillSection({ groups, lang }: { groups: typeof skillGroups; lang: Lang
             {group.items.map((skill, si) => (
               <div key={si} className="flex items-center justify-between gap-4">
                 <span className="text-sm text-white/70">{skill.name}</span>
-                <SkillDots filled={Math.round(skill.level / 20)} color={group.color} />
+                <SkillDots filled={Math.round(skill.level / 10) / 2} color={group.color} />
               </div>
             ))}
           </div>
@@ -1351,7 +1351,7 @@ export default function MainComponentNameCv() {
                           }}>
                             <span style={{ fontSize: "7.5pt", color: "#333" }}>{skill.name}</span>
                             <SkillDots
-                              filled={Math.round(skill.level / 20)}
+                              filled={Math.round(skill.level / 10) / 2}
                               color="#2a2a2a"
                               emptyColor="rgba(0,0,0,0.12)"
                               size={5}
