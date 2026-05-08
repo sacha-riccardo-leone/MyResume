@@ -339,8 +339,8 @@ const skillGroups = [
     category: { fr: "Frontend", en: "Frontend", de: "Frontend", it: "Frontend" },
     color: "#34d399",
     items: [
-      { name: "Next.js", level: 60 },
       { name: "TypeScript", level: 50 },
+      { name: "Next.js", level: 60 },
       { name: "JavaScript", level: 70 },
       { name: "HTML/CSS", level: 90 },
     ],
@@ -349,10 +349,10 @@ const skillGroups = [
     category: { fr: "Backend", en: "Backend", de: "Backend", it: "Backend" },
     color: "#60a5fa",
     items: [
-      { name: "C#", level: 80 },
-      { name: "PHP", level: 75 },
       { name: "Python", level: 60 },
       { name: "FastAPI", level: 70 },
+      { name: "PHP", level: 75 },
+      { name: "C#", level: 80 },
     ],
   },
   {
@@ -367,10 +367,10 @@ const skillGroups = [
     category: { fr: "IA / LLM", en: "AI / LLM", de: "KI / LLM", it: "IA / LLM" },
     color: "#22d3ee",
     items: [
-      { name: "Claude API", level: 75 },
       { name: "RAG / Vector DB", level: 60 },
-      { name: "Prompt engineering", level: 80 },
       { name: "Eval harness", level: 60 },
+      { name: "Claude API", level: 75 },
+      { name: "Prompt engineering", level: 80 },
     ],
   },
   {
@@ -378,17 +378,17 @@ const skillGroups = [
     color: "#f87171",
     items: [
       { name: "OAuth / JWT", level: 60 },
-      { name: "FADP / GDPR", level: 70 },
       { name: "RLS / Hardening", level: 60 },
+      { name: "FADP / GDPR", level: 70 },
     ],
   },
   {
     category: { fr: "Infrastructure", en: "Infrastructure", de: "Infrastruktur", it: "Infrastruttura" },
     color: "#818cf8",
     items: [
+      { name: "Sentry / PostHog", level: 60 },
       { name: "Cloud Run / GCP", level: 70 },
       { name: "Vercel", level: 75 },
-      { name: "Sentry / PostHog", level: 60 },
     ],
   },
   {
@@ -405,8 +405,8 @@ const skillGroups = [
     color: "#a78bfa",
     items: [
       { name: "Git", level: 82 },
-      { name: "VS Code", level: 100 },
       { name: "Microsoft 365", level: 95 },
+      { name: "VS Code", level: 100 },
     ],
   },
 ];
