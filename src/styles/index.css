@@ -71,9 +71,29 @@
     inset 0 -1px 0 rgba(0, 0, 0, 0.15);
 }
 
-/* Experience accordion cards re-enable background highlight on hover */
-.glass-card--highlight:hover {
-  background: rgba(255, 255, 255, 0.08);
+/* Active lang tab — brighter glass to show selection */
+.glass-card--active {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(255, 255, 255, 0.34) !important;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Primary CTA (Download PDF) — most opaque glass */
+.glass-card--primary {
+  background: rgba(255, 255, 255, 0.13) !important;
+  border-color: rgba(255, 255, 255, 0.30) !important;
+}
+.glass-card--primary:hover {
+  background: rgba(255, 255, 255, 0.20) !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+}
+
+/* Small buttons (nav, lang switcher) — suppress the 4px lift */
+.glass-card--sm:hover {
+  transform: none !important;
 }
 
 /* Print-only elements: hidden on screen, visible on print */

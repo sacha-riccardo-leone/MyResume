@@ -643,10 +643,11 @@ export default function MainComponentNameCv() {
         <button
           key={l}
           onClick={() => setLang(l)}
-          className={`text-[10px] font-['Space_Grotesk',sans-serif] uppercase px-2 py-1 rounded-lg transition-all cursor-pointer ${
+          onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
+          className={`glass-card glass-card--sm text-[10px] font-['Space_Grotesk',sans-serif] uppercase px-2 py-1 rounded-lg cursor-pointer ${
             lang === l
-              ? "bg-white text-[#262626] font-medium"
-              : "text-white/40 hover:text-white/80 border border-white/15 hover:border-white/40"
+              ? "glass-card--active text-white font-medium"
+              : "text-white/50"
           }`}
         >
           {l}
@@ -671,7 +672,8 @@ export default function MainComponentNameCv() {
             <div className="w-px h-4 bg-white/15" />
             <button
               onClick={() => window.print()}
-              className="flex items-center gap-1.5 text-[10px] uppercase px-2.5 py-1.5 rounded-lg text-white/60 border border-white/15 hover:border-white/50 hover:text-white transition-all cursor-pointer"
+              className="glass-card glass-card--sm flex items-center gap-1.5 text-[10px] uppercase px-2.5 py-1.5 rounded-lg text-white/60 hover:text-white cursor-pointer"
+              onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
             >
               <Printer className="h-3 w-3" />
               PDF
@@ -709,7 +711,8 @@ export default function MainComponentNameCv() {
                   >
                     <button
                       onClick={() => window.print()}
-                      className="flex items-center gap-2 px-5 py-2.5 bg-white text-[#262626] rounded-xl text-sm font-medium hover:bg-white/90 transition-colors cursor-pointer"
+                      className="glass-card glass-card--primary flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-white cursor-pointer"
+                      onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
                     >
                       <Printer className="h-3.5 w-3.5" />
                       Download PDF
@@ -718,7 +721,8 @@ export default function MainComponentNameCv() {
                       href={`https://${t.contact.linkedin}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-5 py-2.5 border border-white/20 rounded-xl text-sm text-white/60 hover:border-white/50 hover:text-white transition-all"
+                      className="glass-card flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm text-white/60 hover:text-white/90"
+                      onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
                     >
                       <Linkedin className="h-3.5 w-3.5" />
                       LinkedIn
@@ -727,7 +731,8 @@ export default function MainComponentNameCv() {
                       href={`https://github.com/${t.contact.github.replace("@", "")}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-5 py-2.5 border border-white/20 rounded-xl text-sm text-white/60 hover:border-white/50 hover:text-white transition-all"
+                      className="glass-card flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm text-white/60 hover:text-white/90"
+                      onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
                     >
                       <Github className="h-3.5 w-3.5" />
                       GitHub
