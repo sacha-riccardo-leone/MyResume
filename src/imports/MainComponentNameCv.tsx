@@ -336,22 +336,22 @@ const translations = {
 
 const skillGroups = [
   {
-    category: { fr: "POO", en: "OOP", de: "OOP", it: "OOP" },
-    color: "#60a5fa",
-    items: [
-      { name: "C#", level: 80 },
-      { name: "PHP", level: 75 },
-    ],
-  },
-  {
-    category: { fr: "Web", en: "Web", de: "Web", it: "Web" },
+    category: { fr: "Frontend", en: "Frontend", de: "Frontend", it: "Frontend" },
     color: "#34d399",
     items: [
       { name: "Next.js", level: 75 },
       { name: "TypeScript", level: 75 },
-      { name: "Python", level: 60 },
       { name: "JavaScript", level: 65 },
       { name: "HTML/CSS", level: 85 },
+    ],
+  },
+  {
+    category: { fr: "Backend", en: "Backend", de: "Backend", it: "Backend" },
+    color: "#60a5fa",
+    items: [
+      { name: "C#", level: 80 },
+      { name: "PHP", level: 75 },
+      { name: "Python", level: 60 },
       { name: "FastAPI", level: 80 },
     ],
   },
