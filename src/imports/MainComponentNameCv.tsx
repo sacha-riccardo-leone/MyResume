@@ -359,8 +359,8 @@ const skillGroups = [
     category: { fr: "Base de données", en: "Databases", de: "Datenbanken", it: "Database" },
     color: "#fbbf24",
     items: [
-      { name: "SQL/NoSQL", level: 80 },
-      { name: "Supabase", level: 60 },
+      { name: "SQL/NoSQL", level: 60 },
+      { name: "Supabase", level: 80 },
     ],
   },
   {
