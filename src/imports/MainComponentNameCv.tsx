@@ -339,10 +339,10 @@ const skillGroups = [
     category: { fr: "Frontend", en: "Frontend", de: "Frontend", it: "Frontend" },
     color: "#34d399",
     items: [
-      { name: "Next.js", level: 75 },
-      { name: "TypeScript", level: 75 },
-      { name: "JavaScript", level: 60 },
-      { name: "HTML/CSS", level: 80 },
+      { name: "Next.js", level: 60 },
+      { name: "TypeScript", level: 50 },
+      { name: "JavaScript", level: 70 },
+      { name: "HTML/CSS", level: 90 },
     ],
   },
   {
@@ -352,14 +352,14 @@ const skillGroups = [
       { name: "C#", level: 80 },
       { name: "PHP", level: 75 },
       { name: "Python", level: 60 },
-      { name: "FastAPI", level: 80 },
+      { name: "FastAPI", level: 70 },
     ],
   },
   {
     category: { fr: "Base de données", en: "Databases", de: "Datenbanken", it: "Database" },
     color: "#fbbf24",
     items: [
-      { name: "SQL/NoSQL", level: 60 },
+      { name: "SQL/NoSQL", level: 70 },
       { name: "Supabase", level: 80 },
     ],
   },
@@ -378,7 +378,7 @@ const skillGroups = [
     color: "#f87171",
     items: [
       { name: "OAuth / JWT", level: 60 },
-      { name: "FADP / GDPR", level: 60 },
+      { name: "FADP / GDPR", level: 70 },
       { name: "RLS / Hardening", level: 60 },
     ],
   },
@@ -386,7 +386,7 @@ const skillGroups = [
     category: { fr: "Infrastructure", en: "Infrastructure", de: "Infrastruktur", it: "Infrastruttura" },
     color: "#818cf8",
     items: [
-      { name: "Cloud Run / GCP", level: 60 },
+      { name: "Cloud Run / GCP", level: 70 },
       { name: "Vercel", level: 75 },
       { name: "Sentry / PostHog", level: 60 },
     ],
@@ -396,7 +396,7 @@ const skillGroups = [
     color: "#fb923c",
     items: [
       { name: "Figma", level: 50 },
-      { name: "UI/UX", level: 60 },
+      { name: "UI/UX", level: 80 },
       { name: "Krita", level: 95 },
     ],
   },
