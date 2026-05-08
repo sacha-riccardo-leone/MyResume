@@ -405,6 +405,7 @@ const skillGroups = [
     color: "#a78bfa",
     items: [
       { name: "Git", level: 82 },
+      { name: "VS Code", level: 90 },
       { name: "Microsoft 365", level: 95 },
     ],
   },
