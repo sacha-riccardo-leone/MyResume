@@ -1337,7 +1337,7 @@ export default function MainComponentNameCv() {
                         fontWeight: 700,
                         letterSpacing: "0.14em",
                         textTransform: "uppercase",
-                        color: "#bbb",
+                        color: group.color,
                         margin: "0 0 2mm 0",
                       }}>
                         {group.category[lang]}
@@ -1350,7 +1350,7 @@ export default function MainComponentNameCv() {
                           group.items.reduce((sum, s) => sum + Math.round(s.level / 10) / 2, 0) /
                           group.items.length * 2
                         ) / 2}
-                        color="#2a2a2a"
+                        color={group.color}
                         emptyColor="rgba(0,0,0,0.12)"
                         size={5}
                         gap={3}
