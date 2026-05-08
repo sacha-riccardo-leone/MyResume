@@ -879,8 +879,8 @@ export default function MainComponentNameCv() {
           </div>
 
           {/* Scroll indicator */}
-          <div className="flex justify-center pb-8" style={fadeIn(600)}>
-            <ChevronDown className="h-9 w-9 text-white/40 animate-bounce drop-shadow-[0_0_8px_rgba(255,255,255,0.25)]" strokeWidth={1.25} />
+          <div className="flex justify-center pb-3 -mt-6" style={fadeIn(600)}>
+            <ChevronDown className="h-12 w-12 text-white/70 animate-bounce drop-shadow-[0_0_12px_rgba(255,255,255,0.35)]" strokeWidth={1} />
           </div>
         </section>
 
