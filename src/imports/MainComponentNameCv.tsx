@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Linkedin, Github, Printer, MapPin, Mail, Phone, ChevronDown } from "lucide-react";
+import { Linkedin, Github, Printer, MapPin, Mail, Phone, ChevronDown, ExternalLink } from "lucide-react";
 import profilePic from "../assets/pfplinkedin-removebg-preview.png";
 
 type Lang = "fr" | "en" | "de" | "it";
@@ -15,6 +15,7 @@ const translations = {
     sections: {
       contact: "Contact",
       experience: "Expérience",
+      projects: "Projets",
       languages: "Langues",
       skills: "Compétences",
       education: "Formation",
@@ -37,7 +38,7 @@ const translations = {
         date: "2025 – présent",
         company: "Ordine AI",
         description:
-          "Conception et développement d'un produit SaaS full-stack : frontend Next.js, backend FastAPI (Python), base de données vectorielle, IA générative et intégrations tierces (OAuth, APIs Microsoft, Google Cloud).",
+          "Fondateur & ingénieur full-stack. Client email IA multi-fournisseurs pour PME suisses, livré seul de A à Z — pipeline de classification Claude Haiku (harness CI FR/DE/IT/EN : 100%/94%/96%/98%), conformité FADP (Cloud Run Zurich, AES-GCM-256, DLP PII suisse), billing Stripe 4 niveaux, audit sécurité 5-agents adversariaux (30+ findings résolus).",
       },
       {
         date: "avril 2025 – juin 2025",
@@ -95,6 +96,7 @@ const translations = {
     sections: {
       contact: "Contact",
       experience: "Experience",
+      projects: "Projects",
       languages: "Languages",
       skills: "Skills",
       education: "Education",
@@ -117,7 +119,7 @@ const translations = {
         date: "2025 – present",
         company: "Ordine AI",
         description:
-          "Design and development of a full-stack SaaS product: Next.js frontend, FastAPI (Python) backend, vector database, generative AI and third-party integrations (OAuth, Microsoft APIs, Google Cloud).",
+          "Founder & full-stack engineer. AI-powered multi-provider email client for Swiss SMEs — solo end-to-end. Claude Haiku classification pipeline (CI eval harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-compliant infra (Cloud Run Zurich, AES-GCM-256, Swiss PII DLP), Stripe 4-tier billing, 5-agent adversarial security audit (30+ findings resolved).",
       },
       {
         date: "Apr 2025 – Jun 2025",
@@ -175,6 +177,7 @@ const translations = {
     sections: {
       contact: "Kontakt",
       experience: "Erfahrung",
+      projects: "Projekte",
       languages: "Sprachen",
       skills: "Kenntnisse",
       education: "Ausbildung",
@@ -197,7 +200,7 @@ const translations = {
         date: "2025 – heute",
         company: "Ordine AI",
         description:
-          "Konzeption und Entwicklung eines Full-Stack-SaaS-Produkts: Next.js-Frontend, FastAPI (Python)-Backend, Vektordatenbank, generative KI und Drittanbieter-Integrationen (OAuth, Microsoft-APIs, Google Cloud).",
+          "Gründer & Full-Stack-Ingenieur. KI-gestützter Multi-Provider-E-Mail-Client für Schweizer KMU, allein von A bis Z entwickelt — Claude-Klassifizierungspipeline (CI-Harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-konforme Infrastruktur (Cloud Run Zürich, AES-GCM-256, PII-DLP), Stripe-Billing 4 Stufen, 5-Agent-Sicherheitsaudit (30+ Findings behoben).",
       },
       {
         date: "Apr. 2025 – Jun. 2025",
@@ -255,6 +258,7 @@ const translations = {
     sections: {
       contact: "Contatto",
       experience: "Esperienza",
+      projects: "Progetti",
       languages: "Lingue",
       skills: "Competenze",
       education: "Formazione",
@@ -277,7 +281,7 @@ const translations = {
         date: "2025 – presente",
         company: "Ordine AI",
         description:
-          "Progettazione e sviluppo di un prodotto SaaS full-stack: frontend Next.js, backend FastAPI (Python), database vettoriale, IA generativa e integrazioni di terze parti (OAuth, API Microsoft, Google Cloud).",
+          "Fondatore & ingegnere full-stack. Client email IA multi-provider per PMI svizzere, sviluppato in solitaria — pipeline di classificazione Claude Haiku (CI harness FR/DE/IT/EN: 100%/94%/96%/98%), infrastruttura conforme FADP (Cloud Run Zurigo, AES-GCM-256, DLP PII svizzero), billing Stripe 4 livelli, audit di sicurezza 5-agenti (30+ findings risolti).",
       },
       {
         date: "apr. 2025 – giu. 2025",
@@ -335,44 +339,121 @@ const skillGroups = [
     category: { fr: "POO", en: "OOP", de: "OOP", it: "OOP" },
     color: "#60a5fa",
     items: [
-      { name: "C#", level: 80 },   // 4/5
-      { name: "PHP", level: 75 },  // 4/5
+      { name: "C#", level: 80 },
+      { name: "PHP", level: 75 },
     ],
   },
   {
     category: { fr: "Web", en: "Web", de: "Web", it: "Web" },
     color: "#34d399",
     items: [
-      { name: "Python", level: 60 },      // 3/5
-      { name: "JavaScript", level: 65 },  // 3/5
-      { name: "HTML/CSS", level: 85 },    // 4/5
-      { name: "FastAPI", level: 80 },     // 4/5
+      { name: "Next.js", level: 75 },
+      { name: "TypeScript", level: 75 },
+      { name: "Python", level: 60 },
+      { name: "JavaScript", level: 65 },
+      { name: "HTML/CSS", level: 85 },
+      { name: "FastAPI", level: 80 },
     ],
   },
   {
     category: { fr: "Base de données", en: "Databases", de: "Datenbanken", it: "Database" },
     color: "#fbbf24",
-    items: [{ name: "SQL/NoSQL", level: 80 }],  // 4/5
+    items: [
+      { name: "SQL/NoSQL", level: 80 },
+      { name: "Supabase", level: 80 },
+    ],
+  },
+  {
+    category: { fr: "IA / LLM", en: "AI / LLM", de: "KI / LLM", it: "IA / LLM" },
+    color: "#22d3ee",
+    items: [
+      { name: "Claude API", level: 90 },
+      { name: "RAG / Vector DB", level: 75 },
+      { name: "Prompt engineering", level: 80 },
+      { name: "Eval harness", level: 80 },
+    ],
+  },
+  {
+    category: { fr: "Sécurité", en: "Security", de: "Sicherheit", it: "Sicurezza" },
+    color: "#f87171",
+    items: [
+      { name: "OAuth / JWT", level: 80 },
+      { name: "FADP / GDPR", level: 75 },
+      { name: "AES-GCM", level: 70 },
+      { name: "RLS / Hardening", level: 75 },
+    ],
+  },
+  {
+    category: { fr: "Infrastructure", en: "Infrastructure", de: "Infrastruktur", it: "Infrastruttura" },
+    color: "#818cf8",
+    items: [
+      { name: "Cloud Run / GCP", level: 75 },
+      { name: "Vercel", level: 85 },
+      { name: "Docker", level: 70 },
+      { name: "Sentry / PostHog", level: 70 },
+    ],
+  },
+  {
+    category: { fr: "Design", en: "Design", de: "Design", it: "Design" },
+    color: "#fb923c",
+    items: [
+      { name: "Figma", level: 85 },
+      { name: "UI/UX", level: 75 },
+      { name: "Krita", level: 95 },
+    ],
   },
   {
     category: { fr: "Outils", en: "Tools", de: "Werkzeuge", it: "Strumenti" },
     color: "#a78bfa",
     items: [
-      { name: "Git", level: 82 },           // 4/5
-      { name: "Krita", level: 95 },         // 5/5
-      { name: "Microsoft 365", level: 95 },  // 5/5
-    ],
-  },
-  {
-    category: { fr: "IA", en: "AI", de: "KI", it: "IA" },
-    color: "#22d3ee",
-    items: [
-      { name: "Meta-prompting", level: 82 },
-      { name: "Few-shot Prompting", level: 78 },
-      { name: "System Prompting", level: 80 },
+      { name: "Git", level: 82 },
+      { name: "Microsoft 365", level: 95 },
     ],
   },
 ];
+
+const ordineAIProject = {
+  name: "Ordine AI",
+  url: "https://www.ordine-ai.ch/",
+  status: { fr: "En production", en: "In production", de: "In Betrieb", it: "In produzione" } as Record<Lang, string>,
+  tagline: {
+    fr: "Client email IA multi-fournisseurs pour PME suisses — conçu et livré seul de A à Z",
+    en: "AI-powered multi-provider email client for Swiss SMEs — solo-built end-to-end",
+    de: "KI-gestützter Multi-Provider-E-Mail-Client für Schweizer KMU — allein von A bis Z entwickelt",
+    it: "Client email IA multi-provider per PMI svizzere — sviluppato in solitaria dall'inizio alla fine",
+  } as Record<Lang, string>,
+  highlights: {
+    fr: [
+      "Pipeline de classification IA (ton × intention × catégorie × priorité) sur Claude Haiku — harness CI multilingue FR/DE/IT/EN : 100% / 94% / 96% / 98%",
+      "Parité fonctionnelle Gmail & Microsoft Graph derrière un protocole EmailProvider unifié : envoi/réception, fils, brouillons, recherche, snooze, envoi différé, pièces jointes",
+      "Conformité FADP dès le premier jour — résidence EU (Cloud Run Zurich + Supabase Frankfurt), chiffrement AES-GCM-256, DLP PII suisse (IBAN, AVS, CB Luhn), droit à l'effacement",
+      "Audit sécurité 5-agents adversariaux — 30+ findings résolus : injection de prompt, SSRF, confusion algo JWT, mXSS via DOMPurify, JWKS OAuth, durcissement RLS, IDOR",
+      "Billing Stripe complet — 4 niveaux (Starter / Pro / Business / Enterprise), essai 14 jours, portail client, idempotence des webhooks",
+    ],
+    en: [
+      "AI classification pipeline (tone × intent × category × priority) on Claude Haiku — CI eval harness, FR/DE/IT/EN: 100% / 94% / 96% / 98%",
+      "Gmail & Microsoft Graph feature parity behind a unified EmailProvider protocol: send/receive, threads, drafts, search, snooze, scheduled send, attachments",
+      "FADP-compliant from day one — EU data residency (Cloud Run Zurich + Supabase Frankfurt), AES-GCM-256 token encryption, Swiss PII DLP (IBAN, AHV, Luhn CC), right-to-erasure",
+      "5-agent adversarial security audit — 30+ findings resolved: prompt injection, SSRF, JWT algorithm confusion, mXSS via DOMPurify, OAuth JWKS verification, RLS hardening, IDOR",
+      "Full Stripe billing — 4-tier model (Starter / Pro / Business / Enterprise), 14-day trial, customer portal, webhook idempotency",
+    ],
+    de: [
+      "KI-Klassifizierungspipeline (Ton × Absicht × Kategorie × Priorität) auf Claude Haiku — CI-Eval-Harness FR/DE/IT/EN: 100% / 94% / 96% / 98%",
+      "Gmail & Microsoft Graph Funktionsparität hinter einem einheitlichen EmailProvider-Protokoll: Senden/Empfangen, Threads, Entwürfe, Suche, Snooze, geplanter Versand, Anhänge",
+      "FADP-konform von Anfang an — EU-Datenwohnsitz (Cloud Run Zürich + Supabase Frankfurt), AES-GCM-256-Verschlüsselung, PII-DLP (IBAN, AHV, Luhn-KK), Recht auf Löschung",
+      "5-Agent-Sicherheitsaudit — 30+ Findings: Prompt Injection, SSRF, JWT-Algorithmusverwirrung, mXSS via DOMPurify, OAuth-JWKS-Verifikation, RLS-Härtung, IDOR",
+      "Vollständiges Stripe-Billing — 4 Stufen (Starter / Pro / Business / Enterprise), 14-Tage-Test, Kundenportal, Webhook-Idempotenz",
+    ],
+    it: [
+      "Pipeline di classificazione IA (tono × intento × categoria × priorità) su Claude Haiku — CI eval harness FR/DE/IT/EN: 100% / 94% / 96% / 98%",
+      "Parità funzionale Gmail & Microsoft Graph dietro un protocollo EmailProvider unificato: invio/ricezione, thread, bozze, ricerca, snooze, invio programmato, allegati",
+      "Conforme FADP fin dal primo giorno — residenza EU (Cloud Run Zurigo + Supabase Francoforte), cifratura AES-GCM-256, DLP PII svizzero (IBAN, AVS, Luhn CC), diritto alla cancellazione",
+      "Audit di sicurezza 5-agenti adversariali — 30+ findings: prompt injection, SSRF, confusione algoritmo JWT, mXSS via DOMPurify, verifica JWKS OAuth, hardening RLS, IDOR",
+      "Billing Stripe completo — 4 livelli (Starter / Pro / Business / Enterprise), prova 14 giorni, portale cliente, idempotenza webhook",
+    ],
+  } as Record<Lang, string[]>,
+  stack: ["FastAPI", "Next.js 14", "TypeScript", "Supabase", "Claude API", "Stripe", "Cloud Run", "Vercel", "Sentry", "PostHog"],
+};
 
 /* ────────────────────────────────────────────────────── */
 /* Animated wave background (canvas)                      */
@@ -889,15 +970,70 @@ export default function MainComponentNameCv() {
             </div>
           </div>
 
-          {/* 03 — Skills (dots) */}
+          {/* 03 — Featured Project */}
           <ScrollReveal>
-            <SectionHead title={t.sections.skills} num="03" />
+            <SectionHead title={t.sections.projects} num="03" />
+            <div
+              className="glass-card rounded-2xl p-6"
+              onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
+            >
+              {/* Header row */}
+              <div className="flex items-start justify-between gap-4 mb-5">
+                <div className="min-w-0">
+                  <div className="flex items-center gap-3 mb-1.5 flex-wrap">
+                    <h3 className="text-lg font-semibold">{ordineAIProject.name}</h3>
+                    <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
+                      {ordineAIProject.status[lang]}
+                    </span>
+                  </div>
+                  <p className="text-sm text-white/40">{ordineAIProject.tagline[lang]}</p>
+                </div>
+                <a
+                  href={ordineAIProject.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="glass-card glass-card--sm flex items-center gap-1.5 text-[10px] uppercase px-2.5 py-1.5 rounded-lg text-white/55 hover:text-white cursor-pointer shrink-0"
+                  onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
+                >
+                  <ExternalLink className="h-3 w-3" />
+                  ordine-ai.ch
+                </a>
+              </div>
+
+              {/* Highlights */}
+              <ul className="space-y-2.5 mb-5">
+                {ordineAIProject.highlights[lang].map((h, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-white/50 leading-relaxed">
+                    <span className="text-white/15 shrink-0 select-none mt-[3px]">—</span>
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Tech stack pills */}
+              <div className="pt-4 border-t border-white/[0.06] flex flex-wrap gap-1.5">
+                {ordineAIProject.stack.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="text-[9px] px-2 py-0.5 rounded-md bg-white/[0.05] border border-white/10 text-white/45 font-mono"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* 04 — Skills (dots) */}
+          <ScrollReveal>
+            <SectionHead title={t.sections.skills} num="04" />
             <SkillSection groups={skillGroups} lang={lang} />
           </ScrollReveal>
 
-          {/* 04 — Languages (dots) */}
+          {/* 05 — Languages (dots) */}
           <ScrollReveal>
-            <SectionHead title={t.sections.languages} num="04" />
+            <SectionHead title={t.sections.languages} num="05" />
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {t.languages.map((language, i) => (
                 <div
@@ -916,7 +1052,7 @@ export default function MainComponentNameCv() {
           {/* 05 — Education */}
           <div>
             <ScrollReveal>
-              <SectionHead title={t.sections.education} num="05" />
+              <SectionHead title={t.sections.education} num="06" />
             </ScrollReveal>
             <div className="border-l border-white/10 pl-6 space-y-7">
               {t.education.map((edu, i) => (
