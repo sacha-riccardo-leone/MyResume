@@ -120,12 +120,7 @@
   /* Force all animations complete */
   * { opacity: 1 !important; transition: none !important; }
 
-  /* iOS PDF font fix: Google Fonts are not reliably embedded by iOS's PDF
-     renderer, causing deformed/hand-drawn text. Force a clean system font
-     for print so text renders crisply as vector outlines. */
-  * { font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif !important; }
-
-  /* Allow backgrounds to print */
+/* Allow backgrounds to print */
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
   /* Lock every level of the stacking chain to exactly A4.
