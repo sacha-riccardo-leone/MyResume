@@ -11,7 +11,7 @@ const translations = {
   fr: {
     title: "Développeur d'Applications",
     intro:
-      "Quadrilingue (FR/IT natifs · EN C1 · DE B2) — développeur d'applications de 20 ans, fondateur d'Ordine AI en production pour PME suisses. CFC développement d'applications + maturité professionnelle, opérationnel sur tout le marché suisse.",
+      "Quadrilingue — développeur d'applications de 20 ans, fondateur d'Ordine AI en production pour PME suisses. CFC développement d'applications + maturité professionnelle, opérationnel sur tout le marché suisse.",
     sections: {
       contact: "Contact",
       experience: "Expérience",
@@ -86,7 +86,7 @@ const translations = {
   en: {
     title: "Application Developer",
     intro:
-      "Quadrilingual (FR/IT native · EN C1 · DE B2) — application developer, 20, founder of Ordine AI in production for Swiss SMEs. CFC + professional baccalaureate, operational across the full Swiss market.",
+      "Quadrilingual — application developer, 20, founder of Ordine AI in production for Swiss SMEs. CFC + professional baccalaureate, operational across the full Swiss market.",
     sections: {
       contact: "Contact",
       experience: "Experience",
@@ -161,7 +161,7 @@ const translations = {
   de: {
     title: "Applikationsentwickler",
     intro:
-      "Viersprachig (FR/IT Muttersprache · EN C1 · DE B2) — Applikationsentwickler, 20 Jahre, Gründer von Ordine AI in Produktion für Schweizer KMU. EFZ Applikationsentwicklung + Berufsmaturität, auf dem gesamten Schweizer Markt einsetzbar.",
+      "Viersprachig — Applikationsentwickler, 20 Jahre, Gründer von Ordine AI in Produktion für Schweizer KMU. EFZ Applikationsentwicklung + Berufsmaturität, auf dem gesamten Schweizer Markt einsetzbar.",
     sections: {
       contact: "Kontakt",
       experience: "Erfahrung",
@@ -236,7 +236,7 @@ const translations = {
   it: {
     title: "Sviluppatore di Applicazioni",
     intro:
-      "Quadrilingue (FR/IT madrelingua · EN C1 · DE B2) — sviluppatore di applicazioni di 20 anni, fondatore di Ordine AI in produzione per PMI svizzere. AFC + maturità professionale, operativo su tutto il mercato svizzero.",
+      "Quadrilingue — sviluppatore di applicazioni di 20 anni, fondatore di Ordine AI in produzione per PMI svizzere. AFC + maturità professionale, operativo su tutto il mercato svizzero.",
     sections: {
       contact: "Contatto",
       experience: "Esperienza",
