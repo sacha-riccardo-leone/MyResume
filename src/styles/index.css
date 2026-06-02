@@ -120,6 +120,10 @@
   /* Force all animations complete */
   * { opacity: 1 !important; transition: none !important; }
 
+  /* Improve font and shape rendering in the PDF pipeline */
+  * { text-rendering: optimizeLegibility !important; }
+  svg { shape-rendering: geometricPrecision; }
+
 /* Allow backgrounds to print */
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 

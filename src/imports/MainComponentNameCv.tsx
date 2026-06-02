@@ -638,12 +638,13 @@ function SkillDots({
               key={i}
               width={size} height={size}
               viewBox="0 0 10 10"
-              style={{ flexShrink: 0, display: "block" }}
+              shapeRendering="geometricPrecision"
+              style={{ flexShrink: 0, display: "block", overflow: "visible" }}
             >
               {/* Empty background circle */}
-              <circle cx="5" cy="5" r="5" fill={emptyColor} />
+              <circle cx="5" cy="5" r="4.9" fill={emptyColor} />
               {/* Filled left half — arc from top-center counterclockwise to bottom-center */}
-              <path d="M5,0 A5,5 0 0,0 5,10 Z" fill={color} />
+              <path d="M5,0.1 A4.9,4.9 0 0,0 5,9.9 Z" fill={color} shapeRendering="geometricPrecision" />
             </svg>
           );
         }
@@ -653,9 +654,10 @@ function SkillDots({
             key={i}
             width={size} height={size}
             viewBox="0 0 10 10"
+            shapeRendering="geometricPrecision"
             style={{ flexShrink: 0, display: "block" }}
           >
-            <circle cx="5" cy="5" r="5" fill={isFull ? color : emptyColor} />
+            <circle cx="5" cy="5" r="4.9" fill={isFull ? color : emptyColor} />
           </svg>
         );
       })}
