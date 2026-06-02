@@ -434,7 +434,7 @@ const ordineAIProject = {
 const langBadges: { flag: string; label: Record<Lang, string> }[] = [
   { flag: "🇫🇷", label: { fr: "Natif", en: "Native", de: "Muttersprache", it: "Madrelingua" } },
   { flag: "🇮🇹", label: { fr: "Natif", en: "Native", de: "Muttersprache", it: "Madrelingua" } },
-  { flag: "🇬🇧", label: { fr: "C1", en: "C1", de: "C1", it: "C1" } },
+  { flag: "🇺🇸", label: { fr: "C1", en: "C1", de: "C1", it: "C1" } },
   { flag: "🇩🇪", label: { fr: "B2", en: "B2", de: "B2", it: "B2" } },
 ];
 
