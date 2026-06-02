@@ -17,7 +17,7 @@ const translations = {
       experience: "Expérience",
       projects: "Projets",
       languages: "Langues",
-      skills: "Compétences",
+      skills: "Stack Technique",
       education: "Formation",
     },
     contact: {
@@ -29,7 +29,7 @@ const translations = {
     },
     experience: [
       {
-        date: "4–24 mai 2026",
+        date: "4–22 mai 2026",
         company: "Xefi",
         description:
           "Stage en ESN — pilotage et configuration d'un déploiement Odoo 19 : analyse fonctionnelle, paramétrage des modules métier et gestion de projet client.",
@@ -98,7 +98,7 @@ const translations = {
       experience: "Experience",
       projects: "Projects",
       languages: "Languages",
-      skills: "Skills",
+      skills: "Tech Stack",
       education: "Education",
     },
     contact: {
@@ -110,7 +110,7 @@ const translations = {
     },
     experience: [
       {
-        date: "4–24 May 2026",
+        date: "4–22 May 2026",
         company: "Xefi",
         description:
           "Internship at an IT services firm — led configuration of an Odoo 19 ERP deployment: functional analysis, business module setup and client project management.",
@@ -179,7 +179,7 @@ const translations = {
       experience: "Erfahrung",
       projects: "Projekte",
       languages: "Sprachen",
-      skills: "Kenntnisse",
+      skills: "Tech Stack",
       education: "Ausbildung",
     },
     contact: {
@@ -191,7 +191,7 @@ const translations = {
     },
     experience: [
       {
-        date: "4.–24. Mai 2026",
+        date: "4.–22. Mai 2026",
         company: "Xefi",
         description:
           "Praktikum bei einem IT-Dienstleister — Steuerung und Konfiguration eines Odoo-19-ERP-Deployments: Funktionsanalyse, Modulkonfiguration und Projektmanagement.",
@@ -260,7 +260,7 @@ const translations = {
       experience: "Esperienza",
       projects: "Progetti",
       languages: "Lingue",
-      skills: "Competenze",
+      skills: "Tech Stack",
       education: "Formazione",
     },
     contact: {
@@ -272,7 +272,7 @@ const translations = {
     },
     experience: [
       {
-        date: "4–24 maggio 2026",
+        date: "4–22 maggio 2026",
         company: "Xefi",
         description:
           "Stage presso un'ESN — configurazione e gestione di un deployment Odoo 19: analisi funzionale, parametrizzazione dei moduli aziendali e gestione del progetto cliente.",
