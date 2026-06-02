@@ -11,7 +11,7 @@ const translations = {
   fr: {
     title: "Développeur d'Applications",
     intro:
-      "Développeur full-stack de 20 ans, fondateur d'Ordine AI — client email IA en production pour PME suisses. CFC développement d'applications + maturité professionnelle. Quadrilingue (FR/IT natifs, EN C1, DE B2) — opérationnel sur tout le marché suisse.",
+      "Quadrilingue (FR/IT natifs · EN C1 · DE B2) — développeur full-stack de 20 ans, fondateur d'Ordine AI en production pour PME suisses. CFC développement d'applications + maturité professionnelle, opérationnel sur tout le marché suisse.",
     sections: {
       contact: "Contact",
       experience: "Expérience",
@@ -86,7 +86,7 @@ const translations = {
   en: {
     title: "Application Developer",
     intro:
-      "Full-stack developer, 20 — founder of Ordine AI, an AI email client in production for Swiss SMEs. Federal vocational diploma (CFC) + professional baccalaureate. Quadrilingual (FR/IT native, EN C1, DE B2) — operational across the full Swiss market.",
+      "Quadrilingual (FR/IT native · EN C1 · DE B2) — full-stack developer, 20, founder of Ordine AI in production for Swiss SMEs. CFC + professional baccalaureate, operational across the full Swiss market.",
     sections: {
       contact: "Contact",
       experience: "Experience",
@@ -161,7 +161,7 @@ const translations = {
   de: {
     title: "Applikationsentwickler",
     intro:
-      "Full-Stack-Entwickler, 20 Jahre, Gründer von Ordine AI — KI-E-Mail-Client in Produktion für Schweizer KMU. EFZ Applikationsentwicklung + Berufsmaturität. Viersprachig (FR/IT Muttersprache, EN C1, DE B2) — auf dem gesamten Schweizer Markt einsetzbar.",
+      "Viersprachig (FR/IT Muttersprache · EN C1 · DE B2) — Full-Stack-Entwickler, 20 Jahre, Gründer von Ordine AI in Produktion für Schweizer KMU. EFZ Applikationsentwicklung + Berufsmaturität, auf dem gesamten Schweizer Markt einsetzbar.",
     sections: {
       contact: "Kontakt",
       experience: "Erfahrung",
@@ -236,7 +236,7 @@ const translations = {
   it: {
     title: "Sviluppatore di Applicazioni",
     intro:
-      "Sviluppatore full-stack di 20 anni, fondatore di Ordine AI — client email IA in produzione per PMI svizzere. AFC sviluppo applicazioni + maturità professionale. Quadrilingue (FR/IT madrelingua, EN C1, DE B2) — operativo su tutto il mercato svizzero.",
+      "Quadrilingue (FR/IT madrelingua · EN C1 · DE B2) — sviluppatore full-stack di 20 anni, fondatore di Ordine AI in produzione per PMI svizzere. AFC + maturità professionale, operativo su tutto il mercato svizzero.",
     sections: {
       contact: "Contatto",
       experience: "Esperienza",
@@ -429,6 +429,14 @@ const ordineAIProject = {
   } as Record<Lang, string[]>,
   stack: ["FastAPI", "Next.js 14", "TypeScript", "Supabase", "Claude API", "Stripe", "Cloud Run", "Vercel", "Sentry", "PostHog"],
 };
+
+/* Language badge data — flag + level per UI language */
+const langBadges: { flag: string; label: Record<Lang, string> }[] = [
+  { flag: "🇫🇷", label: { fr: "Natif", en: "Native", de: "Muttersprache", it: "Madrelingua" } },
+  { flag: "🇮🇹", label: { fr: "Natif", en: "Native", de: "Muttersprache", it: "Madrelingua" } },
+  { flag: "🇬🇧", label: { fr: "C1", en: "C1", de: "C1", it: "C1" } },
+  { flag: "🇩🇪", label: { fr: "B2", en: "B2", de: "B2", it: "B2" } },
+];
 
 /* ────────────────────────────────────────────────────── */
 /* Animated wave background (canvas)                      */
@@ -826,7 +834,21 @@ export default function MainComponentNameCv() {
                   <p className="text-base sm:text-lg text-white/45 mt-3" style={fadeIn(100)}>
                     {t.title}
                   </p>
-                  <p className="text-sm leading-relaxed mt-4 max-w-xl text-white/30" style={fadeIn(250)}>
+
+                  {/* Language badges — above the fold, first thing a recruiter sees */}
+                  <div className="flex flex-wrap gap-2 mt-4" style={fadeIn(180)}>
+                    {langBadges.map(({ flag, label }, i) => (
+                      <span
+                        key={i}
+                        className="flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/[0.10] text-white/60"
+                      >
+                        <span>{flag}</span>
+                        <span>{label[lang]}</span>
+                      </span>
+                    ))}
+                  </div>
+
+                  <p className="text-sm leading-relaxed mt-4 max-w-xl text-white/30" style={fadeIn(280)}>
                     {t.intro}
                   </p>
 
@@ -1121,12 +1143,19 @@ export default function MainComponentNameCv() {
               <p style={{
                 fontSize: "7.5pt",
                 color: "rgba(255,255,255,0.45)",
-                marginTop: "2mm",
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
                 margin: "2mm 0 0",
               }}>
                 {t.title}
+              </p>
+              <p style={{
+                fontSize: "7pt",
+                color: "rgba(255,255,255,0.55)",
+                margin: "2mm 0 0",
+                letterSpacing: "0.04em",
+              }}>
+                {langBadges.map(({ flag, label }) => `${flag} ${label[lang]}`).join("  ·  ")}
               </p>
             </div>
 
