@@ -1354,7 +1354,7 @@ export default function MainComponentNameCv() {
                           group.items.length * 2
                         ) / 2}
                         color={group.color}
-                        emptyColor="rgba(0,0,0,0.12)"
+                        emptyColor="#dedede"
                         size={5}
                         gap={3}
                       />
@@ -1398,7 +1398,7 @@ export default function MainComponentNameCv() {
                       <SkillDots
                         filled={getLangDots(language.level)}
                         color="#2a2a2a"
-                        emptyColor="rgba(0,0,0,0.12)"
+                        emptyColor="#dedede"
                         size={5}
                         gap={3}
                       />
