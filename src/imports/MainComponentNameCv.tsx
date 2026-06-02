@@ -629,6 +629,29 @@ function SkillDots({
         const diff = filled - i;
         const isHalf = diff > 0 && diff < 1;
         const isFull = diff >= 1;
+
+        if (isHalf) {
+          /* Two solid child divs inside an overflow:hidden circle.
+             PDF engines flatten gradients before clipping border-radius,
+             producing a rectangle. This two-div approach is PDF-safe. */
+          return (
+            <div
+              key={i}
+              style={{
+                width: `${size}px`,
+                height: `${size}px`,
+                borderRadius: "50%",
+                overflow: "hidden",
+                display: "flex",
+                flexShrink: 0,
+              }}
+            >
+              <div style={{ width: "50%", height: "100%", background: color, flexShrink: 0 }} />
+              <div style={{ width: "50%", height: "100%", background: emptyColor, flexShrink: 0 }} />
+            </div>
+          );
+        }
+
         return (
           <div
             key={i}
@@ -636,11 +659,7 @@ function SkillDots({
               width: `${size}px`,
               height: `${size}px`,
               borderRadius: "50%",
-              background: isFull
-                ? color
-                : isHalf
-                ? `linear-gradient(to right, ${color} 50%, ${emptyColor} 50%)`
-                : emptyColor,
+              background: isFull ? color : emptyColor,
               flexShrink: 0,
             }}
           />
