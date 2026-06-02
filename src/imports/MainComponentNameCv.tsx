@@ -1077,8 +1077,8 @@ export default function MainComponentNameCv() {
         <div
           data-name="Main Component - Name - CV"
           style={{
-            width: "210mm",
-            height: "297mm",
+            width: "100%",
+            height: "100%",
             overflow: "hidden",
             display: "flex",
             flexDirection: "column",
@@ -1304,12 +1304,15 @@ export default function MainComponentNameCv() {
             <div style={{
               width: "72mm",
               flexShrink: 0,
-              padding: "8mm 14mm 8mm 9mm",
+              alignSelf: "stretch",
+              padding: "7mm 14mm 7mm 9mm",
               background: "#f8f8f8",
               display: "flex",
               flexDirection: "column",
-              gap: "8mm",
+              gap: "5mm",
               overflow: "hidden",
+              breakInside: "avoid",
+              pageBreakInside: "avoid",
             }}>
 
               {/* ── Section: Skills ── */}
@@ -1377,7 +1380,7 @@ export default function MainComponentNameCv() {
                   <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
                 </div>
 
-                <div style={{ display: "flex", flexDirection: "column", gap: "4mm" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "3mm" }}>
                   {t.languages.map((language, i) => (
                     <div key={i} style={{
                       display: "flex",
