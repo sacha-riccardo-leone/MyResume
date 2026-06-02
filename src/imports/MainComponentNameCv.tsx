@@ -1078,7 +1078,8 @@ export default function MainComponentNameCv() {
           data-name="Main Component - Name - CV"
           style={{
             width: "100%",
-            height: "100%",
+            height: "297mm",
+            maxHeight: "297mm",
             overflow: "hidden",
             display: "flex",
             flexDirection: "column",
@@ -1189,7 +1190,7 @@ export default function MainComponentNameCv() {
           </div>
 
           {/* ── BODY — two-column flex ── */}
-          <div style={{ flex: 1, display: "flex", overflow: "hidden" }}>
+          <div style={{ flex: 1, minHeight: 0, display: "flex", overflow: "hidden" }}>
 
             {/* LEFT COLUMN — Experience + Education */}
             <div style={{

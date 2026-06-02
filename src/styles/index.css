@@ -102,9 +102,20 @@
 @media print {
   @page { size: A4 portrait; margin: 0; }
 
-  /* Show/hide layout switches */
-  .print-hidden { display: none !important; }
-  .print-only { display: block !important; width: 100% !important; height: 100% !important; overflow: hidden !important; }
+  /* ── Completely erase the web layout from all layout calculations.
+     iOS Safari paginates from content height, not overflow:hidden.
+     height:0 + max-height:0 removes it even before display:none kicks in. */
+  .print-hidden {
+    display: none !important;
+    height: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Kill the wave canvas — position:fixed can escape display:none on iOS */
+  canvas { display: none !important; }
 
   /* Force all animations complete */
   * { opacity: 1 !important; transition: none !important; }
@@ -112,11 +123,13 @@
   /* Allow backgrounds to print */
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
-  /* Anchor html to exact A4 dimensions — iOS Safari uses this as the print viewport reference.
-     body/#root fill 100% of that, eliminating the right-side white gap. */
+  /* Lock every level of the stacking chain to exactly A4.
+     Explicit 297mm (not 100%) at each level so iOS cannot use intrinsic
+     content height for pagination. */
   html {
     width: 210mm !important;
     height: 297mm !important;
+    max-height: 297mm !important;
     margin: 0 !important;
     padding: 0 !important;
     overflow: hidden !important;
@@ -124,26 +137,34 @@
   }
   body, #root {
     width: 100% !important;
-    height: 100% !important;
+    height: 297mm !important;
+    max-height: 297mm !important;
     background: white !important;
     margin: 0 !important;
     padding: 0 !important;
     overflow: hidden !important;
   }
+  .print-only {
+    display: block !important;
+    width: 100% !important;
+    height: 297mm !important;
+    max-height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
 
-  /* Prevent page breaks inside or after the A4 container */
+  /* A4 container itself */
   [data-name="Main Component - Name - CV"] {
+    height: 297mm !important;
+    max-height: 297mm !important;
+    overflow: hidden !important;
     background: white !important;
     break-after: avoid !important;
     page-break-after: avoid !important;
     break-inside: avoid !important;
     page-break-inside: avoid !important;
   }
-
-  /* Kill the fixed-position wave canvas — position:fixed escapes its
-     parent's display:none in iOS Safari's print engine and generates
-     a ghost second page. Target it directly to prevent that. */
-  canvas { display: none !important; }
 
   /* Profile picture ring: make visible on white background */
   [data-name="Elements"] > div { --tw-ring-color: #555 !important; }
