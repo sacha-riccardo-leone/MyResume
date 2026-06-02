@@ -808,18 +808,6 @@ export default function MainComponentNameCv() {
 
   return (
     <>
-      {/* ── SVG filter definitions (screen only) ── */}
-      <svg width="0" height="0" style={{ position: "absolute", overflow: "hidden" }} aria-hidden="true">
-        <defs>
-          {/* Water-glass displacement: turbulence noise → feDisplacementMap warps whatever
-              shows through backdrop-filter, giving a "looking through water" effect */}
-          <filter id="glass-warp" x="-8%" y="-8%" width="116%" height="116%">
-            <feTurbulence type="turbulence" baseFrequency="0.008 0.011" numOctaves="2" seed="5" result="warp" />
-            <feDisplacementMap in="SourceGraphic" in2="warp" scale="6" xChannelSelector="R" yChannelSelector="G" />
-          </filter>
-        </defs>
-      </svg>
-
       {/* ═══════════════════════════════════════════════════════
           WEB LAYOUT — portfolio dev, scroll animations
           ═══════════════════════════════════════════════════════ */}
