@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Linkedin, Github, Printer, MapPin, Mail, Phone, ChevronDown, ExternalLink } from "lucide-react";
+import { Linkedin, Github, Printer, MapPin, Mail, Phone, ChevronDown, ExternalLink, Globe } from "lucide-react";
 import profilePic from "../assets/pfplinkedin-removebg-preview.png";
 
 type Lang = "fr" | "en" | "de" | "it";
@@ -11,7 +11,7 @@ const translations = {
   fr: {
     title: "Développeur d'Applications",
     intro:
-      "Développeur d'applications diplômé (CFC + maturité professionnelle), déjà engagé dans la conception d'un produit SaaS personnel. Compétences couvrant le développement full-stack, l'intégration d'IA générative et les APIs tierces. Quadrilingue : français et italien natifs, anglais C1, allemand B2.",
+      "Développeur full-stack de 20 ans, fondateur d'Ordine AI — client email IA en production pour PME suisses. CFC développement d'applications + maturité professionnelle. Quadrilingue (FR/IT natifs, EN C1, DE B2) — opérationnel sur tout le marché suisse.",
     sections: {
       contact: "Contact",
       experience: "Expérience",
@@ -26,19 +26,23 @@ const translations = {
       phone: "+41 78 400 01 68",
       linkedin: "linkedin.com/in/sacha-leone",
       github: "@sacha-riccardo-leone",
+      website: "resume-sacha-leone.vercel.app",
+      dob: "31.01.2006",
+      nationality: "Italien — Permis C (CH)",
+      mobility: "Mobilité nationale (transports publics)",
     },
     experience: [
       {
         date: "4–22 mai 2026",
         company: "Xefi",
         description:
-          "Stage en ESN — pilotage et configuration d'un déploiement Odoo 19 : analyse fonctionnelle, paramétrage des modules métier et gestion de projet client.",
+          "Addon Odoo 19 Enterprise (pixieset_sync) + extension Chrome/Firefox pour un studio photo suisse (Olive & Beige) — sync automatique Pixieset → Odoo : contacts, projets, sessions, cron quotidien, secrets masqués. 4 batches livrés en 18 jours, déployé sur Odoo.sh, cliente satisfaite. Stack : Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
         date: "2025 – présent",
         company: "Ordine AI",
         description:
-          "Fondateur & ingénieur full-stack. Client email IA multi-fournisseurs pour PME suisses, livré seul de A à Z — pipeline de classification Claude Haiku (harness CI FR/DE/IT/EN : 100%/94%/96%/98%), conformité FADP (Cloud Run Zurich, AES-GCM-256, DLP PII suisse), billing Stripe 4 niveaux, audit sécurité 5-agents adversariaux (30+ findings résolus).",
+          "Fondateur & ingénieur full-stack. Client email IA multi-fournisseurs pour PME suisses, en beta active — pipeline de classification Claude Haiku (harness CI FR/DE/IT/EN : 100%/94%/96%/98%), conformité FADP (Cloud Run Zurich, AES-GCM-256, DLP PII suisse), billing Stripe 4 niveaux, audit sécurité 5-agents adversariaux (30+ findings résolus).",
       },
       {
         date: "avril 2025 – juin 2025",
@@ -50,13 +54,13 @@ const translations = {
         date: "août 2025 – janvier 2026",
         company: "CPNE-AA",
         description:
-          "Immersion interdisciplinaire en design, couture et industrie. Utilisation d'outils numériques pour la recherche documentaire, la retouche d'image et les calculs de conception.",
+          "Exploration d'une reconversion vers les arts appliqués (design, couture, industrie) — retour confirmé au développement logiciel. Compétences transversales : sensibilité design, Krita, retouche image.",
       },
       {
         date: "2023 – présent",
         company: "SourShots",
         description:
-          "Création de contenus visuels pour un groupe de musique local : photoshoots, montages vidéo, affiches, brochures et posts réseaux sociaux. Outils : Krita, Sony.",
+          "Création de l'identité visuelle et des contenus digitaux pour un groupe local sur 3 ans — affiches, reels, brochures, posts réseaux sociaux. Gestion autonome de la production créative. Outils : Krita, Sony.",
       },
     ],
     languages: [
@@ -73,26 +77,16 @@ const translations = {
           "Formation d'informatique (Dév. d'applications), CFC et maturité professionnelle",
       },
       {
-        date: "2021–2022",
-        institution: "École secondaire (NE) — Le Landeron, C2T",
-        description: "Fin du cycle obligatoire · Diplôme cantonal neuchâtelois · PRIMA bilingue FR/DE",
-      },
-      {
-        date: "2020–2021",
-        institution: "École secondaire (BE) — Erlach, Oberstufe",
-        description: "Immersion 100% en allemand à Erlach",
-      },
-      {
-        date: "2018–2020",
-        institution: "École secondaire (NE) — Le Landeron, C2T",
-        description: "PRIMA bilingue FR/DE",
+        date: "2018–2022",
+        institution: "Scolarité obligatoire — Le Landeron (NE) & Erlach (BE)",
+        description: "PRIMA bilingue FR/DE · Immersion complète en allemand à Erlach (2020–21) · Diplôme cantonal neuchâtelois",
       },
     ],
   },
   en: {
     title: "Application Developer",
     intro:
-      "Graduated application developer (federal vocational diploma + professional baccalaureate), already building a personal SaaS product. Skills spanning full-stack development, generative AI integration and third-party APIs. Quadrilingual: native French and Italian, English C1, German B2.",
+      "Full-stack developer, 20 — founder of Ordine AI, an AI email client in production for Swiss SMEs. Federal vocational diploma (CFC) + professional baccalaureate. Quadrilingual (FR/IT native, EN C1, DE B2) — operational across the full Swiss market.",
     sections: {
       contact: "Contact",
       experience: "Experience",
@@ -107,19 +101,23 @@ const translations = {
       phone: "+41 78 400 01 68",
       linkedin: "linkedin.com/in/sacha-leone",
       github: "@sacha-riccardo-leone",
+      website: "resume-sacha-leone.vercel.app",
+      dob: "31.01.2006",
+      nationality: "Italian — Permit C (CH)",
+      mobility: "Nationwide mobility (public transport)",
     },
     experience: [
       {
         date: "4–22 May 2026",
         company: "Xefi",
         description:
-          "Internship at an IT services firm — led configuration of an Odoo 19 ERP deployment: functional analysis, business module setup and client project management.",
+          "Built an Odoo 19 Enterprise addon (pixieset_sync) + Chrome/Firefox browser extension for a Swiss photography studio (Olive & Beige) — automated Pixieset → Odoo sync (contacts, projects, sessions), daily cron, masked secrets. Delivered in 4 batches over 18 days, live on Odoo.sh, client satisfied. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
         date: "2025 – present",
         company: "Ordine AI",
         description:
-          "Founder & full-stack engineer. AI-powered multi-provider email client for Swiss SMEs — solo end-to-end. Claude Haiku classification pipeline (CI eval harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-compliant infra (Cloud Run Zurich, AES-GCM-256, Swiss PII DLP), Stripe 4-tier billing, 5-agent adversarial security audit (30+ findings resolved).",
+          "Founder & full-stack engineer. AI-powered multi-provider email client for Swiss SMEs, in active beta — Claude Haiku classification pipeline (CI eval harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-compliant infra (Cloud Run Zurich, AES-GCM-256, Swiss PII DLP), Stripe 4-tier billing, 5-agent adversarial security audit (30+ findings resolved).",
       },
       {
         date: "Apr 2025 – Jun 2025",
@@ -131,13 +129,13 @@ const translations = {
         date: "Aug 2025 – Jan 2026",
         company: "CPNE-AA",
         description:
-          "Interdisciplinary immersion in design, fashion and industry. Use of digital tools for documentation, image editing and measurement calculations.",
+          "Brief exploration of a career shift into applied arts (design, fashion, industry) — returned to software development. Cross-disciplinary skills gained: design sensibility, Krita, image editing.",
       },
       {
         date: "2023 – present",
         company: "SourShots",
         description:
-          "Visual content creation for a local music band: photoshoots, video editing, posters, brochures and social media posts. Tools: Krita, Sony.",
+          "Visual identity and digital content for a local band over 3 years — posters, reels, brochures, social media. Autonomous creative production management. Tools: Krita, Sony.",
       },
     ],
     languages: [
@@ -154,26 +152,16 @@ const translations = {
           "IT training (Application Development), federal vocational diploma (CFC) and professional baccalaureate",
       },
       {
-        date: "2021–2022",
-        institution: "Secondary School (NE) — Le Landeron, C2T",
-        description: "Final year of compulsory schooling · Neuchâtel cantonal diploma · PRIMA bilingual programme (FR/DE)",
-      },
-      {
-        date: "2020–2021",
-        institution: "Secondary School (BE) — Erlach, Oberstufe",
-        description: "100% German immersion in Erlach",
-      },
-      {
-        date: "2018–2020",
-        institution: "Secondary School (NE) — Le Landeron, C2T",
-        description: "PRIMA bilingual programme (FR/DE)",
+        date: "2018–2022",
+        institution: "Compulsory schooling — Le Landeron (NE) & Erlach (BE)",
+        description: "PRIMA bilingual programme (FR/DE) · Full German immersion in Erlach (2020–21) · Neuchâtel cantonal diploma",
       },
     ],
   },
   de: {
     title: "Applikationsentwickler",
     intro:
-      "Diplomierter Applikationsentwickler (EFZ + Berufsmaturität), bereits beschäftigt mit der Entwicklung eines eigenen SaaS-Produkts. Kenntnisse in Full-Stack-Entwicklung, Integration von generativer KI und Drittanbieter-APIs. Viersprachig: Französisch und Italienisch (Muttersprache), Englisch C1, Deutsch B2.",
+      "Full-Stack-Entwickler, 20 Jahre, Gründer von Ordine AI — KI-E-Mail-Client in Produktion für Schweizer KMU. EFZ Applikationsentwicklung + Berufsmaturität. Viersprachig (FR/IT Muttersprache, EN C1, DE B2) — auf dem gesamten Schweizer Markt einsetzbar.",
     sections: {
       contact: "Kontakt",
       experience: "Erfahrung",
@@ -188,37 +176,41 @@ const translations = {
       phone: "+41 78 400 01 68",
       linkedin: "linkedin.com/in/sacha-leone",
       github: "@sacha-riccardo-leone",
+      website: "resume-sacha-leone.vercel.app",
+      dob: "31.01.2006",
+      nationality: "Italienisch — Ausweis C (CH)",
+      mobility: "Schweizweite Mobilität (öffentliche Verkehrsmittel)",
     },
     experience: [
       {
         date: "4.–22. Mai 2026",
         company: "Xefi",
         description:
-          "Praktikum bei einem IT-Dienstleister — Steuerung und Konfiguration eines Odoo-19-ERP-Deployments: Funktionsanalyse, Modulkonfiguration und Projektmanagement.",
+          "Odoo-19-Enterprise-Addon (pixieset_sync) + Chrome/Firefox-Erweiterung für ein Schweizer Fotostudio (Olive & Beige) — automatische Pixieset → Odoo-Synchronisation (Kontakte, Projekte, Sessions), Tages-Cron, Secret-Maskierung. 4 Batches in 18 Tagen geliefert, live auf Odoo.sh, Kundin zufrieden. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
         date: "2025 – heute",
         company: "Ordine AI",
         description:
-          "Gründer & Full-Stack-Ingenieur. KI-gestützter Multi-Provider-E-Mail-Client für Schweizer KMU, allein von A bis Z entwickelt — Claude-Klassifizierungspipeline (CI-Harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-konforme Infrastruktur (Cloud Run Zürich, AES-GCM-256, PII-DLP), Stripe-Billing 4 Stufen, 5-Agent-Sicherheitsaudit (30+ Findings behoben).",
+          "Gründer & Full-Stack-Ingenieur. KI-gestützter Multi-Provider-E-Mail-Client für Schweizer KMU, in aktiver Beta — Claude-Klassifizierungspipeline (CI-Harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-konforme Infrastruktur (Cloud Run Zürich, AES-GCM-256, PII-DLP), Stripe-Billing 4 Stufen, 5-Agent-Sicherheitsaudit (30+ Findings behoben).",
       },
       {
         date: "Apr. 2025 – Jun. 2025",
         company: "CPNE-TI – IPA",
         description:
-          "Entwicklung einer digitalisierten Version von \"Wer bin ich?\" in C#/Raylib, mit einem Algorithmus zur Generierung einzigartiger Charaktere durch DNS-Profilvergleich und einem Seltenheitssystem für Kleidung. Note: 5,5/6.",
+          "Entwicklung einer digitalisierten Version von \"Wer bin ich?\" in C#/Raylib — Algorithmus zur Charaktergenerierung per DNS-Profilvergleich, Seltenheitssystem für Kleidung. Note: 5,5/6.",
       },
       {
         date: "Aug. 2025 – Jan. 2026",
         company: "CPNE-AA",
         description:
-          "Interdisziplinäre Vertiefung in Design, Mode und Industrie. Einsatz digitaler Werkzeuge für Dokumentenrecherche, Bildbearbeitung und Berechnungen.",
+          "Kurze Erkundung einer Umorientierung in angewandte Künste (Design, Mode, Industrie) — Rückkehr zur Softwareentwicklung bestätigt. Übertragbare Kompetenzen: Designsensibilität, Krita, Bildbearbeitung.",
       },
       {
         date: "2023 – heute",
         company: "SourShots",
         description:
-          "Erstellung visueller Inhalte für eine lokale Musikband: Fotoshootings, Videobearbeitung, Plakate, Broschüren und Social-Media-Posts. Tools: Krita, Sony.",
+          "Visuelle Identität und digitale Inhalte für eine lokale Band über 3 Jahre — Plakate, Reels, Broschüren, Social Media. Autonomes Kreativmanagement. Tools: Krita, Sony.",
       },
     ],
     languages: [
@@ -235,26 +227,16 @@ const translations = {
           "Informatikausbildung (Applikationsentwicklung), EFZ und Berufsmaturität",
       },
       {
-        date: "2021–2022",
-        institution: "Sekundarschule (NE) — Le Landeron, C2T",
-        description: "Abschlussjahr der obligatorischen Schulzeit · Kantonales Diplom Neuenburg · PRIMA bilinguale Ausbildung (FR/DE)",
-      },
-      {
-        date: "2020–2021",
-        institution: "Sekundarschule (BE) — Erlach, Oberstufe",
-        description: "100% Deutschimmersion in Erlach",
-      },
-      {
-        date: "2018–2020",
-        institution: "Sekundarschule (NE) — Le Landeron, C2T",
-        description: "PRIMA bilinguale Ausbildung (FR/DE)",
+        date: "2018–2022",
+        institution: "Obligatorische Schulzeit — Le Landeron (NE) & Erlach (BE)",
+        description: "PRIMA bilinguale Ausbildung (FR/DE) · Vollständige Deutschimmersion in Erlach (2020–21) · Kantonales Diplom Neuenburg",
       },
     ],
   },
   it: {
     title: "Sviluppatore di Applicazioni",
     intro:
-      "Sviluppatore di applicazioni diplomato (AFC + maturità professionale), già impegnato nella progettazione di un prodotto SaaS personale. Competenze in sviluppo full-stack, integrazione di IA generativa e API di terze parti. Quadrilingue: francese e italiano madrelingua, inglese C1, tedesco B2.",
+      "Sviluppatore full-stack di 20 anni, fondatore di Ordine AI — client email IA in produzione per PMI svizzere. AFC sviluppo applicazioni + maturità professionale. Quadrilingue (FR/IT madrelingua, EN C1, DE B2) — operativo su tutto il mercato svizzero.",
     sections: {
       contact: "Contatto",
       experience: "Esperienza",
@@ -269,37 +251,41 @@ const translations = {
       phone: "+41 78 400 01 68",
       linkedin: "linkedin.com/in/sacha-leone",
       github: "@sacha-riccardo-leone",
+      website: "resume-sacha-leone.vercel.app",
+      dob: "31.01.2006",
+      nationality: "Italiano — Permesso C (CH)",
+      mobility: "Mobilità nazionale (mezzi pubblici)",
     },
     experience: [
       {
         date: "4–22 maggio 2026",
         company: "Xefi",
         description:
-          "Stage presso un'ESN — configurazione e gestione di un deployment Odoo 19: analisi funzionale, parametrizzazione dei moduli aziendali e gestione del progetto cliente.",
+          "Addon Odoo 19 Enterprise (pixieset_sync) + estensione Chrome/Firefox per uno studio fotografico svizzero (Olive & Beige) — sync automatico Pixieset → Odoo (contatti, progetti, sessioni), cron giornaliero, segreti mascherati. 4 batch consegnati in 18 giorni, live su Odoo.sh, cliente soddisfatta. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
         date: "2025 – presente",
         company: "Ordine AI",
         description:
-          "Fondatore & ingegnere full-stack. Client email IA multi-provider per PMI svizzere, sviluppato in solitaria — pipeline di classificazione Claude Haiku (CI harness FR/DE/IT/EN: 100%/94%/96%/98%), infrastruttura conforme FADP (Cloud Run Zurigo, AES-GCM-256, DLP PII svizzero), billing Stripe 4 livelli, audit di sicurezza 5-agenti (30+ findings risolti).",
+          "Fondatore & ingegnere full-stack. Client email IA multi-provider per PMI svizzere, in beta attiva — pipeline di classificazione Claude Haiku (CI harness FR/DE/IT/EN: 100%/94%/96%/98%), infrastruttura conforme FADP (Cloud Run Zurigo, AES-GCM-256, DLP PII svizzero), billing Stripe 4 livelli, audit di sicurezza 5-agenti adversariali (30+ findings risolti).",
       },
       {
         date: "apr. 2025 – giu. 2025",
         company: "CPNE-TI – LPI",
         description:
-          "Sviluppo in C#/Raylib di una versione digitale del gioco \"Indovina chi?\", con un algoritmo di generazione di personaggi unici tramite confronto di profili DNA e un sistema di rarità dell'abbigliamento. Voto: 5,5/6.",
+          "Sviluppo in C#/Raylib di una versione digitale del gioco \"Indovina chi?\" — algoritmo di generazione personaggi tramite confronto profili DNA, sistema di rarità abbigliamento. Voto: 5,5/6.",
       },
       {
         date: "ago. 2025 – gen. 2026",
         company: "CPNE-AA",
         description:
-          "Immersione interdisciplinare in design, moda e industria. Utilizzo di strumenti digitali per la ricerca documentale, il ritocco di immagini e i calcoli di progettazione.",
+          "Breve esplorazione di una riconversione verso le arti applicate (design, moda, industria) — ritorno confermato allo sviluppo software. Competenze trasversali: sensibilità design, Krita, ritocco fotografico.",
       },
       {
         date: "2023 – presente",
         company: "SourShots",
         description:
-          "Creazione di contenuti visivi per un gruppo musicale locale: servizi fotografici, montaggi video, manifesti, brochure e post sui social media. Strumenti: Krita, Sony.",
+          "Identità visiva e contenuti digitali per un gruppo locale su 3 anni — manifesti, reels, brochure, social media. Gestione autonoma della produzione creativa. Strumenti: Krita, Sony.",
       },
     ],
     languages: [
@@ -316,19 +302,9 @@ const translations = {
           "Formazione informatica (Sviluppo di applicazioni), AFC e maturità professionale",
       },
       {
-        date: "2021–2022",
-        institution: "Scuola secondaria (NE) — Le Landeron, C2T",
-        description: "Anno finale della scolarità obbligatoria · Diploma cantonale Neuchâtelois · PRIMA bilingue FR/DE",
-      },
-      {
-        date: "2020–2021",
-        institution: "Scuola secondaria (BE) — Erlach, Oberstufe",
-        description: "Immersione 100% tedesco a Erlach",
-      },
-      {
-        date: "2018–2020",
-        institution: "Scuola secondaria (NE) — Le Landeron, C2T",
-        description: "PRIMA bilingue FR/DE",
+        date: "2018–2022",
+        institution: "Scolarità obbligatoria — Le Landeron (NE) & Erlach (BE)",
+        description: "PRIMA bilingue FR/DE · Immersione completa in tedesco a Erlach (2020–21) · Diploma cantonale neuchâtelois",
       },
     ],
   },
@@ -913,6 +889,7 @@ export default function MainComponentNameCv() {
                   { Icon: Phone, label: t.contact.phone, href: `tel:${t.contact.phone}` },
                   { Icon: Linkedin, label: t.contact.linkedin, href: `https://${t.contact.linkedin}` },
                   { Icon: Github, label: t.contact.github, href: `https://github.com/${t.contact.github.replace("@", "")}` },
+                  { Icon: Globe, label: t.contact.website, href: `https://${t.contact.website}` },
                 ] as const
               ).map(({ Icon, label, href }, i) => {
                 const cls =
@@ -1183,6 +1160,16 @@ export default function MainComponentNameCv() {
               <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
                 <Github style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
                 {t.contact.github}
+              </span>
+              <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
+                <Globe style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
+                {t.contact.website}
+              </span>
+              <span style={{ justifyContent: "flex-end", marginTop: "0.5mm" }}>
+                {t.contact.dob} · {t.contact.nationality}
+              </span>
+              <span style={{ justifyContent: "flex-end" }}>
+                {t.contact.mobility}
               </span>
             </div>
           </div>
