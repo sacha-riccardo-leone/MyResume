@@ -140,6 +140,11 @@
     page-break-inside: avoid !important;
   }
 
+  /* Kill the fixed-position wave canvas — position:fixed escapes its
+     parent's display:none in iOS Safari's print engine and generates
+     a ghost second page. Target it directly to prevent that. */
+  canvas { display: none !important; }
+
   /* Profile picture ring: make visible on white background */
   [data-name="Elements"] > div { --tw-ring-color: #555 !important; }
 }
