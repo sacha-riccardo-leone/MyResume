@@ -11,7 +11,7 @@ const translations = {
   fr: {
     title: "Développeur d'Applications",
     intro:
-      "Quadrilingue (FR/IT natifs · EN C1 · DE B2) — développeur full-stack de 20 ans, fondateur d'Ordine AI en production pour PME suisses. CFC développement d'applications + maturité professionnelle, opérationnel sur tout le marché suisse.",
+      "Quadrilingue (FR/IT natifs · EN C1 · DE B2) — développeur d'applications de 20 ans, fondateur d'Ordine AI en production pour PME suisses. CFC développement d'applications + maturité professionnelle, opérationnel sur tout le marché suisse.",
     sections: {
       contact: "Contact",
       experience: "Expérience",
@@ -42,7 +42,7 @@ const translations = {
         date: "2025 – présent",
         company: "Ordine AI",
         description:
-          "Fondateur & ingénieur full-stack. Client email IA multi-fournisseurs pour PME suisses, en beta active — pipeline de classification Claude Haiku (harness CI FR/DE/IT/EN : 100%/94%/96%/98%), conformité FADP (Cloud Run Zurich, AES-GCM-256, DLP PII suisse), billing Stripe 4 niveaux, audit sécurité 5-agents adversariaux (30+ findings résolus).",
+          "Fondateur & développeur. Client email IA multi-fournisseurs pour PME suisses, en beta active — pipeline de classification Claude Haiku (harness CI FR/DE/IT/EN : 100%/94%/96%/98%), conformité FADP (Cloud Run Zurich, AES-GCM-256, DLP PII suisse), billing Stripe 4 niveaux, audit sécurité 5-agents adversariaux (30+ findings résolus).",
       },
       {
         date: "avril 2025 – juin 2025",
@@ -86,7 +86,7 @@ const translations = {
   en: {
     title: "Application Developer",
     intro:
-      "Quadrilingual (FR/IT native · EN C1 · DE B2) — full-stack developer, 20, founder of Ordine AI in production for Swiss SMEs. CFC + professional baccalaureate, operational across the full Swiss market.",
+      "Quadrilingual (FR/IT native · EN C1 · DE B2) — application developer, 20, founder of Ordine AI in production for Swiss SMEs. CFC + professional baccalaureate, operational across the full Swiss market.",
     sections: {
       contact: "Contact",
       experience: "Experience",
@@ -117,7 +117,7 @@ const translations = {
         date: "2025 – present",
         company: "Ordine AI",
         description:
-          "Founder & full-stack engineer. AI-powered multi-provider email client for Swiss SMEs, in active beta — Claude Haiku classification pipeline (CI eval harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-compliant infra (Cloud Run Zurich, AES-GCM-256, Swiss PII DLP), Stripe 4-tier billing, 5-agent adversarial security audit (30+ findings resolved).",
+          "Founder & developer. AI-powered multi-provider email client for Swiss SMEs, in active beta — Claude Haiku classification pipeline (CI eval harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-compliant infra (Cloud Run Zurich, AES-GCM-256, Swiss PII DLP), Stripe 4-tier billing, 5-agent adversarial security audit (30+ findings resolved).",
       },
       {
         date: "Apr 2025 – Jun 2025",
@@ -161,7 +161,7 @@ const translations = {
   de: {
     title: "Applikationsentwickler",
     intro:
-      "Viersprachig (FR/IT Muttersprache · EN C1 · DE B2) — Full-Stack-Entwickler, 20 Jahre, Gründer von Ordine AI in Produktion für Schweizer KMU. EFZ Applikationsentwicklung + Berufsmaturität, auf dem gesamten Schweizer Markt einsetzbar.",
+      "Viersprachig (FR/IT Muttersprache · EN C1 · DE B2) — Applikationsentwickler, 20 Jahre, Gründer von Ordine AI in Produktion für Schweizer KMU. EFZ Applikationsentwicklung + Berufsmaturität, auf dem gesamten Schweizer Markt einsetzbar.",
     sections: {
       contact: "Kontakt",
       experience: "Erfahrung",
@@ -192,7 +192,7 @@ const translations = {
         date: "2025 – heute",
         company: "Ordine AI",
         description:
-          "Gründer & Full-Stack-Ingenieur. KI-gestützter Multi-Provider-E-Mail-Client für Schweizer KMU, in aktiver Beta — Claude-Klassifizierungspipeline (CI-Harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-konforme Infrastruktur (Cloud Run Zürich, AES-GCM-256, PII-DLP), Stripe-Billing 4 Stufen, 5-Agent-Sicherheitsaudit (30+ Findings behoben).",
+          "Gründer & Entwickler. KI-gestützter Multi-Provider-E-Mail-Client für Schweizer KMU, in aktiver Beta — Claude-Klassifizierungspipeline (CI-Harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-konforme Infrastruktur (Cloud Run Zürich, AES-GCM-256, PII-DLP), Stripe-Billing 4 Stufen, 5-Agent-Sicherheitsaudit (30+ Findings behoben).",
       },
       {
         date: "Apr. 2025 – Jun. 2025",
@@ -236,7 +236,7 @@ const translations = {
   it: {
     title: "Sviluppatore di Applicazioni",
     intro:
-      "Quadrilingue (FR/IT madrelingua · EN C1 · DE B2) — sviluppatore full-stack di 20 anni, fondatore di Ordine AI in produzione per PMI svizzere. AFC + maturità professionale, operativo su tutto il mercato svizzero.",
+      "Quadrilingue (FR/IT madrelingua · EN C1 · DE B2) — sviluppatore di applicazioni di 20 anni, fondatore di Ordine AI in produzione per PMI svizzere. AFC + maturità professionale, operativo su tutto il mercato svizzero.",
     sections: {
       contact: "Contatto",
       experience: "Esperienza",
@@ -267,7 +267,7 @@ const translations = {
         date: "2025 – presente",
         company: "Ordine AI",
         description:
-          "Fondatore & ingegnere full-stack. Client email IA multi-provider per PMI svizzere, in beta attiva — pipeline di classificazione Claude Haiku (CI harness FR/DE/IT/EN: 100%/94%/96%/98%), infrastruttura conforme FADP (Cloud Run Zurigo, AES-GCM-256, DLP PII svizzero), billing Stripe 4 livelli, audit di sicurezza 5-agenti adversariali (30+ findings risolti).",
+          "Fondatore & sviluppatore. Client email IA multi-provider per PMI svizzere, in beta attiva — pipeline di classificazione Claude Haiku (CI harness FR/DE/IT/EN: 100%/94%/96%/98%), infrastruttura conforme FADP (Cloud Run Zurigo, AES-GCM-256, DLP PII svizzero), billing Stripe 4 livelli, audit di sicurezza 5-agenti adversariali (30+ findings risolti).",
       },
       {
         date: "apr. 2025 – giu. 2025",
