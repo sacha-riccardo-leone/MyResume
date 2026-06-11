@@ -836,7 +836,7 @@ export default function MainComponentNameCv() {
                   </p>
 
                   {/* Language badges — above the fold, first thing a recruiter sees */}
-                  <div className="flex flex-wrap gap-2 mt-4" style={fadeIn(180)}>
+                  <div className="flex flex-wrap justify-center sm:justify-start gap-2 mt-4" style={fadeIn(180)}>
                     {langBadges.map(({ flag, label }, i) => (
                       <span
                         key={i}
