@@ -1175,17 +1175,19 @@ export default function MainComponentNameCv() {
                           )}
                           <div>
                             <div className="flex items-center gap-1.5">
-                              <p className="text-base font-medium">{exp.company}</p>
-                              {"url" in exp && exp.url && (
+                              {"url" in exp && exp.url ? (
                                 <a
                                   href={exp.url as string}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   onClick={e => e.stopPropagation()}
-                                  className="text-white/35 hover:text-white/70 transition-colors"
+                                  className="text-base font-medium hover:text-white/70 transition-colors flex items-center gap-1.5"
                                 >
-                                  <ExternalLink className="h-3 w-3" />
+                                  {exp.company}
+                                  <ExternalLink className="h-3 w-3 opacity-50" />
                                 </a>
+                              ) : (
+                                <p className="text-base font-medium">{exp.company}</p>
                               )}
                             </div>
                             <p className="text-[11px] font-mono text-white/30 mt-0.5">{exp.date}</p>
