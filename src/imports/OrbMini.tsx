@@ -140,19 +140,23 @@ export default function OrbMini({ size = 28, className = "", hover = false }: Or
     const container = containerRef.current;
     if (!container) return;
 
-    // CSS size = size × size (fits the div exactly, no overflow clipping).
-    // Physical resolution = size × dpr × scale for sharpness.
     const scale = size <= 64 ? 2.0 : 3.0;
     const dpr = Math.min(window.devicePixelRatio, 1.5);
-    const pw = Math.floor(size * dpr * scale);
-    const ph = Math.floor(size * dpr * scale);
+    const w = Math.floor(size * scale);
+    const h = Math.floor(size * scale);
+    const pw = Math.floor(w * dpr);
+    const ph = Math.floor(h * dpr);
 
     const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, premultipliedAlpha: false });
-    renderer.setSize(size, size);
-    renderer.setPixelRatio(dpr * scale);
+    renderer.setSize(w, h);
+    renderer.setPixelRatio(dpr);
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
     renderer.domElement.style.display = "block";
+    renderer.domElement.style.position = "absolute";
+    renderer.domElement.style.left = "50%";
+    renderer.domElement.style.top = "50%";
+    renderer.domElement.style.transform = "translate(-50%, -50%)";
     renderer.domElement.style.pointerEvents = "none";
 
     const scene = new THREE.Scene();
@@ -214,7 +218,7 @@ export default function OrbMini({ size = 28, className = "", hover = false }: Or
     <div
       ref={containerRef}
       className={className}
-      style={{ width: size, height: size, flexShrink: 0 }}
+      style={{ width: size, height: size, overflow: "visible", position: "relative", flexShrink: 0 }}
     />
   );
 }
