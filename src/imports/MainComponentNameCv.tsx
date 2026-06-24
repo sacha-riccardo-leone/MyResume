@@ -738,7 +738,7 @@ export default function MainComponentNameCv() {
   const [lang, setLang] = useState<Lang>("fr");
   const [phase, setPhase] = useState<Phase>("cursor");
   const [displayedName, setDisplayedName] = useState("");
-  const [openExp, setOpenExp] = useState<Set<number>>(new Set([0]));
+  const [openExp, setOpenExp] = useState<Set<number>>(new Set());
   const t = translations[lang];
 
   const toggleExp = (i: number) =>
@@ -971,7 +971,15 @@ export default function MainComponentNameCv() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-3 flex-wrap">
                         <div>
-                          <p className="text-base font-medium">Anthropic</p>
+                          <a
+                            href="https://anthropic.skilljar.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-base font-medium hover:text-[#D97757] transition-colors flex items-center gap-1.5"
+                          >
+                            Anthropic
+                            <ExternalLink className="h-3 w-3 opacity-50" />
+                          </a>
                           <p className="text-[11px] font-mono text-white/30 mt-0.5">{anthropicCert.date[lang]}</p>
                         </div>
                         <span className="flex items-center gap-2 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#D97757]/10 text-[#D97757] border border-[#D97757]/25 shrink-0">
