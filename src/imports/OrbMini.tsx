@@ -15,6 +15,7 @@ const fragmentShader = /* glsl */ `
   uniform float uTime;
   uniform vec2 uResolution;
   uniform float uExcite;
+  uniform float uBaseRadius;
 
   varying vec2 vUv;
 
@@ -52,7 +53,7 @@ const fragmentShader = /* glsl */ `
     float dist = length(uv);
     float angle = atan(uv.y, uv.x);
 
-    float baseRadius = 0.15;
+    float baseRadius = uBaseRadius;
     float ampMul = 1.0 + uExcite * 1.0;
     float d = 0.0;
 
@@ -125,11 +126,12 @@ const fragmentShader = /* glsl */ `
 
 interface OrbMiniProps {
   size?: number;
+  baseRadius?: number;
   className?: string;
   hover?: boolean;
 }
 
-export default function OrbMini({ size = 28, className = "", hover = false }: OrbMiniProps) {
+export default function OrbMini({ size = 28, baseRadius = 0.15, className = "", hover = false }: OrbMiniProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<number>(0);
   const hoverRef = useRef(hover);
@@ -169,6 +171,7 @@ export default function OrbMini({ size = 28, className = "", hover = false }: Or
         uTime: { value: 0 },
         uResolution: { value: new THREE.Vector2(pw, ph) },
         uExcite: { value: 0.0 },
+        uBaseRadius: { value: baseRadius },
       },
       transparent: true,
       depthWrite: false,
@@ -212,7 +215,7 @@ export default function OrbMini({ size = 28, className = "", hover = false }: Or
         if (container.contains(renderer.domElement)) container.removeChild(renderer.domElement);
       } catch { /* ignore */ }
     };
-  }, [size]);
+  }, [size, baseRadius]);
 
   return (
     <div

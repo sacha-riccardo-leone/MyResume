@@ -1010,12 +1010,7 @@ export default function MainComponentNameCv() {
                       onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
                     >
                       <div className="px-5 py-4 flex items-start gap-3">
-                        {/* 20px placeholder — same as Anthropic SVG so text aligns identically */}
-                        <div className="shrink-0 mt-1" style={{ width: 20, height: 20, position: "relative", overflow: "visible" }}>
-                          <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
-                            <OrbMini size={56} hover={false} />
-                          </div>
-                        </div>
+                        <OrbMini size={20} baseRadius={0.35} className="shrink-0 mt-1" hover={false} />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-3 flex-wrap">
                             <div>
