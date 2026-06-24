@@ -43,7 +43,7 @@ const translations = {
       },
       {
         date: "2026 — en cours",
-        company: "R2JC — Rencontre de Jeunes Créateurs",
+        company: "Rencontre de Jeunes Créateurs",
         url: "https://r2jc.vercel.app",
         description:
           "Refonte frontend de r2jc.ch — site d'un collectif de jeunes fondateurs suisses organisant des défilés de mode. Intégration native de la billetterie Infomaniak (sans redirection externe), carte SVG interactive de la Suisse avec sponsors géolocalisés, redesign moderne avec système de tokens de marque. Stack : Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
@@ -126,7 +126,7 @@ const translations = {
       },
       {
         date: "2026 — in progress",
-        company: "R2JC — Rencontre de Jeunes Créateurs",
+        company: "Rencontre de Jeunes Créateurs",
         url: "https://r2jc.vercel.app",
         description:
           "Frontend redesign of r2jc.ch — site for a collective of young Swiss founders organizing fashion shows. Native Infomaniak ticketing embed (no external redirects), interactive SVG map of Switzerland with geolocated sponsors, modern redesign with a custom brand token system. Stack: Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
@@ -209,7 +209,7 @@ const translations = {
       },
       {
         date: "2026 — laufend",
-        company: "R2JC — Rencontre de Jeunes Créateurs",
+        company: "Rencontre de Jeunes Créateurs",
         url: "https://r2jc.vercel.app",
         description:
           "Frontend-Redesign von r2jc.ch — Website eines Kollektivs junger Schweizer Gründer, die Modeschauen organisieren. Native Infomaniak-Ticketing-Integration (keine externen Weiterleitungen), interaktive SVG-Karte der Schweiz mit geolokalisieren Sponsoren, modernes Design mit eigenem Marken-Token-System. Stack: Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
@@ -292,7 +292,7 @@ const translations = {
       },
       {
         date: "2026 — in corso",
-        company: "R2JC — Rencontre de Jeunes Créateurs",
+        company: "Rencontre de Jeunes Créateurs",
         url: "https://r2jc.vercel.app",
         description:
           "Rifacimento frontend di r2jc.ch — sito di un collettivo di giovani fondatori svizzeri che organizzano sfilate di moda. Integrazione nativa della biglietteria Infomaniak (senza redirect esterni), mappa SVG interattiva della Svizzera con sponsor geolocalizzati, redesign moderno con sistema di token di marca personalizzati. Stack: Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
@@ -1075,7 +1075,7 @@ export default function MainComponentNameCv() {
 
               {/* R2JC — open card, purple glow */}
               {(() => {
-                const r2jcExp = t.experience.find(e => e.company === "R2JC — Rencontre de Jeunes Créateurs");
+                const r2jcExp = t.experience.find(e => e.company === "Rencontre de Jeunes Créateurs");
                 return r2jcExp ? (
                   <ScrollReveal>
                     <div
@@ -1083,7 +1083,7 @@ export default function MainComponentNameCv() {
                       onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
                     >
                       <div className="px-5 py-4 flex items-start gap-3">
-                        <img src={r2jcLogo} alt="R2JC" className="shrink-0 mt-1" style={{ width: 20, height: 20, objectFit: "contain" }} />
+                        <img src={r2jcLogo} alt="R2JC" className="shrink-0 mt-1" style={{ width: 30, height: 30, objectFit: "contain" }} />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-3 flex-wrap">
                             <div>
@@ -1093,7 +1093,7 @@ export default function MainComponentNameCv() {
                                 rel="noopener noreferrer"
                                 className="text-base font-medium hover:text-[#8c52ff] transition-colors flex items-center gap-1.5"
                               >
-                                R2JC — Rencontre de Jeunes Créateurs
+                                Rencontre de Jeunes Créateurs
                                 <ExternalLink className="h-3 w-3 opacity-50" />
                               </a>
                               <p className="text-[11px] font-mono text-white/30 mt-0.5">{r2jcExp.date}</p>
@@ -1115,7 +1115,7 @@ export default function MainComponentNameCv() {
                 ) : null;
               })()}
 
-              {t.experience.filter(exp => exp.company !== "Ordine AI" && exp.company !== "R2JC — Rencontre de Jeunes Créateurs").map((exp, i) => {
+              {t.experience.filter(exp => exp.company !== "Ordine AI" && exp.company !== "Rencontre de Jeunes Créateurs").map((exp, i) => {
                 const isOpen = openExp.has(i);
                 return (
                   <ScrollReveal key={i} delay={i * 60}>
