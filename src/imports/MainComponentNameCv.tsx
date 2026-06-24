@@ -1082,10 +1082,11 @@ export default function MainComponentNameCv() {
                       className="glass-card glass-card--r2jc rounded-2xl overflow-hidden"
                       onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
                     >
-                      <div className="px-5 py-4 flex items-start gap-3">
-                        <img src={r2jcLogo} alt="R2JC" className="shrink-0 mt-1" style={{ width: 30, height: 30, objectFit: "contain" }} />
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between gap-3 flex-wrap">
+                      <div className="px-5 py-4">
+                        {/* Header: logo centered on title+date height */}
+                        <div className="flex items-center gap-3">
+                          <img src={r2jcLogo} alt="R2JC" className="shrink-0" style={{ width: 48, height: 48, objectFit: "contain" }} />
+                          <div className="flex-1 min-w-0 flex items-center justify-between gap-3 flex-wrap">
                             <div>
                               <a
                                 href={(r2jcExp as typeof r2jcExp & { url: string }).url}
@@ -1107,8 +1108,9 @@ export default function MainComponentNameCv() {
                               {anthropicCert.badge[lang]}
                             </span>
                           </div>
-                          <p className="mt-2.5 text-sm text-white/45 leading-relaxed">{r2jcExp.description}</p>
                         </div>
+                        {/* Description indented to align under the title */}
+                        <p className="mt-2.5 text-sm text-white/45 leading-relaxed" style={{ paddingLeft: "calc(48px + 12px)" }}>{r2jcExp.description}</p>
                       </div>
                     </div>
                   </ScrollReveal>
