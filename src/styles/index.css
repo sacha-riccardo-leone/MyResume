@@ -96,6 +96,35 @@
   transform: none !important;
 }
 
+/* R2JC card — purple pulsating glow */
+@keyframes r2jc-breathe {
+  0%, 100% {
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.22),
+      0 0 18px rgba(140, 82, 255, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.28),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+  }
+  50% {
+    box-shadow:
+      0 6px 32px rgba(0, 0, 0, 0.26),
+      0 0 40px rgba(140, 82, 255, 0.30),
+      inset 0 1px 0 rgba(255, 255, 255, 0.40),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+  }
+}
+
+.glass-card--r2jc {
+  background: linear-gradient(135deg, rgba(140, 82, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 100%) !important;
+  border-color: rgba(140, 82, 255, 0.30) !important;
+  animation: r2jc-breathe 3s ease-in-out infinite;
+}
+
+.glass-card--r2jc:hover {
+  background: linear-gradient(135deg, rgba(140, 82, 255, 0.16) 0%, rgba(255, 255, 255, 0.06) 100%) !important;
+  border-color: rgba(140, 82, 255, 0.52) !important;
+}
+
 /* Ordine AI card — white pulsating glow */
 @keyframes ordine-breathe {
   0%, 100% {

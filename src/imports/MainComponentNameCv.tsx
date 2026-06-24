@@ -41,7 +41,7 @@ const translations = {
           "Mandat freelance — Développement d'un addon Odoo 19 Enterprise (pixieset_sync) + extension Chrome/Firefox pour un studio photo suisse (Olive & Beige) — sync automatique Pixieset → Odoo : contacts, projets, sessions, cron quotidien, secrets masqués. Réalisé seul, 4 batches livrés en 18 jours, déployé sur Odoo.sh, cliente satisfaite. Stack : Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
-        date: "2025 — en cours",
+        date: "2026 — en cours",
         company: "R2JC — Rencontre de Jeunes Créateurs",
         url: "https://r2jc.vercel.app",
         description:
@@ -124,7 +124,7 @@ const translations = {
           "Freelance mandate — Development of an Odoo 19 Enterprise addon (pixieset_sync) + Chrome/Firefox extension for a Swiss photography studio (Olive & Beige) — automated Pixieset → Odoo sync (contacts, projects, sessions), daily cron, masked secrets. Delivered solo in 4 batches over 18 days, live on Odoo.sh, client satisfied. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
-        date: "2025 — in progress",
+        date: "2026 — in progress",
         company: "R2JC — Rencontre de Jeunes Créateurs",
         url: "https://r2jc.vercel.app",
         description:
@@ -207,7 +207,7 @@ const translations = {
           "Freelance-Mandat — Entwicklung eines Odoo-19-Enterprise-Addons (pixieset_sync) + Chrome/Firefox-Erweiterung für ein Schweizer Fotostudio (Olive & Beige) — automatische Pixieset → Odoo-Synchronisation (Kontakte, Projekte, Sessions), Tages-Cron, Secret-Maskierung. Alleine realisiert, 4 Batches in 18 Tagen geliefert, live auf Odoo.sh, Kundin zufrieden. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
-        date: "2025 — laufend",
+        date: "2026 — laufend",
         company: "R2JC — Rencontre de Jeunes Créateurs",
         url: "https://r2jc.vercel.app",
         description:
@@ -290,7 +290,7 @@ const translations = {
           "Mandato freelance — Sviluppo di un addon Odoo 19 Enterprise (pixieset_sync) + estensione Chrome/Firefox per uno studio fotografico svizzero (Olive & Beige) — sync automatico Pixieset → Odoo (contatti, progetti, sessioni), cron giornaliero, segreti mascherati. Realizzato in autonomia, 4 batch consegnati in 18 giorni, live su Odoo.sh, cliente soddisfatta. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
-        date: "2025 — in corso",
+        date: "2026 — in corso",
         company: "R2JC — Rencontre de Jeunes Créateurs",
         url: "https://r2jc.vercel.app",
         description:
@@ -1072,7 +1072,49 @@ export default function MainComponentNameCv() {
                 ) : null;
               })()}
 
-              {t.experience.filter(exp => exp.company !== "Ordine AI").map((exp, i) => {
+              {/* R2JC — open card, purple glow */}
+              {(() => {
+                const r2jcExp = t.experience.find(e => e.company === "R2JC — Rencontre de Jeunes Créateurs");
+                return r2jcExp ? (
+                  <ScrollReveal>
+                    <div
+                      className="glass-card glass-card--r2jc rounded-2xl overflow-hidden"
+                      onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
+                    >
+                      <div className="px-5 py-4 flex items-start gap-3">
+                        <Globe className="h-5 w-5 shrink-0 mt-1 text-[#8c52ff]" />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-3 flex-wrap">
+                            <div>
+                              <a
+                                href={(r2jcExp as typeof r2jcExp & { url: string }).url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-base font-medium hover:text-[#8c52ff] transition-colors flex items-center gap-1.5"
+                              >
+                                R2JC — Rencontre de Jeunes Créateurs
+                                <ExternalLink className="h-3 w-3 opacity-50" />
+                              </a>
+                              <p className="text-[11px] font-mono text-white/30 mt-0.5">{r2jcExp.date}</p>
+                            </div>
+                            <span className="flex items-center gap-2 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#8c52ff]/10 text-[#8c52ff] border border-[#8c52ff]/25 shrink-0">
+                              <span className="flex items-end gap-[3px]">
+                                <span className="w-1 h-1 rounded-full bg-[#8c52ff] inline-block dot-jump-1" />
+                                <span className="w-1 h-1 rounded-full bg-[#8c52ff] inline-block dot-jump-2" />
+                                <span className="w-1 h-1 rounded-full bg-[#8c52ff] inline-block dot-jump-3" />
+                              </span>
+                              {anthropicCert.badge[lang]}
+                            </span>
+                          </div>
+                          <p className="mt-2.5 text-sm text-white/45 leading-relaxed">{r2jcExp.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </ScrollReveal>
+                ) : null;
+              })()}
+
+              {t.experience.filter(exp => exp.company !== "Ordine AI" && exp.company !== "R2JC — Rencontre de Jeunes Créateurs").map((exp, i) => {
                 const isOpen = openExp.has(i);
                 return (
                   <ScrollReveal key={i} delay={i * 60}>
