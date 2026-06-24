@@ -4,6 +4,7 @@ import profilePic from "../assets/pfplinkedin-removebg-preview.png";
 import r2jcLogo from "../assets/r2jcLogo.png";
 import xefiLogo from "../assets/xefilogo.png";
 import sourShotsLogo from "../assets/sourshotslogo.jpg";
+import cpneLogo from "../assets/cpnelogo.png";
 import OrbMini from "./OrbMini";
 
 type Lang = "fr" | "en" | "de" | "it";
@@ -427,6 +428,12 @@ const companyLogos: Record<string, string> = {
   "Magneticlab - XEFI Neuchâtel": xefiLogo,
   "SourShots": sourShotsLogo,
 };
+
+function getCompanyLogo(company: string): string | undefined {
+  if (companyLogos[company]) return companyLogos[company];
+  if (company.startsWith("CPNE")) return cpneLogo;
+  return undefined;
+}
 
 const roundLogos = new Set(["SourShots", "Magneticlab - XEFI Neuchâtel"]);
 
@@ -1138,9 +1145,9 @@ export default function MainComponentNameCv() {
                         onClick={() => toggleExp(i)}
                       >
                         <div className="flex items-center gap-3">
-                          {companyLogos[exp.company] && (
+                          {getCompanyLogo(exp.company) && (
                             <img
-                              src={companyLogos[exp.company]}
+                              src={getCompanyLogo(exp.company)}
                               alt=""
                               className="shrink-0"
                               style={{
