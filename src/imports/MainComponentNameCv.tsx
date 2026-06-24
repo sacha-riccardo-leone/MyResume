@@ -3,6 +3,7 @@ import { Linkedin, Github, Printer, MapPin, Mail, Phone, ChevronDown, ExternalLi
 import profilePic from "../assets/pfplinkedin-removebg-preview.png";
 import r2jcLogo from "../assets/r2jcLogo.png";
 import xefiLogo from "../assets/xefilogo.png";
+import sourShotsLogo from "../assets/sourshotslogo.jpg";
 import OrbMini from "./OrbMini";
 
 type Lang = "fr" | "en" | "de" | "it";
@@ -424,7 +425,10 @@ const skillGroups = [
 
 const companyLogos: Record<string, string> = {
   "Magneticlab - XEFI Neuchâtel": xefiLogo,
+  "SourShots": sourShotsLogo,
 };
+
+const roundLogos = new Set(["SourShots"]);
 
 const ordineAIProject = {
   name: "Ordine AI",
@@ -1135,7 +1139,17 @@ export default function MainComponentNameCv() {
                       >
                         <div className="flex items-center gap-3">
                           {companyLogos[exp.company] && (
-                            <img src={companyLogos[exp.company]} alt="" className="shrink-0" style={{ width: 28, height: 28, objectFit: "contain" }} />
+                            <img
+                              src={companyLogos[exp.company]}
+                              alt=""
+                              className="shrink-0"
+                              style={{
+                                width: 28,
+                                height: 28,
+                                objectFit: roundLogos.has(exp.company) ? "cover" : "contain",
+                                borderRadius: roundLogos.has(exp.company) ? "50%" : undefined,
+                              }}
+                            />
                           )}
                           <div>
                             <div className="flex items-center gap-1.5">
