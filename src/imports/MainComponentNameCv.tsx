@@ -1008,12 +1008,12 @@ export default function MainComponentNameCv() {
                       onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}>
                       {/* Header — always visible */}
                       <button
-                        className={`w-full flex items-center justify-between ${exp.company === "Ordine AI" ? "pl-2 pr-5" : "px-5"} py-4 cursor-pointer transition-colors text-left`}
+                        className={`w-full flex items-center justify-between ${exp.company === "Ordine AI" ? "pl-0 pr-5" : "px-5"} py-4 cursor-pointer transition-colors text-left`}
                         onClick={() => toggleExp(i)}
                       >
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2">
                           {exp.company === "Ordine AI" && (
-                            <OrbMini size={44} hover={isOpen} />
+                            <OrbMini size={56} hover={isOpen} />
                           )}
                           <div>
                             <p className="text-base font-medium">{exp.company}</p>
