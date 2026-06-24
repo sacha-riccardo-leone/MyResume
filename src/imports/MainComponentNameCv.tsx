@@ -4,7 +4,7 @@ import profilePic from "../assets/pfplinkedin-removebg-preview.png";
 import r2jcLogo from "../assets/r2jcLogo.png";
 import xefiLogo from "../assets/xefilogo.png";
 import sourShotsLogo from "../assets/sourshotslogo.jpg";
-import cpneLogo from "../assets/cpnelogo.png";
+import cpneLogo from "../assets/cpnelogo.jpg";
 import OrbMini from "./OrbMini";
 
 type Lang = "fr" | "en" | "de" | "it";
@@ -436,6 +436,9 @@ function getCompanyLogo(company: string): string | undefined {
 }
 
 const roundLogos = new Set(["SourShots", "Magneticlab - XEFI Neuchâtel"]);
+function isRoundLogo(company: string) {
+  return roundLogos.has(company) || company.startsWith("CPNE");
+}
 
 const ordineAIProject = {
   name: "Ordine AI",
@@ -1153,8 +1156,8 @@ export default function MainComponentNameCv() {
                               style={{
                                 width: 28,
                                 height: 28,
-                                objectFit: roundLogos.has(exp.company) ? "cover" : "contain",
-                                borderRadius: roundLogos.has(exp.company) ? "50%" : undefined,
+                                objectFit: isRoundLogo(exp.company) ? "cover" : "contain",
+                                borderRadius: isRoundLogo(exp.company) ? "50%" : undefined,
                               }}
                             />
                           )}
