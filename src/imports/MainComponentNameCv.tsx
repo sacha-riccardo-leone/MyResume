@@ -1009,8 +1009,8 @@ export default function MainComponentNameCv() {
                       className="glass-card glass-card--ordine rounded-2xl overflow-hidden"
                       onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
                     >
-                      <div className="px-5 py-4 flex items-start gap-3">
-                        <OrbMini size={44} className="shrink-0 mt-1" hover={false} />
+                      <div className="px-5 py-4 flex items-center gap-3">
+                        <OrbMini size={56} className="shrink-0" hover={false} />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-3 flex-wrap">
                             <div>
