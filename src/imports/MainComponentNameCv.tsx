@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Linkedin, Github, Printer, MapPin, Mail, Phone, ChevronDown, ExternalLink, Globe } from "lucide-react";
 import profilePic from "../assets/pfplinkedin-removebg-preview.png";
+import OrbMini from "./OrbMini";
 
 type Lang = "fr" | "en" | "de" | "it";
 type Phase = "cursor" | "typing" | "done";
@@ -1010,9 +1011,14 @@ export default function MainComponentNameCv() {
                         className="w-full flex items-center justify-between px-5 py-4 cursor-pointer transition-colors text-left"
                         onClick={() => toggleExp(i)}
                       >
-                        <div>
-                          <p className="text-base font-medium">{exp.company}</p>
-                          <p className="text-[11px] font-mono text-white/30 mt-0.5">{exp.date}</p>
+                        <div className="flex items-center gap-3">
+                          {exp.company === "Ordine AI" && (
+                            <OrbMini size={28} hover={isOpen} />
+                          )}
+                          <div>
+                            <p className="text-base font-medium">{exp.company}</p>
+                            <p className="text-[11px] font-mono text-white/30 mt-0.5">{exp.date}</p>
+                          </div>
                         </div>
                         <ChevronDown
                           className="h-4 w-4 text-white/25 shrink-0 ml-4 transition-transform duration-300"
