@@ -41,7 +41,7 @@ const translations = {
           "Mandat freelance — Développement d'un addon Odoo 19 Enterprise (pixieset_sync) + extension Chrome/Firefox pour un studio photo suisse (Olive & Beige) — sync automatique Pixieset → Odoo : contacts, projets, sessions, cron quotidien, secrets masqués. Réalisé seul, 4 batches livrés en 18 jours, déployé sur Odoo.sh, cliente satisfaite. Stack : Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
-        date: "2025 – présent",
+        date: "2025 — en cours",
         company: "Ordine AI",
         description:
           "Fondateur & développeur. Client email IA multi-fournisseurs pour PME suisses, en beta active — pipeline de classification Claude Haiku (harness CI FR/DE/IT/EN : 100%/94%/96%/98%), conformité FADP (Cloud Run Zurich, AES-GCM-256, DLP PII suisse), billing Stripe 4 niveaux, audit sécurité 5-agents adversariaux (30+ findings résolus).",
@@ -117,7 +117,7 @@ const translations = {
           "Freelance mandate — Development of an Odoo 19 Enterprise addon (pixieset_sync) + Chrome/Firefox extension for a Swiss photography studio (Olive & Beige) — automated Pixieset → Odoo sync (contacts, projects, sessions), daily cron, masked secrets. Delivered solo in 4 batches over 18 days, live on Odoo.sh, client satisfied. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
-        date: "2025 – present",
+        date: "2025 — in progress",
         company: "Ordine AI",
         description:
           "Founder & developer. AI-powered multi-provider email client for Swiss SMEs, in active beta — Claude Haiku classification pipeline (CI eval harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-compliant infra (Cloud Run Zurich, AES-GCM-256, Swiss PII DLP), Stripe 4-tier billing, 5-agent adversarial security audit (30+ findings resolved).",
@@ -193,7 +193,7 @@ const translations = {
           "Freelance-Mandat — Entwicklung eines Odoo-19-Enterprise-Addons (pixieset_sync) + Chrome/Firefox-Erweiterung für ein Schweizer Fotostudio (Olive & Beige) — automatische Pixieset → Odoo-Synchronisation (Kontakte, Projekte, Sessions), Tages-Cron, Secret-Maskierung. Alleine realisiert, 4 Batches in 18 Tagen geliefert, live auf Odoo.sh, Kundin zufrieden. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
-        date: "2025 – heute",
+        date: "2025 — laufend",
         company: "Ordine AI",
         description:
           "Gründer & Entwickler. KI-gestützter Multi-Provider-E-Mail-Client für Schweizer KMU, in aktiver Beta — Claude-Klassifizierungspipeline (CI-Harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-konforme Infrastruktur (Cloud Run Zürich, AES-GCM-256, PII-DLP), Stripe-Billing 4 Stufen, 5-Agent-Sicherheitsaudit (30+ Findings behoben).",
@@ -269,7 +269,7 @@ const translations = {
           "Mandato freelance — Sviluppo di un addon Odoo 19 Enterprise (pixieset_sync) + estensione Chrome/Firefox per uno studio fotografico svizzero (Olive & Beige) — sync automatico Pixieset → Odoo (contatti, progetti, sessioni), cron giornaliero, segreti mascherati. Realizzato in autonomia, 4 batch consegnati in 18 giorni, live su Odoo.sh, cliente soddisfatta. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
-        date: "2025 – presente",
+        date: "2025 — in corso",
         company: "Ordine AI",
         description:
           "Fondatore & sviluppatore. Client email IA multi-provider per PMI svizzere, in beta attiva — pipeline di classificazione Claude Haiku (CI harness FR/DE/IT/EN: 100%/94%/96%/98%), infrastruttura conforme FADP (Cloud Run Zurigo, AES-GCM-256, DLP PII svizzero), billing Stripe 4 livelli, audit di sicurezza 5-agenti adversariali (30+ findings risolti).",
@@ -1006,13 +1006,14 @@ export default function MainComponentNameCv() {
                 return ordineExp ? (
                   <ScrollReveal>
                     <div
-                      className="glass-card glass-card--ordine rounded-2xl overflow-hidden"
+                      className="glass-card glass-card--ordine rounded-2xl"
                       onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
                     >
-                      <div className="px-5 py-4 flex items-center gap-3">
-                        <OrbMini size={56} className="shrink-0" hover={false} />
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between gap-3 flex-wrap">
+                      <div className="px-5 py-4">
+                        {/* Header row: orb centered on title height only */}
+                        <div className="flex items-center gap-3">
+                          <OrbMini size={56} className="shrink-0" hover={false} />
+                          <div className="flex-1 min-w-0 flex items-center justify-between gap-3 flex-wrap">
                             <div>
                               <a
                                 href={ordineAIProject.url}
@@ -1034,10 +1035,11 @@ export default function MainComponentNameCv() {
                               {anthropicCert.badge[lang]}
                             </span>
                           </div>
-                          <p className="mt-2.5 text-sm text-white/45 leading-relaxed">
-                            {ordineExp.description}
-                          </p>
                         </div>
+                        {/* Description below, indented to align under the name */}
+                        <p className="mt-2.5 text-sm text-white/45 leading-relaxed" style={{ paddingLeft: "calc(56px + 12px)" }}>
+                          {ordineExp.description}
+                        </p>
                       </div>
                     </div>
                   </ScrollReveal>
