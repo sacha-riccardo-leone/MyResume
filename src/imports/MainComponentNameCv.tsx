@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Linkedin, Github, Printer, MapPin, Mail, Phone, ChevronDown, ExternalLink, Globe } from "lucide-react";
 import profilePic from "../assets/pfplinkedin-removebg-preview.png";
-import r2jcLogo from "../assets/r2jcLogo.png";
+import r2jcLogo from "../assets/r2jcLogo.jpg";
 import xefiLogo from "../assets/xefilogo.png";
 import sourShotsLogo from "../assets/sourshotslogo.jpg";
 import cpneLogo from "../assets/cpnelogo.jpg";
@@ -1104,7 +1104,7 @@ export default function MainComponentNameCv() {
                       <div className="px-5 py-4">
                         {/* Header: logo centered on title+date height */}
                         <div className="flex items-center gap-3">
-                          <img src={r2jcLogo} alt="R2JC" className="shrink-0" style={{ width: 30, height: 30, objectFit: "contain" }} />
+                          <img src={r2jcLogo} alt="R2JC" className="shrink-0" style={{ width: 30, height: 30, objectFit: "cover", borderRadius: "50%" }} />
                           <div className="flex-1 min-w-0 flex items-center justify-between gap-3 flex-wrap">
                             <div>
                               <a
