@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Linkedin, Github, Printer, MapPin, Mail, Phone, ChevronDown, ExternalLink, Globe } from "lucide-react";
 import profilePic from "../assets/pfplinkedin-removebg-preview.png";
 import r2jcLogo from "../assets/r2jcLogo.png";
+import xefiLogo from "../assets/xefilogo.png";
 import OrbMini from "./OrbMini";
 
 type Lang = "fr" | "en" | "de" | "it";
@@ -420,6 +421,10 @@ const skillGroups = [
     ],
   },
 ];
+
+const companyLogos: Record<string, string> = {
+  "Magneticlab - XEFI Neuchâtel": xefiLogo,
+};
 
 const ordineAIProject = {
   name: "Ordine AI",
@@ -1129,6 +1134,9 @@ export default function MainComponentNameCv() {
                         onClick={() => toggleExp(i)}
                       >
                         <div className="flex items-center gap-3">
+                          {companyLogos[exp.company] && (
+                            <img src={companyLogos[exp.company]} alt="" className="shrink-0" style={{ width: 28, height: 28, objectFit: "contain" }} />
+                          )}
                           <div>
                             <div className="flex items-center gap-1.5">
                               <p className="text-base font-medium">{exp.company}</p>
