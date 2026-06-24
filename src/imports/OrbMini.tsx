@@ -16,6 +16,7 @@ const fragmentShader = /* glsl */ `
   uniform vec2 uResolution;
   uniform float uExcite;
   uniform float uBaseRadius;
+  uniform float uBaseThick;
 
   varying vec2 vUv;
 
@@ -87,7 +88,7 @@ const fragmentShader = /* glsl */ `
 
     float sd = dist - rimRadius;
 
-    float baseThick = 0.008;
+    float baseThick = uBaseThick;
     float thickMul = clamp(1.0 + rawD * 40.0, 0.45, 2.5);
     float thick = baseThick * thickMul + height * 0.25;
     float t2 = thick * thick + 0.000001;
@@ -172,6 +173,7 @@ export default function OrbMini({ size = 28, baseRadius = 0.15, className = "", 
         uResolution: { value: new THREE.Vector2(pw, ph) },
         uExcite: { value: 0.0 },
         uBaseRadius: { value: baseRadius },
+        uBaseThick: { value: 0.008 * (56 / size) },
       },
       transparent: true,
       depthWrite: false,
