@@ -96,6 +96,45 @@
   transform: none !important;
 }
 
+/* Anthropic Certification card — branded glow */
+@keyframes anthropic-breathe {
+  0%, 100% {
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.22),
+      0 0 18px rgba(217, 119, 87, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.28),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+  }
+  50% {
+    box-shadow:
+      0 6px 32px rgba(0, 0, 0, 0.26),
+      0 0 40px rgba(217, 119, 87, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.40),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+  }
+}
+
+.glass-card--anthropic {
+  background: linear-gradient(135deg, rgba(217, 119, 87, 0.09) 0%, rgba(255, 255, 255, 0.03) 100%) !important;
+  border-color: rgba(217, 119, 87, 0.30) !important;
+  animation: anthropic-breathe 3s ease-in-out infinite;
+}
+
+.glass-card--anthropic:hover {
+  background: linear-gradient(135deg, rgba(217, 119, 87, 0.16) 0%, rgba(255, 255, 255, 0.06) 100%) !important;
+  border-color: rgba(217, 119, 87, 0.52) !important;
+}
+
+/* Jumping dots for "in progress" badge */
+@keyframes dot-jump {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-4px); }
+}
+
+.dot-jump-1 { animation: dot-jump 1.4s ease-in-out infinite 0s; }
+.dot-jump-2 { animation: dot-jump 1.4s ease-in-out infinite 0.18s; }
+.dot-jump-3 { animation: dot-jump 1.4s ease-in-out infinite 0.36s; }
+
 /* Print-only elements: hidden on screen, visible on print */
 .print-only { display: none; }
 
