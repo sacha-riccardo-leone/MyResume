@@ -41,6 +41,7 @@ const translations = {
       {
         date: "4–22 mai 2026",
         company: "Magneticlab - XEFI Neuchâtel",
+        url: "https://www.xefi.ch/fr/agence/xefi-neuchatel/",
         description:
           "Mandat freelance — Développement d'un addon Odoo 19 Enterprise (pixieset_sync) + extension Chrome/Firefox pour un studio photo suisse (Olive & Beige) — sync automatique Pixieset → Odoo : contacts, projets, sessions, cron quotidien, secrets masqués. Réalisé seul, 4 batches livrés en 18 jours, déployé sur Odoo.sh, cliente satisfaite. Stack : Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
@@ -60,6 +61,7 @@ const translations = {
       {
         date: "avril 2025 – juin 2025",
         company: "CPNE-TI – TPI",
+        url: "https://github.com/sacha-riccardo-leone/GuessWho",
         description:
           "Développement en C#/Raylib d'une version numérisée du jeu \"Qui est-ce ?\", incluant un algorithme de génération de personnages uniques par comparaison de profils ADN et un système de rareté vestimentaire. Note : 5,5/6.",
       },
@@ -72,6 +74,7 @@ const translations = {
       {
         date: "2023 – présent",
         company: "SourShots",
+        url: "https://www.instagram.com/thesourshots",
         description:
           "Création de l'identité visuelle et des contenus digitaux pour un groupe local sur 3 ans — affiches, reels, brochures, posts réseaux sociaux. Gestion autonome de la production créative. Outils : Krita, Sony.",
       },
@@ -124,6 +127,7 @@ const translations = {
       {
         date: "4–22 May 2026",
         company: "Magneticlab - XEFI Neuchâtel",
+        url: "https://www.xefi.ch/fr/agence/xefi-neuchatel/",
         description:
           "Freelance mandate — Development of an Odoo 19 Enterprise addon (pixieset_sync) + Chrome/Firefox extension for a Swiss photography studio (Olive & Beige) — automated Pixieset → Odoo sync (contacts, projects, sessions), daily cron, masked secrets. Delivered solo in 4 batches over 18 days, live on Odoo.sh, client satisfied. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
@@ -143,6 +147,7 @@ const translations = {
       {
         date: "Apr 2025 – Jun 2025",
         company: "CPNE-TI – Final Project",
+        url: "https://github.com/sacha-riccardo-leone/GuessWho",
         description:
           "Developed a digitised version of \"Guess Who?\" in C#/Raylib, featuring a unique character generation algorithm using DNA profile comparison and a clothing rarity system. Grade: 5.5/6.",
       },
@@ -155,6 +160,7 @@ const translations = {
       {
         date: "2023 – present",
         company: "SourShots",
+        url: "https://www.instagram.com/thesourshots",
         description:
           "Visual identity and digital content for a local band over 3 years — posters, reels, brochures, social media. Autonomous creative production management. Tools: Krita, Sony.",
       },
@@ -207,6 +213,7 @@ const translations = {
       {
         date: "4.–22. Mai 2026",
         company: "Magneticlab - XEFI Neuchâtel",
+        url: "https://www.xefi.ch/fr/agence/xefi-neuchatel/",
         description:
           "Freelance-Mandat — Entwicklung eines Odoo-19-Enterprise-Addons (pixieset_sync) + Chrome/Firefox-Erweiterung für ein Schweizer Fotostudio (Olive & Beige) — automatische Pixieset → Odoo-Synchronisation (Kontakte, Projekte, Sessions), Tages-Cron, Secret-Maskierung. Alleine realisiert, 4 Batches in 18 Tagen geliefert, live auf Odoo.sh, Kundin zufrieden. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
@@ -226,6 +233,7 @@ const translations = {
       {
         date: "Apr. 2025 – Jun. 2025",
         company: "CPNE-TI – IPA",
+        url: "https://github.com/sacha-riccardo-leone/GuessWho",
         description:
           "Entwicklung einer digitalisierten Version von \"Wer bin ich?\" in C#/Raylib — Algorithmus zur Charaktergenerierung per DNS-Profilvergleich, Seltenheitssystem für Kleidung. Note: 5,5/6.",
       },
@@ -238,6 +246,7 @@ const translations = {
       {
         date: "2023 – heute",
         company: "SourShots",
+        url: "https://www.instagram.com/thesourshots",
         description:
           "Visuelle Identität und digitale Inhalte für eine lokale Band über 3 Jahre — Plakate, Reels, Broschüren, Social Media. Autonomes Kreativmanagement. Tools: Krita, Sony.",
       },
@@ -290,6 +299,7 @@ const translations = {
       {
         date: "4–22 maggio 2026",
         company: "Magneticlab - XEFI Neuchâtel",
+        url: "https://www.xefi.ch/fr/agence/xefi-neuchatel/",
         description:
           "Mandato freelance — Sviluppo di un addon Odoo 19 Enterprise (pixieset_sync) + estensione Chrome/Firefox per uno studio fotografico svizzero (Olive & Beige) — sync automatico Pixieset → Odoo (contatti, progetti, sessioni), cron giornaliero, segreti mascherati. Realizzato in autonomia, 4 batch consegnati in 18 giorni, live su Odoo.sh, cliente soddisfatta. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
@@ -309,6 +319,7 @@ const translations = {
       {
         date: "apr. 2025 – giu. 2025",
         company: "CPNE-TI – LPI",
+        url: "https://github.com/sacha-riccardo-leone/GuessWho",
         description:
           "Sviluppo in C#/Raylib di una versione digitale del gioco \"Indovina chi?\" — algoritmo di generazione personaggi tramite confronto profili DNA, sistema di rarità abbigliamento. Voto: 5,5/6.",
       },
@@ -321,6 +332,7 @@ const translations = {
       {
         date: "2023 – presente",
         company: "SourShots",
+        url: "https://www.instagram.com/thesourshots",
         description:
           "Identità visiva e contenuti digitali per un gruppo locale su 3 anni — manifesti, reels, brochure, social media. Gestione autonoma della produzione creativa. Strumenti: Krita, Sony.",
       },
