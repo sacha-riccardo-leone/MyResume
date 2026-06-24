@@ -1011,7 +1011,7 @@ export default function MainComponentNameCv() {
                         className={`w-full flex items-center justify-between ${exp.company === "Ordine AI" ? "pl-0 pr-5" : "px-5"} py-4 cursor-pointer transition-colors text-left`}
                         onClick={() => toggleExp(i)}
                       >
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-0.5">
                           {exp.company === "Ordine AI" && (
                             <OrbMini size={56} hover={isOpen} />
                           )}
