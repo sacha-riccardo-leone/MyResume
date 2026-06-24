@@ -1009,11 +1009,15 @@ export default function MainComponentNameCv() {
                       className="glass-card glass-card--ordine rounded-2xl"
                       onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
                     >
-                      <div className="px-5 py-4">
-                        {/* Header row: orb centered on title height only */}
-                        <div className="flex items-center gap-3">
-                          <OrbMini size={56} className="shrink-0" hover={false} />
-                          <div className="flex-1 min-w-0 flex items-center justify-between gap-3 flex-wrap">
+                      <div className="px-5 py-4 flex items-start gap-3">
+                        {/* 20px placeholder — same as Anthropic SVG so text aligns identically */}
+                        <div className="shrink-0 mt-1" style={{ width: 20, height: 20, position: "relative", overflow: "visible" }}>
+                          <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
+                            <OrbMini size={56} hover={false} />
+                          </div>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-3 flex-wrap">
                             <div>
                               <a
                                 href={ordineAIProject.url}
@@ -1035,11 +1039,10 @@ export default function MainComponentNameCv() {
                               {anthropicCert.badge[lang]}
                             </span>
                           </div>
+                          <p className="mt-2.5 text-sm text-white/45 leading-relaxed">
+                            {ordineExp.description}
+                          </p>
                         </div>
-                        {/* Description below, indented to align under the name */}
-                        <p className="mt-2.5 text-sm text-white/45 leading-relaxed" style={{ paddingLeft: "calc(56px + 12px)" }}>
-                          {ordineExp.description}
-                        </p>
                       </div>
                     </div>
                   </ScrollReveal>
