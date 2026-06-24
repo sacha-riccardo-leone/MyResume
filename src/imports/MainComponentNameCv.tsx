@@ -428,7 +428,7 @@ const companyLogos: Record<string, string> = {
   "SourShots": sourShotsLogo,
 };
 
-const roundLogos = new Set(["SourShots"]);
+const roundLogos = new Set(["SourShots", "Magneticlab - XEFI Neuchâtel"]);
 
 const ordineAIProject = {
   name: "Ordine AI",
