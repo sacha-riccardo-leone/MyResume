@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Linkedin, Github, Printer, MapPin, Mail, Phone, ChevronDown, ExternalLink, Globe } from "lucide-react";
 import profilePic from "../assets/pfplinkedin-removebg-preview.png";
+import r2jcLogo from "../assets/r2jcLogo.png";
 import OrbMini from "./OrbMini";
 
 type Lang = "fr" | "en" | "de" | "it";
@@ -17,7 +18,7 @@ const translations = {
     sections: {
       contact: "Contact",
       experience: "Expérience",
-      projects: "Projets",
+      projects: "Projets personnels",
       languages: "Langues",
       skills: "Stack Technique",
       education: "Formation",
@@ -100,7 +101,7 @@ const translations = {
     sections: {
       contact: "Contact",
       experience: "Experience",
-      projects: "Projects",
+      projects: "Personal Projects",
       languages: "Languages",
       skills: "Tech Stack",
       education: "Education",
@@ -183,7 +184,7 @@ const translations = {
     sections: {
       contact: "Kontakt",
       experience: "Erfahrung",
-      projects: "Projekte",
+      projects: "Persönliche Projekte",
       languages: "Sprachen",
       skills: "Tech Stack",
       education: "Ausbildung",
@@ -266,7 +267,7 @@ const translations = {
     sections: {
       contact: "Contatto",
       experience: "Esperienza",
-      projects: "Progetti",
+      projects: "Progetti personali",
       languages: "Lingue",
       skills: "Tech Stack",
       education: "Formazione",
@@ -1082,7 +1083,7 @@ export default function MainComponentNameCv() {
                       onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
                     >
                       <div className="px-5 py-4 flex items-start gap-3">
-                        <Globe className="h-5 w-5 shrink-0 mt-1 text-[#8c52ff]" />
+                        <img src={r2jcLogo} alt="R2JC" className="shrink-0 mt-1" style={{ width: 20, height: 20, objectFit: "contain" }} />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-3 flex-wrap">
                             <div>
