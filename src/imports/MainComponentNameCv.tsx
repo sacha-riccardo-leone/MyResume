@@ -1094,7 +1094,7 @@ export default function MainComponentNameCv() {
                                 rel="noopener noreferrer"
                                 className="text-base font-medium hover:text-[#8c52ff] transition-colors flex items-center gap-1.5"
                               >
-                                Rencontre de Jeunes Créateurs
+                                R2JC — Rencontre de Jeunes Créateurs
                                 <ExternalLink className="h-3 w-3 opacity-50" />
                               </a>
                               <p className="text-[11px] font-mono text-white/30 mt-0.5">{r2jcExp.date}</p>
