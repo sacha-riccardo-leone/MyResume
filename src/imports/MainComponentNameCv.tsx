@@ -42,6 +42,13 @@ const translations = {
       },
       {
         date: "2025 — en cours",
+        company: "R2JC — Rencontre de Jeunes Créateurs",
+        url: "https://r2jc.vercel.app",
+        description:
+          "Refonte frontend de r2jc.ch — site d'un collectif de jeunes fondateurs suisses organisant des défilés de mode. Intégration native de la billetterie Infomaniak (sans redirection externe), carte SVG interactive de la Suisse avec sponsors géolocalisés, redesign moderne avec système de tokens de marque. Stack : Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
+      },
+      {
+        date: "2025 — en cours",
         company: "Ordine AI",
         description:
           "Fondateur & développeur. Client email IA multi-fournisseurs pour PME suisses, en beta active — pipeline de classification Claude Haiku (harness CI FR/DE/IT/EN : 100%/94%/96%/98%), conformité FADP (Cloud Run Zurich, AES-GCM-256, DLP PII suisse), billing Stripe 4 niveaux, audit sécurité 5-agents adversariaux (30+ findings résolus).",
@@ -115,6 +122,13 @@ const translations = {
         company: "Magneticlab - XEFI Neuchâtel",
         description:
           "Freelance mandate — Development of an Odoo 19 Enterprise addon (pixieset_sync) + Chrome/Firefox extension for a Swiss photography studio (Olive & Beige) — automated Pixieset → Odoo sync (contacts, projects, sessions), daily cron, masked secrets. Delivered solo in 4 batches over 18 days, live on Odoo.sh, client satisfied. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
+      },
+      {
+        date: "2025 — in progress",
+        company: "R2JC — Rencontre de Jeunes Créateurs",
+        url: "https://r2jc.vercel.app",
+        description:
+          "Frontend redesign of r2jc.ch — site for a collective of young Swiss founders organizing fashion shows. Native Infomaniak ticketing embed (no external redirects), interactive SVG map of Switzerland with geolocated sponsors, modern redesign with a custom brand token system. Stack: Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
       },
       {
         date: "2025 — in progress",
@@ -194,6 +208,13 @@ const translations = {
       },
       {
         date: "2025 — laufend",
+        company: "R2JC — Rencontre de Jeunes Créateurs",
+        url: "https://r2jc.vercel.app",
+        description:
+          "Frontend-Redesign von r2jc.ch — Website eines Kollektivs junger Schweizer Gründer, die Modeschauen organisieren. Native Infomaniak-Ticketing-Integration (keine externen Weiterleitungen), interaktive SVG-Karte der Schweiz mit geolokalisieren Sponsoren, modernes Design mit eigenem Marken-Token-System. Stack: Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
+      },
+      {
+        date: "2025 — laufend",
         company: "Ordine AI",
         description:
           "Gründer & Entwickler. KI-gestützter Multi-Provider-E-Mail-Client für Schweizer KMU, in aktiver Beta — Claude-Klassifizierungspipeline (CI-Harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-konforme Infrastruktur (Cloud Run Zürich, AES-GCM-256, PII-DLP), Stripe-Billing 4 Stufen, 5-Agent-Sicherheitsaudit (30+ Findings behoben).",
@@ -267,6 +288,13 @@ const translations = {
         company: "Magneticlab - XEFI Neuchâtel",
         description:
           "Mandato freelance — Sviluppo di un addon Odoo 19 Enterprise (pixieset_sync) + estensione Chrome/Firefox per uno studio fotografico svizzero (Olive & Beige) — sync automatico Pixieset → Odoo (contatti, progetti, sessioni), cron giornaliero, segreti mascherati. Realizzato in autonomia, 4 batch consegnati in 18 giorni, live su Odoo.sh, cliente soddisfatta. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
+      },
+      {
+        date: "2025 — in corso",
+        company: "R2JC — Rencontre de Jeunes Créateurs",
+        url: "https://r2jc.vercel.app",
+        description:
+          "Rifacimento frontend di r2jc.ch — sito di un collettivo di giovani fondatori svizzeri che organizzano sfilate di moda. Integrazione nativa della biglietteria Infomaniak (senza redirect esterni), mappa SVG interattiva della Svizzera con sponsor geolocalizzati, redesign moderno con sistema di token di marca personalizzati. Stack: Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
       },
       {
         date: "2025 — in corso",
@@ -1057,7 +1085,20 @@ export default function MainComponentNameCv() {
                       >
                         <div className="flex items-center gap-3">
                           <div>
-                            <p className="text-base font-medium">{exp.company}</p>
+                            <div className="flex items-center gap-1.5">
+                              <p className="text-base font-medium">{exp.company}</p>
+                              {"url" in exp && exp.url && (
+                                <a
+                                  href={exp.url as string}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={e => e.stopPropagation()}
+                                  className="text-white/35 hover:text-white/70 transition-colors"
+                                >
+                                  <ExternalLink className="h-3 w-3" />
+                                </a>
+                              )}
+                            </div>
                             <p className="text-[11px] font-mono text-white/30 mt-0.5">{exp.date}</p>
                           </div>
                         </div>
