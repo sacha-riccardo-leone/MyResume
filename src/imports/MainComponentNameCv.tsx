@@ -1000,7 +1000,51 @@ export default function MainComponentNameCv() {
                 </div>
               </ScrollReveal>
 
-              {t.experience.map((exp, i) => {
+              {/* Ordine AI — open card, white glow, right under Anthropic */}
+              {(() => {
+                const ordineExp = t.experience.find(e => e.company === "Ordine AI");
+                return ordineExp ? (
+                  <ScrollReveal>
+                    <div
+                      className="glass-card glass-card--ordine rounded-2xl overflow-hidden"
+                      onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
+                    >
+                      <div className="px-5 py-4 flex items-start gap-3">
+                        <OrbMini size={44} className="shrink-0 mt-1" hover={false} />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-3 flex-wrap">
+                            <div>
+                              <a
+                                href={ordineAIProject.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-base font-medium hover:text-white transition-colors flex items-center gap-1.5"
+                              >
+                                Ordine AI
+                                <ExternalLink className="h-3 w-3 opacity-50" />
+                              </a>
+                              <p className="text-[11px] font-mono text-white/30 mt-0.5">{ordineExp.date}</p>
+                            </div>
+                            <span className="flex items-center gap-2 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-white/[0.08] text-white/60 border border-white/[0.20] shrink-0">
+                              <span className="flex items-end gap-[3px]">
+                                <span className="w-1 h-1 rounded-full bg-white/60 inline-block dot-jump-1" />
+                                <span className="w-1 h-1 rounded-full bg-white/60 inline-block dot-jump-2" />
+                                <span className="w-1 h-1 rounded-full bg-white/60 inline-block dot-jump-3" />
+                              </span>
+                              {anthropicCert.badge[lang]}
+                            </span>
+                          </div>
+                          <p className="mt-2.5 text-sm text-white/45 leading-relaxed">
+                            {ordineExp.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </ScrollReveal>
+                ) : null;
+              })()}
+
+              {t.experience.filter(exp => exp.company !== "Ordine AI").map((exp, i) => {
                 const isOpen = openExp.has(i);
                 return (
                   <ScrollReveal key={i} delay={i * 60}>
@@ -1008,13 +1052,10 @@ export default function MainComponentNameCv() {
                       onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}>
                       {/* Header — always visible */}
                       <button
-                        className={`w-full flex items-center justify-between ${exp.company === "Ordine AI" ? "pl-0 pr-5" : "px-5"} py-4 cursor-pointer transition-colors text-left`}
+                        className="w-full flex items-center justify-between px-5 py-4 cursor-pointer transition-colors text-left"
                         onClick={() => toggleExp(i)}
                       >
-                        <div className="flex items-center gap-0.5">
-                          {exp.company === "Ordine AI" && (
-                            <OrbMini size={56} hover={isOpen} />
-                          )}
+                        <div className="flex items-center gap-3">
                           <div>
                             <p className="text-base font-medium">{exp.company}</p>
                             <p className="text-[11px] font-mono text-white/30 mt-0.5">{exp.date}</p>
