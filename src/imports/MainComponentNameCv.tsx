@@ -1013,7 +1013,7 @@ export default function MainComponentNameCv() {
                       >
                         <div className="flex items-center gap-3">
                           {exp.company === "Ordine AI" && (
-                            <OrbMini size={28} hover={isOpen} />
+                            <OrbMini size={44} hover={isOpen} />
                           )}
                           <div>
                             <p className="text-base font-medium">{exp.company}</p>
