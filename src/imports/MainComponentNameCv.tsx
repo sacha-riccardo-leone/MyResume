@@ -76,7 +76,7 @@ const translations = {
         company: "SourShots",
         url: "https://www.instagram.com/thesourshots",
         description:
-          "Création de l'identité visuelle et des contenus digitaux pour un groupe local sur 3 ans — affiches, reels, brochures, posts réseaux sociaux. Gestion autonome de la production créative. Outils : Krita, Sony.",
+          "Contribution créative au sein d'un groupe local sur 3 ans — prise de photos, création de démos visuelles pour des posts et des annonces. Outils : Krita, Sony.",
       },
     ],
     languages: [
@@ -162,7 +162,7 @@ const translations = {
         company: "SourShots",
         url: "https://www.instagram.com/thesourshots",
         description:
-          "Visual identity and digital content for a local band over 3 years — posters, reels, brochures, social media. Autonomous creative production management. Tools: Krita, Sony.",
+          "Creative contribution to a local band over 3 years — taking photos, creating visual demos for posts and announcements. Tools: Krita, Sony.",
       },
     ],
     languages: [
@@ -248,7 +248,7 @@ const translations = {
         company: "SourShots",
         url: "https://www.instagram.com/thesourshots",
         description:
-          "Visuelle Identität und digitale Inhalte für eine lokale Band über 3 Jahre — Plakate, Reels, Broschüren, Social Media. Autonomes Kreativmanagement. Tools: Krita, Sony.",
+          "Kreativer Beitrag für eine lokale Band über 3 Jahre — Fotos aufnehmen, visuelle Demos für Posts und Ankündigungen erstellen. Tools: Krita, Sony.",
       },
     ],
     languages: [
@@ -334,7 +334,7 @@ const translations = {
         company: "SourShots",
         url: "https://www.instagram.com/thesourshots",
         description:
-          "Identità visiva e contenuti digitali per un gruppo locale su 3 anni — manifesti, reels, brochure, social media. Gestione autonoma della produzione creativa. Strumenti: Krita, Sony.",
+          "Contributo creativo per un gruppo locale su 3 anni — foto, demo visive per post e annunci. Strumenti: Krita, Sony.",
       },
     ],
     languages: [
