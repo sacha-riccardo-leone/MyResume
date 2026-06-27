@@ -200,7 +200,7 @@ export default function OrbMini({ size = 28, baseRadius = 0.15, className = "", 
       const speed = hoverRef.current ? 8.0 : 3.0;
       exciteRef.current += (target - exciteRef.current) * Math.min(speed * dt, 1.0);
 
-      waveTime += dt * (1.0 + exciteRef.current * 0.8);
+      waveTime += dt * (0.45 + exciteRef.current * 2.0);
       mat.uniforms.uTime.value = waveTime;
       mat.uniforms.uExcite.value = exciteRef.current;
       renderer.render(scene, camera);

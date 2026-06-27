@@ -800,6 +800,7 @@ export default function MainComponentNameCv() {
   const [phase, setPhase] = useState<Phase>("cursor");
   const [displayedName, setDisplayedName] = useState("");
   const [openExp, setOpenExp] = useState<Set<number>>(new Set());
+  const [ordineHovered, setOrdineHovered] = useState(false);
   const t = translations[lang];
 
   const toggleExp = (i: number) =>
@@ -1067,10 +1068,12 @@ export default function MainComponentNameCv() {
                   <ScrollReveal>
                     <div
                       className="glass-card glass-card--ordine rounded-2xl"
-                      onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
+                      onMouseMove={glassMove}
+                      onMouseEnter={e => { glassEnter(e); setOrdineHovered(true); }}
+                      onMouseLeave={e => { glassLeave(e); setOrdineHovered(false); }}
                     >
                       <div className="px-5 py-4 flex items-start gap-3">
-                        <OrbMini size={20} baseRadius={0.45} className="shrink-0 mt-1" hover={false} />
+                        <OrbMini size={20} baseRadius={0.45} className="shrink-0 mt-1" hover={ordineHovered} />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-3 flex-wrap">
                             <div>
