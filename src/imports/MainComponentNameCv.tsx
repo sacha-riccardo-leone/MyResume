@@ -816,6 +816,21 @@ export default function MainComponentNameCv() {
   }, []);
 
   useEffect(() => {
+    const lg = (window as any).liquidGlass;
+    if (!lg) return;
+    let instances: any[] = [];
+    const raf = requestAnimationFrame(() => {
+      const smEls = Array.from(document.querySelectorAll<Element>(".glass-card--sm"));
+      const lgEls = Array.from(document.querySelectorAll<Element>(".glass-card")).filter(el => !el.classList.contains("glass-card--sm"));
+      instances = [
+        ...smEls.map(el => lg(el, { scale: -65, chroma: 3, blur: 5, border: 0.10, mapBlur: 10, fallbackBlur: 14 })),
+        ...lgEls.map(el => lg(el, { scale: -112, chroma: 6, blur: 3, border: 0.07, mapBlur: 12, fallbackBlur: 18 })),
+      ];
+    });
+    return () => { cancelAnimationFrame(raf); instances.forEach((g: any) => g.destroy()); };
+  }, [phase]);
+
+  useEffect(() => {
     if (phase !== "typing") return;
     if (displayedName.length < FULL_NAME.length) {
       const timer = setTimeout(() => {
