@@ -14,10 +14,12 @@ const FULL_NAME = "Sacha Riccardo Leone";
 
 const translations = {
   fr: {
-    title: "Développeur d'Applications",
+    title: "Développeur d'applications",
     downloadPdf: "Télécharger le CV",
     intro:
-      "Quadrilingue — développeur d'applications de 20 ans, fondateur d'Ordine AI en production pour PME suisses. CFC développement d'applications + maturité professionnelle, opérationnel sur tout le marché suisse.",
+      "Je conçois et livre des logiciels en solo, du frontend à l'infrastructure — de Ordine AI, mon client email IA en beta active pour PME suisses, à des intégrations Odoo livrées sur mandat client. Développeur d'applications, 20 ans, CFC + maturité professionnelle, aussi à l'aise en français qu'en allemand.",
+    availability:
+      "Recherche un premier poste de développeur d'applications (junior) — disponible dès mi-septembre 2026.",
     sections: {
       contact: "Contact",
       experience: "Expérience",
@@ -25,6 +27,7 @@ const translations = {
       languages: "Langues",
       skills: "Stack Technique",
       education: "Formation",
+      certifications: "Certifications en cours",
     },
     contact: {
       location: "La Chaux-de-Fonds, NE",
@@ -35,7 +38,7 @@ const translations = {
       website: "resume-sacha-leone.vercel.app",
       dob: "31.01.2006",
       nationality: "Italien — Permis C (CH)",
-      mobility: "Mobilité nationale (transports publics)",
+      mobility: "Mobilité nationale",
     },
     experience: [
       {
@@ -50,13 +53,13 @@ const translations = {
         company: "R2JC — Rencontre de Jeunes Créateurs",
         url: "https://r2jc.vercel.app",
         description:
-          "Refonte frontend de r2jc.ch — site d'un collectif de jeunes fondateurs suisses organisant des défilés de mode. Intégration native de la billetterie Infomaniak (sans redirection externe), carte SVG interactive de la Suisse avec sponsors géolocalisés, redesign moderne avec système de tokens de marque. Stack : Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
+          "Refonte frontend de r2jc.ch — site d'un collectif de jeunes fondateurs suisses organisant des défilés de mode. Intégration native de la billetterie Infomaniak (sans redirection externe), carte SVG interactive de la Suisse avec sponsors géolocalisés, modernisation avec système de tokens de marque personnalisé. Stack : Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
       },
       {
         date: "2025 — en cours",
         company: "Ordine AI",
         description:
-          "Fondateur & développeur. Client email IA multi-fournisseurs pour PME suisses, en beta active — pipeline de classification Claude Haiku (harness CI FR/DE/IT/EN : 100%/94%/96%/98%), conformité FADP (Cloud Run Zurich, AES-GCM-256, DLP PII suisse), billing Stripe 4 niveaux, audit sécurité 5-agents adversariaux (30+ findings résolus).",
+          "Fondateur & développeur. Client email IA multi-fournisseurs pour PME suisses, en beta active — pipeline de classification Claude Haiku (harness CI FR/DE/IT/EN : 100%/94%/96%/98%), conformité FADP (Cloud Run Zurich, AES-GCM-256, DLP PII suisse), facturation Stripe à 4 niveaux, audit de sécurité antagoniste auto-mené (5 agents LLM, 30+ problèmes corrigés).",
       },
       {
         date: "avril 2025 – juin 2025",
@@ -64,12 +67,6 @@ const translations = {
         url: "https://github.com/sacha-riccardo-leone/GuessWho",
         description:
           "Développement en C#/Raylib d'une version numérisée du jeu \"Qui est-ce ?\", incluant un algorithme de génération de personnages uniques par comparaison de profils ADN et un système de rareté vestimentaire. Note : 5,5/6.",
-      },
-      {
-        date: "août 2025 – janvier 2026",
-        company: "CPNE-AA",
-        description:
-          "Exploration d'une reconversion vers les arts appliqués (design, couture, industrie) — retour confirmé au développement logiciel. Compétences transversales : sensibilité design, Krita, retouche image.",
       },
       {
         date: "2023 – présent",
@@ -103,7 +100,9 @@ const translations = {
     title: "Application Developer",
     downloadPdf: "Download PDF",
     intro:
-      "Quadrilingual — application developer, 20, founder of Ordine AI in production for Swiss SMEs. CFC + professional baccalaureate, operational across the full Swiss market.",
+      "I design and ship software solo, from frontend to infrastructure — from Ordine AI, my AI email client in active beta for Swiss SMEs, to Odoo integrations delivered on client mandate. Application developer, 20, CFC + professional baccalaureate, equally at home in French and German.",
+    availability:
+      "Seeking a first junior application-developer role — available from mid-September 2026.",
     sections: {
       contact: "Contact",
       experience: "Experience",
@@ -111,6 +110,7 @@ const translations = {
       languages: "Languages",
       skills: "Tech Stack",
       education: "Education",
+      certifications: "Certifications in progress",
     },
     contact: {
       location: "La Chaux-de-Fonds, NE",
@@ -121,7 +121,7 @@ const translations = {
       website: "resume-sacha-leone.vercel.app",
       dob: "31.01.2006",
       nationality: "Italian — Permit C (CH)",
-      mobility: "Nationwide mobility (public transport)",
+      mobility: "Nationwide mobility",
     },
     experience: [
       {
@@ -142,7 +142,7 @@ const translations = {
         date: "2025 — in progress",
         company: "Ordine AI",
         description:
-          "Founder & developer. AI-powered multi-provider email client for Swiss SMEs, in active beta — Claude Haiku classification pipeline (CI eval harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-compliant infra (Cloud Run Zurich, AES-GCM-256, Swiss PII DLP), Stripe 4-tier billing, 5-agent adversarial security audit (30+ findings resolved).",
+          "Founder & developer. AI-powered multi-provider email client for Swiss SMEs, in active beta — Claude Haiku classification pipeline (CI eval harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-compliant infra (Cloud Run Zurich, AES-GCM-256, Swiss PII DLP), 4-tier Stripe billing, self-run adversarial security audit (5 LLM agents, 30+ findings resolved).",
       },
       {
         date: "Apr 2025 – Jun 2025",
@@ -150,12 +150,6 @@ const translations = {
         url: "https://github.com/sacha-riccardo-leone/GuessWho",
         description:
           "Developed a digitised version of \"Guess Who?\" in C#/Raylib, featuring a unique character generation algorithm using DNA profile comparison and a clothing rarity system. Grade: 5.5/6.",
-      },
-      {
-        date: "Aug 2025 – Jan 2026",
-        company: "CPNE-AA",
-        description:
-          "Brief exploration of a career shift into applied arts (design, fashion, industry) — returned to software development. Cross-disciplinary skills gained: design sensibility, Krita, image editing.",
       },
       {
         date: "2023 – present",
@@ -189,7 +183,9 @@ const translations = {
     title: "Applikationsentwickler",
     downloadPdf: "PDF herunterladen",
     intro:
-      "Viersprachig — Applikationsentwickler, 20 Jahre, Gründer von Ordine AI in Produktion für Schweizer KMU. EFZ Applikationsentwicklung + Berufsmaturität, auf dem gesamten Schweizer Markt einsetzbar.",
+      "Ich konzipiere und liefere Software allein, vom Frontend bis zur Infrastruktur — von Ordine AI, meinem KI-E-Mail-Client in aktiver Beta für Schweizer KMU, bis zu Odoo-Integrationen im Kundenauftrag. Applikationsentwickler, 20 Jahre, EFZ + Berufsmaturität, in Französisch wie in Deutsch zu Hause.",
+    availability:
+      "Suche eine erste Junior-Stelle als Applikationsentwickler — verfügbar ab Mitte September 2026.",
     sections: {
       contact: "Kontakt",
       experience: "Erfahrung",
@@ -197,6 +193,7 @@ const translations = {
       languages: "Sprachen",
       skills: "Tech Stack",
       education: "Ausbildung",
+      certifications: "Zertifizierungen in Arbeit",
     },
     contact: {
       location: "La Chaux-de-Fonds, NE",
@@ -207,7 +204,7 @@ const translations = {
       website: "resume-sacha-leone.vercel.app",
       dob: "31.01.2006",
       nationality: "Italienisch — Ausweis C (CH)",
-      mobility: "Schweizweite Mobilität (öffentliche Verkehrsmittel)",
+      mobility: "Schweizweite Mobilität",
     },
     experience: [
       {
@@ -222,13 +219,13 @@ const translations = {
         company: "R2JC — Rencontre de Jeunes Créateurs",
         url: "https://r2jc.vercel.app",
         description:
-          "Frontend-Redesign von r2jc.ch — Website eines Kollektivs junger Schweizer Gründer, die Modeschauen organisieren. Native Infomaniak-Ticketing-Integration (keine externen Weiterleitungen), interaktive SVG-Karte der Schweiz mit geolokalisieren Sponsoren, modernes Design mit eigenem Marken-Token-System. Stack: Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
+          "Frontend-Redesign von r2jc.ch — Website eines Kollektivs junger Schweizer Gründer, die Modeschauen organisieren. Native Infomaniak-Ticketing-Integration (keine externen Weiterleitungen), interaktive SVG-Karte der Schweiz mit geolokalisierten Sponsoren, modernes Design mit eigenem Marken-Token-System. Stack: Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
       },
       {
         date: "2025 — laufend",
         company: "Ordine AI",
         description:
-          "Gründer & Entwickler. KI-gestützter Multi-Provider-E-Mail-Client für Schweizer KMU, in aktiver Beta — Claude-Klassifizierungspipeline (CI-Harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-konforme Infrastruktur (Cloud Run Zürich, AES-GCM-256, PII-DLP), Stripe-Billing 4 Stufen, 5-Agent-Sicherheitsaudit (30+ Findings behoben).",
+          "Gründer & Entwickler. KI-gestützter Multi-Provider-E-Mail-Client für Schweizer KMU, in aktiver Beta — Claude-Klassifizierungspipeline (CI-Harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-konforme Infrastruktur (Cloud Run Zürich, AES-GCM-256, PII-DLP), Stripe-Abrechnung mit 4 Stufen, selbst durchgeführtes adversariales Sicherheitsaudit (5 LLM-Agenten, 30+ behobene Findings).",
       },
       {
         date: "Apr. 2025 – Jun. 2025",
@@ -236,12 +233,6 @@ const translations = {
         url: "https://github.com/sacha-riccardo-leone/GuessWho",
         description:
           "Entwicklung einer digitalisierten Version von \"Wer bin ich?\" in C#/Raylib — Algorithmus zur Charaktergenerierung per DNS-Profilvergleich, Seltenheitssystem für Kleidung. Note: 5,5/6.",
-      },
-      {
-        date: "Aug. 2025 – Jan. 2026",
-        company: "CPNE-AA",
-        description:
-          "Kurze Erkundung einer Umorientierung in angewandte Künste (Design, Mode, Industrie) — Rückkehr zur Softwareentwicklung bestätigt. Übertragbare Kompetenzen: Designsensibilität, Krita, Bildbearbeitung.",
       },
       {
         date: "2023 – heute",
@@ -272,10 +263,12 @@ const translations = {
     ],
   },
   it: {
-    title: "Sviluppatore di Applicazioni",
+    title: "Sviluppatore di applicazioni",
     downloadPdf: "Scarica il CV",
     intro:
-      "Quadrilingue — sviluppatore di applicazioni di 20 anni, fondatore di Ordine AI in produzione per PMI svizzere. AFC + maturità professionale, operativo su tutto il mercato svizzero.",
+      "Progetto e consegno software in autonomia, dal frontend all'infrastruttura — da Ordine AI, il mio client email IA in beta attiva per PMI svizzere, alle integrazioni Odoo consegnate su mandato. Sviluppatore di applicazioni, 20 anni, AFC + maturità professionale, a mio agio sia in francese che in tedesco.",
+    availability:
+      "Cerco una prima posizione junior come sviluppatore di applicazioni — disponibile da metà settembre 2026.",
     sections: {
       contact: "Contatto",
       experience: "Esperienza",
@@ -283,6 +276,7 @@ const translations = {
       languages: "Lingue",
       skills: "Tech Stack",
       education: "Formazione",
+      certifications: "Certificazioni in corso",
     },
     contact: {
       location: "La Chaux-de-Fonds, NE",
@@ -293,7 +287,7 @@ const translations = {
       website: "resume-sacha-leone.vercel.app",
       dob: "31.01.2006",
       nationality: "Italiano — Permesso C (CH)",
-      mobility: "Mobilità nazionale (mezzi pubblici)",
+      mobility: "Mobilità nazionale",
     },
     experience: [
       {
@@ -314,7 +308,7 @@ const translations = {
         date: "2025 — in corso",
         company: "Ordine AI",
         description:
-          "Fondatore & sviluppatore. Client email IA multi-provider per PMI svizzere, in beta attiva — pipeline di classificazione Claude Haiku (CI harness FR/DE/IT/EN: 100%/94%/96%/98%), infrastruttura conforme FADP (Cloud Run Zurigo, AES-GCM-256, DLP PII svizzero), billing Stripe 4 livelli, audit di sicurezza 5-agenti adversariali (30+ findings risolti).",
+          "Fondatore & sviluppatore. Client email IA multi-provider per PMI svizzere, in beta attiva — pipeline di classificazione Claude Haiku (CI harness FR/DE/IT/EN: 100%/94%/96%/98%), infrastruttura conforme FADP (Cloud Run Zurigo, AES-GCM-256, DLP PII svizzero), fatturazione Stripe a 4 livelli, audit di sicurezza avversariale auto-condotto (5 agenti LLM, 30+ problemi corretti).",
       },
       {
         date: "apr. 2025 – giu. 2025",
@@ -322,12 +316,6 @@ const translations = {
         url: "https://github.com/sacha-riccardo-leone/GuessWho",
         description:
           "Sviluppo in C#/Raylib di una versione digitale del gioco \"Indovina chi?\" — algoritmo di generazione personaggi tramite confronto profili DNA, sistema di rarità abbigliamento. Voto: 5,5/6.",
-      },
-      {
-        date: "ago. 2025 – gen. 2026",
-        company: "CPNE-AA",
-        description:
-          "Breve esplorazione di una riconversione verso le arti applicate (design, moda, industria) — ritorno confermato allo sviluppo software. Competenze trasversali: sensibilità design, Krita, ritocco fotografico.",
       },
       {
         date: "2023 – presente",
@@ -353,7 +341,7 @@ const translations = {
       {
         date: "2018–2022",
         institution: "Scolarità obbligatoria — Le Landeron (NE) & Erlach (BE)",
-        description: "PRIMA bilingue FR/DE · Immersione completa in tedesco a Erlach (2020–21) · Diploma cantonale neuchâtelois",
+        description: "PRIMA bilingue FR/DE · Immersione completa in tedesco a Erlach (2020–21) · Diploma cantonale di Neuchâtel",
       },
     ],
   },
@@ -364,8 +352,8 @@ const skillGroups = [
     category: { fr: "Frontend", en: "Frontend", de: "Frontend", it: "Frontend" },
     color: "#34d399",
     items: [
-      { name: "TypeScript", level: 50 },
-      { name: "Next.js", level: 60 },
+      { name: "TypeScript", level: 70 },
+      { name: "Next.js", level: 75 },
       { name: "JavaScript", level: 70 },
       { name: "HTML/CSS", level: 90 },
     ],
@@ -422,7 +410,7 @@ const skillGroups = [
     items: [
       { name: "Figma", level: 50 },
       { name: "UI/UX", level: 80 },
-      { name: "Krita", level: 95 },
+      { name: "Krita", level: 85 },
     ],
   },
   {
@@ -430,8 +418,8 @@ const skillGroups = [
     color: "#a78bfa",
     items: [
       { name: "Git", level: 82 },
-      { name: "Microsoft 365", level: 95 },
-      { name: "VS Code", level: 100 },
+      { name: "Microsoft 365", level: 75 },
+      { name: "VS Code", level: 80 },
     ],
   },
 ];
@@ -455,7 +443,7 @@ function isRoundLogo(company: string) {
 const ordineAIProject = {
   name: "Ordine AI",
   url: "https://www.ordine-ai.ch/",
-  status: { fr: "En production", en: "In production", de: "In Betrieb", it: "In produzione" } as Record<Lang, string>,
+  status: { fr: "Beta active", en: "Active beta", de: "Aktive Beta", it: "Beta attiva" } as Record<Lang, string>,
   tagline: {
     fr: "Client email IA multi-fournisseurs pour PME suisses — conçu et livré seul de A à Z",
     en: "AI-powered multi-provider email client for Swiss SMEs — solo-built end-to-end",
@@ -466,30 +454,30 @@ const ordineAIProject = {
     fr: [
       "Pipeline de classification IA (ton × intention × catégorie × priorité) sur Claude Haiku — harness CI multilingue FR/DE/IT/EN : 100% / 94% / 96% / 98%",
       "Parité fonctionnelle Gmail & Microsoft Graph derrière un protocole EmailProvider unifié : envoi/réception, fils, brouillons, recherche, snooze, envoi différé, pièces jointes",
-      "Conformité FADP dès le premier jour — résidence EU (Cloud Run Zurich + Supabase Frankfurt), chiffrement AES-GCM-256, DLP PII suisse (IBAN, AVS, CB Luhn), droit à l'effacement",
-      "Audit sécurité 5-agents adversariaux — 30+ findings résolus : injection de prompt, SSRF, confusion algo JWT, mXSS via DOMPurify, JWKS OAuth, durcissement RLS, IDOR",
-      "Billing Stripe complet — 4 niveaux (Starter / Pro / Business / Enterprise), essai 14 jours, portail client, idempotence des webhooks",
+      "Conformité FADP dès le premier jour — résidence Suisse & EU (Cloud Run Zurich + Supabase Frankfurt), chiffrement AES-GCM-256, DLP PII suisse (IBAN, AVS, CB Luhn), droit à l'effacement",
+      "Audit de sécurité antagoniste auto-mené (5 agents LLM) — 30+ problèmes corrigés : injection de prompt, SSRF, confusion algo JWT, mXSS via DOMPurify, JWKS OAuth, durcissement RLS, IDOR",
+      "Facturation Stripe complète — 4 niveaux (Starter / Pro / Business / Enterprise), essai 14 jours, portail client, idempotence des webhooks",
     ],
     en: [
       "AI classification pipeline (tone × intent × category × priority) on Claude Haiku — CI eval harness, FR/DE/IT/EN: 100% / 94% / 96% / 98%",
       "Gmail & Microsoft Graph feature parity behind a unified EmailProvider protocol: send/receive, threads, drafts, search, snooze, scheduled send, attachments",
-      "FADP-compliant from day one — EU data residency (Cloud Run Zurich + Supabase Frankfurt), AES-GCM-256 token encryption, Swiss PII DLP (IBAN, AHV, Luhn CC), right-to-erasure",
-      "5-agent adversarial security audit — 30+ findings resolved: prompt injection, SSRF, JWT algorithm confusion, mXSS via DOMPurify, OAuth JWKS verification, RLS hardening, IDOR",
+      "FADP-compliant from day one — Swiss & EU data residency (Cloud Run Zurich + Supabase Frankfurt), AES-GCM-256 token encryption, Swiss PII DLP (IBAN, AHV, Luhn CC), right-to-erasure",
+      "Self-run adversarial security audit (5 LLM agents) — 30+ findings resolved: prompt injection, SSRF, JWT algorithm confusion, mXSS via DOMPurify, OAuth JWKS verification, RLS hardening, IDOR",
       "Full Stripe billing — 4-tier model (Starter / Pro / Business / Enterprise), 14-day trial, customer portal, webhook idempotency",
     ],
     de: [
       "KI-Klassifizierungspipeline (Ton × Absicht × Kategorie × Priorität) auf Claude Haiku — CI-Eval-Harness FR/DE/IT/EN: 100% / 94% / 96% / 98%",
       "Gmail & Microsoft Graph Funktionsparität hinter einem einheitlichen EmailProvider-Protokoll: Senden/Empfangen, Threads, Entwürfe, Suche, Snooze, geplanter Versand, Anhänge",
-      "FADP-konform von Anfang an — EU-Datenwohnsitz (Cloud Run Zürich + Supabase Frankfurt), AES-GCM-256-Verschlüsselung, PII-DLP (IBAN, AHV, Luhn-KK), Recht auf Löschung",
-      "5-Agent-Sicherheitsaudit — 30+ Findings: Prompt Injection, SSRF, JWT-Algorithmusverwirrung, mXSS via DOMPurify, OAuth-JWKS-Verifikation, RLS-Härtung, IDOR",
+      "FADP-konform von Anfang an — Schweizer & EU-Datenwohnsitz (Cloud Run Zürich + Supabase Frankfurt), AES-GCM-256-Verschlüsselung, PII-DLP (IBAN, AHV, Luhn-KK), Recht auf Löschung",
+      "Selbst durchgeführtes adversariales Sicherheitsaudit (5 LLM-Agenten) — 30+ Findings: Prompt Injection, SSRF, JWT-Algorithmusverwirrung, mXSS via DOMPurify, OAuth-JWKS-Verifikation, RLS-Härtung, IDOR",
       "Vollständiges Stripe-Billing — 4 Stufen (Starter / Pro / Business / Enterprise), 14-Tage-Test, Kundenportal, Webhook-Idempotenz",
     ],
     it: [
       "Pipeline di classificazione IA (tono × intento × categoria × priorità) su Claude Haiku — CI eval harness FR/DE/IT/EN: 100% / 94% / 96% / 98%",
       "Parità funzionale Gmail & Microsoft Graph dietro un protocollo EmailProvider unificato: invio/ricezione, thread, bozze, ricerca, snooze, invio programmato, allegati",
-      "Conforme FADP fin dal primo giorno — residenza EU (Cloud Run Zurigo + Supabase Francoforte), cifratura AES-GCM-256, DLP PII svizzero (IBAN, AVS, Luhn CC), diritto alla cancellazione",
-      "Audit di sicurezza 5-agenti adversariali — 30+ findings: prompt injection, SSRF, confusione algoritmo JWT, mXSS via DOMPurify, verifica JWKS OAuth, hardening RLS, IDOR",
-      "Billing Stripe completo — 4 livelli (Starter / Pro / Business / Enterprise), prova 14 giorni, portale cliente, idempotenza webhook",
+      "Conforme FADP fin dal primo giorno — residenza Svizzera & EU (Cloud Run Zurigo + Supabase Francoforte), cifratura AES-GCM-256, DLP PII svizzero (IBAN, AVS, Luhn CC), diritto alla cancellazione",
+      "Audit di sicurezza avversariale auto-condotto (5 agenti LLM) — 30+ findings risolti: prompt injection, SSRF, confusione algoritmo JWT, mXSS via DOMPurify, verifica JWKS OAuth, hardening RLS, IDOR",
+      "Fatturazione Stripe completa — 4 livelli (Starter / Pro / Business / Enterprise), prova 14 giorni, portale cliente, idempotenza webhook",
     ],
   } as Record<Lang, string[]>,
   stack: ["FastAPI", "Next.js 14", "TypeScript", "Supabase", "Claude API", "Stripe", "Cloud Run", "Vercel", "Sentry", "PostHog"],
@@ -502,6 +490,9 @@ const langBadges: { flag: string; label: Record<Lang, string> }[] = [
   { flag: "🇺🇸", label: { fr: "C1", en: "C1", de: "C1", it: "C1" } },
   { flag: "🇩🇪", label: { fr: "B2", en: "B2", de: "B2", it: "B2" } },
 ];
+
+const permitLabel: Record<Lang, string> = { fr: "Permis C", en: "Permit C", de: "Ausweis C", it: "Permesso C" };
+const deliveredBadge: Record<Lang, string> = { fr: "Livré", en: "Delivered", de: "Geliefert", it: "Consegnato" };
 
 const anthropicCert = {
   date: { fr: "2026 — en cours", en: "2026 — in progress", de: "2026 — laufend", it: "2026 — in corso" } as Record<Lang, string>,
@@ -918,12 +909,12 @@ export default function MainComponentNameCv() {
                   <ProfilePic size="size-36 sm:size-44 md:size-52" />
                 </div>
 
-                {/* Text */}
-                <div className="flex-1 text-center sm:text-left">
+                {/* Text — text-shadow scrim so contrast holds over every phase of the wave animation */}
+                <div className="flex-1 text-center sm:text-left" style={{ textShadow: "0 2px 20px rgba(0,0,0,0.55)" }}>
                   <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-medium leading-tight tracking-tight">
                     {displayedName}{cursor}
                   </h1>
-                  <p className="text-base sm:text-lg text-white/45 mt-3" style={fadeIn(100)}>
+                  <p className="text-base sm:text-lg text-white/65 mt-3" style={fadeIn(100)}>
                     {t.title}
                   </p>
 
@@ -938,10 +929,20 @@ export default function MainComponentNameCv() {
                         <span>{label[lang]}</span>
                       </span>
                     ))}
+                    {/* Permit C — strong positive for the Swiss market, answers the work-authorization question up front */}
+                    <span className="flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-full bg-emerald-500/[0.10] border border-emerald-500/25 text-emerald-300/90">
+                      <span>🇨🇭</span>
+                      <span>{permitLabel[lang]}</span>
+                    </span>
                   </div>
 
-                  <p className="text-sm leading-relaxed mt-4 max-w-xl text-white/30" style={fadeIn(280)}>
+                  <p className="text-sm leading-relaxed mt-4 max-w-xl text-white/80" style={fadeIn(280)}>
                     {t.intro}
+                  </p>
+
+                  {/* Availability — Swiss-expected signal, neutralizes the founder-vs-employee ambiguity */}
+                  <p className="text-[13px] font-medium mt-4 text-emerald-300/90" style={fadeIn(340)}>
+                    {t.availability}
                   </p>
 
                   {/* CTA buttons */}
@@ -1007,7 +1008,7 @@ export default function MainComponentNameCv() {
                 ] as const
               ).map(({ Icon, label, href }, i) => {
                 const cls =
-                  "glass-card flex items-center gap-3 px-4 py-3 rounded-2xl text-sm text-white/55 hover:text-white/90 group";
+                  "glass-card flex items-center gap-3 px-4 py-3 rounded-2xl text-sm text-white/70 hover:text-white/90 group";
                 const inner = (
                   <>
                     <Icon className="h-3.5 w-3.5 shrink-0 text-white/25 group-hover:text-white/55 transition-colors" />
@@ -1035,48 +1036,45 @@ export default function MainComponentNameCv() {
               <SectionHead title={t.sections.experience} num="02" />
             </ScrollReveal>
             <div className="space-y-2">
-              {/* Anthropic Certification — pinned at top, shinier card */}
-              <ScrollReveal>
-                <div
-                  className="glass-card glass-card--anthropic rounded-2xl overflow-hidden"
-                  onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
-                >
-                  <div className="px-5 py-4 flex items-start gap-3">
-                    <svg width="20" height="20" viewBox="0 0 248 248" fill="none" className="shrink-0 mt-1">
-                      <path d="M52.4285 162.873L98.7844 136.879L99.5485 134.602L98.7844 133.334H96.4921L88.7237 132.862L62.2346 132.153L39.3113 131.207L17.0249 130.026L11.4214 128.844L6.2 121.873L6.7094 118.447L11.4214 115.257L18.171 115.847L33.0711 116.911L55.485 118.447L71.6586 119.392L95.728 121.873H99.5485L100.058 120.337L98.7844 119.392L97.7656 118.447L74.5877 102.732L49.4995 86.1905L36.3823 76.62L29.3779 71.7757L25.8121 67.2858L24.2839 57.3608L30.6515 50.2716L39.3113 50.8623L41.4763 51.4531L50.2636 58.1879L68.9842 72.7209L93.4357 90.6804L97.0015 93.6343L98.4374 92.6652L98.6571 91.9801L97.0015 89.2625L83.757 65.2772L69.621 40.8192L63.2534 30.6579L61.5978 24.632C60.9565 22.1032 60.579 20.0111 60.579 17.4246L67.8381 7.49965L71.9133 6.19995L81.7193 7.49965L85.7946 11.0443L91.9074 24.9865L101.714 46.8451L116.996 76.62L121.453 85.4816L123.873 93.6343L124.764 96.1155H126.292V94.6976L127.566 77.9197L129.858 57.3608L132.15 30.8942L132.915 23.4505L136.608 14.4708L143.994 9.62643L149.725 12.344L154.437 19.0788L153.8 23.4505L150.998 41.6463L145.522 70.1215L141.957 89.2625H143.994L146.414 86.7813L156.093 74.0206L172.266 53.698L179.398 45.6635L187.803 36.802L193.152 32.5484H203.34L210.726 43.6549L207.415 55.1159L196.972 68.3492L188.312 79.5739L175.896 96.2095L168.191 109.585L168.882 110.689L170.738 110.53L198.755 104.504L213.91 101.787L231.994 98.7149L240.144 102.496L241.036 106.395L237.852 114.311L218.495 119.037L195.826 123.645L162.07 131.592L161.696 131.893L162.137 132.547L177.36 133.925L183.855 134.279H199.774L229.447 136.524L237.215 141.605L241.8 147.867L241.036 152.711L229.065 158.737L213.019 154.956L175.45 145.977L162.587 142.787H160.805V143.85L171.502 154.366L191.242 172.089L215.82 195.011L217.094 200.682L213.91 205.172L210.599 204.699L188.949 188.394L180.544 181.069L161.696 165.118H160.422V166.772L164.752 173.152L187.803 207.771L188.949 218.405L187.294 221.832L181.308 223.959L174.813 222.777L161.187 203.754L147.305 182.486L136.098 163.345L134.745 164.2L128.075 235.42L125.019 239.082L117.887 241.8L111.902 237.31L108.718 229.984L111.902 215.452L115.722 196.547L118.779 181.541L121.58 162.873L123.291 156.636L123.14 156.219L121.773 156.449L107.699 175.752L86.304 204.699L69.3663 222.777L65.291 224.431L58.2867 220.768L58.9235 214.27L62.8713 208.48L86.304 178.705L100.44 160.155L109.551 149.507L109.462 147.967L108.959 147.924L46.6977 188.512L35.6182 189.93L30.7788 185.44L31.4156 178.115L33.7079 175.752L52.4285 162.873Z" fill="#D97757"/>
-                    </svg>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-3 flex-wrap">
-                        <div>
-                          <a
-                            href="https://anthropic.skilljar.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-base font-medium hover:text-[#D97757] transition-colors flex items-center gap-1.5"
-                          >
-                            Anthropic
-                            <ExternalLink className="h-3 w-3 opacity-50" />
-                          </a>
-                          <p className="text-[11px] font-mono text-white/30 mt-0.5">{anthropicCert.date[lang]}</p>
+              {/* XEFI / Magneticlab — delivered paid mandate, anchors the section with shipped proof */}
+              {(() => {
+                const xefiExp = t.experience.find(e => e.company === "Magneticlab - XEFI Neuchâtel");
+                return xefiExp ? (
+                  <ScrollReveal>
+                    <div
+                      className="glass-card rounded-2xl overflow-hidden"
+                      onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
+                    >
+                      <div className="px-5 py-4">
+                        <div className="flex items-center gap-3">
+                          <img src={xefiLogo} alt="XEFI" className="shrink-0" style={{ width: 30, height: 30, objectFit: "contain" }} />
+                          <div className="flex-1 min-w-0 flex items-center justify-between gap-3 flex-wrap">
+                            <div>
+                              <a
+                                href={(xefiExp as typeof xefiExp & { url: string }).url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-base font-medium hover:text-emerald-300 transition-colors flex items-center gap-1.5"
+                              >
+                                {xefiExp.company}
+                                <ExternalLink className="h-3 w-3 opacity-50" />
+                              </a>
+                              <p className="text-[11px] font-mono text-white/30 mt-0.5">{xefiExp.date}</p>
+                            </div>
+                            <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 shrink-0">
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
+                              {deliveredBadge[lang]}
+                            </span>
+                          </div>
                         </div>
-                        <span className="flex items-center gap-2 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#D97757]/10 text-[#D97757] border border-[#D97757]/25 shrink-0">
-                          <span className="flex items-end gap-[3px]">
-                            <span className="w-1 h-1 rounded-full bg-[#D97757] inline-block dot-jump-1" />
-                            <span className="w-1 h-1 rounded-full bg-[#D97757] inline-block dot-jump-2" />
-                            <span className="w-1 h-1 rounded-full bg-[#D97757] inline-block dot-jump-3" />
-                          </span>
-                          {anthropicCert.badge[lang]}
-                        </span>
+                        <p className="mt-2.5 text-sm text-white/45 leading-relaxed" style={{ paddingLeft: "calc(30px + 12px)" }}>{xefiExp.description}</p>
                       </div>
-                      <p className="mt-2.5 text-sm text-white/45 leading-relaxed">
-                        {anthropicCert.description[lang]}
-                      </p>
                     </div>
-                  </div>
-                </div>
-              </ScrollReveal>
+                  </ScrollReveal>
+                ) : null;
+              })()}
 
-              {/* Ordine AI — open card, white glow, right under Anthropic */}
+              {/* Ordine AI — open card, white glow */}
               {(() => {
                 const ordineExp = t.experience.find(e => e.company === "Ordine AI");
                 return ordineExp ? (
@@ -1109,7 +1107,7 @@ export default function MainComponentNameCv() {
                                 <span className="w-1 h-1 rounded-full bg-white/60 inline-block dot-jump-2" />
                                 <span className="w-1 h-1 rounded-full bg-white/60 inline-block dot-jump-3" />
                               </span>
-                              {anthropicCert.badge[lang]}
+                              {ordineAIProject.status[lang]}
                             </span>
                           </div>
                           <p className="mt-2.5 text-sm text-white/45 leading-relaxed">
@@ -1166,7 +1164,7 @@ export default function MainComponentNameCv() {
                 ) : null;
               })()}
 
-              {t.experience.filter(exp => exp.company !== "Ordine AI" && exp.company !== "R2JC — Rencontre de Jeunes Créateurs").map((exp, i) => {
+              {t.experience.filter(exp => exp.company !== "Ordine AI" && exp.company !== "R2JC — Rencontre de Jeunes Créateurs" && exp.company !== "Magneticlab - XEFI Neuchâtel").map((exp, i) => {
                 const isOpen = openExp.has(i);
                 return (
                   <ScrollReveal key={i} delay={i * 60}>
@@ -1332,6 +1330,24 @@ export default function MainComponentNameCv() {
                 </ScrollReveal>
               ))}
             </div>
+
+            {/* Certifications in progress — Anthropic, relocated out of Experience (not yet earned) */}
+            <ScrollReveal>
+              <div className="mt-8 pt-5 border-t border-white/[0.06]">
+                <p className="text-[10px] uppercase tracking-[0.18em] text-white/25 mb-2">{t.sections.certifications}</p>
+                <p className="text-sm text-white/45 leading-relaxed">
+                  <a
+                    href="https://anthropic.skilljar.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-white/70 hover:text-[#D97757] transition-colors"
+                  >
+                    Anthropic
+                  </a>
+                  {" — "}{anthropicCert.description[lang]}
+                </p>
+              </div>
+            </ScrollReveal>
           </div>
 
         </div>
@@ -1356,14 +1372,15 @@ export default function MainComponentNameCv() {
           }}
         >
 
-          {/* ── HEADER ── dark strip with photo + name + contact ── */}
+          {/* ── HEADER ── light strip, dark ink — legible even when PDF background graphics are off ── */}
           <div style={{
-            background: "#141414",
+            background: "#f4f4f4",
             padding: "9mm 14mm",
             display: "flex",
             alignItems: "center",
             gap: "9mm",
             flexShrink: 0,
+            borderBottom: "0.5px solid #ddd",
           }}>
             {/* Photo */}
             <div style={{
@@ -1372,7 +1389,7 @@ export default function MainComponentNameCv() {
               borderRadius: "3.5mm",
               overflow: "hidden",
               flexShrink: 0,
-              border: "0.4px solid rgba(255,255,255,0.18)",
+              border: "0.4px solid rgba(0,0,0,0.15)",
             }}>
               <img
                 src={profilePic}
@@ -1386,7 +1403,7 @@ export default function MainComponentNameCv() {
               <p style={{
                 fontSize: "19pt",
                 fontWeight: 600,
-                color: "white",
+                color: "#111",
                 lineHeight: 1.05,
                 letterSpacing: "-0.02em",
                 margin: 0,
@@ -1395,7 +1412,7 @@ export default function MainComponentNameCv() {
               </p>
               <p style={{
                 fontSize: "7.5pt",
-                color: "rgba(255,255,255,0.45)",
+                color: "#666",
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
                 margin: "2mm 0 0",
@@ -1404,7 +1421,7 @@ export default function MainComponentNameCv() {
               </p>
               <p style={{
                 fontSize: "7pt",
-                color: "rgba(255,255,255,0.55)",
+                color: "#555",
                 margin: "2mm 0 0",
                 letterSpacing: "0.04em",
               }}>
@@ -1418,7 +1435,7 @@ export default function MainComponentNameCv() {
               flexDirection: "column",
               gap: "1.6mm",
               fontSize: "6.5pt",
-              color: "rgba(255,255,255,0.55)",
+              color: "#555",
               textAlign: "right",
               flexShrink: 0,
               lineHeight: 1.3,
@@ -1456,11 +1473,11 @@ export default function MainComponentNameCv() {
             </div>
           </div>
 
-          {/* ── INTRO STRIP ── light gray band ── */}
+          {/* ── INTRO STRIP ── white band with intro + availability ── */}
           <div style={{
-            background: "#f2f2f2",
+            background: "#ffffff",
             padding: "4.5mm 14mm",
-            borderBottom: "0.5px solid #d8d8d8",
+            borderBottom: "0.5px solid #e2e2e2",
             flexShrink: 0,
           }}>
             <p style={{
@@ -1471,10 +1488,19 @@ export default function MainComponentNameCv() {
             }}>
               {t.intro}
             </p>
+            <p style={{
+              fontSize: "7pt",
+              color: "#0f6b3d",
+              fontWeight: 600,
+              lineHeight: 1.5,
+              margin: "2mm 0 0",
+            }}>
+              {t.availability}
+            </p>
           </div>
 
           {/* ── BODY — two-column flex ── */}
-          <div style={{ flex: 1, minHeight: 0, display: "flex", overflow: "hidden" }}>
+          <div style={{ flex: 1, minHeight: 0, display: "flex", overflow: "visible" }}>
 
             {/* LEFT COLUMN — Experience + Education */}
             <div style={{
@@ -1484,7 +1510,7 @@ export default function MainComponentNameCv() {
               display: "flex",
               flexDirection: "column",
               gap: "8mm",
-              overflow: "hidden",
+              overflow: "visible",
             }}>
 
               {/* ── Section: Experience ── */}
@@ -1595,7 +1621,7 @@ export default function MainComponentNameCv() {
               display: "flex",
               flexDirection: "column",
               gap: "5mm",
-              overflow: "hidden",
+              overflow: "visible",
               breakInside: "avoid",
               pageBreakInside: "avoid",
             }}>
