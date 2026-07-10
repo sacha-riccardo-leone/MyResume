@@ -1135,18 +1135,18 @@ export default function MainComponentNameCv() {
                                 href={(r2jcExp as typeof r2jcExp & { url: string }).url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-base font-medium hover:text-[#8c52ff] transition-colors flex items-center gap-1.5"
+                                className="text-base font-medium hover:text-white transition-colors flex items-center gap-1.5"
                               >
                                 R2JC — Rencontre de Jeunes Créateurs
                                 <ExternalLink className="h-3 w-3 opacity-50" />
                               </a>
                               <p className="text-[11px] font-mono text-white/30 mt-0.5">{r2jcExp.date}</p>
                             </div>
-                            <span className="flex items-center gap-2 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#8c52ff]/10 text-[#8c52ff] border border-[#8c52ff]/25 shrink-0">
+                            <span className="flex items-center gap-2 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#fbbf24]/10 text-[#fbbf24] border border-[#fbbf24]/25 shrink-0">
                               <span className="flex items-end gap-[3px]">
-                                <span className="w-1 h-1 rounded-full bg-[#8c52ff] inline-block dot-jump-1" />
-                                <span className="w-1 h-1 rounded-full bg-[#8c52ff] inline-block dot-jump-2" />
-                                <span className="w-1 h-1 rounded-full bg-[#8c52ff] inline-block dot-jump-3" />
+                                <span className="w-1 h-1 rounded-full bg-[#fbbf24] inline-block dot-jump-1" />
+                                <span className="w-1 h-1 rounded-full bg-[#fbbf24] inline-block dot-jump-2" />
+                                <span className="w-1 h-1 rounded-full bg-[#fbbf24] inline-block dot-jump-3" />
                               </span>
                               {anthropicCert.badge[lang]}
                             </span>
