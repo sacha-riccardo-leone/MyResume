@@ -1054,7 +1054,7 @@ export default function MainComponentNameCv() {
                                 href={(xefiExp as typeof xefiExp & { url: string }).url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-base font-medium hover:text-emerald-300 transition-colors flex items-center gap-1.5"
+                                className="text-base font-medium hover:text-red-400 transition-colors flex items-center gap-1.5"
                               >
                                 {xefiExp.company}
                                 <ExternalLink className="h-3 w-3 opacity-50" />
@@ -1101,12 +1101,8 @@ export default function MainComponentNameCv() {
                               </a>
                               <p className="text-[11px] font-mono text-white/30 mt-0.5">{ordineExp.date}</p>
                             </div>
-                            <span className="flex items-center gap-2 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-white/[0.08] text-white/60 border border-white/[0.20] shrink-0">
-                              <span className="flex items-end gap-[3px]">
-                                <span className="w-1 h-1 rounded-full bg-white/60 inline-block dot-jump-1" />
-                                <span className="w-1 h-1 rounded-full bg-white/60 inline-block dot-jump-2" />
-                                <span className="w-1 h-1 rounded-full bg-white/60 inline-block dot-jump-3" />
-                              </span>
+                            <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
                               {ordineAIProject.status[lang]}
                             </span>
                           </div>
