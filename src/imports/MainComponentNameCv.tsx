@@ -1054,7 +1054,7 @@ export default function MainComponentNameCv() {
                                 href={(xefiExp as typeof xefiExp & { url: string }).url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-base font-medium hover:text-red-400 transition-colors flex items-center gap-1.5"
+                                className="text-base font-medium transition-colors flex items-center gap-1.5"
                               >
                                 {xefiExp.company}
                                 <ExternalLink className="h-3 w-3 opacity-50" />
