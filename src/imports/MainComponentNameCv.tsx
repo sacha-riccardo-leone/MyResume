@@ -544,7 +544,7 @@ function WaveBackground() {
       { baseAmp: 35, freq: 0.0042, baseSpd: 0.65, y: 0.85, nOff: 2.54, g: 55, a: 0.28 },
     ];
 
-    const draw = () => {
+    const render = () => {
       const w = canvas.width;
       const h = canvas.height;
       ctx.clearRect(0, 0, w, h);
@@ -572,7 +572,7 @@ function WaveBackground() {
 
         ctx.beginPath();
         ctx.moveTo(0, h);
-        for (let x = 0; x <= w; x += 4) {
+        for (let x = 0; x <= w; x += 6) {
           const y =
             baseY
             + Math.sin(x * wave.freq + t * spd)                             * amp          // primary
@@ -592,13 +592,50 @@ function WaveBackground() {
         ctx.fill();
       }
 
-      t += 0.007;
-      animId = requestAnimationFrame(draw);
     };
 
-    animId = requestAnimationFrame(draw);
-    return () => {
+    // Perf: the fixed canvas sits behind every glass card, so each repaint
+    // forces every visible backdrop-filter to recompute. Cap to ~30fps (speed
+    // kept constant via elapsed time), honor reduced-motion (one static frame),
+    // and pause when the tab is hidden — fewer repaints = far cheaper filters.
+    const prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const frameInterval = 1000 / 30;
+    let lastDraw = 0;
+    let running = false;
+
+    const loop = (ts: number) => {
+      if (!running) return;
+      animId = requestAnimationFrame(loop);
+      const dt = ts - lastDraw;
+      if (dt < frameInterval) return;
+      lastDraw = ts;
+      t += 0.42 * Math.min(dt, 100) / 1000;
+      render();
+    };
+
+    const start = () => {
+      if (running || prefersReduce) return;
+      running = true;
+      lastDraw = performance.now();
+      animId = requestAnimationFrame(loop);
+    };
+    const stop = () => {
+      running = false;
       cancelAnimationFrame(animId);
+    };
+
+    const onVisibility = () => { document.hidden ? stop() : start(); };
+    document.addEventListener("visibilitychange", onVisibility);
+
+    if (prefersReduce) {
+      render();
+    } else {
+      start();
+    }
+
+    return () => {
+      stop();
+      document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("resize", resize);
     };
   }, []);
@@ -809,16 +846,32 @@ export default function MainComponentNameCv() {
   useEffect(() => {
     const lg = (window as any).liquidGlass;
     if (!lg) return;
-    let instances: any[] = [];
+    const instances: any[] = [];
+    const attached = new WeakSet<Element>();
+    const optsFor = (el: Element) =>
+      el.classList.contains("glass-card--sm")
+        ? { scale: -65, chroma: 3, blur: 3, border: 0.10, mapBlur: 10, fallbackBlur: 14 }
+        : { scale: -112, chroma: 5, blur: 2, border: 0.07, mapBlur: 12, fallbackBlur: 18 };
+    // Perf: attach the GPU displacement filter lazily as each card nears the
+    // viewport, instead of generating all ~34 displacement maps at once on load
+    // (a multi-hundred-ms main-thread stall). Each card is filtered exactly once.
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting && !attached.has(e.target)) {
+          attached.add(e.target);
+          io.unobserve(e.target);
+          instances.push(lg(e.target, optsFor(e.target)));
+        }
+      }
+    }, { rootMargin: "300px 0px" });
     const raf = requestAnimationFrame(() => {
-      const smEls = Array.from(document.querySelectorAll<Element>(".glass-card--sm"));
-      const lgEls = Array.from(document.querySelectorAll<Element>(".glass-card")).filter(el => !el.classList.contains("glass-card--sm"));
-      instances = [
-        ...smEls.map(el => lg(el, { scale: -65, chroma: 3, blur: 5, border: 0.10, mapBlur: 10, fallbackBlur: 14 })),
-        ...lgEls.map(el => lg(el, { scale: -112, chroma: 6, blur: 3, border: 0.07, mapBlur: 12, fallbackBlur: 18 })),
-      ];
+      document.querySelectorAll(".glass-card").forEach((el) => io.observe(el));
     });
-    return () => { cancelAnimationFrame(raf); instances.forEach((g: any) => g.destroy()); };
+    return () => {
+      cancelAnimationFrame(raf);
+      io.disconnect();
+      instances.forEach((g: any) => g.destroy());
+    };
   }, [phase]);
 
   useEffect(() => {

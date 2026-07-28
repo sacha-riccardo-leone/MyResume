@@ -193,6 +193,18 @@
 .dot-jump-2 { animation: dot-jump 1.4s ease-in-out infinite 0.18s; }
 .dot-jump-3 { animation: dot-jump 1.4s ease-in-out infinite 0.36s; }
 
+/* Reduced motion: stop the always-on repaints (glass glows + jumping dots +
+   cursor). Each glow animates box-shadow, which repaints the card — and its
+   backdrop-filter — every frame; killing them here removes that cost for
+   users who opt out of motion. */
+@media (prefers-reduced-motion: reduce) {
+  .glass-card--anthropic,
+  .glass-card--ordine,
+  .glass-card--r2jc { animation: none !important; }
+  .dot-jump-1, .dot-jump-2, .dot-jump-3 { animation: none !important; }
+  .cursor-blink { animation: none !important; }
+}
+
 /* Print-only elements: hidden on screen, visible on print */
 .print-only { display: none; }
 
