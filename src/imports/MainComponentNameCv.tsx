@@ -844,37 +844,6 @@ export default function MainComponentNameCv() {
   }, []);
 
   useEffect(() => {
-    const lg = (window as any).liquidGlass;
-    if (!lg) return;
-    const instances: any[] = [];
-    const attached = new WeakSet<Element>();
-    const optsFor = (el: Element) =>
-      el.classList.contains("glass-card--sm")
-        ? { scale: -65, chroma: 3, blur: 3, border: 0.10, mapBlur: 10, fallbackBlur: 14 }
-        : { scale: -112, chroma: 5, blur: 2, border: 0.07, mapBlur: 12, fallbackBlur: 18 };
-    // Perf: attach the GPU displacement filter lazily as each card nears the
-    // viewport, instead of generating all ~34 displacement maps at once on load
-    // (a multi-hundred-ms main-thread stall). Each card is filtered exactly once.
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting && !attached.has(e.target)) {
-          attached.add(e.target);
-          io.unobserve(e.target);
-          instances.push(lg(e.target, optsFor(e.target)));
-        }
-      }
-    }, { rootMargin: "300px 0px" });
-    const raf = requestAnimationFrame(() => {
-      document.querySelectorAll(".glass-card").forEach((el) => io.observe(el));
-    });
-    return () => {
-      cancelAnimationFrame(raf);
-      io.disconnect();
-      instances.forEach((g: any) => g.destroy());
-    };
-  }, [phase]);
-
-  useEffect(() => {
     if (phase !== "typing") return;
     if (displayedName.length < FULL_NAME.length) {
       const timer = setTimeout(() => {
