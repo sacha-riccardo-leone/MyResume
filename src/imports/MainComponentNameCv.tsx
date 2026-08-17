@@ -53,7 +53,7 @@ const translations = {
         company: "R2JC — Rencontre de Jeunes Créateurs",
         url: "https://r2jc.ch",
         description:
-          "Refonte frontend de r2jc.ch — site d'un collectif de jeunes fondateurs suisses organisant des défilés de mode. Intégration native de la billetterie Infomaniak (sans redirection externe), carte SVG interactive de la Suisse avec sponsors géolocalisés, modernisation avec système de tokens de marque personnalisé. Stack : Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
+          "Premier projet WordPress — site vitrine bilingue (FR/EN) d'un collectif de mode suisse, mis en production en 6 semaines sur un site déjà public et édité en parallèle par le client (WordPress/Elementor gratuit, hébergement mutualisé, sans extension payante). Systèmes sur mesure : architecture hybride au rendu conforme à la maquette au pixel mais entièrement éditable, éditions annuelles auto-générées, formulaires sécurisés (route REST, jeton HMAC, anti-spam) et une extension PHP dédiée détectant les traductions rompues. Méthode rigoureuse — chaque modification réversible, prouvée par empreinte avant/après et soumise à revue contradictoire. Résultats : poids des images divisé par 3 à 6, temps de réponse serveur réduit des deux tiers (≈ 320 → 110 ms), zéro régression visuelle, et une documentation permettant au client de maintenir le site sans développeur. Stack : WordPress, PHP, API REST, JavaScript sans dépendance, CSS moderne.",
       },
       {
         date: "2025 — en cours",
@@ -136,7 +136,7 @@ const translations = {
         company: "R2JC — Rencontre de Jeunes Créateurs",
         url: "https://r2jc.ch",
         description:
-          "Frontend redesign of r2jc.ch — site for a collective of young Swiss founders organizing fashion shows. Native Infomaniak ticketing embed (no external redirects), interactive SVG map of Switzerland with geolocated sponsors, modern redesign with a custom brand token system. Stack: Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
+          "First WordPress project — bilingual (FR/EN) showcase site for a Swiss fashion collective, taken to production in 6 weeks on an already-live site edited in parallel by the client (free WordPress/Elementor, shared hosting, no paid plugins). Custom systems: a hybrid architecture with pixel-perfect design yet fully client-editable, auto-generated annual editions, secure forms (REST route, HMAC token, anti-spam) and a dedicated PHP plugin that detects broken translations. Rigorous method — every change reversible, proven by before/after fingerprint and put through adversarial review. Results: image weight cut 3–6×, server response time down by two-thirds (≈ 320 → 110 ms), zero visual regressions, and documentation letting the client maintain the site without a developer. Stack: WordPress, PHP, REST API, dependency-free JavaScript, modern CSS.",
       },
       {
         date: "2025 — in progress",
@@ -219,7 +219,7 @@ const translations = {
         company: "R2JC — Rencontre de Jeunes Créateurs",
         url: "https://r2jc.ch",
         description:
-          "Frontend-Redesign von r2jc.ch — Website eines Kollektivs junger Schweizer Gründer, die Modeschauen organisieren. Native Infomaniak-Ticketing-Integration (keine externen Weiterleitungen), interaktive SVG-Karte der Schweiz mit geolokalisierten Sponsoren, modernes Design mit eigenem Marken-Token-System. Stack: Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
+          "Erstes WordPress-Projekt — zweisprachige (FR/EN) Präsentationswebsite für ein Schweizer Mode-Kollektiv, in 6 Wochen live gebracht, auf einer bereits öffentlichen und parallel vom Kunden bearbeiteten Website (kostenloses WordPress/Elementor, Shared Hosting, ohne kostenpflichtige Erweiterungen). Massgeschneiderte Systeme: eine hybride Architektur mit pixelgenauem Design, dennoch voll kundenseitig editierbar, automatisch generierte Jahres-Editionen, gesicherte Formulare (REST-Route, HMAC-Token, Anti-Spam) und ein eigenes PHP-Plugin, das defekte Übersetzungen erkennt. Rigorose Methode — jede Änderung reversibel, per Vorher/Nachher-Prüfsumme belegt und einer kontradiktorischen Review unterzogen. Ergebnisse: Bildgewicht um das 3- bis 6-Fache reduziert, Server-Antwortzeit um zwei Drittel gesenkt (≈ 320 → 110 ms), null visuelle Regressionen, und eine Dokumentation, mit der der Kunde die Website ohne Entwickler pflegt. Stack: WordPress, PHP, REST-API, abhängigkeitsfreies JavaScript, modernes CSS.",
       },
       {
         date: "2025 — laufend",
@@ -302,7 +302,7 @@ const translations = {
         company: "R2JC — Rencontre de Jeunes Créateurs",
         url: "https://r2jc.ch",
         description:
-          "Rifacimento frontend di r2jc.ch — sito di un collettivo di giovani fondatori svizzeri che organizzano sfilate di moda. Integrazione nativa della biglietteria Infomaniak (senza redirect esterni), mappa SVG interattiva della Svizzera con sponsor geolocalizzati, redesign moderno con sistema di token di marca personalizzati. Stack: Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
+          "Primo progetto WordPress — sito vetrina bilingue (FR/EN) di un collettivo di moda svizzero, portato in produzione in 6 settimane su un sito già pubblico e modificato in parallelo dal cliente (WordPress/Elementor gratuito, hosting condiviso, senza estensioni a pagamento). Sistemi su misura: un'architettura ibrida con resa conforme al mockup al pixel ma interamente modificabile dal cliente, edizioni annuali autogenerate, moduli sicuri (route REST, token HMAC, anti-spam) e un'estensione PHP dedicata che rileva le traduzioni interrotte. Metodo rigoroso — ogni modifica reversibile, provata da impronta prima/dopo e sottoposta a revisione contraddittoria. Risultati: peso delle immagini ridotto di 3–6 volte, tempo di risposta del server ridotto di due terzi (≈ 320 → 110 ms), zero regressioni visive, e una documentazione che permette al cliente di mantenere il sito senza sviluppatore. Stack: WordPress, PHP, API REST, JavaScript senza dipendenze, CSS moderno.",
       },
       {
         date: "2025 — in corso",
