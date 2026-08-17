@@ -1098,6 +1098,63 @@ export default function MainComponentNameCv() {
               <SectionHead title={t.sections.experience} num="02" />
             </ScrollReveal>
             <div className="space-y-2">
+              {/* R2JC — latest project, delivered, expandable — pinned first */}
+              {(() => {
+                const r2jcExp = t.experience.find(e => e.company === "R2JC — Rencontre de Jeunes Créateurs");
+                if (!r2jcExp) return null;
+                const isOpen = openCards.has("r2jc");
+                return (
+                  <ScrollReveal>
+                    <div
+                      className="glass-card rounded-2xl overflow-hidden"
+                      onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
+                    >
+                      <div className="px-5 py-4 cursor-pointer" onClick={() => toggleCard("r2jc")}>
+                        <div className="flex items-center gap-3">
+                          <img src={r2jcLogo} alt="R2JC" className="shrink-0" style={{ width: 30, height: 30, objectFit: "contain" }} />
+                          <div className="flex-1 min-w-0 flex items-center justify-between gap-3 flex-wrap">
+                            <div>
+                              <a
+                                href={(r2jcExp as typeof r2jcExp & { url: string }).url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={e => e.stopPropagation()}
+                                className="text-base font-medium hover:text-white transition-colors flex items-center gap-1.5"
+                              >
+                                R2JC — Rencontre de Jeunes Créateurs
+                                <ExternalLink className="h-3 w-3 opacity-50" />
+                              </a>
+                              <p className="text-[11px] font-mono text-white/30 mt-0.5">{r2jcExp.date}</p>
+                            </div>
+                            <div className="flex items-center gap-2 shrink-0">
+                              <a
+                                href="https://r2jc.vercel.app"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={e => e.stopPropagation()}
+                                className="glass-card glass-card--sm inline-flex items-center gap-1.5 text-[9px] uppercase px-2.5 py-1 rounded-full text-white/55 hover:text-white cursor-pointer"
+                                onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
+                              >
+                                <ExternalLink className="h-3 w-3" />
+                                {demoLabel[lang]}
+                              </a>
+                              <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
+                                {deliveredBadge[lang]}
+                              </span>
+                              <ChevronDown className="h-4 w-4 text-white/25 transition-transform duration-300" style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }} />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <Collapsible open={isOpen}>
+                        <p className="px-5 pb-4 text-sm text-white/45 leading-relaxed">{r2jcExp.description}</p>
+                      </Collapsible>
+                    </div>
+                  </ScrollReveal>
+                );
+              })()}
+
               {/* XEFI / Magneticlab — delivered paid mandate, anchors the section with shipped proof */}
               {(() => {
                 const xefiExp = t.experience.find(e => e.company === "Magneticlab - XEFI Neuchâtel");
@@ -1184,63 +1241,6 @@ export default function MainComponentNameCv() {
                       </div>
                       <Collapsible open={isOpen}>
                         <p className="px-5 pb-4 text-sm text-white/45 leading-relaxed">{ordineExp.description}</p>
-                      </Collapsible>
-                    </div>
-                  </ScrollReveal>
-                );
-              })()}
-
-              {/* R2JC — delivered, expandable */}
-              {(() => {
-                const r2jcExp = t.experience.find(e => e.company === "R2JC — Rencontre de Jeunes Créateurs");
-                if (!r2jcExp) return null;
-                const isOpen = openCards.has("r2jc");
-                return (
-                  <ScrollReveal>
-                    <div
-                      className="glass-card rounded-2xl overflow-hidden"
-                      onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
-                    >
-                      <div className="px-5 py-4 cursor-pointer" onClick={() => toggleCard("r2jc")}>
-                        <div className="flex items-center gap-3">
-                          <img src={r2jcLogo} alt="R2JC" className="shrink-0" style={{ width: 30, height: 30, objectFit: "contain" }} />
-                          <div className="flex-1 min-w-0 flex items-center justify-between gap-3 flex-wrap">
-                            <div>
-                              <a
-                                href={(r2jcExp as typeof r2jcExp & { url: string }).url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={e => e.stopPropagation()}
-                                className="text-base font-medium hover:text-white transition-colors flex items-center gap-1.5"
-                              >
-                                R2JC — Rencontre de Jeunes Créateurs
-                                <ExternalLink className="h-3 w-3 opacity-50" />
-                              </a>
-                              <p className="text-[11px] font-mono text-white/30 mt-0.5">{r2jcExp.date}</p>
-                            </div>
-                            <div className="flex items-center gap-2 shrink-0">
-                              <a
-                                href="https://r2jc.vercel.app"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={e => e.stopPropagation()}
-                                className="glass-card glass-card--sm inline-flex items-center gap-1.5 text-[9px] uppercase px-2.5 py-1 rounded-full text-white/55 hover:text-white cursor-pointer"
-                                onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
-                              >
-                                <ExternalLink className="h-3 w-3" />
-                                {demoLabel[lang]}
-                              </a>
-                              <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
-                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
-                                {deliveredBadge[lang]}
-                              </span>
-                              <ChevronDown className="h-4 w-4 text-white/25 transition-transform duration-300" style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }} />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <Collapsible open={isOpen}>
-                        <p className="px-5 pb-4 text-sm text-white/45 leading-relaxed">{r2jcExp.description}</p>
                       </Collapsible>
                     </div>
                   </ScrollReveal>
@@ -1645,7 +1645,9 @@ export default function MainComponentNameCv() {
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "5.5mm" }}>
-                  {t.experience.map((exp, i) => (
+                  {[...t.experience]
+                    .sort((a, b) => (a.company.startsWith("R2JC") ? 0 : 1) - (b.company.startsWith("R2JC") ? 0 : 1))
+                    .map((exp, i) => (
                     <div key={i}>
                       <div style={{
                         display: "flex",
