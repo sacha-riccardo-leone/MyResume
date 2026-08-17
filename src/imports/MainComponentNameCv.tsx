@@ -49,9 +49,9 @@ const translations = {
           "Mandat freelance — Développement d'un addon Odoo 19 Enterprise (pixieset_sync) + extension Chrome/Firefox pour un studio photo suisse (Olive & Beige) — sync automatique Pixieset → Odoo : contacts, projets, sessions, cron quotidien, secrets masqués. Réalisé seul, 4 batches livrés en 18 jours, déployé sur Odoo.sh, cliente satisfaite. Stack : Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
-        date: "2026 — en cours",
+        date: "2026",
         company: "R2JC — Rencontre de Jeunes Créateurs",
-        url: "https://r2jc.vercel.app",
+        url: "https://r2jc.ch",
         description:
           "Refonte frontend de r2jc.ch — site d'un collectif de jeunes fondateurs suisses organisant des défilés de mode. Intégration native de la billetterie Infomaniak (sans redirection externe), carte SVG interactive de la Suisse avec sponsors géolocalisés, modernisation avec système de tokens de marque personnalisé. Stack : Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
       },
@@ -132,9 +132,9 @@ const translations = {
           "Freelance mandate — Development of an Odoo 19 Enterprise addon (pixieset_sync) + Chrome/Firefox extension for a Swiss photography studio (Olive & Beige) — automated Pixieset → Odoo sync (contacts, projects, sessions), daily cron, masked secrets. Delivered solo in 4 batches over 18 days, live on Odoo.sh, client satisfied. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
-        date: "2026 — in progress",
+        date: "2026",
         company: "R2JC — Rencontre de Jeunes Créateurs",
-        url: "https://r2jc.vercel.app",
+        url: "https://r2jc.ch",
         description:
           "Frontend redesign of r2jc.ch — site for a collective of young Swiss founders organizing fashion shows. Native Infomaniak ticketing embed (no external redirects), interactive SVG map of Switzerland with geolocated sponsors, modern redesign with a custom brand token system. Stack: Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
       },
@@ -215,9 +215,9 @@ const translations = {
           "Freelance-Mandat — Entwicklung eines Odoo-19-Enterprise-Addons (pixieset_sync) + Chrome/Firefox-Erweiterung für ein Schweizer Fotostudio (Olive & Beige) — automatische Pixieset → Odoo-Synchronisation (Kontakte, Projekte, Sessions), Tages-Cron, Secret-Maskierung. Alleine realisiert, 4 Batches in 18 Tagen geliefert, live auf Odoo.sh, Kundin zufrieden. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
-        date: "2026 — laufend",
+        date: "2026",
         company: "R2JC — Rencontre de Jeunes Créateurs",
-        url: "https://r2jc.vercel.app",
+        url: "https://r2jc.ch",
         description:
           "Frontend-Redesign von r2jc.ch — Website eines Kollektivs junger Schweizer Gründer, die Modeschauen organisieren. Native Infomaniak-Ticketing-Integration (keine externen Weiterleitungen), interaktive SVG-Karte der Schweiz mit geolokalisierten Sponsoren, modernes Design mit eigenem Marken-Token-System. Stack: Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
       },
@@ -298,9 +298,9 @@ const translations = {
           "Mandato freelance — Sviluppo di un addon Odoo 19 Enterprise (pixieset_sync) + estensione Chrome/Firefox per uno studio fotografico svizzero (Olive & Beige) — sync automatico Pixieset → Odoo (contatti, progetti, sessioni), cron giornaliero, segreti mascherati. Realizzato in autonomia, 4 batch consegnati in 18 giorni, live su Odoo.sh, cliente soddisfatta. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
-        date: "2026 — in corso",
+        date: "2026",
         company: "R2JC — Rencontre de Jeunes Créateurs",
-        url: "https://r2jc.vercel.app",
+        url: "https://r2jc.ch",
         description:
           "Rifacimento frontend di r2jc.ch — sito di un collettivo di giovani fondatori svizzeri che organizzano sfilate di moda. Integrazione nativa della biglietteria Infomaniak (senza redirect esterni), mappa SVG interattiva della Svizzera con sponsor geolocalizzati, redesign moderno con sistema di token di marca personalizzati. Stack: Next.js 15, TypeScript, Tailwind CSS 3.4, Lenis.",
       },
@@ -493,6 +493,7 @@ const langBadges: { flag: string; label: Record<Lang, string> }[] = [
 
 const permitLabel: Record<Lang, string> = { fr: "Permis C", en: "Permit C", de: "Ausweis C", it: "Permesso C" };
 const deliveredBadge: Record<Lang, string> = { fr: "Livré", en: "Delivered", de: "Geliefert", it: "Consegnato" };
+const demoLabel: Record<Lang, string> = { fr: "Démo", en: "Demo", de: "Demo", it: "Demo" };
 
 const anthropicCert = {
   date: { fr: "2026 — en cours", en: "2026 — in progress", de: "2026 — laufend", it: "2026 — in corso" } as Record<Lang, string>,
@@ -1138,7 +1139,7 @@ export default function MainComponentNameCv() {
                 ) : null;
               })()}
 
-              {/* R2JC — open card, purple glow */}
+              {/* R2JC — open card, white glow, delivered */}
               {(() => {
                 const r2jcExp = t.experience.find(e => e.company === "R2JC — Rencontre de Jeunes Créateurs");
                 return r2jcExp ? (
@@ -1164,18 +1165,26 @@ export default function MainComponentNameCv() {
                               </a>
                               <p className="text-[11px] font-mono text-white/30 mt-0.5">{r2jcExp.date}</p>
                             </div>
-                            <span className="flex items-center gap-2 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#fbbf24]/10 text-[#fbbf24] border border-[#fbbf24]/25 shrink-0">
-                              <span className="flex items-end gap-[3px]">
-                                <span className="w-1 h-1 rounded-full bg-[#fbbf24] inline-block dot-jump-1" />
-                                <span className="w-1 h-1 rounded-full bg-[#fbbf24] inline-block dot-jump-2" />
-                                <span className="w-1 h-1 rounded-full bg-[#fbbf24] inline-block dot-jump-3" />
-                              </span>
-                              {anthropicCert.badge[lang]}
+                            <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 shrink-0">
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
+                              {deliveredBadge[lang]}
                             </span>
                           </div>
                         </div>
-                        {/* Description indented to align under the title */}
-                        <p className="mt-2.5 text-sm text-white/45 leading-relaxed" style={{ paddingLeft: "calc(30px + 12px)" }}>{r2jcExp.description}</p>
+                        {/* Description + live demo link, indented to align under the title */}
+                        <div style={{ paddingLeft: "calc(30px + 12px)" }}>
+                          <p className="mt-2.5 text-sm text-white/45 leading-relaxed">{r2jcExp.description}</p>
+                          <a
+                            href="https://r2jc.vercel.app"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="glass-card glass-card--sm inline-flex items-center gap-1.5 text-[10px] uppercase px-2.5 py-1.5 rounded-lg text-white/55 hover:text-white cursor-pointer mt-3"
+                            onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
+                          >
+                            <ExternalLink className="h-3 w-3" />
+                            {demoLabel[lang]}
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </ScrollReveal>
