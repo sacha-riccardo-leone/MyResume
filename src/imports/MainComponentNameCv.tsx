@@ -17,9 +17,11 @@ const translations = {
     title: "Développeur d'applications",
     downloadPdf: "Télécharger le CV",
     intro:
-      "Je conçois et livre des logiciels en solo, du frontend à l'infrastructure — de Ordine AI, mon client email IA en beta active pour PME suisses, à des intégrations Odoo livrées sur mandat client. Développeur d'applications, 20 ans, CFC + maturité professionnelle, aussi à l'aise en français qu'en allemand.",
+      "Je conçois et livre des logiciels en solo, du frontend à l'infrastructure — d'Ordine AI, mon client email IA en beta active pour PME suisses, aux mandats clients livrés en production : refonte WordPress bilingue de r2jc.ch et addon Odoo. Développeur d'applications, 20 ans, CFC + maturité professionnelle, aussi à l'aise en français qu'en allemand.",
     availability:
       "Recherche un premier poste de développeur d'applications (junior) — disponible dès mi-septembre 2026.",
+    printCta:
+      "Meilleure expérience, projets détaillés et démos sur la version en ligne",
     sections: {
       contact: "Contact",
       experience: "Expérience",
@@ -90,9 +92,14 @@ const translations = {
           "Formation d'informatique (Dév. d'applications), CFC et maturité professionnelle",
       },
       {
+        date: "2020–2021",
+        institution: "Immersion linguistique — Erlach (BE)",
+        description: "Immersion 100% en allemand dans une école bernoise (2020–21) · Certificat de fréquentation bernois",
+      },
+      {
         date: "2018–2022",
-        institution: "Scolarité obligatoire — Le Landeron (NE) & Erlach (BE)",
-        description: "PRIMA bilingue FR/DE · Immersion complète en allemand à Erlach (2020–21) · Diplôme cantonal neuchâtelois",
+        institution: "Scolarité obligatoire — Le Landeron (NE)",
+        description: "PRIMA bilingue FR/DE · Diplôme cantonal neuchâtelois",
       },
     ],
   },
@@ -100,9 +107,11 @@ const translations = {
     title: "Application Developer",
     downloadPdf: "Download PDF",
     intro:
-      "I design and ship software solo, from frontend to infrastructure — from Ordine AI, my AI email client in active beta for Swiss SMEs, to Odoo integrations delivered on client mandate. Application developer, 20, CFC + professional baccalaureate, equally at home in French and German.",
+      "I design and ship software solo, from frontend to infrastructure — from Ordine AI, my AI email client in active beta for Swiss SMEs, to client work delivered to production: a bilingual WordPress rebuild of r2jc.ch and an Odoo addon. Application developer, 20, CFC + professional baccalaureate, equally at home in French and German.",
     availability:
       "Seeking a first junior application-developer role — available from mid-September 2026.",
+    printCta:
+      "Best experience, detailed projects and live demos on the online version",
     sections: {
       contact: "Contact",
       experience: "Experience",
@@ -173,9 +182,14 @@ const translations = {
           "IT training (Application Development), federal vocational diploma (CFC) and professional baccalaureate",
       },
       {
+        date: "2020–2021",
+        institution: "Language immersion — Erlach (BE)",
+        description: "Full German immersion at a Bernese school (2020–21) · Bernese attendance certificate",
+      },
+      {
         date: "2018–2022",
-        institution: "Compulsory schooling — Le Landeron (NE) & Erlach (BE)",
-        description: "PRIMA bilingual programme (FR/DE) · Full German immersion in Erlach (2020–21) · Neuchâtel cantonal diploma",
+        institution: "Compulsory schooling — Le Landeron (NE)",
+        description: "PRIMA bilingual programme (FR/DE) · Neuchâtel cantonal diploma",
       },
     ],
   },
@@ -183,9 +197,11 @@ const translations = {
     title: "Applikationsentwickler",
     downloadPdf: "PDF herunterladen",
     intro:
-      "Ich konzipiere und liefere Software allein, vom Frontend bis zur Infrastruktur — von Ordine AI, meinem KI-E-Mail-Client in aktiver Beta für Schweizer KMU, bis zu Odoo-Integrationen im Kundenauftrag. Applikationsentwickler, 20 Jahre, EFZ + Berufsmaturität, in Französisch wie in Deutsch zu Hause.",
+      "Ich konzipiere und liefere Software allein, vom Frontend bis zur Infrastruktur — von Ordine AI, meinem KI-E-Mail-Client in aktiver Beta für Schweizer KMU, bis zu Kundenprojekten in Produktion: zweisprachiger WordPress-Relaunch von r2jc.ch und ein Odoo-Addon. Applikationsentwickler, 20 Jahre, EFZ + Berufsmaturität, in Französisch wie in Deutsch zu Hause.",
     availability:
       "Suche eine erste Junior-Stelle als Applikationsentwickler — verfügbar ab Mitte September 2026.",
+    printCta:
+      "Beste Erfahrung, detaillierte Projekte und Live-Demos in der Online-Version",
     sections: {
       contact: "Kontakt",
       experience: "Erfahrung",
@@ -256,9 +272,14 @@ const translations = {
           "Informatikausbildung (Applikationsentwicklung), EFZ und Berufsmaturität",
       },
       {
+        date: "2020–2021",
+        institution: "Sprachimmersion — Erlach (BE)",
+        description: "Vollständige Deutschimmersion an einer Berner Schule (2020–21) · Berner Schulbesuchsbestätigung",
+      },
+      {
         date: "2018–2022",
-        institution: "Obligatorische Schulzeit — Le Landeron (NE) & Erlach (BE)",
-        description: "PRIMA bilinguale Ausbildung (FR/DE) · Vollständige Deutschimmersion in Erlach (2020–21) · Kantonales Diplom Neuenburg",
+        institution: "Obligatorische Schulzeit — Le Landeron (NE)",
+        description: "PRIMA bilinguale Ausbildung (FR/DE) · Kantonales Diplom Neuenburg",
       },
     ],
   },
@@ -266,9 +287,11 @@ const translations = {
     title: "Sviluppatore di applicazioni",
     downloadPdf: "Scarica il CV",
     intro:
-      "Progetto e consegno software in autonomia, dal frontend all'infrastruttura — da Ordine AI, il mio client email IA in beta attiva per PMI svizzere, alle integrazioni Odoo consegnate su mandato. Sviluppatore di applicazioni, 20 anni, AFC + maturità professionale, a mio agio sia in francese che in tedesco.",
+      "Progetto e consegno software in autonomia, dal frontend all'infrastruttura — da Ordine AI, il mio client email IA in beta attiva per PMI svizzere, ai lavori su commessa portati in produzione: rifacimento WordPress bilingue di r2jc.ch e un addon Odoo. Sviluppatore di applicazioni, 20 anni, AFC + maturità professionale, a mio agio sia in francese che in tedesco.",
     availability:
       "Cerco una prima posizione junior come sviluppatore di applicazioni — disponibile da metà settembre 2026.",
+    printCta:
+      "Esperienza migliore, progetti dettagliati e demo sulla versione online",
     sections: {
       contact: "Contatto",
       experience: "Esperienza",
@@ -339,9 +362,14 @@ const translations = {
           "Formazione informatica (Sviluppo di applicazioni), AFC e maturità professionale",
       },
       {
+        date: "2020–2021",
+        institution: "Immersione linguistica — Erlach (BE)",
+        description: "Immersione totale in tedesco in una scuola bernese (2020–21) · Certificato di frequenza bernese",
+      },
+      {
         date: "2018–2022",
-        institution: "Scolarità obbligatoria — Le Landeron (NE) & Erlach (BE)",
-        description: "PRIMA bilingue FR/DE · Immersione completa in tedesco a Erlach (2020–21) · Diploma cantonale di Neuchâtel",
+        institution: "Scolarità obbligatoria — Le Landeron (NE)",
+        description: "PRIMA bilingue FR/DE · Diploma cantonale di Neuchâtel",
       },
     ],
   },
@@ -1833,6 +1861,23 @@ export default function MainComponentNameCv() {
               </div>
 
             </div>
+          </div>
+
+          {/* Discrete footer — nudge to the interactive online version */}
+          <div style={{
+            flexShrink: 0,
+            padding: "2.5mm 14mm",
+            borderTop: "0.5px solid #e2e2e2",
+            background: "#fafafa",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "2mm",
+            fontSize: "6pt",
+            color: "#999",
+          }}>
+            <Globe style={{ width: "2.6mm", height: "2.6mm", opacity: 0.7 }} />
+            <span>{t.printCta} — {t.contact.website}</span>
           </div>
         </div>
       </div>
