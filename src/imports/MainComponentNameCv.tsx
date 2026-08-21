@@ -1674,6 +1674,7 @@ export default function MainComponentNameCv() {
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "5.5mm" }}>
                   {[...t.experience]
+                    .filter(exp => exp.company !== "SourShots")
                     .sort((a, b) => (a.company.startsWith("R2JC") ? 0 : 1) - (b.company.startsWith("R2JC") ? 0 : 1))
                     .map((exp, i) => (
                     <div key={i}>
