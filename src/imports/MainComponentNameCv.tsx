@@ -33,6 +33,8 @@ const translations = {
       skills: "Compétences techniques",
       education: "Formations / Diplômes",
       certifications: "Certifications en cours",
+      personalSkills: "Compétences personnelles",
+      references: "Références",
     },
     contact: {
       location: "La Chaux-de-Fonds, NE",
@@ -124,6 +126,9 @@ const translations = {
       { name: "Anglais", level: "C1" },
       { name: "Allemand", level: "B2" },
     ],
+    softSkills: ["Autonomie", "Esprit d'initiative", "Rigueur & souci du détail", "Orienté solutions", "Persévérance", "Curiosité / apprentissage rapide"],
+    proSkills: ["Développement d'applications", "Maîtrise des outils IA", "Git / versioning", "Intégration d'API", "Débogage & tests", "UI/UX"],
+    referencesLine: "Références disponibles sur demande.",
     education: [
       {
         date: "2022–2025",
@@ -162,6 +167,8 @@ const translations = {
       skills: "Technical Skills",
       education: "Education",
       certifications: "Certifications in progress",
+      personalSkills: "Personal Skills",
+      references: "References",
     },
     contact: {
       location: "La Chaux-de-Fonds, NE",
@@ -253,6 +260,9 @@ const translations = {
       { name: "English", level: "C1" },
       { name: "German", level: "B2" },
     ],
+    softSkills: ["Autonomy", "Initiative", "Rigor & attention to detail", "Solution-oriented", "Persistence", "Curiosity / fast learner"],
+    proSkills: ["Application development", "AI tooling", "Git / versioning", "API integration", "Debugging & testing", "UI/UX"],
+    referencesLine: "References available on request.",
     education: [
       {
         date: "2022–2025",
@@ -291,6 +301,8 @@ const translations = {
       skills: "Technische Kompetenzen",
       education: "Ausbildung",
       certifications: "Zertifizierungen in Arbeit",
+      personalSkills: "Persönliche Kompetenzen",
+      references: "Referenzen",
     },
     contact: {
       location: "La Chaux-de-Fonds, NE",
@@ -382,6 +394,9 @@ const translations = {
       { name: "Englisch", level: "C1" },
       { name: "Deutsch", level: "B2" },
     ],
+    softSkills: ["Eigenständigkeit", "Eigeninitiative", "Sorgfalt & Detailgenauigkeit", "Lösungsorientiert", "Ausdauer", "Neugier / schnelle Auffassung"],
+    proSkills: ["Applikationsentwicklung", "KI-Tools", "Git / Versionierung", "API-Integration", "Debugging & Tests", "UI/UX"],
+    referencesLine: "Referenzen auf Anfrage verfügbar.",
     education: [
       {
         date: "2022–2025",
@@ -420,6 +435,8 @@ const translations = {
       skills: "Competenze tecniche",
       education: "Formazione",
       certifications: "Certificazioni in corso",
+      personalSkills: "Competenze personali",
+      references: "Referenze",
     },
     contact: {
       location: "La Chaux-de-Fonds, NE",
@@ -511,6 +528,9 @@ const translations = {
       { name: "Inglese", level: "C1" },
       { name: "Tedesco", level: "B2" },
     ],
+    softSkills: ["Autonomia", "Spirito d'iniziativa", "Rigore & attenzione ai dettagli", "Orientato alle soluzioni", "Perseveranza", "Curiosità / apprendimento rapido"],
+    proSkills: ["Sviluppo di applicazioni", "Padronanza degli strumenti IA", "Git / versioning", "Integrazione di API", "Debug & test", "UI/UX"],
+    referencesLine: "Referenze disponibili su richiesta.",
     education: [
       {
         date: "2022–2025",
@@ -1543,15 +1563,36 @@ export default function MainComponentNameCv() {
             </div>
           </div>
 
-          {/* 05 — Skills */}
+          {/* 05 — Compétences techniques */}
           <ScrollReveal>
             <SectionHead title={t.sections.skills} num="05" />
             <SkillSection groups={skillGroups} lang={lang} />
           </ScrollReveal>
 
-          {/* 05 — Languages (dots) */}
+          {/* 06 — Compétences personnelles */}
           <ScrollReveal>
-            <SectionHead title={t.sections.languages} num="06" />
+            <SectionHead title={t.sections.personalSkills} num="06" />
+            <div className="space-y-3">
+              <div className="flex flex-wrap gap-2">
+                {t.softSkills.map((s, i) => (
+                  <span key={i} className="text-sm px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.12] text-white/75">
+                    {s}
+                  </span>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {t.proSkills.map((s, i) => (
+                  <span key={i} className="text-sm px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.07] text-white/55">
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* 07 — Langues */}
+          <ScrollReveal>
+            <SectionHead title={t.sections.languages} num="07" />
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {t.languages.map((language, i) => (
                 <div
@@ -1569,7 +1610,7 @@ export default function MainComponentNameCv() {
           {/* 05 — Education */}
           <div>
             <ScrollReveal>
-              <SectionHead title={t.sections.education} num="07" />
+              <SectionHead title={t.sections.education} num="08" />
             </ScrollReveal>
             <div className="border-l border-white/10 pl-6 space-y-7">
               {t.education.map((edu, i) => (
@@ -1631,6 +1672,12 @@ export default function MainComponentNameCv() {
               </div>
             </ScrollReveal>
           </div>
+
+          {/* 09 — Références */}
+          <ScrollReveal>
+            <SectionHead title={t.sections.references} num="09" />
+            <p className="text-sm text-white/50">{t.referencesLine}</p>
+          </ScrollReveal>
 
         </div>
       </div>
