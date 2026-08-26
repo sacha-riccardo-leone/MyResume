@@ -10,25 +10,26 @@ import OrbMini from "./OrbMini";
 type Lang = "fr" | "en" | "de" | "it";
 type Phase = "cursor" | "typing" | "done";
 
-const FULL_NAME = "Sacha Riccardo Leone";
+const FULL_NAME = "Sacha Riccardo LEONE";
 
 const translations = {
   fr: {
     title: "Développeur d'applications",
     downloadPdf: "Télécharger le CV",
     intro:
-      "Je conçois et livre des logiciels en solo, du frontend à l'infrastructure — d'Ordine AI, mon client email IA en beta active pour PME suisses, aux mandats clients livrés en production : refonte WordPress bilingue de r2jc.ch et addon Odoo. Développeur d'applications, 20 ans, CFC + maturité professionnelle, aussi à l'aise en français qu'en allemand.",
+      "Développeur d'applications autonome, je transforme des besoins réels en logiciels livrés en production, du frontend à l'infrastructure. J'ai déjà mis mes compétences en pratique sur des mandats clients et mes propres projets, et je recherche en continu de nouveaux défis pour progresser. Initiative, persévérance, curiosité et maîtrise des outils actuels — l'IA en particulier — sont au cœur de ma façon de travailler.",
     availability:
-      "Recherche un premier poste de développeur d'applications (junior) — disponible dès mi-septembre 2026.",
+      "À la recherche d'une opportunité de développeur d'applications, disponible dès mi-septembre 2026 pour un taux d'activité de 100 %.",
     printCta:
       "Meilleure expérience, projets détaillés et démos sur la version en ligne",
     sections: {
       contact: "Contact",
+      about: "À propos",
       experience: "Expérience",
       projects: "Projets personnels",
       languages: "Langues",
-      skills: "Stack Technique",
-      education: "Formation",
+      skills: "Compétences techniques",
+      education: "Formations / Diplômes",
       certifications: "Certifications en cours",
     },
     contact: {
@@ -44,7 +45,7 @@ const translations = {
     },
     experience: [
       {
-        date: "4–22 mai 2026",
+        date: "Mai 2026",
         company: "Magneticlab - XEFI Neuchâtel",
         url: "https://www.xefi.ch/fr/agence/xefi-neuchatel/",
         description:
@@ -64,7 +65,7 @@ const translations = {
           "Fondateur & développeur. Client email IA multi-fournisseurs pour PME suisses, en beta active — pipeline de classification Claude Haiku (harness CI FR/DE/IT/EN : 100%/94%/96%/98%), conformité FADP (Cloud Run Zurich, AES-GCM-256, DLP PII suisse), facturation Stripe à 4 niveaux, audit de sécurité antagoniste auto-mené (5 agents LLM, 30+ problèmes corrigés).",
       },
       {
-        date: "avril 2025 – juin 2025",
+        date: "Avril 2025 – Juin 2025",
         company: "CPNE-TI – TPI",
         url: "https://github.com/sacha-riccardo-leone/GuessWho",
         description:
@@ -79,27 +80,26 @@ const translations = {
       },
     ],
     languages: [
-      { name: "Anglais", level: "C1" },
-      { name: "Allemand", level: "B2" },
       { name: "Français", level: "Maternelle" },
       { name: "Italien", level: "Maternelle" },
+      { name: "Anglais", level: "C1" },
+      { name: "Allemand", level: "B2" },
     ],
     education: [
       {
         date: "2022–2025",
-        institution: "CPNE-TI",
-        description:
-          "Formation d'informatique (Dév. d'applications), CFC et maturité professionnelle",
+        institution: "CFC Informaticien, développement d'applications & Maturité professionnelle",
+        description: "CPNE-TI – Neuchâtel",
       },
       {
         date: "2020–2021",
-        institution: "Immersion linguistique — Erlach (BE)",
-        description: "Immersion 100% en allemand dans une école bernoise (2020–21) · Certificat de fréquentation bernois",
+        institution: "Certificat d'immersion linguistique en allemand",
+        description: "Établissement scolaire à Erlach – Berne",
       },
       {
         date: "2018–2022",
-        institution: "Scolarité obligatoire — Le Landeron (NE)",
-        description: "PRIMA bilingue FR/DE · Diplôme cantonal neuchâtelois",
+        institution: "Diplôme cantonal neuchâtelois — PRIMA bilingue FR/DE",
+        description: "Le Landeron – Neuchâtel",
       },
     ],
   },
@@ -107,17 +107,18 @@ const translations = {
     title: "Application Developer",
     downloadPdf: "Download PDF",
     intro:
-      "I design and ship software solo, from frontend to infrastructure — from Ordine AI, my AI email client in active beta for Swiss SMEs, to client work delivered to production: a bilingual WordPress rebuild of r2jc.ch and an Odoo addon. Application developer, 20, CFC + professional baccalaureate, equally at home in French and German.",
+      "An autonomous application developer, I turn real needs into software delivered to production, from frontend to infrastructure. I've already put my skills to work on client mandates and my own projects, and I'm continually looking for new challenges to grow. Initiative, persistence, curiosity and command of today's tools — AI in particular — are at the core of how I work.",
     availability:
-      "Seeking a first junior application-developer role — available from mid-September 2026.",
+      "Looking for an application-developer role, available from mid-September 2026 at a 100% workload.",
     printCta:
       "Best experience, detailed projects and live demos on the online version",
     sections: {
       contact: "Contact",
+      about: "About",
       experience: "Experience",
       projects: "Personal Projects",
       languages: "Languages",
-      skills: "Tech Stack",
+      skills: "Technical Skills",
       education: "Education",
       certifications: "Certifications in progress",
     },
@@ -134,7 +135,7 @@ const translations = {
     },
     experience: [
       {
-        date: "4–22 May 2026",
+        date: "May 2026",
         company: "Magneticlab - XEFI Neuchâtel",
         url: "https://www.xefi.ch/fr/agence/xefi-neuchatel/",
         description:
@@ -154,7 +155,7 @@ const translations = {
           "Founder & developer. AI-powered multi-provider email client for Swiss SMEs, in active beta — Claude Haiku classification pipeline (CI eval harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-compliant infra (Cloud Run Zurich, AES-GCM-256, Swiss PII DLP), 4-tier Stripe billing, self-run adversarial security audit (5 LLM agents, 30+ findings resolved).",
       },
       {
-        date: "Apr 2025 – Jun 2025",
+        date: "April 2025 – June 2025",
         company: "CPNE-TI – Final Project",
         url: "https://github.com/sacha-riccardo-leone/GuessWho",
         description:
@@ -169,27 +170,26 @@ const translations = {
       },
     ],
     languages: [
-      { name: "English", level: "C1" },
-      { name: "German", level: "B2" },
       { name: "French", level: "Native" },
       { name: "Italian", level: "Native" },
+      { name: "English", level: "C1" },
+      { name: "German", level: "B2" },
     ],
     education: [
       {
         date: "2022–2025",
-        institution: "CPNE-TI",
-        description:
-          "IT training (Application Development), federal vocational diploma (CFC) and professional baccalaureate",
+        institution: "Federal VET Diploma (CFC) in Application Development & Professional Baccalaureate",
+        description: "CPNE-TI – Neuchâtel",
       },
       {
         date: "2020–2021",
-        institution: "Language immersion — Erlach (BE)",
-        description: "Full German immersion at a Bernese school (2020–21) · Bernese attendance certificate",
+        institution: "German language immersion certificate",
+        description: "School in Erlach – Bern",
       },
       {
         date: "2018–2022",
-        institution: "Compulsory schooling — Le Landeron (NE)",
-        description: "PRIMA bilingual programme (FR/DE) · Neuchâtel cantonal diploma",
+        institution: "Neuchâtel cantonal diploma — PRIMA bilingual (FR/DE)",
+        description: "Le Landeron – Neuchâtel",
       },
     ],
   },
@@ -197,17 +197,18 @@ const translations = {
     title: "Applikationsentwickler",
     downloadPdf: "PDF herunterladen",
     intro:
-      "Ich konzipiere und liefere Software allein, vom Frontend bis zur Infrastruktur — von Ordine AI, meinem KI-E-Mail-Client in aktiver Beta für Schweizer KMU, bis zu Kundenprojekten in Produktion: zweisprachiger WordPress-Relaunch von r2jc.ch und ein Odoo-Addon. Applikationsentwickler, 20 Jahre, EFZ + Berufsmaturität, in Französisch wie in Deutsch zu Hause.",
+      "Als eigenständiger Applikationsentwickler verwandle ich echte Bedürfnisse in Software, die in Produktion geht — vom Frontend bis zur Infrastruktur. Meine Fähigkeiten habe ich bereits in Kundenmandaten und eigenen Projekten eingesetzt und suche fortlaufend neue Herausforderungen, um mich weiterzuentwickeln. Initiative, Ausdauer, Neugier und der sichere Umgang mit aktuellen Tools — insbesondere KI — prägen meine Arbeitsweise.",
     availability:
-      "Suche eine erste Junior-Stelle als Applikationsentwickler — verfügbar ab Mitte September 2026.",
+      "Auf der Suche nach einer Stelle als Applikationsentwickler, verfügbar ab Mitte September 2026 zu einem Pensum von 100 %.",
     printCta:
       "Beste Erfahrung, detaillierte Projekte und Live-Demos in der Online-Version",
     sections: {
       contact: "Kontakt",
+      about: "Über mich",
       experience: "Erfahrung",
       projects: "Persönliche Projekte",
       languages: "Sprachen",
-      skills: "Tech Stack",
+      skills: "Technische Kompetenzen",
       education: "Ausbildung",
       certifications: "Zertifizierungen in Arbeit",
     },
@@ -224,7 +225,7 @@ const translations = {
     },
     experience: [
       {
-        date: "4.–22. Mai 2026",
+        date: "Mai 2026",
         company: "Magneticlab - XEFI Neuchâtel",
         url: "https://www.xefi.ch/fr/agence/xefi-neuchatel/",
         description:
@@ -244,7 +245,7 @@ const translations = {
           "Gründer & Entwickler. KI-gestützter Multi-Provider-E-Mail-Client für Schweizer KMU, in aktiver Beta — Claude-Klassifizierungspipeline (CI-Harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-konforme Infrastruktur (Cloud Run Zürich, AES-GCM-256, PII-DLP), Stripe-Abrechnung mit 4 Stufen, selbst durchgeführtes adversariales Sicherheitsaudit (5 LLM-Agenten, 30+ behobene Findings).",
       },
       {
-        date: "Apr. 2025 – Jun. 2025",
+        date: "April 2025 – Juni 2025",
         company: "CPNE-TI – IPA",
         url: "https://github.com/sacha-riccardo-leone/GuessWho",
         description:
@@ -259,27 +260,26 @@ const translations = {
       },
     ],
     languages: [
-      { name: "Englisch", level: "C1" },
-      { name: "Deutsch", level: "B2" },
       { name: "Französisch", level: "Muttersprache" },
       { name: "Italienisch", level: "Muttersprache" },
+      { name: "Englisch", level: "C1" },
+      { name: "Deutsch", level: "B2" },
     ],
     education: [
       {
         date: "2022–2025",
-        institution: "CPNE-TI",
-        description:
-          "Informatikausbildung (Applikationsentwicklung), EFZ und Berufsmaturität",
+        institution: "EFZ Informatiker Applikationsentwicklung & Berufsmaturität",
+        description: "CPNE-TI – Neuenburg",
       },
       {
         date: "2020–2021",
-        institution: "Sprachimmersion — Erlach (BE)",
-        description: "Vollständige Deutschimmersion an einer Berner Schule (2020–21) · Berner Schulbesuchsbestätigung",
+        institution: "Zertifikat Sprachimmersion Deutsch",
+        description: "Schule in Erlach – Bern",
       },
       {
         date: "2018–2022",
-        institution: "Obligatorische Schulzeit — Le Landeron (NE)",
-        description: "PRIMA bilinguale Ausbildung (FR/DE) · Kantonales Diplom Neuenburg",
+        institution: "Kantonales Diplom Neuenburg — PRIMA zweisprachig (FR/DE)",
+        description: "Le Landeron – Neuenburg",
       },
     ],
   },
@@ -287,17 +287,18 @@ const translations = {
     title: "Sviluppatore di applicazioni",
     downloadPdf: "Scarica il CV",
     intro:
-      "Progetto e consegno software in autonomia, dal frontend all'infrastruttura — da Ordine AI, il mio client email IA in beta attiva per PMI svizzere, ai lavori su commessa portati in produzione: rifacimento WordPress bilingue di r2jc.ch e un addon Odoo. Sviluppatore di applicazioni, 20 anni, AFC + maturità professionale, a mio agio sia in francese che in tedesco.",
+      "Sviluppatore di applicazioni autonomo, trasformo bisogni reali in software portato in produzione, dal frontend all'infrastruttura. Ho già messo in pratica le mie competenze su mandati per clienti e progetti personali, e cerco di continuo nuove sfide per crescere. Iniziativa, perseveranza, curiosità e padronanza degli strumenti attuali — l'IA in particolare — sono al centro del mio modo di lavorare.",
     availability:
-      "Cerco una prima posizione junior come sviluppatore di applicazioni — disponibile da metà settembre 2026.",
+      "In cerca di un'opportunità come sviluppatore di applicazioni, disponibile da metà settembre 2026 con un tasso di attività del 100%.",
     printCta:
       "Esperienza migliore, progetti dettagliati e demo sulla versione online",
     sections: {
       contact: "Contatto",
+      about: "Chi sono",
       experience: "Esperienza",
       projects: "Progetti personali",
       languages: "Lingue",
-      skills: "Tech Stack",
+      skills: "Competenze tecniche",
       education: "Formazione",
       certifications: "Certificazioni in corso",
     },
@@ -314,7 +315,7 @@ const translations = {
     },
     experience: [
       {
-        date: "4–22 maggio 2026",
+        date: "Maggio 2026",
         company: "Magneticlab - XEFI Neuchâtel",
         url: "https://www.xefi.ch/fr/agence/xefi-neuchatel/",
         description:
@@ -334,7 +335,7 @@ const translations = {
           "Fondatore & sviluppatore. Client email IA multi-provider per PMI svizzere, in beta attiva — pipeline di classificazione Claude Haiku (CI harness FR/DE/IT/EN: 100%/94%/96%/98%), infrastruttura conforme FADP (Cloud Run Zurigo, AES-GCM-256, DLP PII svizzero), fatturazione Stripe a 4 livelli, audit di sicurezza avversariale auto-condotto (5 agenti LLM, 30+ problemi corretti).",
       },
       {
-        date: "apr. 2025 – giu. 2025",
+        date: "Aprile 2025 – Giugno 2025",
         company: "CPNE-TI – LPI",
         url: "https://github.com/sacha-riccardo-leone/GuessWho",
         description:
@@ -349,27 +350,26 @@ const translations = {
       },
     ],
     languages: [
-      { name: "Inglese", level: "C1" },
-      { name: "Tedesco", level: "B2" },
       { name: "Francese", level: "Madrelingua" },
       { name: "Italiano", level: "Madrelingua" },
+      { name: "Inglese", level: "C1" },
+      { name: "Tedesco", level: "B2" },
     ],
     education: [
       {
         date: "2022–2025",
-        institution: "CPNE-TI",
-        description:
-          "Formazione informatica (Sviluppo di applicazioni), AFC e maturità professionale",
+        institution: "AFC Informatico, sviluppo di applicazioni & Maturità professionale",
+        description: "CPNE-TI – Neuchâtel",
       },
       {
         date: "2020–2021",
-        institution: "Immersione linguistica — Erlach (BE)",
-        description: "Immersione totale in tedesco in una scuola bernese (2020–21) · Certificato di frequenza bernese",
+        institution: "Certificato di immersione linguistica in tedesco",
+        description: "Istituto a Erlach – Berna",
       },
       {
         date: "2018–2022",
-        institution: "Scolarità obbligatoria — Le Landeron (NE)",
-        description: "PRIMA bilingue FR/DE · Diploma cantonale di Neuchâtel",
+        institution: "Diploma cantonale di Neuchâtel — PRIMA bilingue (FR/DE)",
+        description: "Le Landeron – Neuchâtel",
       },
     ],
   },
@@ -1026,13 +1026,15 @@ export default function MainComponentNameCv() {
                     </span>
                   </div>
 
-                  <p className="text-sm leading-relaxed mt-4 max-w-xl text-white/80" style={fadeIn(280)}>
-                    {t.intro}
+                  {/* À propos — availability/rate first (Swiss-expected), then the parcours */}
+                  <p className="text-[10px] uppercase tracking-[0.18em] text-white/35 mt-6 mb-2" style={fadeIn(260)}>
+                    {t.sections.about}
                   </p>
-
-                  {/* Availability — Swiss-expected signal, neutralizes the founder-vs-employee ambiguity */}
-                  <p className="text-[13px] font-medium mt-4 text-emerald-300/90" style={fadeIn(340)}>
+                  <p className="text-[13px] font-medium max-w-xl text-emerald-300/90" style={fadeIn(280)}>
                     {t.availability}
+                  </p>
+                  <p className="text-sm leading-relaxed mt-3 max-w-xl text-white/80" style={fadeIn(340)}>
+                    {t.intro}
                   </p>
 
                   {/* CTA buttons */}
@@ -1416,9 +1418,8 @@ export default function MainComponentNameCv() {
                   className="glass-card px-4 py-4 rounded-2xl"
                   onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
                 >
-                  <p className="text-sm font-medium mb-2.5">{language.name}</p>
-                  <SkillDots filled={getLangDots(language.level)} color="rgba(255,255,255,0.55)" />
-                  <p className="text-[10px] text-white/30 mt-2">{language.level}</p>
+                  <p className="text-sm font-medium">{language.name}</p>
+                  <p className="text-[11px] text-white/45 mt-1">{language.level}</p>
                 </div>
               ))}
             </div>
@@ -1613,29 +1614,39 @@ export default function MainComponentNameCv() {
             </div>
           </div>
 
-          {/* ── INTRO STRIP ── white band with intro + availability ── */}
+          {/* ── À PROPOS STRIP ── availability/rate first, then parcours ── */}
           <div style={{
             background: "#ffffff",
-            padding: "4.5mm 14mm",
+            padding: "4mm 14mm",
             borderBottom: "0.5px solid #e2e2e2",
             flexShrink: 0,
           }}>
             <p style={{
-              fontSize: "7.5pt",
-              color: "#444",
-              lineHeight: 1.58,
-              margin: 0,
+              fontSize: "5.5pt",
+              fontWeight: 700,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "#999",
+              margin: "0 0 1.8mm",
             }}>
-              {t.intro}
+              {t.sections.about}
             </p>
             <p style={{
               fontSize: "7pt",
               color: "#0f6b3d",
               fontWeight: 600,
               lineHeight: 1.5,
-              margin: "2mm 0 0",
+              margin: 0,
             }}>
               {t.availability}
+            </p>
+            <p style={{
+              fontSize: "7.5pt",
+              color: "#444",
+              lineHeight: 1.55,
+              margin: "1.6mm 0 0",
+            }}>
+              {t.intro}
             </p>
           </div>
 
@@ -1841,21 +1852,12 @@ export default function MainComponentNameCv() {
                       alignItems: "center",
                       justifyContent: "space-between",
                     }}>
-                      <div>
-                        <p style={{ fontSize: "8pt", fontWeight: 500, color: "#222", margin: 0, lineHeight: 1.2 }}>
-                          {language.name}
-                        </p>
-                        <p style={{ fontSize: "6pt", color: "#aaa", margin: 0, lineHeight: 1.3 }}>
-                          {language.level}
-                        </p>
-                      </div>
-                      <SkillDots
-                        filled={getLangDots(language.level)}
-                        color="#2a2a2a"
-                        emptyColor="#dedede"
-                        size={5}
-                        gap={3}
-                      />
+                      <p style={{ fontSize: "8pt", fontWeight: 500, color: "#222", margin: 0 }}>
+                        {language.name}
+                      </p>
+                      <p style={{ fontSize: "7pt", color: "#666", margin: 0 }}>
+                        {language.level}
+                      </p>
                     </div>
                   ))}
                 </div>
