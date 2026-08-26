@@ -647,10 +647,10 @@ const ordineAIProject = {
    the platform can't render the emoji flag (e.g. Windows renders 🇬🇧 as "GB",
    but for English we want "EN", not the country code). */
 const langBadges: { flag: string; fallback?: string; label: Record<Lang, string> }[] = [
-  { flag: "🇫🇷", label: { fr: "Natif", en: "Native", de: "Muttersprache", it: "Madrelingua" } },
-  { flag: "🇮🇹", label: { fr: "Natif", en: "Native", de: "Muttersprache", it: "Madrelingua" } },
+  { flag: "🇫🇷", fallback: "FR", label: { fr: "Natif", en: "Native", de: "Muttersprache", it: "Madrelingua" } },
+  { flag: "🇮🇹", fallback: "IT", label: { fr: "Natif", en: "Native", de: "Muttersprache", it: "Madrelingua" } },
   { flag: "🇬🇧", fallback: "EN", label: { fr: "C1", en: "C1", de: "C1", it: "C1" } },
-  { flag: "🇩🇪", label: { fr: "B2", en: "B2", de: "B2", it: "B2" } },
+  { flag: "🇩🇪", fallback: "DE", label: { fr: "B2", en: "B2", de: "B2", it: "B2" } },
 ];
 
 /* Detect whether the platform renders emoji country flags (iOS/Android/macOS do;
