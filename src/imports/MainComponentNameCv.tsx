@@ -1087,7 +1087,7 @@ const glassLeave = (e: React.MouseEvent<HTMLElement>) =>
 /* ────────────────────────────────────────────────────── */
 function SectionHead({ title, num }: { title: string; num: string }) {
   return (
-    <div className="mb-10">
+    <div className="mb-6">
       <p className="text-[10px] font-mono text-white/25 mb-1 tracking-widest">/ {num}</p>
       <h2 className="text-2xl font-medium">{title}</h2>
       <div className="w-10 h-[1.5px] bg-white/25 mt-3" />
@@ -1294,7 +1294,7 @@ export default function MainComponentNameCv() {
         </section>
 
         {/* ── Content sections ── */}
-        <div className="w-full max-w-5xl mx-auto px-6 sm:px-10 pb-32 space-y-28">
+        <div className="w-full max-w-5xl mx-auto px-6 sm:px-10 pb-24 space-y-14">
 
           {/* 01 — Contact */}
           <ScrollReveal>
@@ -1451,58 +1451,66 @@ export default function MainComponentNameCv() {
           <ScrollReveal>
             <SectionHead title={t.sections.entrepreneurship} num="03" />
             <div
-              className="glass-card rounded-2xl p-6"
+              className="glass-card rounded-2xl overflow-hidden"
               onMouseMove={glassMove}
               onMouseEnter={e => { glassEnter(e); setOrdineHovered(true); }}
               onMouseLeave={e => { glassLeave(e); setOrdineHovered(false); }}
             >
-              {/* Header row */}
-              <div className="flex items-start justify-between gap-4 mb-5">
-                <div className="min-w-0">
-                  <div className="flex items-center gap-3 mb-1.5 flex-wrap">
+              {/* Header — always visible, click to expand */}
+              <div className="px-5 py-4 cursor-pointer" onClick={() => toggleCard("ordine")}>
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3 min-w-0">
                     <OrbMini size={22} baseRadius={0.45} className="shrink-0" hover={ordineHovered} />
-                    <h3 className="text-lg font-semibold">{ordineAIProject.name}</h3>
-                    <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
-                      {ordineAIProject.status[lang]}
-                    </span>
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <h3 className="text-base font-semibold">{ordineAIProject.name}</h3>
+                        <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
+                          {ordineAIProject.status[lang]}
+                        </span>
+                      </div>
+                      <p className="text-[12px] text-white/55 mt-0.5">{t.experience.find(e => e.company === "Ordine AI")?.role}</p>
+                    </div>
                   </div>
-                  <p className="text-[13px] text-white/55 mb-1">{t.experience.find(e => e.company === "Ordine AI")?.role}</p>
-                  <p className="text-sm text-white/40">{ordineAIProject.tagline[lang]}</p>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <a
+                      href={ordineAIProject.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={e => e.stopPropagation()}
+                      className="glass-card glass-card--sm inline-flex items-center gap-1.5 text-[9px] uppercase px-2.5 py-1 rounded-full text-white/55 hover:text-white cursor-pointer"
+                      onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
+                    >
+                      <ExternalLink className="h-3 w-3" />
+                      ordine-ai.ch
+                    </a>
+                    <ChevronDown className="h-4 w-4 text-white/25 transition-transform duration-300" style={{ transform: openCards.has("ordine") ? "rotate(180deg)" : "rotate(0deg)" }} />
+                  </div>
                 </div>
-                <a
-                  href={ordineAIProject.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="glass-card glass-card--sm flex items-center gap-1.5 text-[10px] uppercase px-2.5 py-1.5 rounded-lg text-white/55 hover:text-white cursor-pointer shrink-0"
-                  onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
-                >
-                  <ExternalLink className="h-3 w-3" />
-                  ordine-ai.ch
-                </a>
               </div>
-
-              {/* Highlights */}
-              <ul className="space-y-2.5 mb-5">
-                {ordineAIProject.highlights[lang].map((h, i) => (
-                  <li key={i} className="flex gap-3 text-sm text-white/50 leading-relaxed">
-                    <span className="text-white/15 shrink-0 select-none mt-[3px]">—</span>
-                    <span>{h}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Tech stack pills */}
-              <div className="pt-4 border-t border-white/[0.06] flex flex-wrap gap-1.5">
-                {ordineAIProject.stack.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="text-[9px] px-2 py-0.5 rounded-md bg-white/[0.05] border border-white/10 text-white/45 font-mono"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+              <Collapsible open={openCards.has("ordine")}>
+                <div className="px-5 pb-5">
+                  <p className="text-sm text-white/40 mb-4" style={{ paddingLeft: "calc(22px + 12px)" }}>{ordineAIProject.tagline[lang]}</p>
+                  <ul className="space-y-2.5 mb-5">
+                    {ordineAIProject.highlights[lang].map((h, i) => (
+                      <li key={i} className="flex gap-3 text-sm text-white/50 leading-relaxed">
+                        <span className="text-white/15 shrink-0 select-none mt-[3px]">—</span>
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="pt-4 border-t border-white/[0.06] flex flex-wrap gap-1.5">
+                    {ordineAIProject.stack.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="text-[9px] px-2 py-0.5 rounded-md bg-white/[0.05] border border-white/10 text-white/45 font-mono"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </Collapsible>
             </div>
           </ScrollReveal>
 
