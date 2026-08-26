@@ -1025,16 +1025,8 @@ function SkillDots({
   );
 }
 
-function getLangDots(level: string): number {
-  const map: Record<string, number> = {
-    Maternelle: 5, Native: 5, Madrelingua: 5, Muttersprache: 5,
-    C2: 5, C1: 4.5, B2: 3.5, B1: 2, A2: 1, A1: 1,
-  };
-  return map[level] ?? 3;
-}
-
 /* ────────────────────────────────────────────────────── */
-/* Skill section (dots grid)                              */
+/* Skill section                                          */
 /* ────────────────────────────────────────────────────── */
 function SkillSection({ groups, lang }: { groups: typeof skillGroups; lang: Lang }) {
   return (
