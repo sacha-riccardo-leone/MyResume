@@ -551,82 +551,33 @@ const translations = {
   },
 };
 
-const skillGroups = [
+const skillGroups: { category: Record<Lang, string>; color: string; items: string[] | Record<Lang, string[]> }[] = [
   {
-    category: { fr: "Frontend", en: "Frontend", de: "Frontend", it: "Frontend" },
+    category: { fr: "Langages", en: "Languages", de: "Sprachen", it: "Linguaggi" },
     color: "#34d399",
-    items: [
-      { name: "TypeScript", level: 70 },
-      { name: "Next.js", level: 75 },
-      { name: "JavaScript", level: 70 },
-      { name: "HTML/CSS", level: 90 },
-    ],
+    items: ["HTML", "CSS", "PHP", "C#", "SQL/NoSQL"],
   },
   {
-    category: { fr: "Backend", en: "Backend", de: "Backend", it: "Backend" },
+    category: { fr: "Logiciels", en: "Software", de: "Software", it: "Software" },
     color: "#60a5fa",
-    items: [
-      { name: "Python", level: 60 },
-      { name: "FastAPI", level: 70 },
-      { name: "PHP", level: 75 },
-      { name: "C#", level: 80 },
-    ],
+    items: ["Vercel", "GitHub/Git", "Microsoft 365", "Claude", "VS/VS Code", "WordPress", "Krita", "DaVinci Resolve"],
   },
   {
-    category: { fr: "Base de données", en: "Databases", de: "Datenbanken", it: "Database" },
-    color: "#fbbf24",
-    items: [
-      { name: "SQL/NoSQL", level: 70 },
-      { name: "Supabase", level: 80 },
-    ],
-  },
-  {
-    category: { fr: "IA / LLM", en: "AI / LLM", de: "KI / LLM", it: "IA / LLM" },
-    color: "#22d3ee",
-    items: [
-      { name: "RAG / Vector DB", level: 60 },
-      { name: "Eval harness", level: 60 },
-      { name: "Claude API", level: 75 },
-      { name: "Prompt engineering", level: 80 },
-    ],
-  },
-  {
-    category: { fr: "Sécurité", en: "Security", de: "Sicherheit", it: "Sicurezza" },
-    color: "#f87171",
-    items: [
-      { name: "OAuth / JWT", level: 60 },
-      { name: "RLS / Hardening", level: 60 },
-      { name: "FADP / GDPR", level: 70 },
-    ],
-  },
-  {
-    category: { fr: "Infrastructure", en: "Infrastructure", de: "Infrastruktur", it: "Infrastruttura" },
-    color: "#818cf8",
-    items: [
-      { name: "Sentry / PostHog", level: 60 },
-      { name: "Cloud Run / GCP", level: 70 },
-      { name: "Vercel", level: 75 },
-    ],
-  },
-  {
-    category: { fr: "Design", en: "Design", de: "Design", it: "Design" },
-    color: "#fb923c",
-    items: [
-      { name: "Figma", level: 50 },
-      { name: "UI/UX", level: 80 },
-      { name: "Krita", level: 85 },
-    ],
-  },
-  {
-    category: { fr: "Outils", en: "Tools", de: "Werkzeuge", it: "Strumenti" },
+    category: { fr: "Disciplines", en: "Disciplines", de: "Disziplinen", it: "Discipline" },
     color: "#a78bfa",
-    items: [
-      { name: "Git", level: 82 },
-      { name: "Microsoft 365", level: 75 },
-      { name: "VS Code", level: 80 },
-    ],
+    items: {
+      fr: ["POO (programmation orientée objet)", "UI/UX", "Prompt engineering", "Maintenance hardware/software", "Web design", "Gestion de projet (solo)"],
+      en: ["OOP (object-oriented programming)", "UI/UX", "Prompt engineering", "Hardware/software maintenance", "Web design", "Project management (solo)"],
+      de: ["OOP (objektorientierte Programmierung)", "UI/UX", "Prompt engineering", "Hardware-/Software-Wartung", "Web design", "Projektmanagement (solo)"],
+      it: ["OOP (programmazione orientata agli oggetti)", "UI/UX", "Prompt engineering", "Manutenzione hardware/software", "Web design", "Gestione di progetti (solo)"],
+    },
   },
 ];
+
+/* Resolve a skill group's items for the active language. */
+function skillItems(group: (typeof skillGroups)[number], lang: Lang): string[] {
+  return Array.isArray(group.items) ? group.items : group.items[lang];
+}
 
 const companyLogos: Record<string, string> = {
   "Magneticlab - XEFI Neuchâtel": xefiLogo,
@@ -1063,17 +1014,16 @@ function SkillSection({ groups, lang }: { groups: typeof skillGroups; lang: Lang
           onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
         >
           <p
-            className="text-[10px] uppercase tracking-[0.18em] font-medium mb-4"
+            className="text-[10px] uppercase tracking-[0.18em] font-medium mb-3"
             style={{ color: group.color }}
           >
             {group.category[lang]}
           </p>
-          <div className="space-y-3.5">
-            {group.items.map((skill, si) => (
-              <div key={si} className="flex items-center justify-between gap-4">
-                <span className="text-sm text-white/70">{skill.name}</span>
-                <SkillDots filled={Math.round(skill.level / 10) / 2} color={group.color} />
-              </div>
+          <div className="flex flex-wrap gap-1.5">
+            {skillItems(group, lang).map((item, si) => (
+              <span key={si} className="text-[13px] px-2.5 py-1 rounded-full bg-white/[0.05] border border-white/[0.09] text-white/70">
+                {item}
+              </span>
             ))}
           </div>
         </div>
@@ -1470,12 +1420,15 @@ export default function MainComponentNameCv() {
             <SectionHead title={t.sections.entrepreneurship} num="03" />
             <div
               className="glass-card rounded-2xl p-6"
-              onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
+              onMouseMove={glassMove}
+              onMouseEnter={e => { glassEnter(e); setOrdineHovered(true); }}
+              onMouseLeave={e => { glassLeave(e); setOrdineHovered(false); }}
             >
               {/* Header row */}
               <div className="flex items-start justify-between gap-4 mb-5">
                 <div className="min-w-0">
                   <div className="flex items-center gap-3 mb-1.5 flex-wrap">
+                    <OrbMini size={22} baseRadius={0.45} className="shrink-0" hover={ordineHovered} />
                     <h3 className="text-lg font-semibold">{ordineAIProject.name}</h3>
                     <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
@@ -1997,19 +1950,9 @@ export default function MainComponentNameCv() {
                       }}>
                         {group.category[lang]}
                       </p>
-                      <p style={{ fontSize: "6.5pt", color: "#666", margin: "0 0 2mm 0", lineHeight: 1.5 }}>
-                        {group.items.map(s => s.name).join(" · ")}
+                      <p style={{ fontSize: "6.5pt", color: "#555", margin: 0, lineHeight: 1.55 }}>
+                        {skillItems(group, lang).join(" · ")}
                       </p>
-                      <SkillDots
-                        filled={Math.round(
-                          group.items.reduce((sum, s) => sum + Math.round(s.level / 10) / 2, 0) /
-                          group.items.length * 2
-                        ) / 2}
-                        color={group.color}
-                        emptyColor="#dedede"
-                        size={5}
-                        gap={3}
-                      />
                     </div>
                   ))}
                 </div>
