@@ -26,6 +26,8 @@ const translations = {
       contact: "Contact",
       about: "À propos",
       experience: "Expérience",
+      mandates: "Mandats professionnels",
+      entrepreneurship: "Projets & entrepreneuriat",
       projects: "Projets personnels",
       languages: "Langues",
       skills: "Compétences techniques",
@@ -47,34 +49,71 @@ const translations = {
       {
         date: "Mai 2026",
         company: "Magneticlab - XEFI Neuchâtel",
+        role: "Développeur — mandat freelance",
         url: "https://www.xefi.ch/fr/agence/xefi-neuchatel/",
+        bullets: [
+          "Addon Odoo 19 Enterprise (pixieset_sync) + extension Chrome/Firefox pour un studio photo suisse.",
+          "Synchronisation automatique Pixieset → Odoo (contacts, projets, sessions), cron quotidien, secrets masqués.",
+          "Réalisé seul, 4 batches livrés en 18 jours, déployé sur Odoo.sh — cliente satisfaite.",
+        ],
+        stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
         description:
           "Mandat freelance — Développement d'un addon Odoo 19 Enterprise (pixieset_sync) + extension Chrome/Firefox pour un studio photo suisse (Olive & Beige) — sync automatique Pixieset → Odoo : contacts, projets, sessions, cron quotidien, secrets masqués. Réalisé seul, 4 batches livrés en 18 jours, déployé sur Odoo.sh, cliente satisfaite. Stack : Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
-        date: "2026",
-        company: "R2JC — Rencontre de Jeunes Créateurs",
+        date: "Juin – Août 2026",
+        company: "R2JC",
+        role: "Développeur web — mandat client",
         url: "https://r2jc.ch",
+        demo: "https://r2jc.vercel.app",
+        bullets: [
+          "Refonte complète (design + technique) du site vitrine bilingue FR/EN d'un collectif de mode, livrée en production en 6 semaines sur un site déjà public et édité en parallèle par le client.",
+          "Analyse de l'existant et architecture hybride sur mesure contournant les limites d'Elementor gratuit : rendu conforme à la maquette au pixel, chaque texte restant éditable par le client.",
+          "Automatisation du travail de l'équipe : éditions annuelles auto-générées, gestionnaire de logos, formulaires sécurisés (REST, HMAC, anti-spam) et extension PHP détectant les traductions rompues.",
+          "Optimisation des performances sans compromis visuel : poids des images divisé par 3 à 6, temps de réponse serveur réduit des deux tiers (≈ 320 → 110 ms), zéro régression.",
+          "Coordination continue avec l'équipe (clarification des besoins, suivi, ajustements) et documentation complète : le collectif maintient désormais le site sans développeur.",
+        ],
+        stack: "WordPress · PHP · API REST · JavaScript · CSS moderne",
         description:
           "Premier projet WordPress — site vitrine bilingue (FR/EN) d'un collectif de mode suisse, mis en production en 6 semaines sur un site déjà public et édité en parallèle par le client (WordPress/Elementor gratuit, hébergement mutualisé, sans extension payante). Systèmes sur mesure : architecture hybride au rendu conforme à la maquette au pixel mais entièrement éditable, éditions annuelles auto-générées, formulaires sécurisés (route REST, jeton HMAC, anti-spam) et une extension PHP dédiée détectant les traductions rompues. Méthode rigoureuse — chaque modification réversible, prouvée par empreinte avant/après et soumise à revue contradictoire. Résultats : poids des images divisé par 3 à 6, temps de réponse serveur réduit des deux tiers (≈ 320 → 110 ms), zéro régression visuelle, et une documentation permettant au client de maintenir le site sans développeur. Stack : WordPress, PHP, API REST, JavaScript sans dépendance, CSS moderne.",
       },
       {
         date: "2025 — en cours",
         company: "Ordine AI",
+        role: "Fondateur & développeur",
+        url: "https://www.ordine-ai.ch/",
+        bullets: [
+          "Client email IA multi-fournisseurs pour PME suisses, conçu et livré seul — en beta active.",
+          "Pipeline de classification Claude Haiku (harness CI FR/DE/IT/EN : 100/94/96/98 %) et conformité FADP (résidence CH/EU, chiffrement AES-GCM-256, DLP PII suisse).",
+          "Facturation Stripe à 4 niveaux et audit de sécurité antagoniste auto-mené (5 agents LLM, 30+ problèmes corrigés).",
+        ],
+        stack: "FastAPI · Next.js · TypeScript · Supabase · Claude API · Stripe · Cloud Run",
         description:
           "Fondateur & développeur. Client email IA multi-fournisseurs pour PME suisses, en beta active — pipeline de classification Claude Haiku (harness CI FR/DE/IT/EN : 100%/94%/96%/98%), conformité FADP (Cloud Run Zurich, AES-GCM-256, DLP PII suisse), facturation Stripe à 4 niveaux, audit de sécurité antagoniste auto-mené (5 agents LLM, 30+ problèmes corrigés).",
       },
       {
         date: "Avril 2025 – Juin 2025",
         company: "CPNE-TI – TPI",
+        role: "Travail personnel de fin de formation (TPI)",
         url: "https://github.com/sacha-riccardo-leone/GuessWho",
+        bullets: [
+          "Version numérisée du jeu « Qui est-ce ? » développée en C#/Raylib.",
+          "Algorithme de génération de personnages uniques par comparaison de profils ADN + système de rareté vestimentaire.",
+          "Note : 5,5/6.",
+        ],
+        stack: "C# · Raylib",
         description:
           "Développement en C#/Raylib d'une version numérisée du jeu \"Qui est-ce ?\", incluant un algorithme de génération de personnages uniques par comparaison de profils ADN et un système de rareté vestimentaire. Note : 5,5/6.",
       },
       {
         date: "2023 – présent",
         company: "SourShots",
+        role: "Création de contenus visuels",
         url: "https://www.instagram.com/thesourshots",
+        bullets: [
+          "Contribution créative pour un groupe local sur 3 ans : photos et démos visuelles pour posts et annonces.",
+        ],
+        stack: "Krita",
         description:
           "Contribution créative au sein d'un groupe local sur 3 ans — prise de photos, création de démos visuelles pour des posts et des annonces. Outils : Krita, Sony.",
       },
@@ -116,6 +155,8 @@ const translations = {
       contact: "Contact",
       about: "About",
       experience: "Experience",
+      mandates: "Professional Mandates",
+      entrepreneurship: "Projects & Entrepreneurship",
       projects: "Personal Projects",
       languages: "Languages",
       skills: "Technical Skills",
@@ -137,34 +178,71 @@ const translations = {
       {
         date: "May 2026",
         company: "Magneticlab - XEFI Neuchâtel",
+        role: "Developer — freelance mandate",
         url: "https://www.xefi.ch/fr/agence/xefi-neuchatel/",
+        bullets: [
+          "Odoo 19 Enterprise addon (pixieset_sync) + Chrome/Firefox extension for a Swiss photography studio.",
+          "Automated Pixieset → Odoo sync (contacts, projects, sessions), daily cron, masked secrets.",
+          "Delivered solo, 4 batches in 18 days, live on Odoo.sh — client satisfied.",
+        ],
+        stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
         description:
           "Freelance mandate — Development of an Odoo 19 Enterprise addon (pixieset_sync) + Chrome/Firefox extension for a Swiss photography studio (Olive & Beige) — automated Pixieset → Odoo sync (contacts, projects, sessions), daily cron, masked secrets. Delivered solo in 4 batches over 18 days, live on Odoo.sh, client satisfied. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
-        date: "2026",
-        company: "R2JC — Rencontre de Jeunes Créateurs",
+        date: "June – August 2026",
+        company: "R2JC",
+        role: "Web developer — client mandate",
         url: "https://r2jc.ch",
+        demo: "https://r2jc.vercel.app",
+        bullets: [
+          "Full redesign (design + engineering) of a fashion collective's bilingual FR/EN showcase site, taken to production in 6 weeks on an already-live site edited in parallel by the client.",
+          "Audit of the existing site and a bespoke hybrid architecture working around free-Elementor limits: pixel-perfect design while keeping every text client-editable.",
+          "Automated the team's workflow: auto-generated annual editions, a logo manager, secure forms (REST, HMAC, anti-spam) and a PHP plugin that detects broken translations.",
+          "Performance optimization with no visual compromise: image weight cut 3–6×, server response time down by two-thirds (≈ 320 → 110 ms), zero regressions.",
+          "Ongoing coordination with the team (clarifying needs, follow-up, adjustments) and full documentation: the collective now maintains the site without a developer.",
+        ],
+        stack: "WordPress · PHP · REST API · JavaScript · modern CSS",
         description:
           "First WordPress project — bilingual (FR/EN) showcase site for a Swiss fashion collective, taken to production in 6 weeks on an already-live site edited in parallel by the client (free WordPress/Elementor, shared hosting, no paid plugins). Custom systems: a hybrid architecture with pixel-perfect design yet fully client-editable, auto-generated annual editions, secure forms (REST route, HMAC token, anti-spam) and a dedicated PHP plugin that detects broken translations. Rigorous method — every change reversible, proven by before/after fingerprint and put through adversarial review. Results: image weight cut 3–6×, server response time down by two-thirds (≈ 320 → 110 ms), zero visual regressions, and documentation letting the client maintain the site without a developer. Stack: WordPress, PHP, REST API, dependency-free JavaScript, modern CSS.",
       },
       {
         date: "2025 — in progress",
         company: "Ordine AI",
+        role: "Founder & developer",
+        url: "https://www.ordine-ai.ch/",
+        bullets: [
+          "AI multi-provider email client for Swiss SMEs, designed and shipped solo — in active beta.",
+          "Claude Haiku classification pipeline (CI harness FR/DE/IT/EN: 100/94/96/98%) and FADP compliance (Swiss/EU residency, AES-GCM-256 encryption, Swiss PII DLP).",
+          "4-tier Stripe billing and a self-run adversarial security audit (5 LLM agents, 30+ findings resolved).",
+        ],
+        stack: "FastAPI · Next.js · TypeScript · Supabase · Claude API · Stripe · Cloud Run",
         description:
           "Founder & developer. AI-powered multi-provider email client for Swiss SMEs, in active beta — Claude Haiku classification pipeline (CI eval harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-compliant infra (Cloud Run Zurich, AES-GCM-256, Swiss PII DLP), 4-tier Stripe billing, self-run adversarial security audit (5 LLM agents, 30+ findings resolved).",
       },
       {
         date: "April 2025 – June 2025",
         company: "CPNE-TI – Final Project",
+        role: "Final training project (TPI)",
         url: "https://github.com/sacha-riccardo-leone/GuessWho",
+        bullets: [
+          "Digitized version of \"Guess Who?\" built in C#/Raylib.",
+          "Unique character generation algorithm via DNA-profile comparison + a clothing rarity system.",
+          "Grade: 5.5/6.",
+        ],
+        stack: "C# · Raylib",
         description:
           "Developed a digitised version of \"Guess Who?\" in C#/Raylib, featuring a unique character generation algorithm using DNA profile comparison and a clothing rarity system. Grade: 5.5/6.",
       },
       {
         date: "2023 – present",
         company: "SourShots",
+        role: "Visual content creation",
         url: "https://www.instagram.com/thesourshots",
+        bullets: [
+          "Creative contribution to a local band over 3 years: photos and visual demos for posts and announcements.",
+        ],
+        stack: "Krita",
         description:
           "Creative contribution to a local band over 3 years — taking photos, creating visual demos for posts and announcements. Tools: Krita, Sony.",
       },
@@ -206,6 +284,8 @@ const translations = {
       contact: "Kontakt",
       about: "Über mich",
       experience: "Erfahrung",
+      mandates: "Berufliche Mandate",
+      entrepreneurship: "Projekte & Unternehmertum",
       projects: "Persönliche Projekte",
       languages: "Sprachen",
       skills: "Technische Kompetenzen",
@@ -227,34 +307,71 @@ const translations = {
       {
         date: "Mai 2026",
         company: "Magneticlab - XEFI Neuchâtel",
+        role: "Entwickler — Freelance-Mandat",
         url: "https://www.xefi.ch/fr/agence/xefi-neuchatel/",
+        bullets: [
+          "Odoo-19-Enterprise-Addon (pixieset_sync) + Chrome/Firefox-Erweiterung für ein Schweizer Fotostudio.",
+          "Automatische Pixieset → Odoo-Synchronisation (Kontakte, Projekte, Sessions), Tages-Cron, maskierte Secrets.",
+          "Alleine realisiert, 4 Batches in 18 Tagen geliefert, live auf Odoo.sh — Kundin zufrieden.",
+        ],
+        stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
         description:
           "Freelance-Mandat — Entwicklung eines Odoo-19-Enterprise-Addons (pixieset_sync) + Chrome/Firefox-Erweiterung für ein Schweizer Fotostudio (Olive & Beige) — automatische Pixieset → Odoo-Synchronisation (Kontakte, Projekte, Sessions), Tages-Cron, Secret-Maskierung. Alleine realisiert, 4 Batches in 18 Tagen geliefert, live auf Odoo.sh, Kundin zufrieden. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
-        date: "2026",
-        company: "R2JC — Rencontre de Jeunes Créateurs",
+        date: "Juni – August 2026",
+        company: "R2JC",
+        role: "Webentwickler — Kundenmandat",
         url: "https://r2jc.ch",
+        demo: "https://r2jc.vercel.app",
+        bullets: [
+          "Komplettes Redesign (Design + Technik) der zweisprachigen FR/EN-Website eines Mode-Kollektivs, in 6 Wochen live gebracht — auf einer bereits öffentlichen, parallel vom Kunden bearbeiteten Website.",
+          "Analyse des Bestands und massgeschneiderte hybride Architektur trotz der Grenzen des kostenlosen Elementor: pixelgenaues Design, jeder Text bleibt kundenseitig editierbar.",
+          "Automatisierung der Teamarbeit: automatisch generierte Jahres-Editionen, Logo-Verwaltung, gesicherte Formulare (REST, HMAC, Anti-Spam) und ein PHP-Plugin, das defekte Übersetzungen erkennt.",
+          "Performance-Optimierung ohne visuelle Abstriche: Bildgewicht um das 3- bis 6-Fache reduziert, Server-Antwortzeit um zwei Drittel gesenkt (≈ 320 → 110 ms), null Regressionen.",
+          "Laufende Abstimmung mit dem Team (Bedarfsklärung, Nachverfolgung, Anpassungen) und vollständige Dokumentation: Das Kollektiv pflegt die Website nun ohne Entwickler.",
+        ],
+        stack: "WordPress · PHP · REST-API · JavaScript · modernes CSS",
         description:
           "Erstes WordPress-Projekt — zweisprachige (FR/EN) Präsentationswebsite für ein Schweizer Mode-Kollektiv, in 6 Wochen live gebracht, auf einer bereits öffentlichen und parallel vom Kunden bearbeiteten Website (kostenloses WordPress/Elementor, Shared Hosting, ohne kostenpflichtige Erweiterungen). Massgeschneiderte Systeme: eine hybride Architektur mit pixelgenauem Design, dennoch voll kundenseitig editierbar, automatisch generierte Jahres-Editionen, gesicherte Formulare (REST-Route, HMAC-Token, Anti-Spam) und ein eigenes PHP-Plugin, das defekte Übersetzungen erkennt. Rigorose Methode — jede Änderung reversibel, per Vorher/Nachher-Prüfsumme belegt und einer kontradiktorischen Review unterzogen. Ergebnisse: Bildgewicht um das 3- bis 6-Fache reduziert, Server-Antwortzeit um zwei Drittel gesenkt (≈ 320 → 110 ms), null visuelle Regressionen, und eine Dokumentation, mit der der Kunde die Website ohne Entwickler pflegt. Stack: WordPress, PHP, REST-API, abhängigkeitsfreies JavaScript, modernes CSS.",
       },
       {
         date: "2025 — laufend",
         company: "Ordine AI",
+        role: "Gründer & Entwickler",
+        url: "https://www.ordine-ai.ch/",
+        bullets: [
+          "KI-Multi-Provider-E-Mail-Client für Schweizer KMU, allein konzipiert und geliefert — in aktiver Beta.",
+          "Claude-Haiku-Klassifizierungspipeline (CI-Harness FR/DE/IT/EN: 100/94/96/98 %) und FADP-Konformität (CH/EU-Datenwohnsitz, AES-GCM-256-Verschlüsselung, Schweizer PII-DLP).",
+          "Stripe-Abrechnung mit 4 Stufen und ein selbst durchgeführtes adversariales Sicherheitsaudit (5 LLM-Agenten, 30+ behobene Findings).",
+        ],
+        stack: "FastAPI · Next.js · TypeScript · Supabase · Claude API · Stripe · Cloud Run",
         description:
           "Gründer & Entwickler. KI-gestützter Multi-Provider-E-Mail-Client für Schweizer KMU, in aktiver Beta — Claude-Klassifizierungspipeline (CI-Harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-konforme Infrastruktur (Cloud Run Zürich, AES-GCM-256, PII-DLP), Stripe-Abrechnung mit 4 Stufen, selbst durchgeführtes adversariales Sicherheitsaudit (5 LLM-Agenten, 30+ behobene Findings).",
       },
       {
         date: "April 2025 – Juni 2025",
         company: "CPNE-TI – IPA",
+        role: "Individuelle praktische Arbeit (IPA)",
         url: "https://github.com/sacha-riccardo-leone/GuessWho",
+        bullets: [
+          "Digitalisierte Version von \"Wer bin ich?\" in C#/Raylib entwickelt.",
+          "Algorithmus zur einzigartigen Charaktergenerierung per DNS-Profilvergleich + Seltenheitssystem für Kleidung.",
+          "Note: 5,5/6.",
+        ],
+        stack: "C# · Raylib",
         description:
           "Entwicklung einer digitalisierten Version von \"Wer bin ich?\" in C#/Raylib — Algorithmus zur Charaktergenerierung per DNS-Profilvergleich, Seltenheitssystem für Kleidung. Note: 5,5/6.",
       },
       {
         date: "2023 – heute",
         company: "SourShots",
+        role: "Visuelle Content-Erstellung",
         url: "https://www.instagram.com/thesourshots",
+        bullets: [
+          "Kreativer Beitrag für eine lokale Band über 3 Jahre: Fotos und visuelle Demos für Posts und Ankündigungen.",
+        ],
+        stack: "Krita",
         description:
           "Kreativer Beitrag für eine lokale Band über 3 Jahre — Fotos aufnehmen, visuelle Demos für Posts und Ankündigungen erstellen. Tools: Krita, Sony.",
       },
@@ -296,6 +413,8 @@ const translations = {
       contact: "Contatto",
       about: "Chi sono",
       experience: "Esperienza",
+      mandates: "Mandati professionali",
+      entrepreneurship: "Progetti & imprenditoria",
       projects: "Progetti personali",
       languages: "Lingue",
       skills: "Competenze tecniche",
@@ -317,34 +436,71 @@ const translations = {
       {
         date: "Maggio 2026",
         company: "Magneticlab - XEFI Neuchâtel",
+        role: "Sviluppatore — mandato freelance",
         url: "https://www.xefi.ch/fr/agence/xefi-neuchatel/",
+        bullets: [
+          "Addon Odoo 19 Enterprise (pixieset_sync) + estensione Chrome/Firefox per uno studio fotografico svizzero.",
+          "Sincronizzazione automatica Pixieset → Odoo (contatti, progetti, sessioni), cron giornaliero, segreti mascherati.",
+          "Realizzato in autonomia, 4 batch consegnati in 18 giorni, live su Odoo.sh — cliente soddisfatta.",
+        ],
+        stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
         description:
           "Mandato freelance — Sviluppo di un addon Odoo 19 Enterprise (pixieset_sync) + estensione Chrome/Firefox per uno studio fotografico svizzero (Olive & Beige) — sync automatico Pixieset → Odoo (contatti, progetti, sessioni), cron giornaliero, segreti mascherati. Realizzato in autonomia, 4 batch consegnati in 18 giorni, live su Odoo.sh, cliente soddisfatta. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
-        date: "2026",
-        company: "R2JC — Rencontre de Jeunes Créateurs",
+        date: "Giugno – Agosto 2026",
+        company: "R2JC",
+        role: "Sviluppatore web — mandato cliente",
         url: "https://r2jc.ch",
+        demo: "https://r2jc.vercel.app",
+        bullets: [
+          "Rifacimento completo (design + tecnica) del sito vetrina bilingue FR/EN di un collettivo di moda, portato in produzione in 6 settimane su un sito già pubblico e modificato in parallelo dal cliente.",
+          "Analisi dell'esistente e architettura ibrida su misura aggirando i limiti di Elementor gratuito: resa conforme al mockup al pixel, ogni testo resta modificabile dal cliente.",
+          "Automazione del lavoro del team: edizioni annuali autogenerate, gestore dei loghi, moduli sicuri (REST, HMAC, anti-spam) ed estensione PHP che rileva le traduzioni interrotte.",
+          "Ottimizzazione delle performance senza compromessi visivi: peso delle immagini ridotto di 3–6 volte, tempo di risposta del server ridotto di due terzi (≈ 320 → 110 ms), zero regressioni.",
+          "Coordinamento continuo con il team (chiarimento dei bisogni, follow-up, aggiustamenti) e documentazione completa: il collettivo ora mantiene il sito senza sviluppatore.",
+        ],
+        stack: "WordPress · PHP · API REST · JavaScript · CSS moderno",
         description:
           "Primo progetto WordPress — sito vetrina bilingue (FR/EN) di un collettivo di moda svizzero, portato in produzione in 6 settimane su un sito già pubblico e modificato in parallelo dal cliente (WordPress/Elementor gratuito, hosting condiviso, senza estensioni a pagamento). Sistemi su misura: un'architettura ibrida con resa conforme al mockup al pixel ma interamente modificabile dal cliente, edizioni annuali autogenerate, moduli sicuri (route REST, token HMAC, anti-spam) e un'estensione PHP dedicata che rileva le traduzioni interrotte. Metodo rigoroso — ogni modifica reversibile, provata da impronta prima/dopo e sottoposta a revisione contraddittoria. Risultati: peso delle immagini ridotto di 3–6 volte, tempo di risposta del server ridotto di due terzi (≈ 320 → 110 ms), zero regressioni visive, e una documentazione che permette al cliente di mantenere il sito senza sviluppatore. Stack: WordPress, PHP, API REST, JavaScript senza dipendenze, CSS moderno.",
       },
       {
         date: "2025 — in corso",
         company: "Ordine AI",
+        role: "Fondatore & sviluppatore",
+        url: "https://www.ordine-ai.ch/",
+        bullets: [
+          "Client email IA multi-provider per PMI svizzere, progettato e consegnato in autonomia — in beta attiva.",
+          "Pipeline di classificazione Claude Haiku (CI harness FR/DE/IT/EN: 100/94/96/98%) e conformità FADP (residenza CH/EU, cifratura AES-GCM-256, DLP PII svizzero).",
+          "Fatturazione Stripe a 4 livelli e audit di sicurezza avversariale auto-condotto (5 agenti LLM, 30+ problemi corretti).",
+        ],
+        stack: "FastAPI · Next.js · TypeScript · Supabase · Claude API · Stripe · Cloud Run",
         description:
           "Fondatore & sviluppatore. Client email IA multi-provider per PMI svizzere, in beta attiva — pipeline di classificazione Claude Haiku (CI harness FR/DE/IT/EN: 100%/94%/96%/98%), infrastruttura conforme FADP (Cloud Run Zurigo, AES-GCM-256, DLP PII svizzero), fatturazione Stripe a 4 livelli, audit di sicurezza avversariale auto-condotto (5 agenti LLM, 30+ problemi corretti).",
       },
       {
         date: "Aprile 2025 – Giugno 2025",
         company: "CPNE-TI – LPI",
+        role: "Lavoro pratico individuale (LPI)",
         url: "https://github.com/sacha-riccardo-leone/GuessWho",
+        bullets: [
+          "Versione digitale del gioco «Indovina chi?» sviluppata in C#/Raylib.",
+          "Algoritmo di generazione di personaggi unici tramite confronto di profili DNA + sistema di rarità dell'abbigliamento.",
+          "Voto: 5,5/6.",
+        ],
+        stack: "C# · Raylib",
         description:
           "Sviluppo in C#/Raylib di una versione digitale del gioco \"Indovina chi?\" — algoritmo di generazione personaggi tramite confronto profili DNA, sistema di rarità abbigliamento. Voto: 5,5/6.",
       },
       {
         date: "2023 – presente",
         company: "SourShots",
+        role: "Creazione di contenuti visivi",
         url: "https://www.instagram.com/thesourshots",
+        bullets: [
+          "Contributo creativo per un gruppo locale su 3 anni: foto e demo visive per post e annunci.",
+        ],
+        stack: "Krita",
         description:
           "Contributo creativo per un gruppo locale su 3 anni — foto, demo visive per post e annunci. Strumenti: Krita, Sony.",
       },
@@ -756,6 +912,27 @@ function Collapsible({ open, children }: { open: boolean; children: React.ReactN
 }
 
 /* ────────────────────────────────────────────────────── */
+/* Bullets — experience body (bullet list + stack line)   */
+/* ────────────────────────────────────────────────────── */
+function Bullets({ items, stack }: { items: string[]; stack?: string }) {
+  return (
+    <div className="px-5 pb-4">
+      <ul className="space-y-1.5">
+        {items.map((b, i) => (
+          <li key={i} className="flex gap-2.5 text-sm text-white/50 leading-relaxed">
+            <span className="text-white/20 shrink-0 select-none mt-[3px]">—</span>
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+      {stack && (
+        <p className="mt-3 text-[10px] font-mono text-white/35 tracking-wide">{stack}</p>
+      )}
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────────────── */
 /* Skill dots (5-dot level indicator)                     */
 /* ────────────────────────────────────────────────────── */
 function SkillDots({
@@ -1130,7 +1307,7 @@ export default function MainComponentNameCv() {
             <div className="space-y-2">
               {/* R2JC — latest project, delivered, expandable — pinned first */}
               {(() => {
-                const r2jcExp = t.experience.find(e => e.company === "R2JC — Rencontre de Jeunes Créateurs");
+                const r2jcExp = t.experience.find(e => e.company === "R2JC");
                 if (!r2jcExp) return null;
                 const isOpen = openCards.has("r2jc");
                 return (
@@ -1151,9 +1328,10 @@ export default function MainComponentNameCv() {
                                 onClick={e => e.stopPropagation()}
                                 className="text-base font-medium hover:text-white transition-colors flex items-center gap-1.5"
                               >
-                                R2JC — Rencontre de Jeunes Créateurs
+                                {r2jcExp.company}
                                 <ExternalLink className="h-3 w-3 opacity-50" />
                               </a>
+                              <p className="text-[12px] text-white/55 mt-0.5">{r2jcExp.role}</p>
                               <p className="text-[11px] font-mono text-white/30 mt-0.5">{r2jcExp.date}</p>
                             </div>
                             <div className="flex items-center gap-2 shrink-0">
@@ -1178,7 +1356,7 @@ export default function MainComponentNameCv() {
                         </div>
                       </div>
                       <Collapsible open={isOpen}>
-                        <p className="px-5 pb-4 text-sm text-white/45 leading-relaxed">{r2jcExp.description}</p>
+                        <Bullets items={r2jcExp.bullets} stack={r2jcExp.stack} />
                       </Collapsible>
                     </div>
                   </ScrollReveal>
@@ -1211,6 +1389,7 @@ export default function MainComponentNameCv() {
                                 {xefiExp.company}
                                 <ExternalLink className="h-3 w-3 opacity-50" />
                               </a>
+                              <p className="text-[12px] text-white/55 mt-0.5">{xefiExp.role}</p>
                               <p className="text-[11px] font-mono text-white/30 mt-0.5">{xefiExp.date}</p>
                             </div>
                             <div className="flex items-center gap-2 shrink-0">
@@ -1224,7 +1403,7 @@ export default function MainComponentNameCv() {
                         </div>
                       </div>
                       <Collapsible open={isOpen}>
-                        <p className="px-5 pb-4 text-sm text-white/45 leading-relaxed">{xefiExp.description}</p>
+                        <Bullets items={xefiExp.bullets} stack={xefiExp.stack} />
                       </Collapsible>
                     </div>
                   </ScrollReveal>
@@ -1258,6 +1437,7 @@ export default function MainComponentNameCv() {
                               Ordine AI
                               <ExternalLink className="h-3 w-3 opacity-50" />
                             </a>
+                            <p className="text-[12px] text-white/55 mt-0.5">{ordineExp.role}</p>
                             <p className="text-[11px] font-mono text-white/30 mt-0.5">{ordineExp.date}</p>
                           </div>
                           <div className="flex items-center gap-2 shrink-0">
@@ -1270,14 +1450,14 @@ export default function MainComponentNameCv() {
                         </div>
                       </div>
                       <Collapsible open={isOpen}>
-                        <p className="px-5 pb-4 text-sm text-white/45 leading-relaxed">{ordineExp.description}</p>
+                        <Bullets items={ordineExp.bullets} stack={ordineExp.stack} />
                       </Collapsible>
                     </div>
                   </ScrollReveal>
                 );
               })()}
 
-              {t.experience.filter(exp => exp.company !== "Ordine AI" && exp.company !== "R2JC — Rencontre de Jeunes Créateurs" && exp.company !== "Magneticlab - XEFI Neuchâtel").map((exp, i) => {
+              {t.experience.filter(exp => exp.company !== "Ordine AI" && exp.company !== "R2JC" && exp.company !== "Magneticlab - XEFI Neuchâtel").map((exp, i) => {
                 const isOpen = openExp.has(i);
                 return (
                   <ScrollReveal key={i} delay={i * 60}>
@@ -1319,6 +1499,7 @@ export default function MainComponentNameCv() {
                                 <p className="text-base font-medium">{exp.company}</p>
                               )}
                             </div>
+                            <p className="text-[12px] text-white/55 mt-0.5">{exp.role}</p>
                             <p className="text-[11px] font-mono text-white/30 mt-0.5">{exp.date}</p>
                           </div>
                         </div>
@@ -1330,15 +1511,13 @@ export default function MainComponentNameCv() {
                       {/* Body — collapses */}
                       <div
                         style={{
-                          maxHeight: isOpen ? "200px" : "0px",
+                          maxHeight: isOpen ? "340px" : "0px",
                           opacity: isOpen ? 1 : 0,
                           transition: "max-height 0.3s ease, opacity 0.25s ease",
                           overflow: "hidden",
                         }}
                       >
-                        <p className="px-5 pb-4 text-sm text-white/45 leading-relaxed">
-                          {exp.description}
-                        </p>
+                        <Bullets items={exp.bullets} stack={exp.stack} />
                       </div>
                     </div>
                   </ScrollReveal>
