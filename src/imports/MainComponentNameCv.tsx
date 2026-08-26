@@ -59,8 +59,6 @@ const translations = {
           "Réalisé seul, 4 batches livrés en 18 jours, déployé sur Odoo.sh — cliente satisfaite.",
         ],
         stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
-        description:
-          "Mandat freelance — Développement d'un addon Odoo 19 Enterprise (pixieset_sync) + extension Chrome/Firefox pour un studio photo suisse (Olive & Beige) — sync automatique Pixieset → Odoo : contacts, projets, sessions, cron quotidien, secrets masqués. Réalisé seul, 4 batches livrés en 18 jours, déployé sur Odoo.sh, cliente satisfaite. Stack : Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
         date: "Juin – Août 2026",
@@ -76,8 +74,6 @@ const translations = {
           "Coordination continue avec l'équipe (clarification des besoins, suivi, ajustements) et documentation complète : le collectif maintient désormais le site sans développeur.",
         ],
         stack: "WordPress · PHP · API REST · JavaScript · CSS moderne",
-        description:
-          "Premier projet WordPress — site vitrine bilingue (FR/EN) d'un collectif de mode suisse, mis en production en 6 semaines sur un site déjà public et édité en parallèle par le client (WordPress/Elementor gratuit, hébergement mutualisé, sans extension payante). Systèmes sur mesure : architecture hybride au rendu conforme à la maquette au pixel mais entièrement éditable, éditions annuelles auto-générées, formulaires sécurisés (route REST, jeton HMAC, anti-spam) et une extension PHP dédiée détectant les traductions rompues. Méthode rigoureuse — chaque modification réversible, prouvée par empreinte avant/après et soumise à revue contradictoire. Résultats : poids des images divisé par 3 à 6, temps de réponse serveur réduit des deux tiers (≈ 320 → 110 ms), zéro régression visuelle, et une documentation permettant au client de maintenir le site sans développeur. Stack : WordPress, PHP, API REST, JavaScript sans dépendance, CSS moderne.",
       },
       {
         date: "2025 — en cours",
@@ -90,8 +86,6 @@ const translations = {
           "Facturation Stripe à 4 niveaux et audit de sécurité antagoniste auto-mené (5 agents LLM, 30+ problèmes corrigés).",
         ],
         stack: "FastAPI · Next.js · TypeScript · Supabase · Claude API · Stripe · Cloud Run",
-        description:
-          "Fondateur & développeur. Client email IA multi-fournisseurs pour PME suisses, en beta active — pipeline de classification Claude Haiku (harness CI FR/DE/IT/EN : 100%/94%/96%/98%), conformité FADP (Cloud Run Zurich, AES-GCM-256, DLP PII suisse), facturation Stripe à 4 niveaux, audit de sécurité antagoniste auto-mené (5 agents LLM, 30+ problèmes corrigés).",
       },
       {
         date: "Avril 2025 – Juin 2025",
@@ -104,8 +98,6 @@ const translations = {
           "Note : 5,5/6.",
         ],
         stack: "C# · Raylib",
-        description:
-          "Développement en C#/Raylib d'une version numérisée du jeu \"Qui est-ce ?\", incluant un algorithme de génération de personnages uniques par comparaison de profils ADN et un système de rareté vestimentaire. Note : 5,5/6.",
       },
       {
         date: "2023 – présent",
@@ -116,8 +108,6 @@ const translations = {
           "Contribution créative pour un groupe local sur 3 ans : photos et démos visuelles pour posts et annonces.",
         ],
         stack: "Krita",
-        description:
-          "Contribution créative au sein d'un groupe local sur 3 ans — prise de photos, création de démos visuelles pour des posts et des annonces. Outils : Krita, Sony.",
       },
     ],
     languages: [
@@ -192,8 +182,6 @@ const translations = {
           "Delivered solo, 4 batches in 18 days, live on Odoo.sh — client satisfied.",
         ],
         stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
-        description:
-          "Freelance mandate — Development of an Odoo 19 Enterprise addon (pixieset_sync) + Chrome/Firefox extension for a Swiss photography studio (Olive & Beige) — automated Pixieset → Odoo sync (contacts, projects, sessions), daily cron, masked secrets. Delivered solo in 4 batches over 18 days, live on Odoo.sh, client satisfied. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
         date: "June – August 2026",
@@ -209,8 +197,6 @@ const translations = {
           "Ongoing coordination with the team (clarifying needs, follow-up, adjustments) and full documentation: the collective now maintains the site without a developer.",
         ],
         stack: "WordPress · PHP · REST API · JavaScript · modern CSS",
-        description:
-          "First WordPress project — bilingual (FR/EN) showcase site for a Swiss fashion collective, taken to production in 6 weeks on an already-live site edited in parallel by the client (free WordPress/Elementor, shared hosting, no paid plugins). Custom systems: a hybrid architecture with pixel-perfect design yet fully client-editable, auto-generated annual editions, secure forms (REST route, HMAC token, anti-spam) and a dedicated PHP plugin that detects broken translations. Rigorous method — every change reversible, proven by before/after fingerprint and put through adversarial review. Results: image weight cut 3–6×, server response time down by two-thirds (≈ 320 → 110 ms), zero visual regressions, and documentation letting the client maintain the site without a developer. Stack: WordPress, PHP, REST API, dependency-free JavaScript, modern CSS.",
       },
       {
         date: "2025 — in progress",
@@ -223,8 +209,6 @@ const translations = {
           "4-tier Stripe billing and a self-run adversarial security audit (5 LLM agents, 30+ findings resolved).",
         ],
         stack: "FastAPI · Next.js · TypeScript · Supabase · Claude API · Stripe · Cloud Run",
-        description:
-          "Founder & developer. AI-powered multi-provider email client for Swiss SMEs, in active beta — Claude Haiku classification pipeline (CI eval harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-compliant infra (Cloud Run Zurich, AES-GCM-256, Swiss PII DLP), 4-tier Stripe billing, self-run adversarial security audit (5 LLM agents, 30+ findings resolved).",
       },
       {
         date: "April 2025 – June 2025",
@@ -237,8 +221,6 @@ const translations = {
           "Grade: 5.5/6.",
         ],
         stack: "C# · Raylib",
-        description:
-          "Developed a digitised version of \"Guess Who?\" in C#/Raylib, featuring a unique character generation algorithm using DNA profile comparison and a clothing rarity system. Grade: 5.5/6.",
       },
       {
         date: "2023 – present",
@@ -249,8 +231,6 @@ const translations = {
           "Creative contribution to a local band over 3 years: photos and visual demos for posts and announcements.",
         ],
         stack: "Krita",
-        description:
-          "Creative contribution to a local band over 3 years — taking photos, creating visual demos for posts and announcements. Tools: Krita, Sony.",
       },
     ],
     languages: [
@@ -325,8 +305,6 @@ const translations = {
           "Alleine realisiert, 4 Batches in 18 Tagen geliefert, live auf Odoo.sh — Kundin zufrieden.",
         ],
         stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
-        description:
-          "Freelance-Mandat — Entwicklung eines Odoo-19-Enterprise-Addons (pixieset_sync) + Chrome/Firefox-Erweiterung für ein Schweizer Fotostudio (Olive & Beige) — automatische Pixieset → Odoo-Synchronisation (Kontakte, Projekte, Sessions), Tages-Cron, Secret-Maskierung. Alleine realisiert, 4 Batches in 18 Tagen geliefert, live auf Odoo.sh, Kundin zufrieden. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
         date: "Juni – August 2026",
@@ -342,8 +320,6 @@ const translations = {
           "Laufende Abstimmung mit dem Team (Bedarfsklärung, Nachverfolgung, Anpassungen) und vollständige Dokumentation: Das Kollektiv pflegt die Website nun ohne Entwickler.",
         ],
         stack: "WordPress · PHP · REST-API · JavaScript · modernes CSS",
-        description:
-          "Erstes WordPress-Projekt — zweisprachige (FR/EN) Präsentationswebsite für ein Schweizer Mode-Kollektiv, in 6 Wochen live gebracht, auf einer bereits öffentlichen und parallel vom Kunden bearbeiteten Website (kostenloses WordPress/Elementor, Shared Hosting, ohne kostenpflichtige Erweiterungen). Massgeschneiderte Systeme: eine hybride Architektur mit pixelgenauem Design, dennoch voll kundenseitig editierbar, automatisch generierte Jahres-Editionen, gesicherte Formulare (REST-Route, HMAC-Token, Anti-Spam) und ein eigenes PHP-Plugin, das defekte Übersetzungen erkennt. Rigorose Methode — jede Änderung reversibel, per Vorher/Nachher-Prüfsumme belegt und einer kontradiktorischen Review unterzogen. Ergebnisse: Bildgewicht um das 3- bis 6-Fache reduziert, Server-Antwortzeit um zwei Drittel gesenkt (≈ 320 → 110 ms), null visuelle Regressionen, und eine Dokumentation, mit der der Kunde die Website ohne Entwickler pflegt. Stack: WordPress, PHP, REST-API, abhängigkeitsfreies JavaScript, modernes CSS.",
       },
       {
         date: "2025 — laufend",
@@ -356,8 +332,6 @@ const translations = {
           "Stripe-Abrechnung mit 4 Stufen und ein selbst durchgeführtes adversariales Sicherheitsaudit (5 LLM-Agenten, 30+ behobene Findings).",
         ],
         stack: "FastAPI · Next.js · TypeScript · Supabase · Claude API · Stripe · Cloud Run",
-        description:
-          "Gründer & Entwickler. KI-gestützter Multi-Provider-E-Mail-Client für Schweizer KMU, in aktiver Beta — Claude-Klassifizierungspipeline (CI-Harness FR/DE/IT/EN: 100%/94%/96%/98%), FADP-konforme Infrastruktur (Cloud Run Zürich, AES-GCM-256, PII-DLP), Stripe-Abrechnung mit 4 Stufen, selbst durchgeführtes adversariales Sicherheitsaudit (5 LLM-Agenten, 30+ behobene Findings).",
       },
       {
         date: "April 2025 – Juni 2025",
@@ -370,8 +344,6 @@ const translations = {
           "Note: 5,5/6.",
         ],
         stack: "C# · Raylib",
-        description:
-          "Entwicklung einer digitalisierten Version von \"Wer bin ich?\" in C#/Raylib — Algorithmus zur Charaktergenerierung per DNS-Profilvergleich, Seltenheitssystem für Kleidung. Note: 5,5/6.",
       },
       {
         date: "2023 – heute",
@@ -382,8 +354,6 @@ const translations = {
           "Kreativer Beitrag für eine lokale Band über 3 Jahre: Fotos und visuelle Demos für Posts und Ankündigungen.",
         ],
         stack: "Krita",
-        description:
-          "Kreativer Beitrag für eine lokale Band über 3 Jahre — Fotos aufnehmen, visuelle Demos für Posts und Ankündigungen erstellen. Tools: Krita, Sony.",
       },
     ],
     languages: [
@@ -458,8 +428,6 @@ const translations = {
           "Realizzato in autonomia, 4 batch consegnati in 18 giorni, live su Odoo.sh — cliente soddisfatta.",
         ],
         stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
-        description:
-          "Mandato freelance — Sviluppo di un addon Odoo 19 Enterprise (pixieset_sync) + estensione Chrome/Firefox per uno studio fotografico svizzero (Olive & Beige) — sync automatico Pixieset → Odoo (contatti, progetti, sessioni), cron giornaliero, segreti mascherati. Realizzato in autonomia, 4 batch consegnati in 18 giorni, live su Odoo.sh, cliente soddisfatta. Stack: Python 3.12, pydantic v2, pytest, Manifest V3.",
       },
       {
         date: "Giugno – Agosto 2026",
@@ -475,8 +443,6 @@ const translations = {
           "Coordinamento continuo con il team (chiarimento dei bisogni, follow-up, aggiustamenti) e documentazione completa: il collettivo ora mantiene il sito senza sviluppatore.",
         ],
         stack: "WordPress · PHP · API REST · JavaScript · CSS moderno",
-        description:
-          "Primo progetto WordPress — sito vetrina bilingue (FR/EN) di un collettivo di moda svizzero, portato in produzione in 6 settimane su un sito già pubblico e modificato in parallelo dal cliente (WordPress/Elementor gratuito, hosting condiviso, senza estensioni a pagamento). Sistemi su misura: un'architettura ibrida con resa conforme al mockup al pixel ma interamente modificabile dal cliente, edizioni annuali autogenerate, moduli sicuri (route REST, token HMAC, anti-spam) e un'estensione PHP dedicata che rileva le traduzioni interrotte. Metodo rigoroso — ogni modifica reversibile, provata da impronta prima/dopo e sottoposta a revisione contraddittoria. Risultati: peso delle immagini ridotto di 3–6 volte, tempo di risposta del server ridotto di due terzi (≈ 320 → 110 ms), zero regressioni visive, e una documentazione che permette al cliente di mantenere il sito senza sviluppatore. Stack: WordPress, PHP, API REST, JavaScript senza dipendenze, CSS moderno.",
       },
       {
         date: "2025 — in corso",
@@ -489,8 +455,6 @@ const translations = {
           "Fatturazione Stripe a 4 livelli e audit di sicurezza avversariale auto-condotto (5 agenti LLM, 30+ problemi corretti).",
         ],
         stack: "FastAPI · Next.js · TypeScript · Supabase · Claude API · Stripe · Cloud Run",
-        description:
-          "Fondatore & sviluppatore. Client email IA multi-provider per PMI svizzere, in beta attiva — pipeline di classificazione Claude Haiku (CI harness FR/DE/IT/EN: 100%/94%/96%/98%), infrastruttura conforme FADP (Cloud Run Zurigo, AES-GCM-256, DLP PII svizzero), fatturazione Stripe a 4 livelli, audit di sicurezza avversariale auto-condotto (5 agenti LLM, 30+ problemi corretti).",
       },
       {
         date: "Aprile 2025 – Giugno 2025",
@@ -503,8 +467,6 @@ const translations = {
           "Voto: 5,5/6.",
         ],
         stack: "C# · Raylib",
-        description:
-          "Sviluppo in C#/Raylib di una versione digitale del gioco \"Indovina chi?\" — algoritmo di generazione personaggi tramite confronto profili DNA, sistema di rarità abbigliamento. Voto: 5,5/6.",
       },
       {
         date: "2023 – presente",
@@ -515,8 +477,6 @@ const translations = {
           "Contributo creativo per un gruppo locale su 3 anni: foto e demo visive per post e annunci.",
         ],
         stack: "Krita",
-        description:
-          "Contributo creativo per un gruppo locale su 3 anni — foto, demo visive per post e annunci. Strumenti: Krita, Sony.",
       },
     ],
     languages: [
@@ -968,64 +928,6 @@ function PrintExpEntry({ exp }: { exp: { company: string; role?: string; date: s
 }
 
 /* ────────────────────────────────────────────────────── */
-/* Skill dots (5-dot level indicator)                     */
-/* ────────────────────────────────────────────────────── */
-function SkillDots({
-  filled,
-  color,
-  emptyColor = "rgba(255,255,255,0.1)",
-  size = 7,
-  gap = 5,
-}: {
-  filled: number;
-  color: string;
-  emptyColor?: string;
-  size?: number;
-  gap?: number;
-}) {
-  return (
-    <div className="flex items-center" style={{ gap: `${gap}px` }}>
-      {Array.from({ length: 5 }).map((_, i) => {
-        const diff = filled - i;
-        const isHalf = diff > 0 && diff < 1;
-        const isFull = diff >= 1;
-
-        /* Use SVG for all dots — pure vector, survives PDF export perfectly.
-           No border-radius clipping, no gradient flattening artifacts. */
-        if (isHalf) {
-          return (
-            <svg
-              key={i}
-              width={size} height={size}
-              viewBox="0 0 10 10"
-              shapeRendering="geometricPrecision"
-              style={{ flexShrink: 0, display: "block", overflow: "visible" }}
-            >
-              {/* Empty background circle */}
-              <circle cx="5" cy="5" r="4.9" fill={emptyColor} />
-              {/* Filled left half — arc from top-center counterclockwise to bottom-center */}
-              <path d="M5,0.1 A4.9,4.9 0 0,0 5,9.9 Z" fill={color} shapeRendering="geometricPrecision" />
-            </svg>
-          );
-        }
-
-        return (
-          <svg
-            key={i}
-            width={size} height={size}
-            viewBox="0 0 10 10"
-            shapeRendering="geometricPrecision"
-            style={{ flexShrink: 0, display: "block" }}
-          >
-            <circle cx="5" cy="5" r="4.9" fill={isFull ? color : emptyColor} />
-          </svg>
-        );
-      })}
-    </div>
-  );
-}
-
-/* ────────────────────────────────────────────────────── */
 /* Skill section                                          */
 /* ────────────────────────────────────────────────────── */
 function SkillSection({ groups, lang }: { groups: typeof skillGroups; lang: Lang }) {
@@ -1470,28 +1372,24 @@ export default function MainComponentNameCv() {
                   <div className="flex items-center gap-3 min-w-0">
                     <OrbMini size={22} baseRadius={0.45} className="shrink-0" hover={ordineHovered} />
                     <div className="min-w-0">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <h3 className="text-base font-semibold">{ordineAIProject.name}</h3>
-                        <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
-                          {ordineAIProject.status[lang]}
-                        </span>
-                      </div>
+                      <a
+                        href={ordineAIProject.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={e => e.stopPropagation()}
+                        className="text-base font-semibold hover:text-white transition-colors inline-flex items-center gap-1.5"
+                      >
+                        {ordineAIProject.name}
+                        <ExternalLink className="h-3 w-3 opacity-50" />
+                      </a>
                       <p className="text-[12px] text-white/55 mt-0.5">{t.experience.find(e => e.company === "Ordine AI")?.role}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
-                    <a
-                      href={ordineAIProject.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={e => e.stopPropagation()}
-                      className="glass-card glass-card--sm inline-flex items-center gap-1.5 text-[9px] uppercase px-2.5 py-1 rounded-full text-white/55 hover:text-white cursor-pointer"
-                      onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
-                    >
-                      <ExternalLink className="h-3 w-3" />
-                      ordine-ai.ch
-                    </a>
+                    <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
+                      {ordineAIProject.status[lang]}
+                    </span>
                     <ChevronDown className="h-4 w-4 text-white/25 transition-transform duration-300" style={{ transform: openCards.has("ordine") ? "rotate(180deg)" : "rotate(0deg)" }} />
                   </div>
                 </div>
