@@ -558,18 +558,23 @@ const skillGroups: { category: Record<Lang, string>; color: string; items: strin
     items: ["HTML", "CSS", "PHP", "C#", "SQL/NoSQL"],
   },
   {
+    category: { fr: "IA / LLM", en: "AI / LLM", de: "KI / LLM", it: "IA / LLM" },
+    color: "#22d3ee",
+    items: ["Claude", "ChatGPT", "Prompt engineering", "Eval harness"],
+  },
+  {
     category: { fr: "Logiciels", en: "Software", de: "Software", it: "Software" },
     color: "#60a5fa",
-    items: ["Vercel", "GitHub/Git", "Microsoft 365", "Claude", "VS/VS Code", "WordPress", "Krita", "DaVinci Resolve"],
+    items: ["Vercel", "GitHub/Git", "Microsoft 365", "VS/VS Code", "WordPress", "Krita", "DaVinci Resolve"],
   },
   {
     category: { fr: "Disciplines", en: "Disciplines", de: "Disziplinen", it: "Discipline" },
     color: "#a78bfa",
     items: {
-      fr: ["POO (programmation orientée objet)", "UI/UX", "Prompt engineering", "Maintenance hardware/software", "Web design", "Gestion de projet (solo)"],
-      en: ["OOP (object-oriented programming)", "UI/UX", "Prompt engineering", "Hardware/software maintenance", "Web design", "Project management (solo)"],
-      de: ["OOP (objektorientierte Programmierung)", "UI/UX", "Prompt engineering", "Hardware-/Software-Wartung", "Web design", "Projektmanagement (solo)"],
-      it: ["OOP (programmazione orientata agli oggetti)", "UI/UX", "Prompt engineering", "Manutenzione hardware/software", "Web design", "Gestione di progetti (solo)"],
+      fr: ["POO (programmation orientée objet)", "UI/UX", "Maintenance hardware/software", "Web design", "Gestion de projet (solo)"],
+      en: ["OOP (object-oriented programming)", "UI/UX", "Hardware/software maintenance", "Web design", "Project management (solo)"],
+      de: ["OOP (objektorientierte Programmierung)", "UI/UX", "Hardware-/Software-Wartung", "Web design", "Projektmanagement (solo)"],
+      it: ["OOP (programmazione orientata agli oggetti)", "UI/UX", "Manutenzione hardware/software", "Web design", "Gestione di progetti (solo)"],
     },
   },
 ];
@@ -1189,7 +1194,7 @@ export default function MainComponentNameCv() {
 
                   {/* Language badges — above the fold, first thing a recruiter sees */}
                   <div className="flex flex-wrap justify-center sm:justify-start gap-2 mt-4" style={fadeIn(180)}>
-                    {langBadges.map(({ flag, label }, i) => (
+                    {langBadges.filter(b => b.flag !== "EN").map(({ flag, label }, i) => (
                       <span
                         key={i}
                         className="flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/[0.10] text-white/60"
@@ -1198,11 +1203,6 @@ export default function MainComponentNameCv() {
                         <span>{label[lang]}</span>
                       </span>
                     ))}
-                    {/* Permit C — strong positive for the Swiss market, answers the work-authorization question up front */}
-                    <span className="flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-full bg-emerald-500/[0.10] border border-emerald-500/25 text-emerald-300/90">
-                      <span>🇨🇭</span>
-                      <span>{permitLabel[lang]}</span>
-                    </span>
                   </div>
 
                   {/* À propos — availability/rate first (Swiss-expected), then the parcours */}
