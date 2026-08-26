@@ -1051,9 +1051,9 @@ function SkillSection({ groups, lang }: { groups: typeof skillGroups; lang: Lang
           >
             {group.category[lang]}
           </p>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5">
             {skillItems(group, lang).map((item, si) => (
-              <span key={si} className="text-[15px] px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/[0.09] text-white/75">
+              <span key={si} className="text-[13px] px-2.5 py-1 rounded-full bg-white/[0.05] border border-white/[0.09] text-white/70">
                 {item}
               </span>
             ))}
@@ -1087,6 +1087,17 @@ function SectionHead({ title, num }: { title: string; num: string }) {
       <p className="text-[10px] font-mono text-white/25 mb-1 tracking-widest">/ {num}</p>
       <h2 className="text-2xl font-medium">{title}</h2>
       <div className="w-10 h-[1.5px] bg-white/25 mt-3" />
+    </div>
+  );
+}
+
+/* Smaller sub-heading used inside a big section (e.g. the families of
+   "Expérience": Mandats · Entrepreneuriat · Projets personnels). */
+function SubHead({ title }: { title: string }) {
+  return (
+    <div className="flex items-center gap-3 mb-4">
+      <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-white/45 shrink-0">{title}</h3>
+      <div className="flex-1 h-px bg-white/10" />
     </div>
   );
 }
@@ -1329,12 +1340,18 @@ export default function MainComponentNameCv() {
             </div>
           </ScrollReveal>
 
-          {/* 02 — Mandats professionnels */}
+          {/* 02 — Expérience (Mandats · Entrepreneuriat · Projets personnels) */}
           <div>
             <ScrollReveal>
-              <SectionHead title={t.sections.mandates} num="02" />
+              <SectionHead title={t.sections.experience} num="02" />
             </ScrollReveal>
-            <div className="space-y-2">
+            <div className="space-y-10">
+              {/* Mandats professionnels */}
+              <div>
+                <ScrollReveal>
+                  <SubHead title={t.sections.mandates} />
+                </ScrollReveal>
+                <div className="space-y-2">
               {/* R2JC — latest project, delivered, expandable — pinned first */}
               {(() => {
                 const r2jcExp = t.experience.find(e => e.company === "R2JC");
@@ -1443,9 +1460,12 @@ export default function MainComponentNameCv() {
             </div>
           </div>
 
-          {/* 03 — Projets & entrepreneuriat (Ordine AI) */}
-          <ScrollReveal>
-            <SectionHead title={t.sections.entrepreneurship} num="03" />
+              {/* Projets & entrepreneuriat */}
+              <div>
+                <ScrollReveal>
+                  <SubHead title={t.sections.entrepreneurship} />
+                </ScrollReveal>
+                <ScrollReveal>
             <div
               className="glass-card rounded-2xl overflow-hidden"
               onMouseMove={glassMove}
@@ -1507,15 +1527,16 @@ export default function MainComponentNameCv() {
                   </div>
                 </div>
               </Collapsible>
-            </div>
-          </ScrollReveal>
+                  </div>
+                </ScrollReveal>
+              </div>
 
-          {/* 04 — Projets personnels */}
-          <div>
-            <ScrollReveal>
-              <SectionHead title={t.sections.projects} num="04" />
-            </ScrollReveal>
-            <div className="space-y-2">
+              {/* Projets personnels */}
+              <div>
+                <ScrollReveal>
+                  <SubHead title={t.sections.projects} />
+                </ScrollReveal>
+                <div className="space-y-2">
               {t.experience.filter(exp => exp.company !== "Ordine AI" && exp.company !== "R2JC" && exp.company !== "Magneticlab - XEFI Neuchâtel").map((exp, i) => {
                 const isOpen = openExp.has(i);
                 return (
@@ -1581,18 +1602,20 @@ export default function MainComponentNameCv() {
                   </ScrollReveal>
                 );
               })}
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* 05 — Compétences techniques */}
+          {/* 03 — Compétences techniques */}
           <ScrollReveal>
-            <SectionHead title={t.sections.skills} num="05" />
+            <SectionHead title={t.sections.skills} num="03" />
             <SkillSection groups={skillGroups} lang={lang} />
           </ScrollReveal>
 
-          {/* 06 — Compétences personnelles */}
+          {/* 04 — Compétences personnelles */}
           <ScrollReveal>
-            <SectionHead title={t.sections.personalSkills} num="06" />
+            <SectionHead title={t.sections.personalSkills} num="04" />
             <div className="flex flex-wrap gap-2.5">
               {t.softSkills.map((s, i) => (
                 <span key={i} className="text-[15px] px-4 py-2 rounded-full bg-white/[0.06] border border-white/[0.12] text-white/80">
@@ -1602,9 +1625,9 @@ export default function MainComponentNameCv() {
             </div>
           </ScrollReveal>
 
-          {/* 07 — Langues */}
+          {/* 05 — Langues */}
           <ScrollReveal>
-            <SectionHead title={t.sections.languages} num="07" />
+            <SectionHead title={t.sections.languages} num="05" />
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {t.languages.map((language, i) => (
                 <div
@@ -1619,10 +1642,10 @@ export default function MainComponentNameCv() {
             </div>
           </ScrollReveal>
 
-          {/* 05 — Education */}
+          {/* 06 — Education */}
           <div>
             <ScrollReveal>
-              <SectionHead title={t.sections.education} num="08" />
+              <SectionHead title={t.sections.education} num="06" />
             </ScrollReveal>
             <div className="border-l border-white/10 pl-6 space-y-7">
               {t.education.map((edu, i) => (
@@ -1685,9 +1708,9 @@ export default function MainComponentNameCv() {
             </ScrollReveal>
           </div>
 
-          {/* 09 — Références */}
+          {/* 07 — Références */}
           <ScrollReveal>
-            <SectionHead title={t.sections.references} num="09" />
+            <SectionHead title={t.sections.references} num="07" />
             <p className="text-sm text-white/50">{t.referencesLine}</p>
           </ScrollReveal>
 
