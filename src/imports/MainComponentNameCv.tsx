@@ -643,13 +643,44 @@ const ordineAIProject = {
   stack: ["FastAPI", "Next.js 14", "TypeScript", "Supabase", "Claude API", "Stripe", "Cloud Run", "Vercel", "Sentry", "PostHog"],
 };
 
-/* Language badge data — flag + level per UI language */
-const langBadges: { flag: string; label: Record<Lang, string> }[] = [
+/* Language badge data — flag + level per UI language. `fallback` is shown when
+   the platform can't render the emoji flag (e.g. Windows renders 🇬🇧 as "GB",
+   but for English we want "EN", not the country code). */
+const langBadges: { flag: string; fallback?: string; label: Record<Lang, string> }[] = [
   { flag: "🇫🇷", label: { fr: "Natif", en: "Native", de: "Muttersprache", it: "Madrelingua" } },
   { flag: "🇮🇹", label: { fr: "Natif", en: "Native", de: "Muttersprache", it: "Madrelingua" } },
-  { flag: "EN", label: { fr: "C1", en: "C1", de: "C1", it: "C1" } },
+  { flag: "🇬🇧", fallback: "EN", label: { fr: "C1", en: "C1", de: "C1", it: "C1" } },
   { flag: "🇩🇪", label: { fr: "B2", en: "B2", de: "B2", it: "B2" } },
 ];
+
+/* Detect whether the platform renders emoji country flags (iOS/Android/macOS do;
+   Windows shows the two-letter regional code instead). Draw 🇬🇧 and check for
+   coloured pixels — a real flag has colour, "GB" letters are monochrome. */
+function detectFlagSupport(): boolean {
+  try {
+    const canvas = document.createElement("canvas");
+    canvas.width = 16;
+    canvas.height = 16;
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    if (!ctx) return false;
+    ctx.font = "14px sans-serif";
+    ctx.fillText("🇬🇧", 0, 13);
+    const d = ctx.getImageData(0, 0, 16, 16).data;
+    for (let i = 0; i < d.length; i += 4) {
+      if (d[i + 3] > 0 && (Math.abs(d[i] - d[i + 1]) > 24 || Math.abs(d[i + 1] - d[i + 2]) > 24)) {
+        return true;
+      }
+    }
+    return false;
+  } catch {
+    return false;
+  }
+}
+
+/* Display value for a language badge, given whether flags render on this device. */
+function badgeGlyph(b: { flag: string; fallback?: string }, flagsOk: boolean): string {
+  return flagsOk ? b.flag : (b.fallback ?? b.flag);
+}
 
 const permitLabel: Record<Lang, string> = { fr: "Permis C", en: "Permit C", de: "Ausweis C", it: "Permesso C" };
 const deliveredBadge: Record<Lang, string> = { fr: "Livré", en: "Delivered", de: "Geliefert", it: "Consegnato" };
@@ -1074,6 +1105,7 @@ export default function MainComponentNameCv() {
   const [openExp, setOpenExp] = useState<Set<number>>(new Set());
   const [ordineHovered, setOrdineHovered] = useState(false);
   const [openCards, setOpenCards] = useState<Set<string>>(new Set());
+  const [flagsSupported] = useState<boolean>(() => typeof document !== "undefined" && detectFlagSupport());
   const t = translations[lang];
 
   const toggleExp = (i: number) =>
@@ -1194,13 +1226,13 @@ export default function MainComponentNameCv() {
 
                   {/* Language badges — above the fold, first thing a recruiter sees */}
                   <div className="flex flex-wrap justify-center sm:justify-start gap-2 mt-4" style={fadeIn(180)}>
-                    {langBadges.filter(b => b.flag !== "EN").map(({ flag, label }, i) => (
+                    {langBadges.map((b, i) => (
                       <span
                         key={i}
                         className="flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/[0.10] text-white/60"
                       >
-                        <span>{flag}</span>
-                        <span>{label[lang]}</span>
+                        <span>{badgeGlyph(b, flagsSupported)}</span>
+                        <span>{b.label[lang]}</span>
                       </span>
                     ))}
                   </div>
@@ -1735,7 +1767,7 @@ export default function MainComponentNameCv() {
                 margin: "2mm 0 0",
                 letterSpacing: "0.04em",
               }}>
-                {langBadges.map(({ flag, label }) => `${flag} ${label[lang]}`).join("  ·  ")}
+                {langBadges.map((b) => `${badgeGlyph(b, flagsSupported)} ${b.label[lang]}`).join("  ·  ")}
               </p>
             </div>
 
