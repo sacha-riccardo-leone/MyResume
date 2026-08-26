@@ -953,6 +953,38 @@ function Bullets({ items, stack }: { items: string[]; stack?: string }) {
 }
 
 /* ────────────────────────────────────────────────────── */
+/* Print helpers — section label + bulleted experience    */
+/* ────────────────────────────────────────────────────── */
+function PrintSectionLabel({ title }: { title: string }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: "3mm", marginBottom: "3.5mm" }}>
+      <p style={{ fontSize: "5.5pt", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#999", margin: 0, flexShrink: 0, whiteSpace: "nowrap" }}>{title}</p>
+      <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
+    </div>
+  );
+}
+
+function PrintExpEntry({ exp }: { exp: { company: string; role?: string; date: string; bullets: string[]; stack?: string } }) {
+  return (
+    <div style={{ breakInside: "avoid", pageBreakInside: "avoid" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+        <p style={{ fontSize: "8.5pt", fontWeight: 600, color: "#111", margin: 0 }}>{exp.company}</p>
+        <p style={{ fontSize: "6pt", color: "#999", margin: "0 0 0 3mm", flexShrink: 0, fontVariantNumeric: "tabular-nums" }}>{exp.date}</p>
+      </div>
+      {exp.role && <p style={{ fontSize: "6.5pt", color: "#777", margin: "0.3mm 0 1.2mm", fontStyle: "italic" }}>{exp.role}</p>}
+      <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
+        {exp.bullets.map((b, j) => (
+          <li key={j} style={{ fontSize: "7pt", color: "#555", lineHeight: 1.45, margin: "0 0 0.7mm", paddingLeft: "2.6mm", position: "relative" }}>
+            <span style={{ position: "absolute", left: 0, color: "#bbb" }}>–</span>{b}
+          </li>
+        ))}
+      </ul>
+      {exp.stack && <p style={{ fontSize: "6pt", color: "#999", margin: "1mm 0 0" }}>{exp.stack}</p>}
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────────────── */
 /* Skill dots (5-dot level indicator)                     */
 /* ────────────────────────────────────────────────────── */
 function SkillDots({
@@ -1690,11 +1722,7 @@ export default function MainComponentNameCv() {
           data-name="Main Component - Name - CV"
           style={{
             width: "100%",
-            height: "297mm",
-            maxHeight: "297mm",
-            overflow: "hidden",
-            display: "flex",
-            flexDirection: "column",
+            minHeight: "297mm",
             background: "white",
             fontFamily: "'Geist', sans-serif",
             color: "#111",
@@ -1769,9 +1797,9 @@ export default function MainComponentNameCv() {
               flexShrink: 0,
               lineHeight: 1.3,
             }}>
-              <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
-                <MapPin style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
-                {t.contact.location}
+              {/* Work authorization first — the Swiss recruiter's first question */}
+              <span style={{ justifyContent: "flex-end", fontWeight: 600, color: "#2a2a2a" }}>
+                {t.contact.dob} · {t.contact.nationality}
               </span>
               <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
                 <Mail style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
@@ -1780,6 +1808,10 @@ export default function MainComponentNameCv() {
               <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
                 <Phone style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
                 {t.contact.phone}
+              </span>
+              <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
+                <MapPin style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
+                {t.contact.location} · {t.contact.mobility}
               </span>
               <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
                 <Linkedin style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
@@ -1792,12 +1824,6 @@ export default function MainComponentNameCv() {
               <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
                 <Globe style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
                 {t.contact.website}
-              </span>
-              <span style={{ justifyContent: "flex-end", marginTop: "0.5mm" }}>
-                {t.contact.dob} · {t.contact.nationality}
-              </span>
-              <span style={{ justifyContent: "flex-end" }}>
-                {t.contact.mobility}
               </span>
             </div>
           </div>
@@ -1852,55 +1878,30 @@ export default function MainComponentNameCv() {
               overflow: "visible",
             }}>
 
-              {/* ── Section: Experience ── */}
+              {/* ── Mandats professionnels ── */}
               <div>
-                {/* Section label + rule */}
-                <div style={{ display: "flex", alignItems: "center", gap: "3mm", marginBottom: "5mm" }}>
-                  <p style={{
-                    fontSize: "5.5pt",
-                    fontWeight: 700,
-                    letterSpacing: "0.18em",
-                    textTransform: "uppercase",
-                    color: "#999",
-                    margin: 0,
-                    flexShrink: 0,
-                    whiteSpace: "nowrap",
-                  }}>
-                    {t.sections.experience}
-                  </p>
-                  <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
+                <PrintSectionLabel title={t.sections.mandates} />
+                <div style={{ display: "flex", flexDirection: "column", gap: "4.5mm" }}>
+                  {t.experience
+                    .filter(e => e.company === "R2JC" || e.company === "Magneticlab - XEFI Neuchâtel")
+                    .sort((a, b) => (a.company === "R2JC" ? 0 : 1) - (b.company === "R2JC" ? 0 : 1))
+                    .map((exp, i) => <PrintExpEntry key={i} exp={exp} />)}
                 </div>
+              </div>
 
-                <div style={{ display: "flex", flexDirection: "column", gap: "5.5mm" }}>
-                  {[...t.experience]
-                    .filter(exp => exp.company !== "SourShots")
-                    .sort((a, b) => (a.company.startsWith("R2JC") ? 0 : 1) - (b.company.startsWith("R2JC") ? 0 : 1))
-                    .map((exp, i) => (
-                    <div key={i}>
-                      <div style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "baseline",
-                        marginBottom: "1mm",
-                      }}>
-                        <p style={{ fontSize: "8.5pt", fontWeight: 600, color: "#111", margin: 0 }}>
-                          {exp.company}
-                        </p>
-                        <p style={{
-                          fontSize: "6pt",
-                          color: "#999",
-                          margin: "0 0 0 3mm",
-                          flexShrink: 0,
-                          fontVariantNumeric: "tabular-nums",
-                        }}>
-                          {exp.date}
-                        </p>
-                      </div>
-                      <p style={{ fontSize: "7pt", color: "#555", lineHeight: 1.5, margin: 0 }}>
-                        {exp.description}
-                      </p>
-                    </div>
-                  ))}
+              {/* ── Projets & entrepreneuriat ── */}
+              <div>
+                <PrintSectionLabel title={t.sections.entrepreneurship} />
+                <div style={{ display: "flex", flexDirection: "column", gap: "4.5mm" }}>
+                  {t.experience.filter(e => e.company === "Ordine AI").map((exp, i) => <PrintExpEntry key={i} exp={exp} />)}
+                </div>
+              </div>
+
+              {/* ── Projets personnels ── */}
+              <div>
+                <PrintSectionLabel title={t.sections.projects} />
+                <div style={{ display: "flex", flexDirection: "column", gap: "4.5mm" }}>
+                  {t.experience.filter(e => e.company.startsWith("CPNE") || e.company === "SourShots").map((exp, i) => <PrintExpEntry key={i} exp={exp} />)}
                 </div>
               </div>
 
@@ -1964,8 +1965,6 @@ export default function MainComponentNameCv() {
               flexDirection: "column",
               gap: "5mm",
               overflow: "visible",
-              breakInside: "avoid",
-              pageBreakInside: "avoid",
             }}>
 
               {/* ── Section: Skills ── */}
@@ -2049,6 +2048,35 @@ export default function MainComponentNameCv() {
                     </div>
                   ))}
                 </div>
+              </div>
+
+              {/* ── Section: Compétences personnelles ── */}
+              <div>
+                <div style={{ display: "flex", alignItems: "center", gap: "3mm", marginBottom: "3.5mm" }}>
+                  <p style={{ fontSize: "5.5pt", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#999", margin: 0, flexShrink: 0 }}>
+                    {t.sections.personalSkills}
+                  </p>
+                  <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
+                </div>
+                <p style={{ fontSize: "6.5pt", color: "#444", lineHeight: 1.65, margin: 0 }}>
+                  {t.softSkills.join(" · ")}
+                </p>
+                <p style={{ fontSize: "6.5pt", color: "#777", lineHeight: 1.65, margin: "1.8mm 0 0" }}>
+                  {t.proSkills.join(" · ")}
+                </p>
+              </div>
+
+              {/* ── Section: Références ── */}
+              <div>
+                <div style={{ display: "flex", alignItems: "center", gap: "3mm", marginBottom: "3mm" }}>
+                  <p style={{ fontSize: "5.5pt", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#999", margin: 0, flexShrink: 0 }}>
+                    {t.sections.references}
+                  </p>
+                  <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
+                </div>
+                <p style={{ fontSize: "6.5pt", color: "#777", margin: 0, fontStyle: "italic" }}>
+                  {t.referencesLine}
+                </p>
               </div>
 
             </div>
