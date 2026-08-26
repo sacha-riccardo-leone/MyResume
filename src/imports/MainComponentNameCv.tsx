@@ -126,8 +126,7 @@ const translations = {
       { name: "Anglais", level: "C1" },
       { name: "Allemand", level: "B2" },
     ],
-    softSkills: ["Autonomie", "Esprit d'initiative", "Rigueur & souci du détail", "Orienté solutions", "Persévérance", "Curiosité / apprentissage rapide"],
-    proSkills: ["Développement d'applications", "Maîtrise des outils IA", "Git / versioning", "Intégration d'API", "Débogage & tests", "UI/UX"],
+    softSkills: ["Autonomie", "Esprit d'initiative", "Rigueur & souci du détail", "Orienté solutions", "Persévérance", "Curiosité / apprentissage rapide", "Esprit d'équipe", "Réceptif", "Innovant / créatif"],
     referencesLine: "Références disponibles sur demande.",
     education: [
       {
@@ -260,8 +259,7 @@ const translations = {
       { name: "English", level: "C1" },
       { name: "German", level: "B2" },
     ],
-    softSkills: ["Autonomy", "Initiative", "Rigor & attention to detail", "Solution-oriented", "Persistence", "Curiosity / fast learner"],
-    proSkills: ["Application development", "AI tooling", "Git / versioning", "API integration", "Debugging & testing", "UI/UX"],
+    softSkills: ["Autonomy", "Initiative", "Rigor & attention to detail", "Solution-oriented", "Persistence", "Curiosity / fast learner", "Team player", "Receptive", "Innovative / creative"],
     referencesLine: "References available on request.",
     education: [
       {
@@ -394,8 +392,7 @@ const translations = {
       { name: "Englisch", level: "C1" },
       { name: "Deutsch", level: "B2" },
     ],
-    softSkills: ["Eigenständigkeit", "Eigeninitiative", "Sorgfalt & Detailgenauigkeit", "Lösungsorientiert", "Ausdauer", "Neugier / schnelle Auffassung"],
-    proSkills: ["Applikationsentwicklung", "KI-Tools", "Git / Versionierung", "API-Integration", "Debugging & Tests", "UI/UX"],
+    softSkills: ["Eigenständigkeit", "Eigeninitiative", "Sorgfalt & Detailgenauigkeit", "Lösungsorientiert", "Ausdauer", "Neugier / schnelle Auffassung", "Teamgeist", "Aufgeschlossen", "Innovativ / kreativ"],
     referencesLine: "Referenzen auf Anfrage verfügbar.",
     education: [
       {
@@ -528,8 +525,7 @@ const translations = {
       { name: "Inglese", level: "C1" },
       { name: "Tedesco", level: "B2" },
     ],
-    softSkills: ["Autonomia", "Spirito d'iniziativa", "Rigore & attenzione ai dettagli", "Orientato alle soluzioni", "Perseveranza", "Curiosità / apprendimento rapido"],
-    proSkills: ["Sviluppo di applicazioni", "Padronanza degli strumenti IA", "Git / versioning", "Integrazione di API", "Debug & test", "UI/UX"],
+    softSkills: ["Autonomia", "Spirito d'iniziativa", "Rigore & attenzione ai dettagli", "Orientato alle soluzioni", "Perseveranza", "Curiosità / apprendimento rapido", "Spirito di squadra", "Ricettivo", "Innovativo / creativo"],
     referencesLine: "Referenze disponibili su richiesta.",
     education: [
       {
@@ -571,10 +567,10 @@ const skillGroups: { category: Record<Lang, string>; color: string; items: strin
     category: { fr: "Disciplines", en: "Disciplines", de: "Disziplinen", it: "Discipline" },
     color: "#a78bfa",
     items: {
-      fr: ["POO (programmation orientée objet)", "UI/UX", "Maintenance hardware/software", "Web design", "Gestion de projet (solo)"],
-      en: ["OOP (object-oriented programming)", "UI/UX", "Hardware/software maintenance", "Web design", "Project management (solo)"],
-      de: ["OOP (objektorientierte Programmierung)", "UI/UX", "Hardware-/Software-Wartung", "Web design", "Projektmanagement (solo)"],
-      it: ["OOP (programmazione orientata agli oggetti)", "UI/UX", "Manutenzione hardware/software", "Web design", "Gestione di progetti (solo)"],
+      fr: ["POO (programmation orientée objet)", "UI/UX", "Intégration d'API", "Débogage & tests", "Maintenance hardware/software", "Web design", "Gestion de projet (solo)"],
+      en: ["OOP (object-oriented programming)", "UI/UX", "API integration", "Debugging & testing", "Hardware/software maintenance", "Web design", "Project management (solo)"],
+      de: ["OOP (objektorientierte Programmierung)", "UI/UX", "API-Integration", "Debugging & Tests", "Hardware-/Software-Wartung", "Web design", "Projektmanagement (solo)"],
+      it: ["OOP (programmazione orientata agli oggetti)", "UI/UX", "Integrazione di API", "Debug & test", "Manutenzione hardware/software", "Web design", "Gestione di progetti (solo)"],
     },
   },
 ];
@@ -1055,9 +1051,9 @@ function SkillSection({ groups, lang }: { groups: typeof skillGroups; lang: Lang
           >
             {group.category[lang]}
           </p>
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-2">
             {skillItems(group, lang).map((item, si) => (
-              <span key={si} className="text-[13px] px-2.5 py-1 rounded-full bg-white/[0.05] border border-white/[0.09] text-white/70">
+              <span key={si} className="text-[15px] px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/[0.09] text-white/75">
                 {item}
               </span>
             ))}
@@ -1597,21 +1593,12 @@ export default function MainComponentNameCv() {
           {/* 06 — Compétences personnelles */}
           <ScrollReveal>
             <SectionHead title={t.sections.personalSkills} num="06" />
-            <div className="space-y-3">
-              <div className="flex flex-wrap gap-2">
-                {t.softSkills.map((s, i) => (
-                  <span key={i} className="text-sm px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.12] text-white/75">
-                    {s}
-                  </span>
-                ))}
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {t.proSkills.map((s, i) => (
-                  <span key={i} className="text-sm px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.07] text-white/55">
-                    {s}
-                  </span>
-                ))}
-              </div>
+            <div className="flex flex-wrap gap-2.5">
+              {t.softSkills.map((s, i) => (
+                <span key={i} className="text-[15px] px-4 py-2 rounded-full bg-white/[0.06] border border-white/[0.12] text-white/80">
+                  {s}
+                </span>
+              ))}
             </div>
           </ScrollReveal>
 
@@ -2043,9 +2030,6 @@ export default function MainComponentNameCv() {
                 </div>
                 <p style={{ fontSize: "6.5pt", color: "#444", lineHeight: 1.65, margin: 0 }}>
                   {t.softSkills.join(" · ")}
-                </p>
-                <p style={{ fontSize: "6.5pt", color: "#777", lineHeight: 1.65, margin: "1.8mm 0 0" }}>
-                  {t.proSkills.join(" · ")}
                 </p>
               </div>
 
