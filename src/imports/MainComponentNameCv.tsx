@@ -896,6 +896,81 @@ function Bullets({ items, stack }: { items: string[]; stack?: string }) {
 }
 
 /* ────────────────────────────────────────────────────── */
+/* Mandate card — delivered client work (R2JC, XEFI)      */
+/* Collapsible glass card: logo · linked title · role ·    */
+/* date · optional demo button · "delivered" badge.        */
+/* ────────────────────────────────────────────────────── */
+function MandateCard({
+  exp,
+  logo,
+  lang,
+  open,
+  onToggle,
+  demoUrl,
+}: {
+  exp: { company: string; role?: string; date: string; url?: string; bullets: string[]; stack?: string };
+  logo: string;
+  lang: Lang;
+  open: boolean;
+  onToggle: () => void;
+  demoUrl?: string;
+}) {
+  return (
+    <ScrollReveal>
+      <div
+        className="glass-card rounded-2xl overflow-hidden"
+        onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
+      >
+        <div className="px-5 py-4 cursor-pointer" onClick={onToggle}>
+          <div className="flex items-center gap-3">
+            <img src={logo} alt={exp.company} className="shrink-0" style={{ width: 30, height: 30, objectFit: "contain" }} />
+            <div className="flex-1 min-w-0 flex items-center justify-between gap-3 flex-wrap">
+              <div>
+                <a
+                  href={exp.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={e => e.stopPropagation()}
+                  className="text-base font-medium hover:text-white transition-colors flex items-center gap-1.5"
+                >
+                  {exp.company}
+                  <ExternalLink className="h-3 w-3 opacity-50" />
+                </a>
+                <p className="text-[12px] text-white/55 mt-0.5">{exp.role}</p>
+                <p className="text-[11px] font-mono text-white/30 mt-0.5">{exp.date}</p>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                {demoUrl && (
+                  <a
+                    href={demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={e => e.stopPropagation()}
+                    className="glass-card glass-card--sm inline-flex items-center gap-1.5 text-[9px] uppercase px-2.5 py-1 rounded-full text-white/55 hover:text-white cursor-pointer"
+                    onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
+                  >
+                    <ExternalLink className="h-3 w-3" />
+                    {demoLabel[lang]}
+                  </a>
+                )}
+                <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
+                  {deliveredBadge[lang]}
+                </span>
+                <ChevronDown className="h-4 w-4 text-white/25 transition-transform duration-300" style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <Collapsible open={open}>
+          <Bullets items={exp.bullets} stack={exp.stack} />
+        </Collapsible>
+      </div>
+    </ScrollReveal>
+  );
+}
+
+/* ────────────────────────────────────────────────────── */
 /* Print helpers — section label + bulleted experience    */
 /* ────────────────────────────────────────────────────── */
 function PrintSectionLabel({ title }: { title: string }) {
@@ -1250,57 +1325,15 @@ export default function MainComponentNameCv() {
               {(() => {
                 const r2jcExp = t.experience.find(e => e.company === "R2JC");
                 if (!r2jcExp) return null;
-                const isOpen = openCards.has("r2jc");
                 return (
-                  <ScrollReveal>
-                    <div
-                      className="glass-card rounded-2xl overflow-hidden"
-                      onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
-                    >
-                      <div className="px-5 py-4 cursor-pointer" onClick={() => toggleCard("r2jc")}>
-                        <div className="flex items-center gap-3">
-                          <img src={r2jcLogo} alt="R2JC" className="shrink-0" style={{ width: 30, height: 30, objectFit: "contain" }} />
-                          <div className="flex-1 min-w-0 flex items-center justify-between gap-3 flex-wrap">
-                            <div>
-                              <a
-                                href={(r2jcExp as typeof r2jcExp & { url: string }).url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={e => e.stopPropagation()}
-                                className="text-base font-medium hover:text-white transition-colors flex items-center gap-1.5"
-                              >
-                                {r2jcExp.company}
-                                <ExternalLink className="h-3 w-3 opacity-50" />
-                              </a>
-                              <p className="text-[12px] text-white/55 mt-0.5">{r2jcExp.role}</p>
-                              <p className="text-[11px] font-mono text-white/30 mt-0.5">{r2jcExp.date}</p>
-                            </div>
-                            <div className="flex items-center gap-2 shrink-0">
-                              <a
-                                href="https://r2jc.vercel.app"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={e => e.stopPropagation()}
-                                className="glass-card glass-card--sm inline-flex items-center gap-1.5 text-[9px] uppercase px-2.5 py-1 rounded-full text-white/55 hover:text-white cursor-pointer"
-                                onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
-                              >
-                                <ExternalLink className="h-3 w-3" />
-                                {demoLabel[lang]}
-                              </a>
-                              <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
-                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
-                                {deliveredBadge[lang]}
-                              </span>
-                              <ChevronDown className="h-4 w-4 text-white/25 transition-transform duration-300" style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }} />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <Collapsible open={isOpen}>
-                        <Bullets items={r2jcExp.bullets} stack={r2jcExp.stack} />
-                      </Collapsible>
-                    </div>
-                  </ScrollReveal>
+                  <MandateCard
+                    exp={r2jcExp}
+                    logo={r2jcLogo}
+                    lang={lang}
+                    open={openCards.has("r2jc")}
+                    onToggle={() => toggleCard("r2jc")}
+                    demoUrl="https://r2jc.vercel.app"
+                  />
                 );
               })()}
 
@@ -1308,46 +1341,14 @@ export default function MainComponentNameCv() {
               {(() => {
                 const xefiExp = t.experience.find(e => e.company === "Magneticlab - XEFI Neuchâtel");
                 if (!xefiExp) return null;
-                const isOpen = openCards.has("xefi");
                 return (
-                  <ScrollReveal>
-                    <div
-                      className="glass-card rounded-2xl overflow-hidden"
-                      onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
-                    >
-                      <div className="px-5 py-4 cursor-pointer" onClick={() => toggleCard("xefi")}>
-                        <div className="flex items-center gap-3">
-                          <img src={xefiLogo} alt="XEFI" className="shrink-0" style={{ width: 30, height: 30, objectFit: "contain" }} />
-                          <div className="flex-1 min-w-0 flex items-center justify-between gap-3 flex-wrap">
-                            <div>
-                              <a
-                                href={(xefiExp as typeof xefiExp & { url: string }).url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={e => e.stopPropagation()}
-                                className="text-base font-medium transition-colors flex items-center gap-1.5"
-                              >
-                                {xefiExp.company}
-                                <ExternalLink className="h-3 w-3 opacity-50" />
-                              </a>
-                              <p className="text-[12px] text-white/55 mt-0.5">{xefiExp.role}</p>
-                              <p className="text-[11px] font-mono text-white/30 mt-0.5">{xefiExp.date}</p>
-                            </div>
-                            <div className="flex items-center gap-2 shrink-0">
-                              <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
-                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
-                                {deliveredBadge[lang]}
-                              </span>
-                              <ChevronDown className="h-4 w-4 text-white/25 transition-transform duration-300" style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }} />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <Collapsible open={isOpen}>
-                        <Bullets items={xefiExp.bullets} stack={xefiExp.stack} />
-                      </Collapsible>
-                    </div>
-                  </ScrollReveal>
+                  <MandateCard
+                    exp={xefiExp}
+                    logo={xefiLogo}
+                    lang={lang}
+                    open={openCards.has("xefi")}
+                    onToggle={() => toggleCard("xefi")}
+                  />
                 );
               })()}
 
