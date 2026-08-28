@@ -543,6 +543,12 @@ function skillItems(group: (typeof skillGroups)[number], lang: Lang): string[] {
 /* Plain-language explanations for the more technical skill chips — shown as a
    hover tooltip, each grounded in a concrete thing actually built (Ordine AI). */
 const skillExplanations: Record<string, Record<Lang, string>> = {
+  "Prompt engineering": {
+    fr: "Concevoir et affiner les instructions données à un LLM pour obtenir des sorties fiables et structurées — ex. les prompts multilingues (FR/DE/IT/EN) qui pilotent la classification d'emails d'Ordine AI.",
+    en: "Designing and refining the instructions given to an LLM to get reliable, structured outputs — e.g. the multilingual (FR/DE/IT/EN) prompts driving Ordine AI's email classification.",
+    de: "Die Anweisungen an ein LLM entwerfen und verfeinern, um zuverlässige, strukturierte Ausgaben zu erhalten — z. B. die mehrsprachigen (FR/DE/IT/EN) Prompts hinter der E-Mail-Klassifizierung von Ordine AI.",
+    it: "Progettare e affinare le istruzioni date a un LLM per ottenere output affidabili e strutturati — es. i prompt multilingue (FR/DE/IT/EN) che guidano la classificazione delle email di Ordine AI.",
+  },
   "Classification LLM": {
     fr: "Trier automatiquement du texte en catégories avec un LLM — ex. mon pipeline Claude Haiku qui classe les emails par ton, intention, catégorie et priorité.",
     en: "Using an LLM to automatically sort text into categories — e.g. my Claude Haiku pipeline classifying emails by tone, intent, category and priority.",
