@@ -509,14 +509,14 @@ const translations = {
 
 const skillGroups: { category: Record<Lang, string>; color: string; items: string[] | Record<Lang, string[]> }[] = [
   {
+    category: { fr: "IA / LLM", en: "AI / LLM", de: "KI / LLM", it: "IA / LLM" },
+    color: "#22d3ee",
+    items: ["Claude", "Claude Code", "ChatGPT", "Prompt engineering"],
+  },
+  {
     category: { fr: "Langages", en: "Languages", de: "Sprachen", it: "Linguaggi" },
     color: "#34d399",
     items: ["HTML", "CSS", "PHP", "C#", "SQL/NoSQL"],
-  },
-  {
-    category: { fr: "IA / LLM", en: "AI / LLM", de: "KI / LLM", it: "IA / LLM" },
-    color: "#22d3ee",
-    items: ["Claude", "ChatGPT", "Prompt engineering", "Eval harness"],
   },
   {
     category: { fr: "Logiciels", en: "Software", de: "Software", it: "Software" },
