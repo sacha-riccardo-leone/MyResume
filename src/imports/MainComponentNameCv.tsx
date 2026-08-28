@@ -544,10 +544,10 @@ function skillItems(group: (typeof skillGroups)[number], lang: Lang): string[] {
    hover tooltip, each grounded in a concrete thing actually built (Ordine AI). */
 const skillExplanations: Record<string, Record<Lang, string>> = {
   "Prompt engineering": {
-    fr: "Concevoir et affiner les instructions données à un LLM pour obtenir des sorties fiables et structurées — ex. les prompts multilingues (FR/DE/IT/EN) qui pilotent la classification d'emails d'Ordine AI.",
-    en: "Designing and refining the instructions given to an LLM to get reliable, structured outputs — e.g. the multilingual (FR/DE/IT/EN) prompts driving Ordine AI's email classification.",
-    de: "Die Anweisungen an ein LLM entwerfen und verfeinern, um zuverlässige, strukturierte Ausgaben zu erhalten — z. B. die mehrsprachigen (FR/DE/IT/EN) Prompts hinter der E-Mail-Klassifizierung von Ordine AI.",
-    it: "Progettare e affinare le istruzioni date a un LLM per ottenere output affidabili e strutturati — es. i prompt multilingue (FR/DE/IT/EN) che guidano la classificazione delle email di Ordine AI.",
+    fr: "Affiner la formulation des prompts pour obtenir les meilleurs résultats d'un LLM — ex. un brouillon étoffé avec ChatGPT, corrigé avec Claude, puis le prompt final envoyé.",
+    en: "Refining how prompts are worded to get the best results from an LLM — e.g. a draft expanded with ChatGPT, corrected with Claude, then the final prompt sent.",
+    de: "Die Formulierung von Prompts verfeinern, um die besten Ergebnisse aus einem LLM zu erhalten — z. B. ein Entwurf, mit ChatGPT erweitert, mit Claude korrigiert, dann der finale Prompt gesendet.",
+    it: "Affinare la formulazione dei prompt per ottenere i migliori risultati da un LLM — es. una bozza ampliata con ChatGPT, corretta con Claude, poi il prompt finale inviato.",
   },
   "Classification LLM": {
     fr: "Trier automatiquement du texte en catégories avec un LLM — ex. mon pipeline Claude Haiku qui classe les emails par ton, intention, catégorie et priorité.",
