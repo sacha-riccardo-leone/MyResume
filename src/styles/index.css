@@ -168,6 +168,71 @@
 .dot-jump-2 { animation: dot-jump 1.4s ease-in-out infinite 0.18s; }
 .dot-jump-3 { animation: dot-jump 1.4s ease-in-out infinite 0.36s; }
 
+/* ─── Explainable skill chip + hover tooltip (IA/LLM technical terms) ───
+   The whole hover affordance is gated behind (hover: hover): on touch devices
+   there is no hover, and an always-present absolute tooltip (even at opacity 0)
+   still occupies layout and would push a horizontal scrollbar. So the tooltip
+   is display:none by default and only becomes a positioned box where hovering
+   is possible. Colours are explicit rgba (cyan = the IA/LLM accent) rather than
+   color-mix(var): Lightning CSS mangles color-mix when it wraps a var. */
+.skill-chip-info {
+  position: relative;
+  cursor: help;
+}
+.skill-chip-tip {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .skill-chip-info {
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .skill-chip-info:hover {
+    background: rgba(34, 211, 238, 0.14);
+    border-color: rgba(34, 211, 238, 0.45);
+    color: #fff;
+  }
+
+  .skill-chip-tip {
+    display: block;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    width: 15rem;
+    max-width: 72vw;
+    padding: 8px 11px;
+    border-radius: 12px;
+    font-size: 11px;
+    line-height: 1.45;
+    text-align: left;
+    letter-spacing: normal;
+    text-transform: none;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(18, 20, 26, 0.94);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-top: 1px solid rgba(34, 211, 238, 0.5);
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50%) translateY(4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 40;
+  }
+  .skill-chip-info:hover .skill-chip-tip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  /* The tooltip overflows the card and drops into the card below it. Each card's
+     backdrop-filter makes its own stacking context, so a later sibling card would
+     paint over the tooltip. Lift the whole hovered card above its siblings while
+     a tooltip is open so the tooltip stays on top. */
+  .glass-card:has(.skill-chip-info:hover) {
+    z-index: 50;
+  }
+}
+
 /* Reduced motion: stop the always-on repaints (glass glows + jumping dots +
    cursor). Each glow animates box-shadow, which repaints the card — and its
    backdrop-filter — every frame; killing them here removes that cost for

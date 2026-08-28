@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Linkedin, Github, Printer, MapPin, Mail, Phone, ChevronDown, ExternalLink, Globe } from "lucide-react";
+import { Linkedin, Github, Printer, MapPin, Mail, Phone, ChevronDown, ExternalLink, Globe, Info } from "lucide-react";
 import profilePic from "../assets/pfplinkedin-removebg-preview.png";
 import r2jcLogo from "../assets/r2jcLogo.png";
 import xefiLogo from "../assets/xefilogo.png";
@@ -511,7 +511,7 @@ const skillGroups: { category: Record<Lang, string>; color: string; items: strin
   {
     category: { fr: "IA / LLM", en: "AI / LLM", de: "KI / LLM", it: "IA / LLM" },
     color: "#22d3ee",
-    items: ["Claude", "Claude Code", "ChatGPT", "Prompt engineering"],
+    items: ["Claude", "Claude Code", "ChatGPT", "Prompt engineering", "Classification LLM", "Agents LLM", "LLM evals"],
   },
   {
     category: { fr: "Langages", en: "Languages", de: "Sprachen", it: "Linguaggi" },
@@ -539,6 +539,29 @@ const skillGroups: { category: Record<Lang, string>; color: string; items: strin
 function skillItems(group: (typeof skillGroups)[number], lang: Lang): string[] {
   return Array.isArray(group.items) ? group.items : group.items[lang];
 }
+
+/* Plain-language explanations for the more technical skill chips — shown as a
+   hover tooltip, each grounded in a concrete thing actually built (Ordine AI). */
+const skillExplanations: Record<string, Record<Lang, string>> = {
+  "Classification LLM": {
+    fr: "Trier automatiquement du texte en catégories avec un LLM — ex. mon pipeline Claude Haiku qui classe les emails par ton, intention, catégorie et priorité.",
+    en: "Using an LLM to automatically sort text into categories — e.g. my Claude Haiku pipeline classifying emails by tone, intent, category and priority.",
+    de: "Text automatisch mit einem LLM in Kategorien einordnen — z. B. meine Claude-Haiku-Pipeline, die E-Mails nach Ton, Absicht, Kategorie und Priorität klassifiziert.",
+    it: "Ordinare automaticamente il testo in categorie con un LLM — es. la mia pipeline Claude Haiku che classifica le email per tono, intento, categoria e priorità.",
+  },
+  "Agents LLM": {
+    fr: "Orchestrer plusieurs agents IA pour accomplir une tâche — ex. mon audit de sécurité mené par 5 agents LLM (30+ problèmes corrigés).",
+    en: "Orchestrating several AI agents to accomplish a task — e.g. my security audit run by 5 LLM agents (30+ issues fixed).",
+    de: "Mehrere KI-Agenten für eine Aufgabe orchestrieren — z. B. mein Sicherheitsaudit mit 5 LLM-Agenten (30+ behobene Probleme).",
+    it: "Orchestrare più agenti IA per svolgere un compito — es. il mio audit di sicurezza con 5 agenti LLM (30+ problemi risolti).",
+  },
+  "LLM evals": {
+    fr: "Mesurer automatiquement la précision d'un modèle — ex. mon harness CI en FR/DE/IT/EN scorant 100 / 94 / 96 / 98 %.",
+    en: "Automatically measuring a model's accuracy — e.g. my CI harness scoring 100 / 94 / 96 / 98 % across FR/DE/IT/EN.",
+    de: "Die Genauigkeit eines Modells automatisch messen — z. B. mein CI-Harness mit 100 / 94 / 96 / 98 % in FR/DE/IT/EN.",
+    it: "Misurare automaticamente la precisione di un modello — es. il mio harness CI con 100 / 94 / 96 / 98 % in FR/DE/IT/EN.",
+  },
+};
 
 const companyLogos: Record<string, string> = {
   "Magneticlab - XEFI Neuchâtel": xefiLogo,
@@ -1021,11 +1044,26 @@ function SkillSection({ groups, lang }: { groups: typeof skillGroups; lang: Lang
             {group.category[lang]}
           </p>
           <div className="flex flex-wrap gap-1.5">
-            {skillItems(group, lang).map((item, si) => (
-              <span key={si} className="text-[13px] px-2.5 py-1 rounded-full bg-white/[0.05] border border-white/[0.09] text-white/70">
-                {item}
-              </span>
-            ))}
+            {skillItems(group, lang).map((item, si) => {
+              const info = skillExplanations[item];
+              if (!info) {
+                return (
+                  <span key={si} className="text-[13px] px-2.5 py-1 rounded-full bg-white/[0.05] border border-white/[0.09] text-white/70">
+                    {item}
+                  </span>
+                );
+              }
+              return (
+                <span
+                  key={si}
+                  className="skill-chip-info text-[13px] px-2.5 py-1 rounded-full bg-white/[0.05] border border-white/[0.09] text-white/70 inline-flex items-center gap-1"
+                >
+                  {item}
+                  <Info className="h-2.5 w-2.5 opacity-40 shrink-0" />
+                  <span className="skill-chip-tip" role="tooltip">{info[lang]}</span>
+                </span>
+              );
+            })}
           </div>
         </div>
       ))}
