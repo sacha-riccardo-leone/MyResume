@@ -1000,11 +1000,12 @@ function MandateCard({
 }
 
 /* ────────────────────────────────────────────────────── */
-/* Print helpers — section label + bulleted experience    */
+/* Print helpers — section label, bulleted experience,    */
+/* per-page footer                                        */
 /* ────────────────────────────────────────────────────── */
-function PrintSectionLabel({ title }: { title: string }) {
+function PrintSectionLabel({ title, mb = "3.5mm" }: { title: string; mb?: string }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "3mm", marginBottom: "3.5mm" }}>
+    <div style={{ display: "flex", alignItems: "center", gap: "3mm", marginBottom: mb }}>
       <p style={{ fontSize: "5.5pt", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#999", margin: 0, flexShrink: 0, whiteSpace: "nowrap" }}>{title}</p>
       <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
     </div>
@@ -1021,12 +1022,38 @@ function PrintExpEntry({ exp }: { exp: { company: string; role?: string; date: s
       {exp.role && <p style={{ fontSize: "6.5pt", color: "#777", margin: "0.3mm 0 1.2mm", fontStyle: "italic" }}>{exp.role}</p>}
       <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
         {exp.bullets.map((b, j) => (
-          <li key={j} style={{ fontSize: "7pt", color: "#555", lineHeight: 1.45, margin: "0 0 0.7mm", paddingLeft: "2.6mm", position: "relative" }}>
+          <li key={j} style={{ fontSize: "7.5pt", color: "#555", lineHeight: 1.45, margin: "0 0 0.8mm", paddingLeft: "2.8mm", position: "relative" }}>
             <span style={{ position: "absolute", left: 0, color: "#bbb" }}>–</span>{b}
           </li>
         ))}
       </ul>
       {exp.stack && <p style={{ fontSize: "6pt", color: "#999", margin: "1mm 0 0" }}>{exp.stack}</p>}
+    </div>
+  );
+}
+
+/* Pinned to the bottom of each explicit print page (the page is a flex
+   column whose body has flex:1, so this always lands on the page's last
+   line): name · online-version nudge · page counter. */
+function PrintFooter({ cta, site, page, total }: { cta: string; site: string; page: number; total: number }) {
+  return (
+    <div style={{
+      flexShrink: 0,
+      marginTop: "4mm",
+      paddingTop: "2.5mm",
+      borderTop: "0.5px solid #e2e2e2",
+      display: "grid",
+      gridTemplateColumns: "1fr auto 1fr",
+      alignItems: "center",
+      fontSize: "6pt",
+      color: "#999",
+    }}>
+      <span style={{ color: "#bbb" }}>{FULL_NAME}</span>
+      <span style={{ display: "flex", alignItems: "center", gap: "2mm" }}>
+        <Globe style={{ width: "2.6mm", height: "2.6mm", opacity: 0.7 }} />
+        {cta} — {site}
+      </span>
+      <span style={{ textAlign: "right", fontVariantNumeric: "tabular-nums" }}>{page} / {total}</span>
     </div>
   );
 }
@@ -1655,27 +1682,24 @@ export default function MainComponentNameCv() {
       {/* ═══════════════════════════════════════════════════════
           PRINT LAYOUT — A4 portrait, flex-based, monochrome
           ═══════════════════════════════════════════════════════ */}
-      <div className="print-only">
-        <div
-          data-name="Main Component - Name - CV"
-          style={{
-            width: "100%",
-            minHeight: "297mm",
-            background: "white",
-            fontFamily: "'Geist', sans-serif",
-            color: "#111",
-          }}
-        >
+      <div className="print-only" style={{ fontFamily: "'Geist', sans-serif", color: "#111", background: "white" }}>
 
-          {/* ── HEADER ── light strip, dark ink — legible even when PDF background graphics are off ── */}
+        {/* ════════════ PAGE 1 — header · à propos · [professional work | sidebar] ════════════
+            Each .print-page is exactly one page's content box (sized in index.css). Sections
+            are assigned to pages deliberately, so the engine only ever breaks *between* two
+            block-level pages — never inside a flex row, never mid-entry. */}
+        <div className="print-page">
+
+          {/* ── HEADER card ── light panel, dark ink — legible even when PDF background graphics are off ── */}
           <div style={{
             background: "#f4f4f4",
-            padding: "9mm 14mm",
+            border: "0.5px solid #e6e6e6",
+            borderRadius: "3mm",
+            padding: "7mm 8mm",
             display: "flex",
             alignItems: "center",
-            gap: "9mm",
+            gap: "8mm",
             flexShrink: 0,
-            borderBottom: "0.5px solid #ddd",
           }}>
             {/* Photo */}
             <div style={{
@@ -1769,7 +1793,7 @@ export default function MainComponentNameCv() {
           {/* ── À PROPOS STRIP ── availability/rate first, then parcours ── */}
           <div style={{
             background: "#ffffff",
-            padding: "4mm 14mm",
+            padding: "4.5mm 1mm 5mm",
             borderBottom: "0.5px solid #e2e2e2",
             flexShrink: 0,
           }}>
@@ -1802,18 +1826,20 @@ export default function MainComponentNameCv() {
             </p>
           </div>
 
-          {/* ── BODY — two-column flex ── */}
-          <div style={{ flex: 1, minHeight: 0, display: "flex", overflow: "visible" }}>
+          {/* ── BODY — fills the rest of page 1, which pushes the footer to the page bottom.
+               The sidebar stretches to this row's height, so its grey can never leak onto
+               page 2. overflow:hidden is the safety clip; page 1 keeps ~40mm of headroom
+               below the current content (≈ one more medium mandate). ── */}
+          <div style={{ flex: 1, minHeight: 0, display: "flex", overflow: "hidden", marginTop: "6mm" }}>
 
-            {/* LEFT COLUMN — Experience + Education */}
+            {/* LEFT COLUMN — professional work (page 1) */}
             <div style={{
               flex: 1,
-              padding: "8mm 9mm 8mm 14mm",
-              borderRight: "0.5px solid #e2e2e2",
+              minWidth: 0,
+              paddingRight: "8mm",
               display: "flex",
               flexDirection: "column",
               gap: "8mm",
-              overflow: "visible",
             }}>
 
               {/* ── Mandats professionnels ── */}
@@ -1835,93 +1861,24 @@ export default function MainComponentNameCv() {
                 </div>
               </div>
 
-              {/* ── Projets personnels ── */}
-              <div>
-                <PrintSectionLabel title={t.sections.projects} />
-                <div style={{ display: "flex", flexDirection: "column", gap: "4.5mm" }}>
-                  {t.experience.filter(e => e.company.startsWith("CPNE") || e.company === "SourShots").map((exp, i) => <PrintExpEntry key={i} exp={exp} />)}
-                </div>
-              </div>
-
-              {/* ── Section: Education ── */}
-              <div>
-                <div style={{ display: "flex", alignItems: "center", gap: "3mm", marginBottom: "5mm" }}>
-                  <p style={{
-                    fontSize: "5.5pt",
-                    fontWeight: 700,
-                    letterSpacing: "0.18em",
-                    textTransform: "uppercase",
-                    color: "#999",
-                    margin: 0,
-                    flexShrink: 0,
-                    whiteSpace: "nowrap",
-                  }}>
-                    {t.sections.education}
-                  </p>
-                  <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
-                </div>
-
-                <div style={{ display: "flex", flexDirection: "column", gap: "5.5mm" }}>
-                  {t.education.map((edu, i) => (
-                    <div key={i}>
-                      <div style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "baseline",
-                        marginBottom: "1mm",
-                      }}>
-                        <p style={{ fontSize: "8.5pt", fontWeight: 600, color: "#111", margin: 0 }}>
-                          {edu.institution}
-                        </p>
-                        <p style={{
-                          fontSize: "6pt",
-                          color: "#999",
-                          margin: "0 0 0 3mm",
-                          flexShrink: 0,
-                        }}>
-                          {edu.date}
-                        </p>
-                      </div>
-                      <p style={{ fontSize: "7pt", color: "#555", lineHeight: 1.5, margin: 0 }}>
-                        {edu.description}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
             </div>
 
-            {/* RIGHT COLUMN — Skills + Languages */}
+            {/* SIDEBAR — skills · languages · soft skills · references (page 1 only) */}
             <div style={{
-              width: "72mm",
+              width: "60mm",
               flexShrink: 0,
               alignSelf: "stretch",
-              padding: "7mm 14mm 7mm 9mm",
+              padding: "6mm 7mm",
               background: "#f8f8f8",
+              borderRadius: "3mm",
               display: "flex",
               flexDirection: "column",
-              gap: "5mm",
-              overflow: "visible",
+              gap: "6mm",
             }}>
 
               {/* ── Section: Skills ── */}
               <div>
-                <div style={{ display: "flex", alignItems: "center", gap: "3mm", marginBottom: "5mm" }}>
-                  <p style={{
-                    fontSize: "5.5pt",
-                    fontWeight: 700,
-                    letterSpacing: "0.18em",
-                    textTransform: "uppercase",
-                    color: "#999",
-                    margin: 0,
-                    flexShrink: 0,
-                  }}>
-                    {t.sections.skills}
-                  </p>
-                  <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
-                </div>
-
+                <PrintSectionLabel title={t.sections.skills} mb="4mm" />
                 <div style={{ display: "flex", flexDirection: "column", gap: "3.5mm" }}>
                   {skillGroups.map((group, gi) => (
                     <div key={gi}>
@@ -1945,21 +1902,7 @@ export default function MainComponentNameCv() {
 
               {/* ── Section: Languages ── */}
               <div>
-                <div style={{ display: "flex", alignItems: "center", gap: "3mm", marginBottom: "5mm" }}>
-                  <p style={{
-                    fontSize: "5.5pt",
-                    fontWeight: 700,
-                    letterSpacing: "0.18em",
-                    textTransform: "uppercase",
-                    color: "#999",
-                    margin: 0,
-                    flexShrink: 0,
-                  }}>
-                    {t.sections.languages}
-                  </p>
-                  <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
-                </div>
-
+                <PrintSectionLabel title={t.sections.languages} mb="4mm" />
                 <div style={{ display: "flex", flexDirection: "column", gap: "3mm" }}>
                   {t.languages.map((language, i) => (
                     <div key={i} style={{
@@ -1980,12 +1923,7 @@ export default function MainComponentNameCv() {
 
               {/* ── Section: Compétences personnelles ── */}
               <div>
-                <div style={{ display: "flex", alignItems: "center", gap: "3mm", marginBottom: "3.5mm" }}>
-                  <p style={{ fontSize: "5.5pt", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#999", margin: 0, flexShrink: 0 }}>
-                    {t.sections.personalSkills}
-                  </p>
-                  <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
-                </div>
+                <PrintSectionLabel title={t.sections.personalSkills} />
                 <p style={{ fontSize: "6.5pt", color: "#444", lineHeight: 1.65, margin: 0 }}>
                   {t.softSkills.join(" · ")}
                 </p>
@@ -1993,12 +1931,7 @@ export default function MainComponentNameCv() {
 
               {/* ── Section: Références ── */}
               <div>
-                <div style={{ display: "flex", alignItems: "center", gap: "3mm", marginBottom: "3mm" }}>
-                  <p style={{ fontSize: "5.5pt", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#999", margin: 0, flexShrink: 0 }}>
-                    {t.sections.references}
-                  </p>
-                  <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
-                </div>
+                <PrintSectionLabel title={t.sections.references} mb="3mm" />
                 <p style={{ fontSize: "6.5pt", color: "#777", margin: 0, fontStyle: "italic" }}>
                   {t.referencesLine}
                 </p>
@@ -2007,22 +1940,64 @@ export default function MainComponentNameCv() {
             </div>
           </div>
 
-          {/* Discrete footer — nudge to the interactive online version */}
+          <PrintFooter cta={t.printCta} site={t.contact.website} page={1} total={2} />
+        </div>
+
+        {/* ════════════ PAGE 2 — [projets personnels | formations] ════════════ */}
+        <div className="print-page">
+
+          {/* Running header — a detached page 2 stays identifiable */}
           <div style={{
-            flexShrink: 0,
-            padding: "2.5mm 14mm",
-            borderTop: "0.5px solid #e2e2e2",
-            background: "#fafafa",
             display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "2mm",
-            fontSize: "6pt",
-            color: "#999",
+            justifyContent: "space-between",
+            alignItems: "baseline",
+            paddingBottom: "3mm",
+            borderBottom: "0.5px solid #e2e2e2",
+            marginBottom: "8mm",
+            flexShrink: 0,
           }}>
-            <Globe style={{ width: "2.6mm", height: "2.6mm", opacity: 0.7 }} />
-            <span>{t.printCta} — {t.contact.website}</span>
+            <span style={{ fontSize: "8pt", fontWeight: 600, color: "#222", letterSpacing: "-0.01em" }}>{FULL_NAME}</span>
+            <span style={{ fontSize: "6pt", color: "#999", letterSpacing: "0.12em", textTransform: "uppercase" }}>{t.title}</span>
           </div>
+
+          {/* Two independent short columns; the row fills the page so the footer pins to the bottom */}
+          <div style={{ flex: 1, minHeight: 0, display: "flex", gap: "10mm", overflow: "hidden" }}>
+
+            {/* ── Projets personnels ── */}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <PrintSectionLabel title={t.sections.projects} mb="4mm" />
+              <div style={{ display: "flex", flexDirection: "column", gap: "4.5mm" }}>
+                {t.experience
+                  .filter(e => e.company.startsWith("CPNE") || e.company === "SourShots")
+                  .map((exp, i) => <PrintExpEntry key={i} exp={exp} />)}
+              </div>
+            </div>
+
+            {/* ── Formations / Diplômes ── */}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <PrintSectionLabel title={t.sections.education} mb="4mm" />
+              <div style={{ display: "flex", flexDirection: "column", gap: "5.5mm" }}>
+                {t.education.map((edu, i) => (
+                  <div key={i} style={{ breakInside: "avoid", pageBreakInside: "avoid" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "1mm" }}>
+                      <p style={{ fontSize: "8.5pt", fontWeight: 600, color: "#111", margin: 0 }}>
+                        {edu.institution}
+                      </p>
+                      <p style={{ fontSize: "6pt", color: "#999", margin: "0 0 0 3mm", flexShrink: 0, fontVariantNumeric: "tabular-nums" }}>
+                        {edu.date}
+                      </p>
+                    </div>
+                    <p style={{ fontSize: "7pt", color: "#555", lineHeight: 1.5, margin: 0 }}>
+                      {edu.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+
+          <PrintFooter cta={t.printCta} site={t.contact.website} page={2} total={2} />
         </div>
       </div>
     </>

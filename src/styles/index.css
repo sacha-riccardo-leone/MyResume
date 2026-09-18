@@ -248,7 +248,16 @@
 .print-only { display: none; }
 
 @media print {
-  @page { size: A4 portrait; margin: 0; }
+  /* ── Paper ─────────────────────────────────────────────────────────────
+     Real @page margins: every page — including any page the engine might
+     ever add — gets its margins from the engine itself, not from inner
+     padding that only exists once at the top of a container (that was why
+     page 2 used to start flush against the top edge).
+     To print on US Letter change BOTH values below:
+       size: letter;            --print-page-h: 279.4mm;
+     Everything else derives from them. */
+  @page { size: A4 portrait; margin: 12mm 14mm 14mm 14mm; }
+  :root { --print-page-h: 297mm; --print-margins-y: 26mm; /* 12mm top + 14mm bottom */ }
 
   /* ── Completely erase the web layout from all layout calculations.
      iOS Safari paginates from content height, not overflow:hidden.
@@ -272,41 +281,49 @@
   * { text-rendering: optimizeLegibility !important; }
   svg { shape-rendering: geometricPrecision; }
 
-/* Allow backgrounds to print */
+  /* Allow backgrounds to print */
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 
-  /* A4 width, but let content flow across pages (2-page CV allowed). */
-  html {
-    width: 210mm !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    background: white !important;
-    -webkit-text-size-adjust: none !important;
-  }
-  body, #root {
+  /* The document fills the page content box (page width minus the side
+     margins); no fixed 210mm width, which would overflow it. */
+  html, body, #root {
     width: 100% !important;
     height: auto !important;
-    background: white !important;
     margin: 0 !important;
     padding: 0 !important;
+    background: white !important;
     overflow: visible !important;
+    -webkit-text-size-adjust: none !important;
   }
   .print-only {
     display: block !important;
     width: 100% !important;
-    height: auto !important;
     margin: 0 !important;
     padding: 0 !important;
-    overflow: visible !important;
   }
 
-  /* A4 container — flows across pages */
-  [data-name="Main Component - Name - CV"] {
-    height: auto !important;
-    overflow: visible !important;
-    background: white !important;
+  /* ── Explicit pages ────────────────────────────────────────────────────
+     Each .print-page is exactly one page's content box: page height minus
+     the vertical @page margins, minus 1mm of rounding slack so a block can
+     never compute a hair taller than the page and spill a blank sheet.
+     Content is assigned to pages deliberately in the JSX, so the ONLY
+     paged-media operation the engine performs is a forced break between
+     two block-level pages — the one thing Chrome, Firefox and Safari all
+     do identically. No flex row is ever fragmented (that fragmentation was
+     the root cause of the empty grey sidebar and the orphaned footer). */
+  .print-page {
+    box-sizing: border-box;
+    height: calc(var(--print-page-h) - var(--print-margins-y) - 1mm);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;                 /* safety clip — pages carry headroom */
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
-
-  /* Profile picture ring: make visible on white background */
-  [data-name="Elements"] > div { --tw-ring-color: #555 !important; }
+  /* Only pages that have a successor force a break; the last one must not,
+     or the engine would emit a trailing blank page. */
+  .print-page:not(:last-child) {
+    break-after: page;
+    page-break-after: always;
+  }
 }
