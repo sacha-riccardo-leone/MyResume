@@ -244,20 +244,54 @@
   .cursor-blink { animation: none !important; }
 }
 
-/* Print-only elements: hidden on screen, visible on print */
-.print-only { display: none; }
+/* ─── Print geometry (shared by screen and print) ─────────────────────────
+   Paper is A4 with real @page margins (12mm top, 14mm sides/bottom).
+   To print on US Letter change these two values AND the @page size below:
+     --print-page-w: 215.9mm;  --print-page-h: 279.4mm;   size: letter;
+   (verified: same 2-page layout, margins >= 12mm, nothing clipped.)
+   Everything else derives from them. */
+:root {
+  --print-page-w: 210mm;
+  --print-page-h: 297mm;
+  --print-margins-x: 28mm;   /* 14mm left + 14mm right */
+  --print-margins-y: 26mm;   /* 12mm top  + 14mm bottom */
+}
+
+/* The print DOM is kept LAID OUT on screen — parked off-canvas and invisible,
+   not display:none — at exactly the print content width. That lets the
+   paginator (MainComponentNameCv) measure real overflow with the real fonts
+   and real mm/pt metrics before anything is printed, and move entries that
+   don't fit page 1 onto page 2. Off to the left so it never adds scroll. */
+.print-only {
+  position: absolute;
+  left: -10000px;
+  top: 0;
+  width: calc(var(--print-page-w) - var(--print-margins-x));
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Each .print-page is exactly one page's content box: page height minus the
+   vertical @page margins, minus 1mm of rounding slack so a block can never
+   compute a hair taller than the page and spill a blank sheet. The same box
+   is used for on-screen measurement and for printing, so what measures as
+   fitting, prints as fitting. */
+.print-page {
+  box-sizing: border-box;
+  height: calc(var(--print-page-h) - var(--print-margins-y) - 1mm);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;                 /* safety clip; the paginator keeps it from mattering */
+}
 
 @media print {
   /* ── Paper ─────────────────────────────────────────────────────────────
      Real @page margins: every page — including any page the engine might
      ever add — gets its margins from the engine itself, not from inner
      padding that only exists once at the top of a container (that was why
-     page 2 used to start flush against the top edge).
-     To print on US Letter change BOTH values below:
-       size: letter;            --print-page-h: 279.4mm;
-     Everything else derives from them. */
+     page 2 used to start flush against the top edge). Keep in sync with
+     the --print-* variables above. */
   @page { size: A4 portrait; margin: 12mm 14mm 14mm 14mm; }
-  :root { --print-page-h: 297mm; --print-margins-y: 26mm; /* 12mm top + 14mm bottom */ }
 
   /* ── Completely erase the web layout from all layout calculations.
      iOS Safari paginates from content height, not overflow:hidden.
@@ -295,28 +329,26 @@
     overflow: visible !important;
     -webkit-text-size-adjust: none !important;
   }
+  /* Bring the (off-canvas, measured) print DOM on-canvas. Its width becomes
+     the page content box, which equals the measured width by construction. */
   .print-only {
-    display: block !important;
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
     width: 100% !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
     margin: 0 !important;
     padding: 0 !important;
   }
 
   /* ── Explicit pages ────────────────────────────────────────────────────
-     Each .print-page is exactly one page's content box: page height minus
-     the vertical @page margins, minus 1mm of rounding slack so a block can
-     never compute a hair taller than the page and spill a blank sheet.
-     Content is assigned to pages deliberately in the JSX, so the ONLY
+     Content is assigned to pages by measurement in the JSX, so the ONLY
      paged-media operation the engine performs is a forced break between
      two block-level pages — the one thing Chrome, Firefox and Safari all
      do identically. No flex row is ever fragmented (that fragmentation was
      the root cause of the empty grey sidebar and the orphaned footer). */
   .print-page {
-    box-sizing: border-box;
-    height: calc(var(--print-page-h) - var(--print-margins-y) - 1mm);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;                 /* safety clip — pages carry headroom */
     break-inside: avoid;
     page-break-inside: avoid;
   }

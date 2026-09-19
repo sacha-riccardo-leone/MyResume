@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { Linkedin, Github, Printer, MapPin, Mail, Phone, ChevronDown, ExternalLink, Globe, Info } from "lucide-react";
 import profilePic from "../assets/pfplinkedin-removebg-preview.png";
 import r2jcLogo from "../assets/r2jcLogo.png";
@@ -670,6 +670,9 @@ function badgeGlyph(b: { flag: string; fallback?: string }, flagsOk: boolean): s
 const permitLabel: Record<Lang, string> = { fr: "Permis C", en: "Permit C", de: "Ausweis C", it: "Permesso C" };
 const deliveredBadge: Record<Lang, string> = { fr: "Livré", en: "Delivered", de: "Geliefert", it: "Consegnato" };
 const demoLabel: Record<Lang, string> = { fr: "Démo", en: "Demo", de: "Demo", it: "Demo" };
+/* Appended to a print section label when the paginator has to continue that
+   section on page 2 (e.g. "Mandats professionnels (suite)"). */
+const printContinued: Record<Lang, string> = { fr: "(suite)", en: "(cont.)", de: "(Forts.)", it: "(segue)" };
 
 const anthropicCert = {
   date: { fr: "2026 — en cours", en: "2026 — in progress", de: "2026 — laufend", it: "2026 — in corso" } as Record<Lang, string>,
@@ -1058,6 +1061,38 @@ function PrintFooter({ cta, site, page, total }: { cta: string; site: string; pa
   );
 }
 
+/* One professional entry tagged with the section it belongs to. The paginator
+   works on a flat ordered list of these so it can split at any entry. */
+type PrintProEntry = {
+  section: string;                                   // stable key, e.g. "mandates"
+  title: string;                                     // localised section label
+  exp: { company: string; role?: string; date: string; bullets: string[]; stack?: string };
+};
+
+/* Renders a run of entries, grouping consecutive ones under their section
+   label. `continued` lists sections that already started on the previous
+   page, so their label here gets the "(suite)" marker. */
+function PrintProGroups({ entries, continued, lang }: { entries: PrintProEntry[]; continued: Set<string>; lang: Lang }) {
+  const groups: { section: string; title: string; items: PrintProEntry[] }[] = [];
+  for (const e of entries) {
+    const last = groups[groups.length - 1];
+    if (last && last.section === e.section) last.items.push(e);
+    else groups.push({ section: e.section, title: e.title, items: [e] });
+  }
+  return (
+    <>
+      {groups.map(g => (
+        <div key={g.section}>
+          <PrintSectionLabel title={continued.has(g.section) ? `${g.title} ${printContinued[lang]}` : g.title} />
+          <div style={{ display: "flex", flexDirection: "column", gap: "4.5mm" }}>
+            {g.items.map((e, i) => <PrintExpEntry key={i} exp={e.exp} />)}
+          </div>
+        </div>
+      ))}
+    </>
+  );
+}
+
 /* ────────────────────────────────────────────────────── */
 /* Skill section                                          */
 /* ────────────────────────────────────────────────────── */
@@ -1154,6 +1189,48 @@ export default function MainComponentNameCv() {
   const [openCards, setOpenCards] = useState<Set<string>>(new Set());
   const [flagsSupported] = useState<boolean>(() => typeof document !== "undefined" && detectFlagSupport());
   const t = translations[lang];
+
+  /* ── Print paginator ──────────────────────────────────────────────────
+     The professional entries, in reading order, as one flat list. Page 1
+     shows the first `page1Pro` of them; the rest continue on page 2. The
+     print DOM is laid out off-canvas at exact print size (index.css), so
+     we can measure real overflow: if page 1's body overflows, demote one
+     entry and re-measure, until it fits. Converges in at most N renders.
+     This is what makes the PDF survive content growth without ever
+     clipping the last entry. */
+  const proEntries: PrintProEntry[] = [
+    ...t.experience
+      .filter(e => e.company === "R2JC" || e.company === "Magneticlab - XEFI Neuchâtel")
+      .sort((a, b) => (a.company === "R2JC" ? 0 : 1) - (b.company === "R2JC" ? 0 : 1))
+      .map(exp => ({ section: "mandates", title: t.sections.mandates, exp })),
+    ...t.experience
+      .filter(e => e.company === "Ordine AI")
+      .map(exp => ({ section: "entrepreneurship", title: t.sections.entrepreneurship, exp })),
+  ];
+  const [page1Pro, setPage1Pro] = useState(proEntries.length);
+  const [fontsReady, setFontsReady] = useState(false);
+  const page1LeftRef = useRef<HTMLDivElement>(null);
+
+  // Web fonts change line wrapping; re-measure once they've loaded.
+  useEffect(() => {
+    let alive = true;
+    document.fonts?.ready.then(() => { if (alive) setFontsReady(true); });
+    return () => { alive = false; };
+  }, []);
+
+  // New language / content → start over with everything on page 1.
+  useLayoutEffect(() => { setPage1Pro(proEntries.length); }, [lang, proEntries.length]);
+
+  // Measure the left column; demote its last entry while it overflows.
+  useLayoutEffect(() => {
+    const col = page1LeftRef.current;
+    if (!col) return;
+    if (col.scrollHeight > col.clientHeight + 1 && page1Pro > 0) setPage1Pro(n => n - 1);
+  }, [page1Pro, lang, fontsReady]);
+
+  const page1Entries = proEntries.slice(0, page1Pro);
+  const page2Entries = proEntries.slice(page1Pro);
+  const sectionsOnPage1 = new Set(page1Entries.map(e => e.section));
 
   const toggleExp = (i: number) =>
     setOpenExp(prev => {
@@ -1682,7 +1759,7 @@ export default function MainComponentNameCv() {
       {/* ═══════════════════════════════════════════════════════
           PRINT LAYOUT — A4 portrait, flex-based, monochrome
           ═══════════════════════════════════════════════════════ */}
-      <div className="print-only" style={{ fontFamily: "'Geist', sans-serif", color: "#111", background: "white" }}>
+      <div className="print-only" aria-hidden="true" style={{ fontFamily: "'Geist', sans-serif", color: "#111", background: "white" }}>
 
         {/* ════════════ PAGE 1 — header · à propos · [professional work | sidebar] ════════════
             Each .print-page is exactly one page's content box (sized in index.css). Sections
@@ -1828,12 +1905,15 @@ export default function MainComponentNameCv() {
 
           {/* ── BODY — fills the rest of page 1, which pushes the footer to the page bottom.
                The sidebar stretches to this row's height, so its grey can never leak onto
-               page 2. overflow:hidden is the safety clip; page 1 keeps ~40mm of headroom
-               below the current content (≈ one more medium mandate). ── */}
+               page 2. The paginator measures THIS box: while its content overflows, the
+               last professional entry is moved to page 2, so nothing is ever clipped. ── */}
           <div style={{ flex: 1, minHeight: 0, display: "flex", overflow: "hidden", marginTop: "6mm" }}>
 
-            {/* LEFT COLUMN — professional work (page 1) */}
-            <div style={{
+            {/* LEFT COLUMN — professional work: as many entries as fit (page 1).
+                The paginator measures THIS column (not the row): the row's height is
+                the taller of the two columns, so measuring it would let a tall sidebar
+                drain the left column to nothing. */}
+            <div ref={page1LeftRef} style={{
               flex: 1,
               minWidth: 0,
               paddingRight: "8mm",
@@ -1841,26 +1921,7 @@ export default function MainComponentNameCv() {
               flexDirection: "column",
               gap: "8mm",
             }}>
-
-              {/* ── Mandats professionnels ── */}
-              <div>
-                <PrintSectionLabel title={t.sections.mandates} />
-                <div style={{ display: "flex", flexDirection: "column", gap: "4.5mm" }}>
-                  {t.experience
-                    .filter(e => e.company === "R2JC" || e.company === "Magneticlab - XEFI Neuchâtel")
-                    .sort((a, b) => (a.company === "R2JC" ? 0 : 1) - (b.company === "R2JC" ? 0 : 1))
-                    .map((exp, i) => <PrintExpEntry key={i} exp={exp} />)}
-                </div>
-              </div>
-
-              {/* ── Projets & entrepreneuriat ── */}
-              <div>
-                <PrintSectionLabel title={t.sections.entrepreneurship} />
-                <div style={{ display: "flex", flexDirection: "column", gap: "4.5mm" }}>
-                  {t.experience.filter(e => e.company === "Ordine AI").map((exp, i) => <PrintExpEntry key={i} exp={exp} />)}
-                </div>
-              </div>
-
+              <PrintProGroups entries={page1Entries} continued={new Set()} lang={lang} />
             </div>
 
             {/* SIDEBAR — skills · languages · soft skills · references (page 1 only) */}
@@ -1928,14 +1989,8 @@ export default function MainComponentNameCv() {
                   {t.softSkills.join(" · ")}
                 </p>
               </div>
-
-              {/* ── Section: Références ── */}
-              <div>
-                <PrintSectionLabel title={t.sections.references} mb="3mm" />
-                <p style={{ fontSize: "6.5pt", color: "#777", margin: 0, fontStyle: "italic" }}>
-                  {t.referencesLine}
-                </p>
-              </div>
+              {/* Références lives at the end of page 2: keeps this sidebar inside
+                  page 1 on Letter as well as A4, with real headroom. */}
 
             </div>
           </div>
@@ -1959,6 +2014,14 @@ export default function MainComponentNameCv() {
             <span style={{ fontSize: "8pt", fontWeight: 600, color: "#222", letterSpacing: "-0.01em" }}>{FULL_NAME}</span>
             <span style={{ fontSize: "6pt", color: "#999", letterSpacing: "0.12em", textTransform: "uppercase" }}>{t.title}</span>
           </div>
+
+          {/* Professional entries that didn't fit page 1 continue here first, in reading
+              order, under their own labels (marked "(suite)" when a section was split). */}
+          {page2Entries.length > 0 && (
+            <div style={{ display: "flex", flexDirection: "column", gap: "8mm", marginBottom: "8mm", flexShrink: 0 }}>
+              <PrintProGroups entries={page2Entries} continued={sectionsOnPage1} lang={lang} />
+            </div>
+          )}
 
           {/* Two independent short columns; the row fills the page so the footer pins to the bottom */}
           <div style={{ flex: 1, minHeight: 0, display: "flex", gap: "10mm", overflow: "hidden" }}>
@@ -1992,6 +2055,14 @@ export default function MainComponentNameCv() {
                     </p>
                   </div>
                 ))}
+              </div>
+
+              {/* ── Références — the CV's conventional last line ── */}
+              <div style={{ marginTop: "8mm" }}>
+                <PrintSectionLabel title={t.sections.references} mb="3mm" />
+                <p style={{ fontSize: "6.5pt", color: "#777", margin: 0, fontStyle: "italic" }}>
+                  {t.referencesLine}
+                </p>
               </div>
             </div>
 
