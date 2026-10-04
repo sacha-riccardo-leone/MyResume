@@ -1,0 +1,272 @@
+import { useEffect, useRef, useState } from "react";
+import { TextAnimate } from "../components/ui/text-animate";
+import { SmoothCursor } from "../components/ui/smooth-cursor";
+import { projects, ui, type PfLang, type Project } from "./content";
+
+/* The "Full experience". Type-led and monochrome: the typography is the
+   artwork, the grain sits over everything, and the work is shown as real
+   screenshots rather than described. */
+export default function Portfolio({
+  lang,
+  setLang,
+  onReadCv,
+  onBack,
+}: {
+  lang: PfLang;
+  setLang: (l: PfLang) => void;
+  onReadCv: () => void;
+  onBack: () => void;
+}) {
+  const t = ui[lang];
+  const finePointer = useFinePointer();
+
+  return (
+    <div className={`pf ${finePointer ? "pf-cursor-none" : ""}`}>
+      {finePointer && <SmoothCursor />}
+
+      {/* Persistent, quiet chrome — the visitor can always leave for the CV */}
+      <header className="fixed inset-x-0 top-0 z-50">
+        {/* Scrim: content scrolls under the chrome, so it needs to fall away
+            rather than collide with it. Taller than the row and click-through,
+            so it darkens without blocking anything beneath. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#0a0a0b] via-[#0a0a0b]/85 to-transparent"
+        />
+        <div className="relative flex items-center justify-between px-5 sm:px-8 py-4">
+        <button
+          onClick={onBack}
+          className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#7c7f86] hover:text-[#f2f2f0] transition-colors"
+        >
+          ← {t.backToGate}
+        </button>
+        <div className="flex items-center gap-3">
+          <div className="hidden sm:flex items-center gap-1">
+            {(["fr", "en", "de", "it"] as PfLang[]).map(l => (
+              <button
+                key={l}
+                onClick={() => setLang(l)}
+                aria-current={l === lang}
+                className={`px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest rounded-full transition-colors ${
+                  l === lang ? "text-[#f2f2f0] bg-white/10" : "text-[#7c7f86] hover:text-[#f2f2f0]"
+                }`}
+              >
+                {l}
+              </button>
+            ))}
+          </div>
+          <button
+            onClick={onReadCv}
+            className="rounded-full border border-[#26262a] px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-[0.15em] text-[#f2f2f0]/80 hover:border-[#f2f2f0]/40 hover:text-[#f2f2f0] transition-colors"
+          >
+            {t.readCv}
+          </button>
+        </div>
+        </div>
+      </header>
+
+      {/* ── Hero: the thesis, in two lines of large type ── */}
+      <section className="min-h-[88vh] flex flex-col justify-center px-5 sm:px-10 lg:px-16 pt-24">
+        <div className="max-w-[1100px]">
+          <TextAnimate
+            as="h1"
+            animation="blurInUp"
+            by="word"
+            duration={0.6}
+            once
+            className="text-[clamp(2.4rem,8.5vw,7rem)] font-medium leading-[0.95] tracking-[-0.045em]"
+          >
+            {t.heroA}
+          </TextAnimate>
+          <TextAnimate
+            as="h1"
+            animation="blurInUp"
+            by="word"
+            duration={0.6}
+            delay={0.18}
+            once
+            className="text-[clamp(2.4rem,8.5vw,7rem)] font-medium leading-[0.95] tracking-[-0.045em] text-[#7c7f86]"
+          >
+            {t.heroB}
+          </TextAnimate>
+
+          <TextAnimate
+            as="p"
+            animation="fadeIn"
+            by="line"
+            delay={0.6}
+            once
+            className="mt-10 max-w-[46ch] text-sm sm:text-base leading-relaxed text-[#7c7f86]"
+          >
+            {t.heroSub}
+          </TextAnimate>
+        </div>
+      </section>
+
+      {/* ── Work ── */}
+      <section className="px-5 sm:px-10 lg:px-16 pb-32">
+        <div className="flex items-baseline gap-4 mb-14">
+          <h2 className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#7c7f86]">
+            {t.workEyebrow}
+          </h2>
+          <hr className="pf-rule flex-1" />
+          <span className="pf-num text-[10px] font-mono text-[#7c7f86]">
+            {String(projects.length).padStart(2, "0")}
+          </span>
+        </div>
+
+        <div className="space-y-28 sm:space-y-40">
+          {projects.map((p, i) => (
+            <ProjectBlock key={p.id} project={p} index={i} lang={lang} t={t} />
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function ProjectBlock({
+  project: p,
+  index,
+  lang,
+  t,
+}: {
+  project: Project;
+  index: number;
+  lang: PfLang;
+  t: (typeof ui)[PfLang];
+}) {
+  return (
+    <article className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14 items-start">
+      {/* Left: the facts */}
+      <div className="lg:sticky lg:top-28">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="pf-num text-[10px] font-mono text-[#7c7f86]">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <hr className="pf-rule w-8" />
+          <span className="pf-num text-[10px] font-mono text-[#7c7f86]">{p.year}</span>
+          {p.status === "ongoing" && (
+            <span className="flex items-center gap-1.5 text-[9px] font-mono uppercase tracking-[0.18em] text-[#f2f2f0]/70">
+              <span className="h-1 w-1 rounded-full bg-[#f2f2f0]/70 animate-pulse" />
+              {t.ongoing}
+            </span>
+          )}
+        </div>
+
+        <TextAnimate
+          as="h3"
+          animation="slideUp"
+          by="word"
+          once
+          className="text-[clamp(1.6rem,3.4vw,2.6rem)] font-medium leading-[1.05] tracking-[-0.03em]"
+        >
+          {p.name}
+        </TextAnimate>
+
+        <p className="mt-2 text-[12px] font-mono text-[#7c7f86]">{p.role[lang]}</p>
+
+        <p className="mt-6 max-w-[48ch] text-sm leading-relaxed text-[#7c7f86]">
+          {p.summary[lang]}
+        </p>
+
+        {/* Metrics — the numbers do the bragging so the prose doesn't have to */}
+        <dl className="mt-8 grid grid-cols-3 gap-4 max-w-[26rem]">
+          {p.metrics.map((m, k) => (
+            <div key={k}>
+              <dt className="pf-num text-[clamp(1.15rem,2.2vw,1.6rem)] font-medium text-[#f2f2f0]">
+                {m.value}
+              </dt>
+              <dd className="mt-1 text-[10px] leading-snug text-[#7c7f86]">{m.label[lang]}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div className="mt-8 flex flex-wrap gap-1.5">
+          {p.stack.map(s => (
+            <span
+              key={s}
+              className="rounded-full border border-[#26262a] px-2.5 py-1 text-[10px] font-mono text-[#7c7f86]"
+            >
+              {s}
+            </span>
+          ))}
+        </div>
+
+        {p.url && (
+          <a
+            href={p.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.18em] text-[#f2f2f0]/80 hover:text-[#f2f2f0] transition-colors"
+          >
+            {t.visit}
+            <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </a>
+        )}
+      </div>
+
+      {/* Right: the evidence */}
+      <Shot src={p.shot} alt={p.name} />
+    </article>
+  );
+}
+
+/* Screenshot in a plate. It arrives desaturated and slightly dim, and resolves
+   as it enters the viewport — calm at rest, alive on approach. */
+function Shot({ src, alt }: { src?: string; alt: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setShown(true); io.disconnect(); } },
+      { threshold: 0.2 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="relative overflow-hidden rounded-lg border border-[#26262a] bg-[#141416]"
+      style={{ aspectRatio: "16 / 10" }}
+    >
+      {src ? (
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          className="h-full w-full object-cover object-top transition-[filter,opacity,transform] duration-[1200ms] ease-out"
+          style={{
+            filter: shown ? "grayscale(0) contrast(1)" : "grayscale(1) contrast(0.9)",
+            opacity: shown ? 1 : 0.35,
+            transform: shown ? "scale(1)" : "scale(1.03)",
+          }}
+        />
+      ) : (
+        <div className="flex h-full w-full items-center justify-center">
+          <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#7c7f86]/60">
+            {alt}
+          </span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* Only hide the native cursor where there is a real pointer. */
+function useFinePointer() {
+  const [fine, setFine] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const apply = () => setFine(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+  return fine;
+}

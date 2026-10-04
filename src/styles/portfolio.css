@@ -1,0 +1,76 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Portfolio ("Full experience") — type-led, monochrome.
+   Scoped so none of this can reach the CV view.
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --pf-ground: #0a0a0b;
+  --pf-raise: #141416;
+  --pf-hair: #26262a;
+  --pf-mute: #7c7f86;
+  --pf-ink: #f2f2f0;
+}
+
+/* ─── Film grain ──────────────────────────────────────────────────────────
+   A single fixed, oversized layer of fractal noise sitting above everything.
+   It animates by TRANSFORM ONLY (steps(), so it jitters like real grain) —
+   the compositor moves an existing layer each frame, nothing repaints. That
+   keeps it effectively free, which matters here: this page already had one
+   performance incident from per-frame backdrop work.
+   Oversized to 200% so the jitter never exposes an edge. */
+.grain {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
+  will-change: transform;
+  animation: grain-jitter 0.7s steps(3) infinite;
+}
+
+@keyframes grain-jitter {
+  0%   { transform: translate3d(0, 0, 0); }
+  25%  { transform: translate3d(-1.5%, 1%, 0); }
+  50%  { transform: translate3d(1%, -1.5%, 0); }
+  75%  { transform: translate3d(-1%, -1%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+/* Static grain for anyone who opts out of motion — the texture stays, the
+   jitter goes. */
+@media (prefers-reduced-motion: reduce) {
+  .grain { animation: none; }
+}
+
+/* Grain is a screen treatment; it must never reach the PDF. */
+@media print {
+  .grain { display: none !important; }
+}
+
+/* ─── Portfolio shell ─────────────────────────────────────────────────── */
+.pf {
+  background: var(--pf-ground);
+  color: var(--pf-ink);
+  min-height: 100vh;
+}
+
+/* Hide the native cursor only where the custom one is active, and only on
+   devices that actually have a pointer. */
+@media (hover: hover) and (pointer: fine) {
+  .pf-cursor-none,
+  .pf-cursor-none * { cursor: none; }
+}
+
+/* Hairline rule used to separate movements of the page. */
+.pf-rule {
+  height: 1px;
+  background: var(--pf-hair);
+  border: 0;
+}
+
+/* Tabular figures for anything numeric, so columns of stats don't wobble. */
+.pf-num { font-variant-numeric: tabular-nums; }
