@@ -1,5 +1,8 @@
 import shotR2jc from "../assets/shot-r2jc.webp";
 import shotOrdine from "../assets/shot-ordine.webp";
+import vidR2jcWebm from "../assets/vid-r2jc.webm";
+import vidR2jcMp4 from "../assets/vid-r2jc.mp4";
+import posterR2jc from "../assets/poster-r2jc.webp";
 import vidOrdineWebm from "../assets/vid-ordine.webm";
 import vidOrdineMp4 from "../assets/vid-ordine.mp4";
 import posterOrdine from "../assets/poster-ordine.webp";
@@ -90,6 +93,7 @@ export const projects: Project[] = [
     url: "https://r2jc.ch",
     stack: ["WordPress", "PHP", "REST API", "JavaScript"],
     shot: shotR2jc,
+    video: { webm: vidR2jcWebm, mp4: vidR2jcMp4, poster: posterR2jc },
     metrics: [
       { value: "6", label: { fr: "semaines, en production", en: "weeks, to production", de: "Wochen bis Produktion", it: "settimane, in produzione" } },
       { value: "÷3–6", label: { fr: "poids des images", en: "image weight", de: "Bildgewicht", it: "peso delle immagini" } },

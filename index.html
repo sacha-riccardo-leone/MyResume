@@ -1,19 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Sacha Riccardo Leone - CV</title>
-      <style>
-      html, body { height: 100%; margin: 0; background: #262626; scrollbar-gutter: stable; }
+    <title>Sacha Riccardo Leone — Développeur d'applications</title>
+    <meta
+      name="description"
+      content="Développeur d'applications en Suisse. Mandats livrés en production, du frontend à l'infrastructure. CV et portfolio interactif."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#0a0a0b" />
+
+    <!-- Link preview: this URL gets pasted into LinkedIn and emails, so it
+         should unfurl as a card rather than a bare link. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Sacha Riccardo Leone" />
+    <meta property="og:title" content="Sacha Riccardo Leone — Développeur d'applications" />
+    <meta
+      property="og:description"
+      content="Des besoins réels, des logiciels livrés. CV et portfolio interactif."
+    />
+    <meta property="og:url" content="https://resume-sacha-leone.vercel.app/" />
+    <meta property="og:image" content="https://resume-sacha-leone.vercel.app/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <style>
+      /* Match the app's ground so there is no pale flash before CSS loads. */
+      html, body { height: 100%; margin: 0; background: #0a0a0b; scrollbar-gutter: stable; }
       #root { height: 100%; }
     </style>
-    </head>
+  </head>
 
-    <body>
-      <div id="root"></div>
-      <script type="module" src="/src/main.tsx"></script>
-    </body>
-  </html>
-  
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

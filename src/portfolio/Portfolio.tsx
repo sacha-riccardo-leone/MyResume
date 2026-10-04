@@ -222,7 +222,9 @@ function Plate({ project: p }: { project: Project }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shown, setShown] = useState(false);
   const calm = useReducedMotion();
-  const src = p.video?.poster ?? p.shot;
+  /* A curated screenshot beats a frame grabbed out of a clip, so it wins as
+     the still; the video poster is only the fallback. */
+  const src = p.shot ?? p.video?.poster;
 
   useEffect(() => {
     const el = ref.current;
