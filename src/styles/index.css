@@ -100,8 +100,8 @@
   transform: none !important;
 }
 
-/* Ordine AI card — white pulsating glow */
-@keyframes ordine-breathe {
+/* "En cours" cards — soft pulsating glow marking live, ongoing work */
+@keyframes card-breathe {
   0%, 100% {
     box-shadow:
       0 4px 24px rgba(0, 0, 0, 0.22),
@@ -118,13 +118,13 @@
   }
 }
 
-.glass-card--ordine {
+.glass-card--pulse {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 100%) !important;
   border-color: rgba(255, 255, 255, 0.28) !important;
-  animation: ordine-breathe 3s ease-in-out infinite;
+  animation: card-breathe 3s ease-in-out infinite;
 }
 
-.glass-card--ordine:hover {
+.glass-card--pulse:hover {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.06) 100%) !important;
   border-color: rgba(255, 255, 255, 0.50) !important;
 }
@@ -239,7 +239,7 @@
    users who opt out of motion. */
 @media (prefers-reduced-motion: reduce) {
   .glass-card--anthropic,
-  .glass-card--ordine { animation: none !important; }
+  .glass-card--pulse { animation: none !important; }
   .dot-jump-1, .dot-jump-2, .dot-jump-3 { animation: none !important; }
   .cursor-blink { animation: none !important; }
 }

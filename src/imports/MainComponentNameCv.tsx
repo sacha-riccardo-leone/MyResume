@@ -2,6 +2,7 @@ import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { Linkedin, Github, Printer, MapPin, Mail, Phone, ChevronDown, ExternalLink, Globe, Info } from "lucide-react";
 import profilePic from "../assets/pfplinkedin-removebg-preview.png";
 import r2jcLogo from "../assets/r2jcLogo.png";
+import vrdLogo from "../assets/vrdlogo.png";
 import xefiLogo from "../assets/xefilogo.png";
 import sourShotsLogo from "../assets/sourshotslogo.jpg";
 import cpneLogo from "../assets/cpnelogo.png";
@@ -48,6 +49,19 @@ const translations = {
       mobility: "Mobilité nationale",
     },
     experience: [
+      {
+        date: "Août 2026 — en cours",
+        company: "VRD - Ingénieurs conseils",
+        role: "Développeur web — site vitrine",
+        url: "https://www.vrd-ingenieurs.ch/",
+        bullets: [
+          "Site vitrine 6 pages pour un bureau d'ingénieurs en technique du bâtiment (CVCS) : Next.js 16 / React 19, TypeScript strict, toutes les routes prérendues.",
+          "Zéro dépendance runtime hors next/react — design system maison (jetons, typographie auto-hébergée), sans framework CSS ni librairie d'animation ou d'icônes.",
+          "Accessibilité tenue par la CI : audit de contraste WCAG AA bloquant dans la chaîne typecheck → lint → contraste → build.",
+          "Hero « portail » : plaque anthracite percée au sigle par masque SVG au défilement — constantes mesurées (limites de rastérisation), pas devinées.",
+        ],
+        stack: "Next.js 16 · React 19 · TypeScript · CSS Modules · Vercel",
+      },
       {
         date: "Mai 2026",
         company: "Magneticlab - XEFI Neuchâtel",
@@ -172,6 +186,19 @@ const translations = {
     },
     experience: [
       {
+        date: "August 2026 — ongoing",
+        company: "VRD - Ingénieurs conseils",
+        role: "Web developer — company website",
+        url: "https://www.vrd-ingenieurs.ch/",
+        bullets: [
+          "Six-page company website for a building-services (HVAC) engineering firm: Next.js 16 / React 19, strict TypeScript, every route prerendered.",
+          "Zero runtime dependencies beyond next/react — in-house design system (tokens, self-hosted typography), no CSS framework and no animation or icon library.",
+          "Accessibility enforced by CI: a blocking WCAG AA contrast audit in the typecheck → lint → contrast → build chain.",
+          "Signature hero: an anthracite plate pierced by the monogram through an SVG mask on scroll — constants measured (rasterisation limits), not guessed.",
+        ],
+        stack: "Next.js 16 · React 19 · TypeScript · CSS Modules · Vercel",
+      },
+      {
         date: "May 2026",
         company: "Magneticlab - XEFI Neuchâtel",
         role: "Developer — freelance mandate",
@@ -295,6 +322,19 @@ const translations = {
     },
     experience: [
       {
+        date: "August 2026 — laufend",
+        company: "VRD - Ingénieurs conseils",
+        role: "Webentwickler — Unternehmenswebsite",
+        url: "https://www.vrd-ingenieurs.ch/",
+        bullets: [
+          "Sechsseitige Unternehmenswebsite für ein Ingenieurbüro für Gebäudetechnik (HLKS): Next.js 16 / React 19, striktes TypeScript, alle Routen vorgerendert.",
+          "Null Runtime-Abhängigkeiten ausser next/react — eigenes Design-System (Tokens, selbst gehostete Typografie), ohne CSS-Framework, Animations- oder Icon-Bibliothek.",
+          "Barrierefreiheit durch die CI gesichert: blockierendes WCAG-AA-Kontrast-Audit in der Kette Typecheck → Lint → Kontrast → Build.",
+          "Signatur-Hero: eine Anthrazitplatte, beim Scrollen per SVG-Maske vom Signet durchbrochen — Konstanten gemessen (Rasterisierungsgrenzen), nicht geraten.",
+        ],
+        stack: "Next.js 16 · React 19 · TypeScript · CSS Modules · Vercel",
+      },
+      {
         date: "Mai 2026",
         company: "Magneticlab - XEFI Neuchâtel",
         role: "Entwickler — Freelance-Mandat",
@@ -417,6 +457,19 @@ const translations = {
       mobility: "Mobilità nazionale",
     },
     experience: [
+      {
+        date: "Agosto 2026 — in corso",
+        company: "VRD - Ingénieurs conseils",
+        role: "Sviluppatore web — sito vetrina",
+        url: "https://www.vrd-ingenieurs.ch/",
+        bullets: [
+          "Sito vetrina di sei pagine per uno studio di ingegneria impiantistica (CVCS): Next.js 16 / React 19, TypeScript strict, tutte le route prerenderizzate.",
+          "Zero dipendenze runtime oltre next/react — design system interno (token, tipografia self-hosted), senza framework CSS né librerie di animazione o icone.",
+          "Accessibilità garantita dalla CI: audit di contrasto WCAG AA bloccante nella catena typecheck → lint → contrasto → build.",
+          "Hero distintivo: una lastra antracite forata dal monogramma tramite maschera SVG allo scroll — costanti misurate (limiti di rasterizzazione), non indovinate.",
+        ],
+        stack: "Next.js 16 · React 19 · TypeScript · CSS Modules · Vercel",
+      },
       {
         date: "Maggio 2026",
         company: "Magneticlab - XEFI Neuchâtel",
@@ -669,6 +722,12 @@ function badgeGlyph(b: { flag: string; fallback?: string }, flagsOk: boolean): s
 
 const permitLabel: Record<Lang, string> = { fr: "Permis C", en: "Permit C", de: "Ausweis C", it: "Permesso C" };
 const deliveredBadge: Record<Lang, string> = { fr: "Livré", en: "Delivered", de: "Geliefert", it: "Consegnato" };
+const inProgressBadge: Record<Lang, string> = { fr: "En cours", en: "In progress", de: "Laufend", it: "In corso" };
+/* The professional mandates, in display order (most recent first). Single source
+   of truth: the web Mandats section, the PDF, and the "everything else is a
+   personal project" filter all derive from this, so adding a mandate here can't
+   leave it duplicated in another section. */
+const MANDATE_COMPANIES = ["VRD - Ingénieurs conseils", "R2JC", "Magneticlab - XEFI Neuchâtel"];
 const demoLabel: Record<Lang, string> = { fr: "Démo", en: "Demo", de: "Demo", it: "Demo" };
 /* Appended to a print section label when the paginator has to continue that
    section on page 2 (e.g. "Mandats professionnels (suite)"). */
@@ -928,9 +987,11 @@ function Bullets({ items, stack }: { items: string[]; stack?: string }) {
 }
 
 /* ────────────────────────────────────────────────────── */
-/* Mandate card — delivered client work (R2JC, XEFI)      */
+/* Mandate card — client work (VRD, R2JC, XEFI)           */
 /* Collapsible glass card: logo · linked title · role ·    */
-/* date · optional demo button · "delivered" badge.        */
+/* date · optional demo button · status badge.             */
+/* status "inProgress" also gives the card a soft pulse.   */
+/* logoW widens the box for wordmark logos (e.g. VRD).     */
 /* ────────────────────────────────────────────────────── */
 function MandateCard({
   exp,
@@ -939,6 +1000,8 @@ function MandateCard({
   open,
   onToggle,
   demoUrl,
+  status = "delivered",
+  logoW = 30,
 }: {
   exp: { company: string; role?: string; date: string; url?: string; bullets: string[]; stack?: string };
   logo: string;
@@ -946,16 +1009,19 @@ function MandateCard({
   open: boolean;
   onToggle: () => void;
   demoUrl?: string;
+  status?: "delivered" | "inProgress";
+  logoW?: number;
 }) {
+  const inProgress = status === "inProgress";
   return (
     <ScrollReveal>
       <div
-        className="glass-card rounded-2xl overflow-hidden"
+        className={`glass-card rounded-2xl overflow-hidden${inProgress ? " glass-card--pulse" : ""}`}
         onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
       >
         <div className="px-5 py-4 cursor-pointer" onClick={onToggle}>
           <div className="flex items-center gap-3">
-            <img src={logo} alt={exp.company} className="shrink-0" style={{ width: 30, height: 30, objectFit: "contain" }} />
+            <img src={logo} alt={exp.company} className="shrink-0" style={{ width: logoW, height: 30, objectFit: "contain" }} />
             <div className="flex-1 min-w-0 flex items-center justify-between gap-3 flex-wrap">
               <div>
                 <a
@@ -985,10 +1051,17 @@ function MandateCard({
                     {demoLabel[lang]}
                   </a>
                 )}
-                <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
-                  {deliveredBadge[lang]}
-                </span>
+                {inProgress ? (
+                  <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/25">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-300 animate-pulse inline-block" />
+                    {inProgressBadge[lang]}
+                  </span>
+                ) : (
+                  <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
+                    {deliveredBadge[lang]}
+                  </span>
+                )}
                 <ChevronDown className="h-4 w-4 text-white/25 transition-transform duration-300" style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }} />
               </div>
             </div>
@@ -1200,8 +1273,8 @@ export default function MainComponentNameCv() {
      clipping the last entry. */
   const proEntries: PrintProEntry[] = [
     ...t.experience
-      .filter(e => e.company === "R2JC" || e.company === "Magneticlab - XEFI Neuchâtel")
-      .sort((a, b) => (a.company === "R2JC" ? 0 : 1) - (b.company === "R2JC" ? 0 : 1))
+      .filter(e => MANDATE_COMPANIES.includes(e.company))
+      .sort((a, b) => MANDATE_COMPANIES.indexOf(a.company) - MANDATE_COMPANIES.indexOf(b.company))
       .map(exp => ({ section: "mandates", title: t.sections.mandates, exp })),
     ...t.experience
       .filter(e => e.company === "Ordine AI")
@@ -1469,7 +1542,24 @@ export default function MainComponentNameCv() {
                   <SubHead title={t.sections.mandates} />
                 </ScrollReveal>
                 <div className="space-y-2">
-              {/* R2JC — latest project, delivered, expandable — pinned first */}
+              {/* VRD — ongoing, pinned first: the live mandate leads the section */}
+              {(() => {
+                const vrdExp = t.experience.find(e => e.company === "VRD - Ingénieurs conseils");
+                if (!vrdExp) return null;
+                return (
+                  <MandateCard
+                    exp={vrdExp}
+                    logo={vrdLogo}
+                    logoW={46}
+                    lang={lang}
+                    status="inProgress"
+                    open={openCards.has("vrd")}
+                    onToggle={() => toggleCard("vrd")}
+                  />
+                );
+              })()}
+
+              {/* R2JC — delivered, expandable */}
               {(() => {
                 const r2jcExp = t.experience.find(e => e.company === "R2JC");
                 if (!r2jcExp) return null;
@@ -1576,7 +1666,7 @@ export default function MainComponentNameCv() {
                   <SubHead title={t.sections.projects} />
                 </ScrollReveal>
                 <div className="space-y-2">
-              {t.experience.filter(exp => exp.company !== "Ordine AI" && exp.company !== "R2JC" && exp.company !== "Magneticlab - XEFI Neuchâtel").map((exp, i) => {
+              {t.experience.filter(exp => !MANDATE_COMPANIES.includes(exp.company) && exp.company !== "Ordine AI").map((exp, i) => {
                 const isOpen = openExp.has(i);
                 return (
                   <ScrollReveal key={i} delay={i * 60}>
