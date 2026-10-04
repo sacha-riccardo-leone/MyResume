@@ -22,7 +22,7 @@ export default function Portfolio({
 
   return (
     <div className={`pf ${finePointer ? "pf-cursor-none" : ""}`}>
-      {finePointer && <SmoothCursor />}
+      {finePointer && <SmoothCursor cursor={<SmallCursor />} />}
 
       {/* Persistent, quiet chrome — the visitor can always leave for the CV */}
       <header className="fixed inset-x-0 top-0 z-50">
@@ -306,6 +306,30 @@ function useReducedMotion() {
     return () => mq.removeEventListener("change", apply);
   }, []);
   return calm;
+}
+
+/* SmoothCursor's stock pointer sets its size with `style={{ scale: 0.5 }}`,
+   which React serialises as `scale: 0.5px` — invalid, so it is dropped and the
+   arrow renders at its full 50x54 rather than the intended 25. Hence the
+   oversized cursor. Sizing via the width/height attributes instead is
+   immune to that, and the viewBox scales the artwork to fit.
+   Colours are the portfolio's own ink/ground so it sits inside the palette;
+   the light outline keeps it readable over both the dark page and the bright
+   screenshots. */
+function SmallCursor() {
+  return (
+    <svg width={20} height={22} viewBox="0 0 50 54" fill="none">
+      <path
+        d="M42.6817 41.1495L27.5103 6.79925C26.7269 5.02557 24.2082 5.02558 23.3927 6.79925L7.59814 41.1495C6.75833 42.9759 8.52712 44.8902 10.4125 44.1954L24.3757 39.0496C24.8829 38.8627 25.4385 38.8627 25.9422 39.0496L39.8121 44.1954C41.6849 44.8902 43.4884 42.9759 42.6817 41.1495Z"
+        fill="#0a0a0b"
+      />
+      <path
+        d="M43.7146 40.6933L28.5431 6.34306C27.3556 3.65428 23.5772 3.69516 22.3668 6.32755L6.57226 40.6778C5.3134 43.4156 7.97238 46.298 10.803 45.2549L24.7662 40.109C25.0221 40.0147 25.2999 40.0156 25.5494 40.1082L39.4193 45.254C42.2261 46.2953 44.9254 43.4347 43.7146 40.6933Z"
+        stroke="#f2f2f0"
+        strokeWidth={2.25825}
+      />
+    </svg>
+  );
 }
 
 /* Only hide the native cursor where there is a real pointer. */
