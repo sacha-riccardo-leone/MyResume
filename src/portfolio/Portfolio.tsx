@@ -207,27 +207,45 @@ function ProjectBlock({
       </div>
 
       {/* Right: the evidence */}
-      <Shot src={p.shot} alt={p.name} />
+      <Plate project={p} />
     </article>
   );
 }
 
-/* Screenshot in a plate. It arrives desaturated and slightly dim, and resolves
-   as it enters the viewport — calm at rest, alive on approach. */
-function Shot({ src, alt }: { src?: string; alt: string }) {
+/* The work, in a plate. Where a recording of the site's own landing animation
+   exists it plays there — a still cannot show that the work moves, and these
+   all do. It plays only while on screen (and never for visitors who asked for
+   less motion), so nothing decodes off-screen. Content arrives desaturated and
+   resolves on approach: calm at rest, alive as you reach it. */
+function Plate({ project: p }: { project: Project }) {
   const ref = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [shown, setShown] = useState(false);
+  const calm = useReducedMotion();
+  const src = p.video?.poster ?? p.shot;
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setShown(true); io.disconnect(); } },
-      { threshold: 0.2 }
+      ([e]) => {
+        if (e.isIntersecting) setShown(true);
+        const v = videoRef.current;
+        if (!v || calm) return;
+        if (e.isIntersecting) v.play().catch(() => {});
+        else v.pause();
+      },
+      { threshold: 0.25 }
     );
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [calm]);
+
+  const reveal: React.CSSProperties = {
+    filter: shown ? "grayscale(0) contrast(1)" : "grayscale(1) contrast(0.9)",
+    opacity: shown ? 1 : 0.35,
+    transform: shown ? "scale(1)" : "scale(1.03)",
+  };
 
   return (
     <div
@@ -235,27 +253,57 @@ function Shot({ src, alt }: { src?: string; alt: string }) {
       className="relative overflow-hidden rounded-lg border border-[#26262a] bg-[#141416]"
       style={{ aspectRatio: "16 / 10" }}
     >
-      {src ? (
+      {p.video && !calm ? (
+        <video
+          ref={videoRef}
+          poster={p.video.poster}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label={p.name}
+          className="h-full w-full object-cover object-top transition-[filter,opacity,transform] duration-[1200ms] ease-out"
+          style={reveal}
+        >
+          <source src={p.video.webm} type="video/webm" />
+          <source src={p.video.mp4} type="video/mp4" />
+        </video>
+      ) : src ? (
         <img
           src={src}
-          alt={alt}
+          alt={p.name}
           loading="lazy"
           className="h-full w-full object-cover object-top transition-[filter,opacity,transform] duration-[1200ms] ease-out"
-          style={{
-            filter: shown ? "grayscale(0) contrast(1)" : "grayscale(1) contrast(0.9)",
-            opacity: shown ? 1 : 0.35,
-            transform: shown ? "scale(1)" : "scale(1.03)",
-          }}
+          style={reveal}
         />
       ) : (
         <div className="flex h-full w-full items-center justify-center">
           <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#7c7f86]/60">
-            {alt}
+            {p.name}
           </span>
         </div>
       )}
+
+      {/* Quiet marker that this is the real site in motion, not a mockup */}
+      {p.video && !calm && (
+        <span className="pointer-events-none absolute bottom-2.5 right-3 text-[9px] font-mono uppercase tracking-[0.2em] text-[#f2f2f0]/35">
+          live
+        </span>
+      )}
     </div>
   );
+}
+
+function useReducedMotion() {
+  const [calm, setCalm] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => setCalm(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+  return calm;
 }
 
 /* Only hide the native cursor where there is a real pointer. */

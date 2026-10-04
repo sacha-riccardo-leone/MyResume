@@ -1,5 +1,11 @@
 import shotR2jc from "../assets/shot-r2jc.webp";
 import shotOrdine from "../assets/shot-ordine.webp";
+import vidOrdineWebm from "../assets/vid-ordine.webm";
+import vidOrdineMp4 from "../assets/vid-ordine.mp4";
+import posterOrdine from "../assets/poster-ordine.webp";
+import vidVrdWebm from "../assets/vid-vrd.webm";
+import vidVrdMp4 from "../assets/vid-vrd.mp4";
+import posterVrd from "../assets/poster-vrd.webp";
 
 export type PfLang = "fr" | "en" | "de" | "it";
 
@@ -12,6 +18,9 @@ export type Project = {
   url?: string;
   stack: string[];
   shot?: string;
+  /* A recorded clip of the site's own landing animation. A still can't show
+     that the work moves, and all of these do. Poster doubles as the still. */
+  video?: { webm: string; mp4: string; poster: string };
   status?: "ongoing";
   /* number + unit are language-neutral; only `label` is translated */
   metrics: { value: string; label: Record<PfLang, string> }[];
@@ -26,6 +35,8 @@ export const projects: Project[] = [
     year: "2026",
     url: "https://www.vrd-ingenieurs.ch/",
     stack: ["Next.js 16", "React 19", "TypeScript", "CSS Modules"],
+    shot: posterVrd,
+    video: { webm: vidVrdWebm, mp4: vidVrdMp4, poster: posterVrd },
     status: "ongoing",
     metrics: [
       { value: "6", label: { fr: "pages", en: "pages", de: "Seiten", it: "pagine" } },
@@ -52,6 +63,7 @@ export const projects: Project[] = [
     url: "https://www.ordine-ai.ch/",
     stack: ["FastAPI", "Next.js", "TypeScript", "Supabase", "Claude API", "Stripe"],
     shot: shotOrdine,
+    video: { webm: vidOrdineWebm, mp4: vidOrdineMp4, poster: posterOrdine },
     status: "ongoing",
     metrics: [
       { value: "4", label: { fr: "langues évaluées en CI", en: "languages evaluated in CI", de: "Sprachen in der CI geprüft", it: "lingue valutate in CI" } },
