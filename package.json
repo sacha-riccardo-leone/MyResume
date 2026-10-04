@@ -8,15 +8,19 @@
     "dev": "vite"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "lucide-react": "0.487.0",
+    "motion": "^14.0.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "tailwind-merge": "^3.7.0",
     "three": "^0.184.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "4.1.12",
     "@types/three": "^0.184.1",
     "@vitejs/plugin-react": "4.7.0",
+    "playwright": "^1.63.0",
     "tailwindcss": "4.1.12",
     "vite": "6.3.5"
   }
