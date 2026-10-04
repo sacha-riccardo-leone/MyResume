@@ -36,6 +36,7 @@ const translations = {
       certifications: "Certifications en cours",
       personalSkills: "Compétences personnelles",
       references: "Références",
+      interests: "Centres d'intérêt",
     },
     contact: {
       location: "La Chaux-de-Fonds, NE",
@@ -132,6 +133,7 @@ const translations = {
     ],
     softSkills: ["Autonomie", "Esprit d'initiative", "Rigueur & souci du détail", "Orienté solutions", "Persévérance", "Curiosité / apprentissage rapide", "Esprit d'équipe", "Réceptif", "Innovant / créatif"],
     referencesLine: "Références disponibles sur demande.",
+    interestsLine: "Art numérique · Photographie · Guitare électrique · Volleyball · Mode",
     education: [
       {
         date: "2022–2025",
@@ -172,6 +174,7 @@ const translations = {
       certifications: "Certifications in progress",
       personalSkills: "Personal Skills",
       references: "References",
+      interests: "Interests",
     },
     contact: {
       location: "La Chaux-de-Fonds, NE",
@@ -268,6 +271,7 @@ const translations = {
     ],
     softSkills: ["Autonomy", "Initiative", "Rigor & attention to detail", "Solution-oriented", "Persistence", "Curiosity / fast learner", "Team player", "Receptive", "Innovative / creative"],
     referencesLine: "References available on request.",
+    interestsLine: "Digital art · Photography · Electric guitar · Volleyball · Fashion",
     education: [
       {
         date: "2022–2025",
@@ -308,6 +312,7 @@ const translations = {
       certifications: "Zertifizierungen in Arbeit",
       personalSkills: "Persönliche Kompetenzen",
       references: "Referenzen",
+      interests: "Interessen",
     },
     contact: {
       location: "La Chaux-de-Fonds, NE",
@@ -404,6 +409,7 @@ const translations = {
     ],
     softSkills: ["Eigenständigkeit", "Eigeninitiative", "Sorgfalt & Detailgenauigkeit", "Lösungsorientiert", "Ausdauer", "Neugier / schnelle Auffassung", "Teamgeist", "Aufgeschlossen", "Innovativ / kreativ"],
     referencesLine: "Referenzen auf Anfrage verfügbar.",
+    interestsLine: "Digitale Kunst · Fotografie · E-Gitarre · Volleyball · Mode",
     education: [
       {
         date: "2022–2025",
@@ -444,6 +450,7 @@ const translations = {
       certifications: "Certificazioni in corso",
       personalSkills: "Competenze personali",
       references: "Referenze",
+      interests: "Interessi",
     },
     contact: {
       location: "La Chaux-de-Fonds, NE",
@@ -540,6 +547,7 @@ const translations = {
     ],
     softSkills: ["Autonomia", "Spirito d'iniziativa", "Rigore & attenzione ai dettagli", "Orientato alle soluzioni", "Perseveranza", "Curiosità / apprendimento rapido", "Spirito di squadra", "Ricettivo", "Innovativo / creativo"],
     referencesLine: "Referenze disponibili su richiesta.",
+    interestsLine: "Arte digitale · Fotografia · Chitarra elettrica · Pallavolo · Moda",
     education: [
       {
         date: "2022–2025",
@@ -991,7 +999,9 @@ function Bullets({ items, stack }: { items: string[]; stack?: string }) {
 /* Collapsible glass card: logo · linked title · role ·    */
 /* date · optional demo button · status badge.             */
 /* status "inProgress" also gives the card a soft pulse.   */
-/* logoW widens the box for wordmark logos (e.g. VRD).     */
+/* The logo box is a fixed 30x30 for every card on purpose: */
+/* a wider box would push that card's title right and break */
+/* the vertical alignment of the titles down the list.      */
 /* ────────────────────────────────────────────────────── */
 function MandateCard({
   exp,
@@ -1001,7 +1011,6 @@ function MandateCard({
   onToggle,
   demoUrl,
   status = "delivered",
-  logoW = 30,
 }: {
   exp: { company: string; role?: string; date: string; url?: string; bullets: string[]; stack?: string };
   logo: string;
@@ -1010,7 +1019,6 @@ function MandateCard({
   onToggle: () => void;
   demoUrl?: string;
   status?: "delivered" | "inProgress";
-  logoW?: number;
 }) {
   const inProgress = status === "inProgress";
   return (
@@ -1021,7 +1029,7 @@ function MandateCard({
       >
         <div className="px-5 py-4 cursor-pointer" onClick={onToggle}>
           <div className="flex items-center gap-3">
-            <img src={logo} alt={exp.company} className="shrink-0" style={{ width: logoW, height: 30, objectFit: "contain" }} />
+            <img src={logo} alt={exp.company} className="shrink-0" style={{ width: 30, height: 30, objectFit: "contain" }} />
             <div className="flex-1 min-w-0 flex items-center justify-between gap-3 flex-wrap">
               <div>
                 <a
@@ -1550,7 +1558,6 @@ export default function MainComponentNameCv() {
                   <MandateCard
                     exp={vrdExp}
                     logo={vrdLogo}
-                    logoW={46}
                     lang={lang}
                     status="inProgress"
                     open={openCards.has("vrd")}
@@ -1837,9 +1844,21 @@ export default function MainComponentNameCv() {
             </ScrollReveal>
           </div>
 
-          {/* 07 — Références */}
+          {/* 07 — Centres d'intérêt */}
           <ScrollReveal>
-            <SectionHead title={t.sections.references} num="07" />
+            <SectionHead title={t.sections.interests} num="07" />
+            <div className="flex flex-wrap gap-2.5">
+              {t.interestsLine.split(" · ").map((item, i) => (
+                <span key={i} className="text-[15px] px-4 py-2 rounded-full bg-white/[0.06] border border-white/[0.12] text-white/80">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </ScrollReveal>
+
+          {/* 08 — Références */}
+          <ScrollReveal>
+            <SectionHead title={t.sections.references} num="08" />
             <p className="text-sm text-white/50">{t.referencesLine}</p>
           </ScrollReveal>
 
@@ -2123,6 +2142,14 @@ export default function MainComponentNameCv() {
                 {t.experience
                   .filter(e => e.company.startsWith("CPNE") || e.company === "SourShots")
                   .map((exp, i) => <PrintExpEntry key={i} exp={exp} />)}
+              </div>
+
+              {/* ── Centres d'intérêt ── */}
+              <div style={{ marginTop: "8mm" }}>
+                <PrintSectionLabel title={t.sections.interests} mb="3mm" />
+                <p style={{ fontSize: "6.5pt", color: "#444", lineHeight: 1.65, margin: 0 }}>
+                  {t.interestsLine}
+                </p>
               </div>
             </div>
 
