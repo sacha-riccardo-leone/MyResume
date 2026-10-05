@@ -4,6 +4,7 @@ import Gate from "../portfolio/Gate";
 import Portfolio from "../portfolio/Portfolio";
 import type { PfLang } from "../portfolio/content";
 import { useTheme } from "../lib/theme";
+import CustomCursor from "../lib/CustomCursor";
 import "../styles/portfolio.css";
 
 type View = "gate" | "cv" | "work";
@@ -73,6 +74,9 @@ export default function App() {
 
       {/* The CV is untouched; it simply isn't mounted until asked for. */}
       {view === "cv" && <MainComponentNameCv theme={theme} toggleTheme={toggleTheme} />}
+
+      {/* One pointer for the whole site, so it survives moving between views. */}
+      <CustomCursor />
 
       {/* Grain sits above everything, on every view. Never printed. */}
       <div className="grain" aria-hidden="true" />

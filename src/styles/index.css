@@ -37,6 +37,8 @@
     --skill-4: #a78bfa;
     --wave-ink: 255;            /* waves are lighter than the page in the dark */
     --veil: 62, 62, 62;
+    --cursor-fill: #0a0a0b;
+    --cursor-stroke: #f2f2f0;
     background: #080808;
   }
   html[data-theme="light"] {
@@ -45,6 +47,8 @@
     --glass-tint: 0, 0, 0;
     --wave-ink: 0;              /* …and darker than the page in the light */
     --veil: 214, 214, 210;
+    --cursor-fill: #f4f4f2;
+    --cursor-stroke: #121214;
     /* Accents are tuned to glow on near-black; on paper the same values wash
        out. Shift each to its ~700 weight so badges and labels keep their hue
        and their legibility. These are the tokens Tailwind's own utilities

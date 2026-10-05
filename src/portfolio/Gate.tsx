@@ -1,6 +1,7 @@
 import { TextAnimate } from "../components/ui/text-animate";
 import { InteractiveHoverButton } from "../components/ui/interactive-hover-button";
 import { ui, type PfLang } from "./content";
+import { translations } from "../imports/MainComponentNameCv";
 import ThemeToggle from "../lib/ThemeToggle";
 import type { Theme } from "../lib/theme";
 
@@ -24,6 +25,7 @@ export default function Gate({
   toggleTheme: () => void;
 }) {
   const t = ui[lang];
+  const cv = translations[lang];
 
   return (
     <div className="pf min-h-screen flex flex-col">
@@ -68,7 +70,7 @@ export default function Gate({
           once
           className="mt-3 text-sm sm:text-base text-[var(--pf-mute)]"
         >
-          {t.role}
+          {cv.title}
         </TextAnimate>
 
         <p className="mt-14 mb-5 text-[10px] font-mono uppercase tracking-[0.25em] text-[var(--pf-mute)]/70">

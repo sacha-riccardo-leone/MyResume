@@ -74,11 +74,13 @@ html[data-theme="light"] {
   min-height: 100vh;
 }
 
-/* Hide the native cursor only where the custom one is active, and only on
-   devices that actually have a pointer. */
+/* The custom pointer is site-wide, so the native cursor is hidden on <html>
+   rather than inside one view. The class is only present while the custom
+   cursor is actually mounted, so a failure there can never leave the visitor
+   with no cursor at all. */
 @media (hover: hover) and (pointer: fine) {
-  .pf-cursor-none,
-  .pf-cursor-none * { cursor: none; }
+  html.cursor-custom,
+  html.cursor-custom * { cursor: none; }
 }
 
 /* Hairline rule used to separate movements of the page. */

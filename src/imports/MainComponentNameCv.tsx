@@ -10,12 +10,12 @@ import OrbMini from "./OrbMini";
 import ThemeToggle from "../lib/ThemeToggle";
 import type { Theme } from "../lib/theme";
 
-type Lang = "fr" | "en" | "de" | "it";
+export type Lang = "fr" | "en" | "de" | "it";
 type Phase = "cursor" | "typing" | "done";
 
 const FULL_NAME = "Sacha Riccardo LEONE";
 
-const translations = {
+export const translations = {
   fr: {
     title: "Développeur d'applications",
     downloadPdf: "Télécharger le CV",
@@ -570,7 +570,7 @@ const translations = {
   },
 };
 
-const skillGroups: { category: Record<Lang, string>; color: string; items: string[] | Record<Lang, string[]> }[] = [
+export const skillGroups: { category: Record<Lang, string>; color: string; items: string[] | Record<Lang, string[]> }[] = [
   {
     category: { fr: "IA / LLM", en: "AI / LLM", de: "KI / LLM", it: "IA / LLM" },
     color: "var(--skill-1)",
@@ -599,7 +599,7 @@ const skillGroups: { category: Record<Lang, string>; color: string; items: strin
 ];
 
 /* Resolve a skill group's items for the active language. */
-function skillItems(group: (typeof skillGroups)[number], lang: Lang): string[] {
+export function skillItems(group: (typeof skillGroups)[number], lang: Lang): string[] {
   return Array.isArray(group.items) ? group.items : group.items[lang];
 }
 
@@ -642,7 +642,7 @@ const companyLogos: Record<string, string> = {
   "SourShots": sourShotsLogo,
 };
 
-function getCompanyLogo(company: string): string | undefined {
+export function getCompanyLogo(company: string): string | undefined {
   if (companyLogos[company]) return companyLogos[company];
   if (company.startsWith("CPNE")) return cpneLogo;
   return undefined;
@@ -653,7 +653,7 @@ function isRoundLogo(company: string) {
   return roundLogos.has(company);
 }
 
-const ordineAIProject = {
+export const ordineAIProject = {
   name: "Ordine AI",
   url: "https://www.ordine-ai.ch/",
   status: { fr: "Beta active", en: "Active beta", de: "Aktive Beta", it: "Beta attiva" } as Record<Lang, string>,
@@ -699,7 +699,7 @@ const ordineAIProject = {
 /* Language badge data — flag + level per UI language. `fallback` is shown when
    the platform can't render the emoji flag (e.g. Windows renders 🇬🇧 as "GB",
    but for English we want "EN", not the country code). */
-const langBadges: { flag: string; fallback?: string; label: Record<Lang, string> }[] = [
+export const langBadges: { flag: string; fallback?: string; label: Record<Lang, string> }[] = [
   { flag: "🇫🇷", fallback: "FR", label: { fr: "Natif", en: "Native", de: "Muttersprache", it: "Madrelingua" } },
   { flag: "🇮🇹", fallback: "IT", label: { fr: "Natif", en: "Native", de: "Muttersprache", it: "Madrelingua" } },
   { flag: "🇬🇧", fallback: "EN", label: { fr: "C1", en: "C1", de: "C1", it: "C1" } },
@@ -709,7 +709,7 @@ const langBadges: { flag: string; fallback?: string; label: Record<Lang, string>
 /* Detect whether the platform renders emoji country flags (iOS/Android/macOS do;
    Windows shows the two-letter regional code instead). Draw 🇬🇧 and check for
    coloured pixels — a real flag has colour, "GB" letters are monochrome. */
-function detectFlagSupport(): boolean {
+export function detectFlagSupport(): boolean {
   try {
     const canvas = document.createElement("canvas");
     canvas.width = 16;
@@ -731,24 +731,24 @@ function detectFlagSupport(): boolean {
 }
 
 /* Display value for a language badge, given whether flags render on this device. */
-function badgeGlyph(b: { flag: string; fallback?: string }, flagsOk: boolean): string {
+export function badgeGlyph(b: { flag: string; fallback?: string }, flagsOk: boolean): string {
   return flagsOk ? b.flag : (b.fallback ?? b.flag);
 }
 
-const permitLabel: Record<Lang, string> = { fr: "Permis C", en: "Permit C", de: "Ausweis C", it: "Permesso C" };
-const deliveredBadge: Record<Lang, string> = { fr: "Livré", en: "Delivered", de: "Geliefert", it: "Consegnato" };
-const inProgressBadge: Record<Lang, string> = { fr: "En cours", en: "In progress", de: "Laufend", it: "In corso" };
+export const permitLabel: Record<Lang, string> = { fr: "Permis C", en: "Permit C", de: "Ausweis C", it: "Permesso C" };
+export const deliveredBadge: Record<Lang, string> = { fr: "Livré", en: "Delivered", de: "Geliefert", it: "Consegnato" };
+export const inProgressBadge: Record<Lang, string> = { fr: "En cours", en: "In progress", de: "Laufend", it: "In corso" };
 /* The professional mandates, in display order (most recent first). Single source
    of truth: the web Mandats section, the PDF, and the "everything else is a
    personal project" filter all derive from this, so adding a mandate here can't
    leave it duplicated in another section. */
-const MANDATE_COMPANIES = ["VRD - Ingénieurs conseils", "R2JC", "Magneticlab - XEFI Neuchâtel"];
+export const MANDATE_COMPANIES = ["VRD - Ingénieurs conseils", "R2JC", "Magneticlab - XEFI Neuchâtel"];
 const demoLabel: Record<Lang, string> = { fr: "Démo", en: "Demo", de: "Demo", it: "Demo" };
 /* Appended to a print section label when the paginator has to continue that
    section on page 2 (e.g. "Mandats professionnels (suite)"). */
 const printContinued: Record<Lang, string> = { fr: "(suite)", en: "(cont.)", de: "(Forts.)", it: "(segue)" };
 
-const anthropicCert = {
+export const anthropicCert = {
   date: { fr: "2026 — en cours", en: "2026 — in progress", de: "2026 — laufend", it: "2026 — in corso" } as Record<Lang, string>,
   badge: { fr: "en cours", en: "in progress", de: "laufend", it: "in corso" } as Record<Lang, string>,
   description: {
