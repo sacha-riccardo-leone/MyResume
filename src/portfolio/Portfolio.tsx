@@ -79,7 +79,7 @@ export default function Portfolio({
       {/* ── Hero: the thesis, in two lines of large type ── */}
       <section className="min-h-[88vh] flex flex-col justify-center px-5 sm:px-10 lg:px-16 pt-24">
         <div className="max-w-[1100px]">
-          <TextAnimate
+          <TextAnimate key={`t1-${lang}`}
             as="h1"
             animation="blurInUp"
             by="word"
@@ -89,7 +89,7 @@ export default function Portfolio({
           >
             {t.heroA}
           </TextAnimate>
-          <TextAnimate
+          <TextAnimate key={`t2-${lang}`}
             as="h1"
             animation="blurInUp"
             by="word"
@@ -101,7 +101,7 @@ export default function Portfolio({
             {t.heroB}
           </TextAnimate>
 
-          <TextAnimate
+          <TextAnimate key={`t3-${lang}`}
             as="p"
             animation="fadeIn"
             by="line"
@@ -142,7 +142,7 @@ export default function Portfolio({
           <hr className="pf-rule flex-1" />
         </div>
 
-        <TextAnimate
+        <TextAnimate key={`t4-${lang}`}
           as="p"
           animation="blurInUp"
           by="word"
@@ -256,7 +256,7 @@ function ProjectBlock({
           )}
         </div>
 
-        <TextAnimate
+        <TextAnimate key={`t5-${lang}`}
           as="h3"
           animation="slideUp"
           by="word"

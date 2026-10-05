@@ -49,7 +49,7 @@ export default function Gate({
       </div>
 
       <main className="flex-1 flex flex-col items-center justify-center px-6 text-center">
-        <TextAnimate
+        <TextAnimate key={`t1-${lang}`}
           as="h1"
           animation="blurInUp"
           by="character"
@@ -60,7 +60,7 @@ export default function Gate({
           {FULL_NAME}
         </TextAnimate>
 
-        <TextAnimate
+        <TextAnimate key={`t2-${lang}`}
           as="p"
           animation="fadeIn"
           by="word"
