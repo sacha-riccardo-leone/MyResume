@@ -136,10 +136,23 @@ function ProjectBlock({
   lang: PfLang;
   t: (typeof ui)[PfLang];
 }) {
+  /* Alternate sides down the page: odd-indexed projects put the media on the
+     left. Done with CSS order rather than by reordering the markup, so the DOM
+     always reads name -> facts -> media — which is the order it collapses to on
+     one column, and the order a screen reader announces. The wider column
+     follows the media across the swap. */
+  const flipped = index % 2 === 1;
+
   return (
-    <article className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14 items-start">
-      {/* Left: the facts */}
-      <div className="lg:sticky lg:top-28">
+    <article
+      className={`grid gap-8 lg:gap-14 items-start ${
+        flipped
+          ? "lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]"
+          : "lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]"
+      }`}
+    >
+      {/* The facts */}
+      <div className={`lg:sticky lg:top-28 ${flipped ? "lg:order-2" : "lg:order-1"}`}>
         <div className="flex items-center gap-3 mb-4">
           <span className="pf-num text-[10px] font-mono text-[#7c7f86]">
             {String(index + 1).padStart(2, "0")}
@@ -206,8 +219,10 @@ function ProjectBlock({
         )}
       </div>
 
-      {/* Right: the evidence */}
-      <Plate project={p} />
+      {/* The evidence */}
+      <div className={flipped ? "lg:order-1" : "lg:order-2"}>
+        <Plate project={p} />
+      </div>
     </article>
   );
 }
