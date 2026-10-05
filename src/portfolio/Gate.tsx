@@ -1,4 +1,5 @@
 import { TextAnimate } from "../components/ui/text-animate";
+import { InteractiveHoverButton } from "../components/ui/interactive-hover-button";
 import { ui, type PfLang } from "./content";
 
 const FULL_NAME = "Sacha Riccardo LEONE";
@@ -67,19 +68,9 @@ export default function Gate({
         </p>
 
         {/* The two doors */}
-        <div className="grid w-full max-w-[640px] gap-3 sm:grid-cols-2">
-          <GateDoor
-            label={t.cvLabel}
-            meta={t.cvMeta}
-            onClick={() => onChoose("cv")}
-            variant="document"
-          />
-          <GateDoor
-            label={t.workLabel}
-            meta={t.workMeta}
-            onClick={() => onChoose("work")}
-            variant="experience"
-          />
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-7 sm:gap-10">
+          <GateDoor label={t.cvLabel} meta={t.cvMeta} onClick={() => onChoose("cv")} />
+          <GateDoor label={t.workLabel} meta={t.workMeta} onClick={() => onChoose("work")} />
         </div>
       </main>
 
@@ -92,45 +83,36 @@ export default function Gate({
   );
 }
 
+/* Both doors use the same pill as the portfolio's email CTA, so the one
+   interactive gesture on the site reads the same everywhere. The meta line
+   stays underneath rather than inside: it tells the visitor what the choice
+   costs them, which is the point of offering a choice at all, and the pill
+   only has room for one line. */
 function GateDoor({
   label,
   meta,
   onClick,
-  variant,
 }: {
   label: string;
   meta: string;
   onClick: () => void;
-  variant: "document" | "experience";
 }) {
-  const isExp = variant === "experience";
   return (
-    <button
-      onClick={onClick}
-      className={[
-        "group relative overflow-hidden rounded-xl border px-6 py-7 text-left",
-        "transition-[transform,border-color,background-color] duration-500 ease-out",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2f2f0]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]",
-        "border-[#26262a] bg-[#141416]/60 hover:border-[#f2f2f0]/35",
-        isExp ? "hover:-translate-y-0.5" : "",
-      ].join(" ")}
-    >
-      {/* Preview of what's behind the door. The document side settles into
-          still ruled lines; the experience side stirs. Both are pure CSS. */}
-      <span aria-hidden className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-        {isExp ? (
-          <span className="absolute inset-0 bg-[radial-gradient(120%_90%_at_20%_110%,rgba(242,242,240,0.14),transparent_60%)]" />
-        ) : (
-          <span className="absolute inset-0 [background-image:repeating-linear-gradient(to_bottom,rgba(242,242,240,0.085)_0px,rgba(242,242,240,0.085)_1px,transparent_1px,transparent_9px)]" />
-        )}
-      </span>
-
-      <span className="relative block text-lg sm:text-xl font-medium tracking-tight text-[#f2f2f0]">
+    <div className="flex flex-col items-center gap-3">
+      <InteractiveHoverButton
+        onClick={onClick}
+        /* The component styles itself from shadcn tokens that are not themed
+           for this page; remap them here rather than edit the vendored file. */
+        style={{
+          ["--background" as string]: "#f2f2f0",
+          ["--primary" as string]: "#0a0a0b",
+          ["--primary-foreground" as string]: "#f2f2f0",
+        } as React.CSSProperties}
+        className="min-w-[14rem] border-transparent text-[#0a0a0b] text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2f2f0]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+      >
         {label}
-      </span>
-      <span className="relative mt-1.5 block text-[11px] font-mono tracking-wider text-[#7c7f86]">
-        {meta}
-      </span>
-    </button>
+      </InteractiveHoverButton>
+      <span className="text-[11px] font-mono tracking-wider text-[#7c7f86]">{meta}</span>
+    </div>
   );
 }
