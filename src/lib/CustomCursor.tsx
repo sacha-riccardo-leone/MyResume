@@ -29,7 +29,9 @@ export default function CustomCursor() {
   }, [fine]);
 
   if (!fine) return null;
-  return <SmoothCursor cursor={<SmallCursor />} />;
+  /* Stiffer and better damped than the component's default, so the pointer
+     catches up to the mouse quickly instead of trailing it. */
+  return <SmoothCursor cursor={<SmallCursor />} springConfig={{ damping: 45, stiffness: 600, mass: 0.6, restDelta: 0.001 }} />;
 }
 
 /* SmoothCursor's stock pointer sets its size with style={{ scale: 0.5 }}, which

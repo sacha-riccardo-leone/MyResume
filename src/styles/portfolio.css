@@ -92,3 +92,17 @@ html[data-theme="light"] {
 
 /* Tabular figures for anything numeric, so columns of stats don't wobble. */
 .pf-num { font-variant-numeric: tabular-nums; }
+
+/* ─── Anthropic card halo ────────────────────────────────────────────────
+   The certification is the one item here still in progress, so it breathes.
+   The pulse is on the card's box-shadow only — the text itself never glows,
+   which would hurt legibility. */
+@keyframes pf-halo {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(217, 119, 87, 0.00), 0 0 18px -6px rgba(217, 119, 87, 0.35); }
+  50%      { box-shadow: 0 0 0 1px rgba(217, 119, 87, 0.18), 0 0 34px -4px rgba(217, 119, 87, 0.60); }
+}
+.pf-halo { animation: pf-halo 3s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-halo { animation: none; box-shadow: 0 0 22px -6px rgba(217, 119, 87, 0.45); }
+}

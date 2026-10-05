@@ -4,11 +4,12 @@ import { InteractiveHoverButton } from "../components/ui/interactive-hover-butto
 import ThemeToggle from "../lib/ThemeToggle";
 import type { Theme } from "../lib/theme";
 import {
-  translations, skillGroups, skillItems, anthropicCert, permitLabel,
+  translations, skillGroups, skillItems, anthropicCert,
 } from "../imports/MainComponentNameCv";
 import {
   contact, media, orderedExperience, ui, type Media, type PfLang,
 } from "./content";
+import { Disclosure, PfButton, PfLink } from "./ui-bits";
 
 const FULL_NAME = "Sacha Riccardo LEONE";
 
@@ -40,30 +41,24 @@ export default function Portfolio({
       <header className="fixed inset-x-0 top-0 z-50">
         <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[var(--pf-ground)] via-[var(--pf-ground)]/85 to-transparent" />
         <div className="relative flex items-center justify-between px-5 sm:px-8 py-4">
-          <button onClick={onBack} className="text-[11px] font-mono uppercase tracking-[0.2em] text-[var(--pf-mute)] hover:text-[var(--pf-ink)] transition-colors">
-            ← {t.backToGate}
-          </button>
+          <PfButton onClick={onBack}>← {t.backToGate}</PfButton>
           <div className="flex items-center gap-3">
             <ThemeToggle theme={theme} toggle={toggleTheme} className="h-7 w-7 text-[var(--pf-mute)] hover:text-[var(--pf-ink)]" />
             <div className="hidden sm:flex items-center gap-1">
               {(["fr", "en", "de", "it"] as PfLang[]).map(l => (
-                <button key={l} onClick={() => setLang(l)} aria-current={l === lang}
-                  className={`px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest rounded-full transition-colors ${
-                    l === lang ? "text-[var(--pf-ink)] bg-[var(--pf-raise)]" : "text-[var(--pf-mute)] hover:text-[var(--pf-ink)]"}`}>
+                <PfButton key={l} onClick={() => setLang(l)} active={l === lang}
+                  aria-current={l === lang} className="px-3 py-1">
                   {l}
-                </button>
+                </PfButton>
               ))}
             </div>
-            <button onClick={onReadCv}
-              className="rounded-full border border-[var(--pf-hair)] px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-[0.15em] text-[var(--pf-ink)]/80 hover:border-[var(--pf-ink)]/40 hover:text-[var(--pf-ink)] transition-colors">
-              {t.readCv}
-            </button>
+            <PfButton onClick={onReadCv}>{t.readCv}</PfButton>
           </div>
         </div>
       </header>
 
       {/* ── Hero ── */}
-      <section className="min-h-[88vh] flex flex-col justify-center px-5 sm:px-10 lg:px-16 pt-24">
+      <section className="min-h-[88vh] flex flex-col justify-center items-center text-center px-5 sm:px-10 lg:px-16 pt-24">
         <div className="max-w-[1100px]">
           <TextAnimate key={`a-${lang}`} as="h1" animation="blurInUp" by="word" duration={0.6} once
             className="text-[clamp(2.4rem,8.5vw,7rem)] font-medium leading-[0.95] tracking-[-0.045em]">
@@ -74,7 +69,7 @@ export default function Portfolio({
             {t.heroB}
           </TextAnimate>
           <TextAnimate key={`c-${lang}`} as="p" animation="fadeIn" by="line" delay={0.6} once
-            className="mt-10 max-w-[52ch] text-sm sm:text-base leading-relaxed text-[var(--pf-mute)]">
+            className="mt-10 mx-auto max-w-[52ch] text-sm sm:text-base leading-relaxed text-[var(--pf-mute)]">
             {cv.title}
           </TextAnimate>
         </div>
@@ -133,12 +128,25 @@ export default function Portfolio({
 
       {/* ── Soft skills ── */}
       <Section title={cv.sections.personalSkills}>
-        <div className="flex flex-wrap gap-2.5">
-          {cv.softSkills.map((s, i) => (
-            <span key={i} className="rounded-full border border-[var(--pf-hair)] px-4 py-2 text-[15px] text-[var(--pf-ink)]/80">
-              {s}
-            </span>
-          ))}
+        {/* Bento: tiles of varying span so the grid reads as composed rather
+            than as a uniform list. The pattern repeats, so it holds whatever
+            number of skills the CV happens to carry. */}
+        <div className="grid auto-rows-[5.5rem] grid-flow-dense grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          {cv.softSkills.map((skill, i) => {
+            /* grid-flow-dense lets later tiles backfill the gaps these spans
+               open, so the wall stays solid whatever the number of skills. */
+            const span = [
+              "col-span-2 row-span-2", "col-span-1 row-span-1", "col-span-1 row-span-1",
+              "col-span-1 row-span-1", "col-span-1 row-span-2", "col-span-2 row-span-1",
+              "col-span-1 row-span-1", "col-span-1 row-span-1", "col-span-2 row-span-1",
+            ][i % 9];
+            return (
+              <div key={i}
+                className={`${span} flex items-end rounded-xl border border-[var(--pf-hair)] bg-[var(--pf-raise)]/60 p-4 transition-colors hover:border-[var(--pf-ink)]/30`}>
+                <span className="text-[15px] leading-snug text-[var(--pf-ink)]/85">{skill}</span>
+              </div>
+            );
+          })}
         </div>
       </Section>
 
@@ -157,6 +165,19 @@ export default function Portfolio({
       {/* ── Education + the certification in progress ── */}
       <Section title={cv.sections.education}>
         <div className="space-y-8 max-w-[70rem]">
+          {/* In progress, so it leads: it is the only line here that is still
+              moving. The halo pulses on the card, not the text, which stays
+              flat and legible. */}
+          <div className="pf-halo grid gap-1 rounded-xl border border-[#D97757]/35 p-5 sm:grid-cols-[1fr_auto] sm:gap-8">
+            <div>
+              <p className="text-base sm:text-lg text-[#D97757]">
+                Anthropic — {cv.sections.certifications}
+              </p>
+              <p className="mt-1 max-w-[60ch] text-sm text-[var(--pf-mute)]">{anthropicCert.description[lang]}</p>
+            </div>
+            <p className="pf-num text-[11px] font-mono text-[#D97757]/80 sm:text-right">{anthropicCert.date[lang]}</p>
+          </div>
+
           {cv.education.map((e, i) => (
             <div key={i} className="grid gap-1 sm:grid-cols-[1fr_auto] sm:gap-8 border-b border-[var(--pf-hair)] pb-6">
               <div>
@@ -166,15 +187,6 @@ export default function Portfolio({
               <p className="pf-num text-[11px] font-mono text-[var(--pf-mute)] sm:text-right">{e.date}</p>
             </div>
           ))}
-          <div className="grid gap-1 sm:grid-cols-[1fr_auto] sm:gap-8">
-            <div>
-              <p className="text-base sm:text-lg text-[var(--pf-ink)]">
-                Anthropic — {cv.sections.certifications}
-              </p>
-              <p className="mt-1 max-w-[60ch] text-sm text-[var(--pf-mute)]">{anthropicCert.description[lang]}</p>
-            </div>
-            <p className="pf-num text-[11px] font-mono text-[var(--pf-mute)] sm:text-right">{anthropicCert.date[lang]}</p>
-          </div>
         </div>
       </Section>
 
@@ -206,10 +218,12 @@ export default function Portfolio({
         {/* Work-authorisation facts, the same ones the CV leads its header with */}
         <dl className="mt-10 grid gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 max-w-[70rem] text-sm">
           {[
-            [cv.contact.dob, cv.contact.nationality],
-            [permitLabel[lang], cv.contact.location],
-            [cv.contact.phone, cv.contact.mobility],
-          ].flatMap(pair => pair).map((v, i) => (
+            /* nationality already reads "Italien — Permis C (CH)", so a
+               separate Permis C entry only repeated it. */
+            cv.contact.dob, cv.contact.nationality,
+            cv.contact.location, cv.contact.mobility,
+            cv.contact.phone,
+          ].map((v, i) => (
             <span key={i} className="text-[var(--pf-mute)] border-b border-[var(--pf-hair)] pb-2">{v}</span>
           ))}
         </dl>
@@ -233,17 +247,13 @@ export default function Portfolio({
           </a>
         </div>
 
-        <div className="mt-14 flex flex-wrap items-center gap-x-7 gap-y-3 text-[11px] font-mono uppercase tracking-[0.18em]">
+        <div className="mt-14 flex flex-wrap items-center gap-3">
           {[{ label: "GitHub", href: contact.github }, { label: "LinkedIn", href: contact.linkedin }].map(l => (
-            <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer"
-              className="text-[var(--pf-mute)] hover:text-[var(--pf-ink)] transition-colors">
+            <PfLink key={l.label} href={l.href} target="_blank" rel="noopener noreferrer">
               {l.label} ↗
-            </a>
+            </PfLink>
           ))}
-          <button onClick={onReadCv}
-            className="text-[11px] font-mono text-[var(--pf-mute)] hover:text-[var(--pf-ink)] transition-colors uppercase tracking-[0.18em]">
-            {t.readCv} →
-          </button>
+          <PfButton onClick={onReadCv}>{t.readCv} →</PfButton>
         </div>
 
         <hr className="pf-rule mt-16" />
@@ -314,24 +324,33 @@ function ProjectBlock({
 
         {exp.role && <p className="mt-2 text-[12px] font-mono text-[var(--pf-mute)]">{exp.role}</p>}
 
-        {/* The CV's bullet points, verbatim */}
-        <ul className="mt-6 space-y-2.5 max-w-[52ch]">
-          {exp.bullets.map((b, k) => (
-            <li key={k} className="flex gap-3 text-sm leading-relaxed text-[var(--pf-mute)]">
-              <span aria-hidden className="select-none text-[var(--pf-hair)]">—</span>
-              <span>{b}</span>
-            </li>
-          ))}
-        </ul>
-
-        {exp.stack && <p className="mt-6 text-[11px] font-mono text-[var(--pf-mute)]/80">{exp.stack}</p>}
-
-        {m.url && (
-          <a href={m.url} target="_blank" rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.18em] text-[var(--pf-ink)]/80 hover:text-[var(--pf-ink)] transition-colors">
-            {t.visit} <span aria-hidden>→</span>
-          </a>
-        )}
+        {/* Detail is opt-in: the plate and the headline carry the glance, the
+            CV's bullet points are one click away for anyone who wants them. */}
+        <div className="mt-6 max-w-[52ch]">
+          <Disclosure
+            label={exp.company}
+            summary={
+              <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-[var(--pf-mute)]">
+                {t.details}
+              </span>
+            }
+          >
+            <ul className="space-y-2.5 pt-5">
+              {exp.bullets.map((b, k) => (
+                <li key={k} className="flex gap-3 text-sm leading-relaxed text-[var(--pf-mute)]">
+                  <span aria-hidden className="select-none text-[var(--pf-hair)]">—</span>
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+            {exp.stack && <p className="mt-5 text-[11px] font-mono text-[var(--pf-mute)]/80">{exp.stack}</p>}
+            {m.url && (
+              <PfLink href={m.url} target="_blank" rel="noopener noreferrer" className="mt-6">
+                {t.visit} →
+              </PfLink>
+            )}
+          </Disclosure>
+        </div>
       </div>
 
       <div className={flipped ? "lg:order-1" : "lg:order-2"}>
@@ -350,16 +369,26 @@ function CompactProject({ exp, t }: { exp: Exp; t: (typeof ui)[PfLang] }) {
         <span className="pf-num text-[10px] font-mono text-[var(--pf-mute)] shrink-0">{exp.date}</span>
       </div>
       {exp.role && <p className="mt-3 text-[12px] font-mono text-[var(--pf-mute)]">{exp.role}</p>}
-      <ul className="mt-4 space-y-2">
-        {exp.bullets.map((b, k) => (
-          <li key={k} className="flex gap-3 text-sm leading-relaxed text-[var(--pf-mute)]">
-            <span aria-hidden className="select-none text-[var(--pf-hair)]">—</span>
-            <span>{b}</span>
-          </li>
-        ))}
-      </ul>
-      {exp.stack && <p className="mt-4 text-[11px] font-mono text-[var(--pf-mute)]/80">{exp.stack}</p>}
-      <span className="sr-only">{t.visit}</span>
+      <div className="mt-4">
+        <Disclosure
+          label={exp.company}
+          summary={
+            <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-[var(--pf-mute)]">
+              {t.details}
+            </span>
+          }
+        >
+          <ul className="space-y-2 pt-4">
+            {exp.bullets.map((b, k) => (
+              <li key={k} className="flex gap-3 text-sm leading-relaxed text-[var(--pf-mute)]">
+                <span aria-hidden className="select-none text-[var(--pf-hair)]">—</span>
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+          {exp.stack && <p className="mt-4 text-[11px] font-mono text-[var(--pf-mute)]/80">{exp.stack}</p>}
+        </Disclosure>
+      </div>
     </article>
   );
 }

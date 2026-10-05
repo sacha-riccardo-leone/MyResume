@@ -35,18 +35,14 @@
     --skill-2: #34d399;
     --skill-3: #60a5fa;
     --skill-4: #a78bfa;
-    --wave-ink: 255;            /* waves are lighter than the page in the dark */
-    --veil: 62, 62, 62;
     --cursor-fill: #0a0a0b;
     --cursor-stroke: #f2f2f0;
-    background: #080808;
+    background: var(--pf-ground);
   }
   html[data-theme="light"] {
     --color-white: #16161a;     /* "white" becomes ink */
     --color-black: #f4f4f2;     /* …and "black" becomes paper, for the nav bar */
     --glass-tint: 0, 0, 0;
-    --wave-ink: 0;              /* …and darker than the page in the light */
-    --veil: 214, 214, 210;
     --cursor-fill: #f4f4f2;
     --cursor-stroke: #121214;
     /* Accents are tuned to glow on near-black; on paper the same values wash
@@ -61,7 +57,7 @@
     --skill-2: #047857;
     --skill-3: #1d4ed8;
     --skill-4: #6d28d9;
-    background: #f4f4f2;
+    background: var(--pf-ground);
   }
 
   /* Several company logos are pure white artwork on transparency, which is

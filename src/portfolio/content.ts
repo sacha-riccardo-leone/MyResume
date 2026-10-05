@@ -99,6 +99,7 @@ export const ui: Record<PfLang, {
   closing: string;
   emailCta: string;
   alsoLabel: string;
+  details: string;
 }> = {
   fr: {
     gateHint: "Deux façons de visiter",
@@ -112,6 +113,7 @@ export const ui: Record<PfLang, {
     closing: "Parlons-en.",
     emailCta: "Écrire un e-mail",
     alsoLabel: "Également",
+    details: "Détails",
   },
   en: {
     gateHint: "Two ways to visit",
@@ -125,6 +127,7 @@ export const ui: Record<PfLang, {
     closing: "Let's talk.",
     emailCta: "Send an email",
     alsoLabel: "Also",
+    details: "Details",
   },
   de: {
     gateHint: "Zwei Arten zu besuchen",
@@ -138,6 +141,7 @@ export const ui: Record<PfLang, {
     closing: "Sprechen wir.",
     emailCta: "E-Mail schreiben",
     alsoLabel: "Ausserdem",
+    details: "Details",
   },
   it: {
     gateHint: "Due modi di visitare",
@@ -151,6 +155,7 @@ export const ui: Record<PfLang, {
     closing: "Parliamone.",
     emailCta: "Scrivere un'e-mail",
     alsoLabel: "Inoltre",
+    details: "Dettagli",
   },
 };
 

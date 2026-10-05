@@ -22,7 +22,7 @@ export const translations = {
     intro:
       "Développeur d'applications autonome, je transforme des besoins réels en logiciels livrés en production, du frontend à l'infrastructure. J'ai déjà mis mes compétences en pratique sur des mandats clients et mes propres projets, et je recherche en continu de nouveaux défis pour progresser. Initiative, persévérance, curiosité et maîtrise des outils actuels — l'IA en particulier — sont au cœur de ma façon de travailler.",
     availability:
-      "À la recherche d'une opportunité de développeur d'applications, disponible dès mi-septembre 2026 pour un taux d'activité de 100 %.",
+      "À la recherche d'une opportunité de développeur d'applications, disponible immédiatement pour un taux d'activité de 100 %.",
     printCta:
       "Meilleure expérience, projets détaillés et démos sur la version en ligne",
     sections: {
@@ -160,7 +160,7 @@ export const translations = {
     intro:
       "An autonomous application developer, I turn real needs into software delivered to production, from frontend to infrastructure. I've already put my skills to work on client mandates and my own projects, and I'm continually looking for new challenges to grow. Initiative, persistence, curiosity and command of today's tools — AI in particular — are at the core of how I work.",
     availability:
-      "Looking for an application-developer role, available from mid-September 2026 at a 100% workload.",
+      "Looking for an application-developer role, available immediately at a 100% workload.",
     printCta:
       "Best experience, detailed projects and live demos on the online version",
     sections: {
@@ -298,7 +298,7 @@ export const translations = {
     intro:
       "Als eigenständiger Applikationsentwickler verwandle ich echte Bedürfnisse in Software, die in Produktion geht — vom Frontend bis zur Infrastruktur. Meine Fähigkeiten habe ich bereits in Kundenmandaten und eigenen Projekten eingesetzt und suche fortlaufend neue Herausforderungen, um mich weiterzuentwickeln. Initiative, Ausdauer, Neugier und der sichere Umgang mit aktuellen Tools — insbesondere KI — prägen meine Arbeitsweise.",
     availability:
-      "Auf der Suche nach einer Stelle als Applikationsentwickler, verfügbar ab Mitte September 2026 zu einem Pensum von 100 %.",
+      "Auf der Suche nach einer Stelle als Applikationsentwickler, sofort verfügbar zu einem Pensum von 100 %.",
     printCta:
       "Beste Erfahrung, detaillierte Projekte und Live-Demos in der Online-Version",
     sections: {
@@ -436,7 +436,7 @@ export const translations = {
     intro:
       "Sviluppatore di applicazioni autonomo, trasformo bisogni reali in software portato in produzione, dal frontend all'infrastruttura. Ho già messo in pratica le mie competenze su mandati per clienti e progetti personali, e cerco di continuo nuove sfide per crescere. Iniziativa, perseveranza, curiosità e padronanza degli strumenti attuali — l'IA in particolare — sono al centro del mio modo di lavorare.",
     availability:
-      "In cerca di un'opportunità come sviluppatore di applicazioni, disponibile da metà settembre 2026 con un tasso di attività del 100%.",
+      "In cerca di un'opportunità come sviluppatore di applicazioni, disponibile da subito con un tasso di attività del 100%.",
     printCta:
       "Esperienza migliore, progetti dettagliati e demo sulla versione online",
     sections: {
@@ -760,161 +760,6 @@ export const anthropicCert = {
 };
 
 /* ────────────────────────────────────────────────────── */
-/* Animated wave background (canvas)                      */
-/* Inspired by: noise-modulated amplitudes + speeds,      */
-/* global energy pulse, harmonic wave composition,        */
-/* gradient fills from crest to transparent.              */
-/* ────────────────────────────────────────────────────── */
-function WaveBackground() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animId: number;
-    let t = 0;
-
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    // Smooth pseudo-noise: 3 layered sines → organic, non-repeating variation
-    // (mirrors the simplex noise modulation from the GLSL shader)
-    const sn = (x: number) =>
-      (Math.sin(x * 1.31) + Math.sin(x * 2.73 + 1.0) + Math.sin(x * 5.09 + 2.3)) / 3;
-
-    // g = base grey level, a = peak opacity
-    const waves = [
-      { baseAmp: 55, freq: 0.0025, baseSpd: 0.42, y: 0.18, nOff: 0.00, g: 72, a: 0.52 },
-      { baseAmp: 72, freq: 0.0018, baseSpd: 0.28, y: 0.38, nOff: 1.73, g: 58, a: 0.45 },
-      { baseAmp: 50, freq: 0.0033, baseSpd: 0.55, y: 0.55, nOff: 3.30, g: 64, a: 0.40 },
-      { baseAmp: 65, freq: 0.0021, baseSpd: 0.35, y: 0.70, nOff: 5.10, g: 48, a: 0.35 },
-      { baseAmp: 35, freq: 0.0042, baseSpd: 0.65, y: 0.85, nOff: 2.54, g: 55, a: 0.28 },
-    ];
-
-    const render = () => {
-      const w = canvas.width;
-      const h = canvas.height;
-      ctx.clearRect(0, 0, w, h);
-
-      /* The waves read by contrast against the page, so their greys have to
-         invert with the theme: lighter than the ground in the dark, darker in
-         the light. Read once per frame from the same data-theme the CSS uses,
-         so the canvas can never disagree with the page around it. */
-      const light = document.documentElement.getAttribute("data-theme") === "light";
-      const ink = (g: number) => (light ? 255 - g : g);
-
-      // Veil at the very top so no bare ground shows above the first wave
-      const topGrad = ctx.createLinearGradient(0, 0, 0, h * 0.22);
-      topGrad.addColorStop(0.0, light ? "rgba(214,214,210,0.55)" : "rgba(62,62,62,0.55)");
-      topGrad.addColorStop(1.0, light ? "rgba(255,255,255,0)" : "rgba(0,0,0,0)");
-      ctx.fillStyle = topGrad;
-      ctx.fillRect(0, 0, w, h);
-
-      // Global energy pulse — whole system breathes in/out slowly
-      const globalAmp = 1.0 + 0.35 * sn(t * 0.004) + 0.15 * sn(t * 0.006 + 2.1);
-
-      for (const wave of waves) {
-        // Per-wave amplitude noise — each wave surges and calms independently
-        const ampMod = 0.65 + 0.55 * (0.5 + 0.5 * sn(t * 0.011 + wave.nOff));
-        const amp = wave.baseAmp * globalAmp * ampMod;
-
-        // Per-wave speed noise — pace drifts faster/slower organically
-        const spdMod = 1.0 + 0.22 * sn(t * 0.009 + wave.nOff * 1.3);
-        const spd = wave.baseSpd * spdMod;
-
-        const baseY = h * wave.y;
-
-        ctx.beginPath();
-        ctx.moveTo(0, h);
-        for (let x = 0; x <= w; x += 6) {
-          const y =
-            baseY
-            + Math.sin(x * wave.freq + t * spd)                             * amp          // primary
-            + Math.sin(x * wave.freq * 1.67 + t * spd * 0.74 + 2.1)        * amp * 0.35   // 2nd harmonic
-            + Math.sin(x * wave.freq * 2.83 + t * spd * 0.53 + 4.8)        * amp * 0.15;  // 3rd harmonic
-          ctx.lineTo(x, y);
-        }
-        ctx.lineTo(w, h);
-        ctx.closePath();
-
-        // Gradient fill: bright at crest → near-transparent at canvas bottom
-        const grad = ctx.createLinearGradient(0, baseY - wave.baseAmp * 2, 0, h);
-        const wg = ink(wave.g);
-        grad.addColorStop(0.0, `rgba(${wg},${wg},${wg},${wave.a})`);
-        grad.addColorStop(0.4, `rgba(${wg},${wg},${wg},${+(wave.a * 0.3).toFixed(2)})`);
-        grad.addColorStop(1.0, light ? `rgba(245,245,245,0.03)` : `rgba(10,10,10,0.03)`);
-        ctx.fillStyle = grad;
-        ctx.fill();
-      }
-
-    };
-
-    // Perf: the fixed canvas sits behind every glass card, so each repaint
-    // forces every visible backdrop-filter to recompute. Cap to ~30fps (speed
-    // kept constant via elapsed time), honor reduced-motion (one static frame),
-    // and pause when the tab is hidden — fewer repaints = far cheaper filters.
-    const prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const frameInterval = 1000 / 30;
-    let lastDraw = 0;
-    let running = false;
-
-    const loop = (ts: number) => {
-      if (!running) return;
-      animId = requestAnimationFrame(loop);
-      const dt = ts - lastDraw;
-      if (dt < frameInterval) return;
-      lastDraw = ts;
-      t += 0.42 * Math.min(dt, 100) / 1000;
-      render();
-    };
-
-    const start = () => {
-      if (running || prefersReduce) return;
-      running = true;
-      lastDraw = performance.now();
-      animId = requestAnimationFrame(loop);
-    };
-    const stop = () => {
-      running = false;
-      cancelAnimationFrame(animId);
-    };
-
-    const onVisibility = () => { document.hidden ? stop() : start(); };
-    document.addEventListener("visibilitychange", onVisibility);
-
-    if (prefersReduce) {
-      render();
-    } else {
-      start();
-    }
-
-    return () => {
-      stop();
-      document.removeEventListener("visibilitychange", onVisibility);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: "fixed",
-        top: 0, left: 0,
-        width: "100%", height: "100%",
-        zIndex: -1,
-        pointerEvents: "none",
-      }}
-    />
-  );
-}
 
 /* ────────────────────────────────────────────────────── */
 /* Scroll reveal wrapper                                  */
@@ -1411,7 +1256,6 @@ export default function MainComponentNameCv({
           WEB LAYOUT — portfolio dev, scroll animations
           ═══════════════════════════════════════════════════════ */}
       <div className="print-hidden text-white font-['Geist',sans-serif]">
-        <WaveBackground />
 
         {/* ── Sticky nav ── */}
         <nav className="sticky top-0 z-50 flex justify-between items-center px-6 sm:px-10 py-4 bg-black/60 backdrop-blur-md border-b border-white/[0.06]">
@@ -1469,8 +1313,14 @@ export default function MainComponentNameCv({
                   <p className="text-[10px] uppercase tracking-[0.18em] text-white/35 mt-6 mb-2" style={fadeIn(260)}>
                     {t.sections.about}
                   </p>
-                  <p className="text-[13px] font-medium max-w-xl text-emerald-300/90" style={fadeIn(280)}>
-                    {t.availability}
+                  <p className="flex items-start gap-2.5 text-[13px] font-medium max-w-xl text-emerald-300/90" style={fadeIn(280)}>
+                    {/* A live indicator, not decoration: it marks the one line a
+                        recruiter scans for first. */}
+                    <span aria-hidden className="relative mt-[6px] flex h-2 w-2 shrink-0">
+                      <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 motion-safe:animate-ping" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                    </span>
+                    <span>{t.availability}</span>
                   </p>
                   <p className="text-sm leading-relaxed mt-3 max-w-xl text-white/80" style={fadeIn(340)}>
                     {t.intro}
