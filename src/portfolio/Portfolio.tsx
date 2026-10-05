@@ -10,6 +10,7 @@ import {
   contact, media, orderedExperience, ui, type Media, type PfLang,
 } from "./content";
 import { AvailabilityLine, Disclosure, PfButton, PfLink } from "./ui-bits";
+import SkillOrbit from "./SkillOrbit";
 
 const FULL_NAME = "Sacha Riccardo LEONE";
 
@@ -147,18 +148,9 @@ export default function Portfolio({
         </div>
       </Section>
 
-      {/* ── Soft skills ── */}
+      {/* ── Soft skills: the nine in orbit (see SkillOrbit) ── */}
       <Section title={cv.sections.personalSkills}>
-        {/* One tile per skill, all the same size: the grid is the composition,
-            not the tile sizes. */}
-        <div className="grid auto-rows-[7rem] grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {cv.softSkills.map((skill, i) => (
-            <div key={i}
-              className="flex items-end rounded-xl border border-[var(--pf-hair)] bg-[var(--pf-raise)]/60 p-4 transition-colors hover:border-[var(--pf-ink)]/30">
-              <span className="text-[15px] leading-snug text-[var(--pf-ink)]/85">{skill}</span>
-            </div>
-          ))}
-        </div>
+        <SkillOrbit skills={cv.softSkills} />
       </Section>
 
       {/* ── Languages ── */}
