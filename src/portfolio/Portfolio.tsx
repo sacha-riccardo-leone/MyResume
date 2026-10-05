@@ -60,13 +60,9 @@ export default function Portfolio({
       {/* ── Hero ── */}
       <section className="min-h-[88vh] flex flex-col justify-center items-center text-center px-5 sm:px-10 lg:px-16 pt-24">
         <div className="max-w-[1100px]">
-          <TextAnimate key={`a-${lang}`} as="h1" animation="blurInUp" by="word" duration={0.6} once
+          <TextAnimate as="h1" animation="blurInUp" by="word" duration={0.6} once
             className="text-[clamp(2.4rem,8.5vw,7rem)] font-medium leading-[0.95] tracking-[-0.045em]">
-            {t.heroA}
-          </TextAnimate>
-          <TextAnimate key={`b-${lang}`} as="h1" animation="blurInUp" by="word" duration={0.6} delay={0.18} once
-            className="text-[clamp(2.4rem,8.5vw,7rem)] font-medium leading-[0.95] tracking-[-0.045em] text-[var(--pf-mute)]">
-            {t.heroB}
+            {FULL_NAME}
           </TextAnimate>
           <TextAnimate key={`c-${lang}`} as="p" animation="fadeIn" by="line" delay={0.6} once
             className="mt-10 mx-auto max-w-[52ch] text-sm sm:text-base leading-relaxed text-[var(--pf-mute)]">

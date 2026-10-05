@@ -91,7 +91,6 @@ export const ui: Record<PfLang, {
   gateHint: string;
   cvLabel: string; cvMeta: string;
   workLabel: string; workMeta: string;
-  heroA: string; heroB: string;
   ongoing: string;
   visit: string;
   backToGate: string;
@@ -105,7 +104,6 @@ export const ui: Record<PfLang, {
     gateHint: "Deux façons de visiter",
     cvLabel: "CV", cvMeta: "2 pages · PDF",
     workLabel: "Expérience complète", workMeta: "interactif · 3 min",
-    heroA: "Des besoins réels.", heroB: "Des logiciels livrés.",
     ongoing: "En cours",
     visit: "Visiter",
     backToGate: "Retour",
@@ -119,7 +117,6 @@ export const ui: Record<PfLang, {
     gateHint: "Two ways to visit",
     cvLabel: "Resume", cvMeta: "2 pages · PDF",
     workLabel: "Full experience", workMeta: "interactive · 3 min",
-    heroA: "Real needs.", heroB: "Software shipped.",
     ongoing: "Ongoing",
     visit: "Visit",
     backToGate: "Back",
@@ -133,7 +130,6 @@ export const ui: Record<PfLang, {
     gateHint: "Zwei Arten zu besuchen",
     cvLabel: "Lebenslauf", cvMeta: "2 Seiten · PDF",
     workLabel: "Volle Erfahrung", workMeta: "interaktiv · 3 Min.",
-    heroA: "Echte Bedürfnisse.", heroB: "Ausgelieferte Software.",
     ongoing: "Laufend",
     visit: "Besuchen",
     backToGate: "Zurück",
@@ -147,7 +143,6 @@ export const ui: Record<PfLang, {
     gateHint: "Due modi di visitare",
     cvLabel: "CV", cvMeta: "2 pagine · PDF",
     workLabel: "Esperienza completa", workMeta: "interattivo · 3 min",
-    heroA: "Bisogni reali.", heroB: "Software in produzione.",
     ongoing: "In corso",
     visit: "Visitare",
     backToGate: "Indietro",
