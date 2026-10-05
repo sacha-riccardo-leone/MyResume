@@ -9,6 +9,8 @@ import cpneLogo from "../assets/cpnelogo.png";
 import OrbMini from "./OrbMini";
 import { TextAnimate } from "../components/ui/text-animate";
 import { SHARED } from "../lib/pageTransition";
+import ProjectPreview from "../lib/ProjectPreview";
+import { media } from "../portfolio/media";
 import ThemeToggle from "../lib/ThemeToggle";
 import Collapse, { COLLAPSE_TRANSITION } from "../lib/Collapse";
 import type { Theme } from "../lib/theme";
@@ -61,7 +63,7 @@ export const translations = {
         date: "Août 2026 — en cours",
         company: "VRD - Ingénieurs conseils",
         role: "Développeur web — site vitrine",
-        url: "https://www.vrd-ingenieurs.ch/",
+        url: "https://vrd-ingenieurs.vercel.app/",
         bullets: [
           "Site vitrine 6 pages pour un bureau d'ingénieurs en technique du bâtiment (CVCS) : Next.js 16 / React 19, TypeScript strict, toutes les routes prérendues.",
           "Zéro dépendance runtime hors next/react — design system maison (jetons, typographie auto-hébergée), sans framework CSS ni librairie d'animation ou d'icônes.",
@@ -199,7 +201,7 @@ export const translations = {
         date: "August 2026 — ongoing",
         company: "VRD - Ingénieurs conseils",
         role: "Web developer — company website",
-        url: "https://www.vrd-ingenieurs.ch/",
+        url: "https://vrd-ingenieurs.vercel.app/",
         bullets: [
           "Six-page company website for a building-services (HVAC) engineering firm: Next.js 16 / React 19, strict TypeScript, every route prerendered.",
           "Zero runtime dependencies beyond next/react — in-house design system (tokens, self-hosted typography), no CSS framework and no animation or icon library.",
@@ -337,7 +339,7 @@ export const translations = {
         date: "August 2026 — laufend",
         company: "VRD - Ingénieurs conseils",
         role: "Webentwickler — Unternehmenswebsite",
-        url: "https://www.vrd-ingenieurs.ch/",
+        url: "https://vrd-ingenieurs.vercel.app/",
         bullets: [
           "Sechsseitige Unternehmenswebsite für ein Ingenieurbüro für Gebäudetechnik (HLKS): Next.js 16 / React 19, striktes TypeScript, alle Routen vorgerendert.",
           "Null Runtime-Abhängigkeiten ausser next/react — eigenes Design-System (Tokens, selbst gehostete Typografie), ohne CSS-Framework, Animations- oder Icon-Bibliothek.",
@@ -475,7 +477,7 @@ export const translations = {
         date: "Agosto 2026 — in corso",
         company: "VRD - Ingénieurs conseils",
         role: "Sviluppatore web — sito vetrina",
-        url: "https://www.vrd-ingenieurs.ch/",
+        url: "https://vrd-ingenieurs.vercel.app/",
         bullets: [
           "Sito vetrina di sei pagine per uno studio di ingegneria impiantistica (CVCS): Next.js 16 / React 19, TypeScript strict, tutte le route prerenderizzate.",
           "Zero dipendenze runtime oltre next/react — design system interno (token, tipografia self-hosted), senza framework CSS né librerie di animazione o icone.",
@@ -810,9 +812,9 @@ function ScrollReveal({
 /* ────────────────────────────────────────────────────── */
 /* Bullets — experience body (bullet list + stack line)   */
 /* ────────────────────────────────────────────────────── */
-function Bullets({ items, stack }: { items: string[]; stack?: string }) {
+function Bullets({ items, stack, bare = false }: { items: string[]; stack?: string; bare?: boolean }) {
   return (
-    <div className="px-5 pb-4">
+    <div className={bare ? "" : "px-5 pb-4"}>
       <ul className="space-y-1.5">
         {items.map((b, i) => (
           <li key={i} className="flex gap-2.5 text-sm text-white/50 leading-relaxed">
@@ -824,6 +826,21 @@ function Bullets({ items, stack }: { items: string[]; stack?: string }) {
       {stack && (
         <p className="mt-3 text-[10px] font-mono text-white/35 tracking-wide">{stack}</p>
       )}
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────────────── */
+/* Card body with a live preview — text and preview side  */
+/* by side, the preview alternating right / left from one */
+/* project to the next so the text is never always on the */
+/* same side. Phones: one column, preview on top.         */
+/* ────────────────────────────────────────────────────── */
+function WithPreview({ text, preview, side }: { text: React.ReactNode; preview: React.ReactNode; side: "left" | "right" }) {
+  return (
+    <div className="px-5 pb-5 grid gap-5 md:grid-cols-2 md:items-center">
+      <div className={side === "left" ? "md:order-first" : "md:order-last"}>{preview}</div>
+      <div className="min-w-0">{text}</div>
     </div>
   );
 }
@@ -845,6 +862,8 @@ function MandateCard({
   onToggle,
   demoUrl,
   status = "delivered",
+  theme,
+  previewSide,
 }: {
   exp: { company: string; role?: string; date: string; url?: string; bullets: string[]; stack?: string };
   logo: string;
@@ -853,8 +872,13 @@ function MandateCard({
   onToggle: () => void;
   demoUrl?: string;
   status?: "delivered" | "inProgress";
+  theme: Theme;
+  /** where the live preview sits when the card is open; projects without
+      a recording ignore it */
+  previewSide?: "left" | "right";
 }) {
   const inProgress = status === "inProgress";
+  const m = media[exp.company];
   return (
     <ScrollReveal>
       <div
@@ -910,7 +934,15 @@ function MandateCard({
           </div>
         </div>
         <Collapse open={open}>
-          <Bullets items={exp.bullets} stack={exp.stack} />
+          {m && previewSide ? (
+            <WithPreview
+              side={previewSide}
+              text={<Bullets bare items={exp.bullets} stack={exp.stack} />}
+              preview={<ProjectPreview media={m} name={exp.company} href={exp.url} theme={theme} active={open} />}
+            />
+          ) : (
+            <Bullets items={exp.bullets} stack={exp.stack} />
+          )}
         </Collapse>
       </div>
     </ScrollReveal>
@@ -1414,6 +1446,8 @@ export default function MainComponentNameCv({
                     status="inProgress"
                     open={openCards.has("vrd")}
                     onToggle={() => toggleCard("vrd")}
+                    theme={theme}
+                    previewSide="right"
                   />
                 );
               })()}
@@ -1430,6 +1464,8 @@ export default function MainComponentNameCv({
                     open={openCards.has("r2jc")}
                     onToggle={() => toggleCard("r2jc")}
                     demoUrl="https://r2jc.vercel.app"
+                    theme={theme}
+                    previewSide="left"
                   />
                 );
               })()}
@@ -1445,6 +1481,7 @@ export default function MainComponentNameCv({
                     lang={lang}
                     open={openCards.has("xefi")}
                     onToggle={() => toggleCard("xefi")}
+                    theme={theme}
                   />
                 );
               })()}
@@ -1493,8 +1530,14 @@ export default function MainComponentNameCv({
                 </div>
               </div>
               <Collapse open={openCards.has("ordine")}>
-                <div className="px-5 pb-5">
-                  <p className="text-sm text-white/40 mb-4" style={{ paddingLeft: "calc(22px + 12px)" }}>{ordineAIProject.tagline[lang]}</p>
+                <WithPreview
+                  side="right"
+                  preview={
+                    <ProjectPreview media={media["Ordine AI"]} name={ordineAIProject.name}
+                      href={ordineAIProject.url} theme={theme} active={openCards.has("ordine")} />
+                  }
+                  text={<>
+                  <p className="text-sm text-white/40 mb-4">{ordineAIProject.tagline[lang]}</p>
                   <ul className="space-y-2.5 mb-5">
                     {ordineAIProject.highlights[lang].map((h, i) => (
                       <li key={i} className="flex gap-3 text-sm text-white/50 leading-relaxed">
@@ -1513,7 +1556,8 @@ export default function MainComponentNameCv({
                       </span>
                     ))}
                   </div>
-                </div>
+                  </>}
+                />
               </Collapse>
                   </div>
                 </ScrollReveal>
