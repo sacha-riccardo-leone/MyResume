@@ -125,6 +125,10 @@ export const ui: Record<PfLang, {
   visit: string;
   backToGate: string;
   readCv: string;
+  contactEyebrow: string;
+  closing: string;
+  closingSub: string;
+  emailCta: string;
 }> = {
   fr: {
     role: "Développeur d'applications",
@@ -138,6 +142,10 @@ export const ui: Record<PfLang, {
     visit: "Visiter",
     backToGate: "Retour",
     readCv: "Lire le CV",
+    contactEyebrow: "Contact",
+    closing: "Parlons-en.",
+    closingSub: "Ouvert aux opportunités — développeur d'applications, 100 %.",
+    emailCta: "Écrire un e-mail",
   },
   en: {
     role: "Application developer",
@@ -151,6 +159,10 @@ export const ui: Record<PfLang, {
     visit: "Visit",
     backToGate: "Back",
     readCv: "Read the resume",
+    contactEyebrow: "Contact",
+    closing: "Let's talk.",
+    closingSub: "Open to opportunities — application developer, 100%.",
+    emailCta: "Send an email",
   },
   de: {
     role: "Applikationsentwickler",
@@ -164,6 +176,10 @@ export const ui: Record<PfLang, {
     visit: "Besuchen",
     backToGate: "Zurück",
     readCv: "Lebenslauf lesen",
+    contactEyebrow: "Kontakt",
+    closing: "Sprechen wir.",
+    closingSub: "Offen für Gelegenheiten — Applikationsentwickler, 100 %.",
+    emailCta: "E-Mail schreiben",
   },
   it: {
     role: "Sviluppatore di applicazioni",
@@ -177,5 +193,17 @@ export const ui: Record<PfLang, {
     visit: "Visitare",
     backToGate: "Indietro",
     readCv: "Leggere il CV",
+    contactEyebrow: "Contatto",
+    closing: "Parliamone.",
+    closingSub: "Aperto a opportunità — sviluppatore di applicazioni, 100%.",
+    emailCta: "Scrivere un'e-mail",
   },
+};
+
+/* Contact details are the same in every language, so they live here once. */
+export const contact = {
+  email: "leonesachariccardo@gmail.com",
+  github: "https://github.com/sacha-riccardo-leone",
+  linkedin: "https://linkedin.com/in/sacha-leone",
+  place: "La Chaux-de-Fonds, NE · CH",
 };

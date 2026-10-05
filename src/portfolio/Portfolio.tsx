@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { TextAnimate } from "../components/ui/text-animate";
 import { SmoothCursor } from "../components/ui/smooth-cursor";
-import { projects, ui, type PfLang, type Project } from "./content";
+import { InteractiveHoverButton } from "../components/ui/interactive-hover-button";
+import { contact, projects, ui, type PfLang, type Project } from "./content";
+
+const FULL_NAME = "Sacha Riccardo LEONE";
 
 /* The "Full experience". Type-led and monochrome: the typography is the
    artwork, the grain sits over everything, and the work is shown as real
@@ -120,6 +123,84 @@ export default function Portfolio({
             <ProjectBlock key={p.id} project={p} index={i} lang={lang} t={t} />
           ))}
         </div>
+      </section>
+
+      {/* ── Closing — the page's actual job: make it easy to start a conversation ── */}
+      <section className="px-5 sm:px-10 lg:px-16 pb-20">
+        <div className="flex items-baseline gap-4 mb-14">
+          <h2 className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#7c7f86]">
+            {t.contactEyebrow}
+          </h2>
+          <hr className="pf-rule flex-1" />
+        </div>
+
+        <TextAnimate
+          as="p"
+          animation="blurInUp"
+          by="word"
+          once
+          className="text-[clamp(2rem,6.5vw,5rem)] font-medium leading-[0.98] tracking-[-0.04em]"
+        >
+          {t.closing}
+        </TextAnimate>
+
+        <p className="mt-6 max-w-[42ch] text-sm sm:text-base text-[#7c7f86]">{t.closingSub}</p>
+
+        <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-5">
+          <a href={`mailto:${contact.email}`} aria-label={t.emailCta}>
+            <InteractiveHoverButton
+              /* The component styles itself from shadcn tokens, which are not
+                 themed for this page. Remap them here instead of editing the
+                 vendored file, so it inverts into the portfolio's own palette. */
+              style={{
+                ["--background" as string]: "#f2f2f0",
+                ["--primary" as string]: "#0a0a0b",
+                ["--primary-foreground" as string]: "#f2f2f0",
+              } as React.CSSProperties}
+              className="border-transparent text-[#0a0a0b] text-sm"
+            >
+              {t.emailCta}
+            </InteractiveHoverButton>
+          </a>
+
+          <a
+            href={`mailto:${contact.email}`}
+            className="text-sm text-[#7c7f86] hover:text-[#f2f2f0] transition-colors underline-offset-4 hover:underline"
+          >
+            {contact.email}
+          </a>
+        </div>
+
+        <div className="mt-14 flex flex-wrap items-center gap-x-7 gap-y-3 text-[11px] font-mono uppercase tracking-[0.18em]">
+          {[
+            { label: "GitHub", href: contact.github },
+            { label: "LinkedIn", href: contact.linkedin },
+          ].map(l => (
+            <a
+              key={l.label}
+              href={l.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#7c7f86] hover:text-[#f2f2f0] transition-colors"
+            >
+              {l.label} ↗
+            </a>
+          ))}
+          {/* text-[11px]/font-mono are repeated here on purpose: theme.css sets a
+              base font-size on `button`, which beats the size inherited from the
+              row and would render this link larger than its neighbours. */}
+          <button
+            onClick={onReadCv}
+            className="text-[11px] font-mono text-[#7c7f86] hover:text-[#f2f2f0] transition-colors uppercase tracking-[0.18em]"
+          >
+            {t.readCv} →
+          </button>
+        </div>
+
+        <hr className="pf-rule mt-16" />
+        <p className="mt-5 text-[10px] font-mono tracking-[0.2em] text-[#7c7f86]/60">
+          {FULL_NAME} · {contact.place}
+        </p>
       </section>
     </div>
   );
