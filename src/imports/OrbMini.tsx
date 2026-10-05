@@ -17,6 +17,7 @@ const fragmentShader = /* glsl */ `
   uniform float uExcite;
   uniform float uBaseRadius;
   uniform float uBaseThick;
+  uniform float uInk;       // 0 = white glow (dark theme), 1 = black ink (light theme)
 
   varying vec2 vUv;
 
@@ -120,8 +121,15 @@ const fragmentShader = /* glsl */ `
 
     color = color / (color + vec3(0.8));
     color = pow(color, vec3(0.95));
+    // Light theme: the same ring drawn in ink. The glow's brightness becomes
+    // the ink's opacity, so the ring is black where it shone white and fades
+    // to nothing where it faded to black (a plain inversion left a white disc
+    // inside the ring on paper).
+    float lum = dot(color, vec3(0.299, 0.587, 0.114));
+    vec3 outCol = mix(color, vec3(0.07), uInk);
+    float outA = mix(alpha, clamp(alpha * lum * 1.15, 0.0, 1.0), uInk);
 
-    gl_FragColor = vec4(color, alpha);
+    gl_FragColor = vec4(outCol, outA);
   }
 `;
 
@@ -174,12 +182,20 @@ export default function OrbMini({ size = 28, baseRadius = 0.15, className = "", 
         uExcite: { value: 0.0 },
         uBaseRadius: { value: baseRadius },
         uBaseThick: { value: 0.012 * (56 / size) },
+        uInk: { value: document.documentElement.getAttribute("data-theme") === "light" ? 1.0 : 0.0 },
       },
       transparent: true,
       depthWrite: false,
     });
     const quad = new THREE.Mesh(geo, mat);
     scene.add(quad);
+
+    // Follow the theme live (applyTheme dispatches this on every switch).
+    const onTheme = (e: Event) => {
+      mat.uniforms.uInk.value = (e as CustomEvent).detail === "light" ? 1.0 : 0.0;
+      renderer.render(scene, camera);
+    };
+    window.addEventListener("themechange", onTheme);
 
     let visible = true;
     const observer = new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0 });
@@ -210,6 +226,7 @@ export default function OrbMini({ size = 28, baseRadius = 0.15, className = "", 
     return () => {
       try {
         cancelAnimationFrame(frameRef.current);
+        window.removeEventListener("themechange", onTheme);
         observer.disconnect();
         renderer.dispose();
         geo.dispose();
