@@ -328,12 +328,7 @@ function ProjectBlock({
             CV's bullet points are one click away for anyone who wants them. */}
         <div className="mt-6 max-w-[52ch]">
           <Disclosure
-            label={exp.company}
-            summary={
-              <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-[var(--pf-mute)]">
-                {t.details}
-              </span>
-            }
+            label={`${t.details} — ${exp.company}`}
           >
             <ul className="space-y-2.5 pt-5">
               {exp.bullets.map((b, k) => (
@@ -371,12 +366,7 @@ function CompactProject({ exp, t }: { exp: Exp; t: (typeof ui)[PfLang] }) {
       {exp.role && <p className="mt-3 text-[12px] font-mono text-[var(--pf-mute)]">{exp.role}</p>}
       <div className="mt-4">
         <Disclosure
-          label={exp.company}
-          summary={
-            <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-[var(--pf-mute)]">
-              {t.details}
-            </span>
-          }
+          label={`${t.details} — ${exp.company}`}
         >
           <ul className="space-y-2 pt-4">
             {exp.bullets.map((b, k) => (

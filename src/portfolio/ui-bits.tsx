@@ -53,7 +53,10 @@ export function Disclosure({
   defaultOpen = false,
   label,
 }: {
-  summary: React.ReactNode;
+  /* Optional: with no summary the control is just the chevron. The label still
+     names it for assistive tech, so a button with no visible text is never a
+     button with no accessible name. */
+  summary?: React.ReactNode;
   children: React.ReactNode;
   defaultOpen?: boolean;
   label: string;
@@ -67,19 +70,21 @@ export function Disclosure({
         onClick={() => setOpen(o => !o)}
         aria-expanded={open}
         aria-controls={id}
-        className="group flex w-full items-start justify-between gap-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--pf-ink)]/50 focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--pf-ground)] rounded-sm"
+        aria-label={label}
+        className={`group text-left rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--pf-ink)]/50 focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--pf-ground)] ${
+          summary ? "flex w-full items-start justify-between gap-6" : "inline-flex items-center"
+        }`}
       >
-        <span className="min-w-0">{summary}</span>
+        {summary && <span className="min-w-0">{summary}</span>}
         <span
           aria-hidden
-          className="mt-1 shrink-0 text-[var(--pf-mute)] transition-transform duration-300 group-hover:text-[var(--pf-ink)]"
+          className={`shrink-0 text-[var(--pf-mute)] transition-transform duration-300 group-hover:text-[var(--pf-ink)] ${summary ? "mt-1" : ""}`}
           style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </span>
-        <span className="sr-only">{label}</span>
       </button>
 
       <div
