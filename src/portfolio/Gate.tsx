@@ -76,7 +76,7 @@ export default function Gate({
         {/* One door for now. The "Full experience" view is parked: it still
             answers on ?work, but the gate no longer offers it. */}
         <div className="mt-14 flex justify-center">
-          <GateDoor label={t.cvLabel} meta={t.cvMeta} onClick={() => onChoose("cv")} />
+          <GateDoor label={t.cvLabel} onClick={() => onChoose("cv")} />
         </div>
       </main>
 
@@ -100,7 +100,7 @@ function GateDoor({
   onClick,
 }: {
   label: string;
-  meta: string;
+  meta?: string;
   onClick: () => void;
 }) {
   return (
@@ -118,7 +118,7 @@ function GateDoor({
       >
         {label}
       </InteractiveHoverButton>
-      <span className="text-[11px] font-mono tracking-wider text-[var(--pf-mute)]">{meta}</span>
+      {meta && <span className="text-[11px] font-mono tracking-wider text-[var(--pf-mute)]">{meta}</span>}
     </div>
   );
 }

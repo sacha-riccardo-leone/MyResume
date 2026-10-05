@@ -89,7 +89,7 @@ export function orderedExperience(lang: PfLang) {
    with an equivalent in the CV is read from there instead. */
 export const ui: Record<PfLang, {
   gateHint: string;
-  cvLabel: string; cvMeta: string;
+  cvLabel: string;
   workLabel: string; workMeta: string;
   ongoing: string;
   visit: string;
@@ -102,7 +102,7 @@ export const ui: Record<PfLang, {
 }> = {
   fr: {
     gateHint: "Deux façons de visiter",
-    cvLabel: "CV", cvMeta: "2 pages · PDF",
+    cvLabel: "Vers le CV",
     workLabel: "Expérience complète", workMeta: "interactif · 3 min",
     ongoing: "En cours",
     visit: "Visiter",
@@ -115,7 +115,7 @@ export const ui: Record<PfLang, {
   },
   en: {
     gateHint: "Two ways to visit",
-    cvLabel: "Resume", cvMeta: "2 pages · PDF",
+    cvLabel: "To the resume",
     workLabel: "Full experience", workMeta: "interactive · 3 min",
     ongoing: "Ongoing",
     visit: "Visit",
@@ -128,7 +128,7 @@ export const ui: Record<PfLang, {
   },
   de: {
     gateHint: "Zwei Arten zu besuchen",
-    cvLabel: "Lebenslauf", cvMeta: "2 Seiten · PDF",
+    cvLabel: "Zum Lebenslauf",
     workLabel: "Volle Erfahrung", workMeta: "interaktiv · 3 Min.",
     ongoing: "Laufend",
     visit: "Besuchen",
@@ -141,7 +141,7 @@ export const ui: Record<PfLang, {
   },
   it: {
     gateHint: "Due modi di visitare",
-    cvLabel: "CV", cvMeta: "2 pagine · PDF",
+    cvLabel: "Vai al CV",
     workLabel: "Esperienza completa", workMeta: "interattivo · 3 min",
     ongoing: "In corso",
     visit: "Visitare",
