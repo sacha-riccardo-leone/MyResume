@@ -1,6 +1,6 @@
 import { TextAnimate } from "../components/ui/text-animate";
 import { InteractiveHoverButton } from "../components/ui/interactive-hover-button";
-import { ui, type PfLang } from "./content";
+import { contact, ui, type PfLang } from "./content";
 import { translations } from "../imports/MainComponentNameCv";
 import ThemeToggle from "../lib/ThemeToggle";
 import type { Theme } from "../lib/theme";
@@ -78,6 +78,31 @@ export default function Gate({
         <div className="mt-14 flex justify-center">
           <GateDoor label={t.cvLabel} onClick={() => onChoose("cv")} />
         </div>
+
+        {/* The places a recruiter goes next, as plain text links: quiet next
+            to the one real button, but each a real, clickable destination. */}
+        <nav aria-label={t.linksLabel} className="mt-10">
+          <ul className="flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-sm">
+            {[
+              { label: "LinkedIn", href: contact.linkedin, external: true },
+              { label: "GitHub", href: contact.github, external: true },
+              { label: t.emailLabel, href: `mailto:${cv.contact.email}`, external: false },
+            ].map(l => (
+              <li key={l.label}>
+                <a
+                  href={l.href}
+                  {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="group inline-flex items-center gap-1.5 rounded-sm text-[var(--pf-mute)] transition-colors hover:text-[var(--pf-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--pf-ink)]/50 focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--pf-ground)]"
+                >
+                  {l.label}
+                  <span aria-hidden className="text-[0.8em] transition-transform group-hover:-translate-y-px group-hover:translate-x-px">
+                    {l.external ? "↗" : "→"}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </main>
 
       <footer className="px-6 sm:px-10 pb-6 text-center">

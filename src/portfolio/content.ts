@@ -90,6 +90,7 @@ export function orderedExperience(lang: PfLang) {
 export const ui: Record<PfLang, {
   gateHint: string;
   cvLabel: string;
+  emailLabel: string; linksLabel: string;
   workLabel: string; workMeta: string;
   ongoing: string;
   visit: string;
@@ -102,7 +103,7 @@ export const ui: Record<PfLang, {
 }> = {
   fr: {
     gateHint: "Deux façons de visiter",
-    cvLabel: "Vers le CV",
+    cvLabel: "Vers le CV", emailLabel: "E-mail", linksLabel: "Liens",
     workLabel: "Expérience complète", workMeta: "interactif · 3 min",
     ongoing: "En cours",
     visit: "Visiter",
@@ -115,7 +116,7 @@ export const ui: Record<PfLang, {
   },
   en: {
     gateHint: "Two ways to visit",
-    cvLabel: "To the resume",
+    cvLabel: "To the resume", emailLabel: "Email", linksLabel: "Links",
     workLabel: "Full experience", workMeta: "interactive · 3 min",
     ongoing: "Ongoing",
     visit: "Visit",
@@ -128,7 +129,7 @@ export const ui: Record<PfLang, {
   },
   de: {
     gateHint: "Zwei Arten zu besuchen",
-    cvLabel: "Zum Lebenslauf",
+    cvLabel: "Zum Lebenslauf", emailLabel: "E-Mail", linksLabel: "Links",
     workLabel: "Volle Erfahrung", workMeta: "interaktiv · 3 Min.",
     ongoing: "Laufend",
     visit: "Besuchen",
@@ -141,7 +142,7 @@ export const ui: Record<PfLang, {
   },
   it: {
     gateHint: "Due modi di visitare",
-    cvLabel: "Vai al CV",
+    cvLabel: "Vai al CV", emailLabel: "Email", linksLabel: "Link",
     workLabel: "Esperienza completa", workMeta: "interattivo · 3 min",
     ongoing: "In corso",
     visit: "Visitare",
