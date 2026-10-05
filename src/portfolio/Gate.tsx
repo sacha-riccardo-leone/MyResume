@@ -3,9 +3,12 @@ import { InteractiveHoverButton } from "../components/ui/interactive-hover-butto
 import { contact, ui, type PfLang } from "./content";
 import { translations } from "../imports/MainComponentNameCv";
 import ThemeToggle from "../lib/ThemeToggle";
+import { SHARED } from "../lib/pageTransition";
 import type { Theme } from "../lib/theme";
 
 const FULL_NAME = "Sacha Riccardo LEONE";
+const NAME_CLASS = "text-[clamp(1.75rem,5vw,3.25rem)] font-light tracking-[-0.03em]";
+const TITLE_CLASS = "mt-3 text-sm sm:text-base text-[var(--pf-mute)]";
 
 /* The landing choice. Two doors, each honest about what it costs the visitor:
    a document, or an experience. Hovering a door previews what is behind it —
@@ -17,10 +20,14 @@ export default function Gate({
   onChoose,
   theme,
   toggleTheme,
+  intro = true,
 }: {
   lang: PfLang;
   setLang: (l: PfLang) => void;
   onChoose: (v: "cv" | "work") => void;
+  /* false when arriving back from the CV: the name is already on screen,
+     gliding in, so it is rendered still instead of re-animated. */
+  intro?: boolean;
   theme: Theme;
   toggleTheme: () => void;
 }) {
@@ -51,27 +58,37 @@ export default function Gate({
       </div>
 
       <main className="flex-1 flex flex-col items-center justify-center px-6 text-center">
-        <TextAnimate key={`t1-${lang}`}
-          as="h1"
-          animation="blurInUp"
-          by="character"
-          duration={0.45}
-          once
-          className="text-[clamp(1.75rem,5vw,3.25rem)] font-light tracking-[-0.03em]"
-        >
-          {FULL_NAME}
-        </TextAnimate>
+        {intro ? (
+          <TextAnimate key={`t1-${lang}`}
+            as="h1"
+            animation="blurInUp"
+            by="character"
+            duration={0.45}
+            once
+            style={SHARED.name}
+            className={NAME_CLASS}
+          >
+            {FULL_NAME}
+          </TextAnimate>
+        ) : (
+          <h1 style={SHARED.name} className={NAME_CLASS}>{FULL_NAME}</h1>
+        )}
 
-        <TextAnimate key={`t2-${lang}`}
-          as="p"
-          animation="fadeIn"
-          by="word"
-          delay={0.35}
-          once
-          className="mt-3 text-sm sm:text-base text-[var(--pf-mute)]"
-        >
-          {cv.title}
-        </TextAnimate>
+        {intro ? (
+          <TextAnimate key={`t2-${lang}`}
+            as="p"
+            animation="fadeIn"
+            by="word"
+            delay={0.35}
+            once
+            style={SHARED.title}
+            className={TITLE_CLASS}
+          >
+            {cv.title}
+          </TextAnimate>
+        ) : (
+          <p style={SHARED.title} className={TITLE_CLASS}>{cv.title}</p>
+        )}
 
         {/* One door for now. The "Full experience" view is parked: it still
             answers on ?work, but the gate no longer offers it. */}

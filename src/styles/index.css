@@ -449,11 +449,41 @@
 /* ─── Theme switch: circular reveal (see lib/ThemeToggle.tsx) ──────────────
    The browser's default cross-fade is replaced by the clip-path animation
    the toggle drives on ::view-transition-new(root). */
-::view-transition-old(root),
-::view-transition-new(root) {
+html[data-theme-vt="active"]::view-transition-old(root),
+html[data-theme-vt="active"]::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }
 html[data-theme-vt="active"]::view-transition-new(root) {
   clip-path: var(--theme-vt-from);
+}
+
+/* ─── Landing <-> CV: one continuous scene (see lib/pageTransition.ts) ────
+   The name and title glide between their two places on the site's
+   ease-in-out curve; the rest of the old page leaves quickly and the new
+   one fades in behind the travelling name. */
+html[data-page-vt="active"]::view-transition-group(site-name),
+html[data-page-vt="active"]::view-transition-group(site-title) {
+  animation-duration: 700ms;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+}
+/* One image per travelling element: the old one is dropped and the new one
+   is scaled from the old box to the new, so the name never shows twice. */
+html[data-page-vt="active"]::view-transition-old(site-name),
+html[data-page-vt="active"]::view-transition-old(site-title) {
+  animation: none;
+  opacity: 0;
+}
+html[data-page-vt="active"]::view-transition-new(site-name),
+html[data-page-vt="active"]::view-transition-new(site-title) {
+  animation: none;
+}
+html[data-page-vt="active"]::view-transition-old(root) {
+  animation-duration: 300ms;
+  animation-fill-mode: both;
+}
+html[data-page-vt="active"]::view-transition-new(root) {
+  animation-duration: 500ms;
+  animation-delay: 200ms;
+  animation-fill-mode: both;
 }

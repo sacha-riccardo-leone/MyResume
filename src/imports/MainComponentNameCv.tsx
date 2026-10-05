@@ -8,6 +8,7 @@ import sourShotsLogo from "../assets/sourshotslogo.jpg";
 import cpneLogo from "../assets/cpnelogo.png";
 import OrbMini from "./OrbMini";
 import { TextAnimate } from "../components/ui/text-animate";
+import { SHARED } from "../lib/pageTransition";
 import ThemeToggle from "../lib/ThemeToggle";
 import Collapse, { COLLAPSE_TRANSITION } from "../lib/Collapse";
 import type { Theme } from "../lib/theme";
@@ -15,6 +16,9 @@ import type { Theme } from "../lib/theme";
 export type Lang = "fr" | "en" | "de" | "it";
 
 const FULL_NAME = "Sacha Riccardo LEONE";
+/* w-fit: the box hugs the text, as on the landing page, so the two snapshots
+   of the travelling name share one shape and scale cleanly into each other. */
+const CV_NAME_CLASS = "w-fit mx-auto sm:mx-0 text-4xl sm:text-5xl lg:text-[3.5rem] font-light leading-tight tracking-[-0.03em]";
 
 export const translations = {
   fr: {
@@ -1096,6 +1100,7 @@ export default function MainComponentNameCv({
   setLang,
   theme,
   toggleTheme,
+  intro = true,
 }: {
   /* Owned by App (from ?lang= and the gate), not local state: a local
      useState("fr") ignored the URL, so English links opened in French. */
@@ -1103,8 +1108,12 @@ export default function MainComponentNameCv({
   setLang: (l: Lang) => void;
   theme: Theme;
   toggleTheme: () => void;
+  /* false when arriving from the landing page: the name and title are
+     already on screen, travelling into place, so they render still and the
+     header is shown at once (the page transition fades it in). */
+  intro?: boolean;
 }) {
-  const [done, setDone] = useState(false);
+  const [done, setDone] = useState(!intro);
   const [openExp, setOpenExp] = useState<Set<number>>(new Set());
   const [ordineHovered, setOrdineHovered] = useState(false);
   const [openCards, setOpenCards] = useState<Set<string>>(new Set());
@@ -1216,7 +1225,7 @@ export default function MainComponentNameCv({
       <div className="print-hidden text-white font-[family-name:var(--font-site)]">
 
         {/* ── Sticky nav ── */}
-        <nav className="sticky top-0 z-50 flex justify-between items-center px-6 sm:px-10 py-4 bg-black/60 backdrop-blur-md border-b border-white/[0.06]">
+        <nav className="sticky top-0 z-50 flex justify-between items-center px-6 sm:px-10 py-4">
           <span className="text-[11px] font-mono text-white/20 tracking-widest">srl.dev</span>
           <div className="flex items-center gap-3">
             <ThemeToggle theme={theme} toggle={toggleTheme}
@@ -1247,17 +1256,22 @@ export default function MainComponentNameCv({
 
                 {/* Text — text-shadow scrim so contrast holds over every phase of the wave animation */}
                 <div className="flex-1 text-center sm:text-left" style={{ textShadow: "0 2px 20px rgba(0,0,0,0.55)" }}>
-                  <TextAnimate
-                    as="h1"
-                    animation="blurInUp"
-                    by="character"
-                    duration={0.45}
-                    once
-                    className="text-4xl sm:text-5xl lg:text-[3.5rem] font-light leading-tight tracking-tight"
-                  >
-                    {FULL_NAME}
-                  </TextAnimate>
-                  <p className="text-base sm:text-lg text-white/65 mt-3" style={fadeIn(100)}>
+                  {intro ? (
+                    <TextAnimate
+                      as="h1"
+                      animation="blurInUp"
+                      by="character"
+                      duration={0.45}
+                      once
+                      style={SHARED.name}
+                      className={CV_NAME_CLASS}
+                    >
+                      {FULL_NAME}
+                    </TextAnimate>
+                  ) : (
+                    <h1 style={SHARED.name} className={CV_NAME_CLASS}>{FULL_NAME}</h1>
+                  )}
+                  <p className="w-fit mx-auto sm:mx-0 text-base sm:text-lg text-white/65 mt-3" style={{ ...fadeIn(100), ...SHARED.title }}>
                     {t.title}
                   </p>
 
