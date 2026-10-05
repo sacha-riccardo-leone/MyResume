@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export type Theme = "dark" | "light";
 
@@ -18,18 +18,29 @@ export function readTheme(): Theme {
   return window.matchMedia?.("(prefers-color-scheme: light)").matches ? "light" : "dark";
 }
 
-export function applyTheme(theme: Theme) {
-  document.documentElement.setAttribute("data-theme", theme);
-  document.documentElement.style.colorScheme = theme;
-  try { localStorage.setItem(KEY, theme); } catch { /* ignore */ }
+export function applyTheme(theme: Theme, persist = false) {
+  const root = document.documentElement;
+  root.setAttribute("data-theme", theme);
+  root.style.colorScheme = theme;
+  /* The boot script paints <html> light inline to avoid a flash on load. That
+     inline value outranks the stylesheet, so once the app is running it must
+     go — otherwise switching light -> dark kept the light ground under the
+     now-white text. */
+  root.style.removeProperty("background");
+  /* Only a real choice is remembered. Saving on every load used to pin the
+     first-visit OS preference forever, so the site never followed the OS. */
+  if (persist) {
+    try { localStorage.setItem(KEY, theme); } catch { /* ignore */ }
+  }
   // Let non-React listeners (the wave canvas) repaint on change.
   window.dispatchEvent(new CustomEvent("themechange", { detail: theme }));
 }
 
 export function useTheme(): [Theme, () => void] {
   const [theme, setTheme] = useState<Theme>(readTheme);
+  const chosen = useRef(false);  // set by the toggle, never by the OS
 
-  useEffect(() => { applyTheme(theme); }, [theme]);
+  useEffect(() => { applyTheme(theme, chosen.current); }, [theme]);
 
   // Follow the OS only until the visitor states a preference of their own.
   useEffect(() => {
@@ -37,11 +48,16 @@ export function useTheme(): [Theme, () => void] {
     try { stored = !!localStorage.getItem(KEY); } catch { /* ignore */ }
     if (stored) return;
     const mq = window.matchMedia("(prefers-color-scheme: light)");
-    const onChange = (e: MediaQueryListEvent) => setTheme(e.matches ? "light" : "dark");
+    const onChange = (e: MediaQueryListEvent) => {
+      if (!chosen.current) setTheme(e.matches ? "light" : "dark");
+    };
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
   }, []);
 
-  const toggle = useCallback(() => setTheme(t => (t === "dark" ? "light" : "dark")), []);
+  const toggle = useCallback(() => {
+    chosen.current = true;
+    setTheme(t => (t === "dark" ? "light" : "dark"));
+  }, []);
   return [theme, toggle];
 }
