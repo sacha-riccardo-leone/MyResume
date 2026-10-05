@@ -36,16 +36,32 @@ export default function App() {
 
   /* Keep the URL in step with the view so a refresh or a shared link lands in
      the same place, without adding a router dependency. */
-  const go = useCallback((next: View, nextLang: PfLang = lang) => {
+  const urlFor = (v: View, l: PfLang) => {
     const qs: string[] = [];
-    if (next === "cv") qs.push("cv");
-    if (next === "work") qs.push("work");
-    if (nextLang !== "fr") qs.push(`lang=${nextLang}`);
-    window.history.pushState({}, "", qs.length ? `?${qs.join("&")}` : window.location.pathname);
+    if (v === "cv") qs.push("cv");
+    if (v === "work") qs.push("work");
+    if (l !== "fr") qs.push(`lang=${l}`);
+    return qs.length ? `?${qs.join("&")}` : window.location.pathname;
+  };
+
+  const go = useCallback((next: View, nextLang: PfLang = lang) => {
+    window.history.pushState({}, "", urlFor(next, nextLang));
     setView(next);
     setLang(nextLang);
     window.scrollTo(0, 0);
   }, [lang]);
+
+  /* Changing language stays on the same view and the same scroll position,
+     and replaces the history entry rather than adding one: Back should leave
+     the page, not step through every language the visitor tried. The URL
+     still follows, so a link copied from the English CV opens in English. */
+  const changeLang = useCallback((l: PfLang) => {
+    window.history.replaceState({}, "", urlFor(view, l));
+    setLang(l);
+  }, [view]);
+
+  // Screen readers, hyphenation and translation tools read <html lang>.
+  useEffect(() => { document.documentElement.lang = lang; }, [lang]);
 
   // Browser back/forward should move between the gate and the views.
   useEffect(() => {
@@ -57,14 +73,14 @@ export default function App() {
   return (
     <>
       {view === "gate" && (
-        <Gate lang={lang} setLang={l => go("gate", l)} onChoose={v => go(v)}
+        <Gate lang={lang} setLang={changeLang} onChoose={v => go(v)}
               theme={theme} toggleTheme={toggleTheme} />
       )}
 
       {view === "work" && (
         <Portfolio
           lang={lang}
-          setLang={l => go("work", l)}
+          setLang={changeLang}
           onReadCv={() => go("cv")}
           onBack={() => go("gate")}
           theme={theme}
@@ -72,8 +88,11 @@ export default function App() {
         />
       )}
 
-      {/* The CV is untouched; it simply isn't mounted until asked for. */}
-      {view === "cv" && <MainComponentNameCv theme={theme} toggleTheme={toggleTheme} />}
+      {/* The CV isn't mounted until asked for. Its language comes from here,
+          like the other views, so ?cv&lang=en opens the English CV. */}
+      {view === "cv" && (
+        <MainComponentNameCv lang={lang} setLang={changeLang} theme={theme} toggleTheme={toggleTheme} />
+      )}
 
       {/* One pointer for the whole site, so it survives moving between views. */}
       <CustomCursor />

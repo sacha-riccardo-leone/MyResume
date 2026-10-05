@@ -1092,13 +1092,18 @@ function SubHead({ title }: { title: string }) {
 /* Main component                                         */
 /* ────────────────────────────────────────────────────── */
 export default function MainComponentNameCv({
+  lang,
+  setLang,
   theme,
   toggleTheme,
 }: {
+  /* Owned by App (from ?lang= and the gate), not local state: a local
+     useState("fr") ignored the URL, so English links opened in French. */
+  lang: Lang;
+  setLang: (l: Lang) => void;
   theme: Theme;
   toggleTheme: () => void;
 }) {
-  const [lang, setLang] = useState<Lang>("fr");
   const [phase, setPhase] = useState<Phase>("cursor");
   const [displayedName, setDisplayedName] = useState("");
   const [openExp, setOpenExp] = useState<Set<number>>(new Set());
