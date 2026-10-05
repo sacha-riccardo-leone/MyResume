@@ -369,8 +369,19 @@
      the --print-* variables above. */
   @page { size: A4 portrait; margin: 12mm 14mm 14mm 14mm; }
 
-  /* The PDF is always on white, so it wants the light-mode accents whatever
-     theme the screen happens to be showing. */
+  /* The PDF is always white paper with dark ink, whatever theme the screen
+     is in. The page ground is painted into the @page margins too, so the
+     screen's dark ground (index.html's anti-flash rule, and the theme's
+     --pf-ground) used to print as a black frame round every page whenever
+     "Background graphics" was on. !important is needed because the theme
+     code writes background and color-scheme inline on <html>; a dark
+     color-scheme alone makes Chrome paint the page canvas #121212. */
+  html, body, #root {
+    background: #fff !important;
+    color-scheme: light !important;
+  }
+
+  /* …and it wants the light-mode accents for the same reason. */
   :root {
     --skill-1: #0e7490;
     --skill-2: #047857;
@@ -443,4 +454,16 @@
     break-after: page;
     page-break-after: always;
   }
+}
+
+/* ─── Theme switch: circular reveal (see lib/ThemeToggle.tsx) ──────────────
+   The browser's default cross-fade is replaced by the clip-path animation
+   the toggle drives on ::view-transition-new(root). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+html[data-theme-vt="active"]::view-transition-new(root) {
+  clip-path: var(--theme-vt-from);
 }
