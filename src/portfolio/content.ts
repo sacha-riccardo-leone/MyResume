@@ -6,6 +6,9 @@ import posterR2jc from "../assets/poster-r2jc.webp";
 import vidOrdineWebm from "../assets/vid-ordine.webm";
 import vidOrdineMp4 from "../assets/vid-ordine.mp4";
 import posterOrdine from "../assets/poster-ordine.webp";
+import vidOrdineDarkWebm from "../assets/vid-ordine-dark.webm";
+import vidOrdineDarkMp4 from "../assets/vid-ordine-dark.mp4";
+import posterOrdineDark from "../assets/poster-ordine-dark.webp";
 import vidVrdWebm from "../assets/vid-vrd.webm";
 import vidVrdMp4 from "../assets/vid-vrd.mp4";
 import posterVrd from "../assets/poster-vrd.webp";
@@ -24,6 +27,10 @@ export type Project = {
   /* A recorded clip of the site's own landing animation. A still can't show
      that the work moves, and all of these do. Poster doubles as the still. */
   video?: { webm: string; mp4: string; poster: string };
+  /* Some of these sites have a theme of their own. Where one does, the
+     preview follows the portfolio's theme, so a dark page never shows a
+     glaring white screenshot (and vice versa). */
+  videoDark?: { webm: string; mp4: string; poster: string };
   status?: "ongoing";
   /* number + unit are language-neutral; only `label` is translated */
   metrics: { value: string; label: Record<PfLang, string> }[];
@@ -67,6 +74,7 @@ export const projects: Project[] = [
     stack: ["FastAPI", "Next.js", "TypeScript", "Supabase", "Claude API", "Stripe"],
     shot: shotOrdine,
     video: { webm: vidOrdineWebm, mp4: vidOrdineMp4, poster: posterOrdine },
+    videoDark: { webm: vidOrdineDarkWebm, mp4: vidOrdineDarkMp4, poster: posterOrdineDark },
     status: "ongoing",
     metrics: [
       { value: "4", label: { fr: "langues évaluées en CI", en: "languages evaluated in CI", de: "Sprachen in der CI geprüft", it: "lingue valutate in CI" } },

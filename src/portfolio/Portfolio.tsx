@@ -128,7 +128,7 @@ export default function Portfolio({
 
         <div className="space-y-28 sm:space-y-40">
           {projects.map((p, i) => (
-            <ProjectBlock key={p.id} project={p} index={i} lang={lang} t={t} />
+            <ProjectBlock key={p.id} project={p} index={i} lang={lang} t={t} theme={theme} />
           ))}
         </div>
       </section>
@@ -219,11 +219,13 @@ function ProjectBlock({
   index,
   lang,
   t,
+  theme,
 }: {
   project: Project;
   index: number;
   lang: PfLang;
   t: (typeof ui)[PfLang];
+  theme: Theme;
 }) {
   /* Alternate sides down the page: odd-indexed projects put the media on the
      left. Done with CSS order rather than by reordering the markup, so the DOM
@@ -310,7 +312,7 @@ function ProjectBlock({
 
       {/* The evidence */}
       <div className={flipped ? "lg:order-1" : "lg:order-2"}>
-        <Plate project={p} />
+        <Plate project={p} theme={theme} />
       </div>
     </article>
   );
@@ -321,14 +323,19 @@ function ProjectBlock({
    all do. It plays only while on screen (and never for visitors who asked for
    less motion), so nothing decodes off-screen. Content arrives desaturated and
    resolves on approach: calm at rest, alive as you reach it. */
-function Plate({ project: p }: { project: Project }) {
+function Plate({ project: p, theme }: { project: Project; theme: Theme }) {
   const ref = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shown, setShown] = useState(false);
   const calm = useReducedMotion();
+  /* Prefer the variant recorded in the site's own matching theme. */
+  const clip = (theme === "dark" && p.videoDark) ? p.videoDark : p.video;
   /* A curated screenshot beats a frame grabbed out of a clip, so it wins as
      the still; the video poster is only the fallback. */
-  const src = p.shot ?? p.video?.poster;
+  /* A curated screenshot beats a frame grabbed out of a clip, so it wins as the
+     still — except where a theme-matched clip exists, whose poster is the one
+     that won't clash with the page. */
+  const src = theme === "dark" && p.videoDark ? p.videoDark.poster : (p.shot ?? clip?.poster);
 
   useEffect(() => {
     const el = ref.current;
@@ -359,10 +366,10 @@ function Plate({ project: p }: { project: Project }) {
       className="relative overflow-hidden rounded-lg border border-[var(--pf-hair)] bg-[var(--pf-raise)]"
       style={{ aspectRatio: "16 / 10" }}
     >
-      {p.video && !calm ? (
+      {clip && !calm ? (
         <video
           ref={videoRef}
-          poster={p.video.poster}
+          poster={clip.poster}
           muted
           loop
           playsInline
@@ -371,8 +378,8 @@ function Plate({ project: p }: { project: Project }) {
           className="h-full w-full object-cover object-top transition-[filter,opacity,transform] duration-[1200ms] ease-out"
           style={reveal}
         >
-          <source src={p.video.webm} type="video/webm" />
-          <source src={p.video.mp4} type="video/mp4" />
+          <source src={clip.webm} type="video/webm" />
+          <source src={clip.mp4} type="video/mp4" />
         </video>
       ) : src ? (
         <img
@@ -391,7 +398,7 @@ function Plate({ project: p }: { project: Project }) {
       )}
 
       {/* Quiet marker that this is the real site in motion, not a mockup */}
-      {p.video && !calm && (
+      {clip && !calm && (
         <span className="pointer-events-none absolute bottom-2.5 right-3 text-[9px] font-mono uppercase tracking-[0.2em] text-[var(--pf-ink)]/35">
           live
         </span>
