@@ -102,7 +102,7 @@ export default function Portfolio({
                 rows, so opening one card grew its row and shoved an unrelated
                 card in the other column downwards. Each column now flows on its
                 own, and opening a card only moves what is beneath it. */}
-            <div className="grid gap-x-10 md:grid-cols-2">
+            <div className="grid gap-x-10 gap-y-10 sm:gap-y-14 md:grid-cols-2 md:gap-y-0">
               {[0, 1].map(col => (
                 <div key={col} className="flex flex-col gap-10 sm:gap-14">
                   {rest.filter((_, i) => i % 2 === col).map(e => (
@@ -325,13 +325,13 @@ function ProjectBlock({
           {exp.company}
         </TextAnimate>
 
-        {exp.role && <p className="mt-2 text-[12px] font-mono text-[var(--pf-mute)]">{exp.role}</p>}
-
         {/* Detail is opt-in: the plate and the headline carry the glance, the
-            CV's bullet points are one click away for anyone who wants them. */}
-        <div className="mt-6 max-w-[52ch]">
+            CV's bullet points are one click away for anyone who wants them.
+            The role line is the control's summary, so the arrow sits on it. */}
+        <div className="mt-2 max-w-[52ch]">
           <Disclosure
             label={`${t.details} — ${exp.company}`}
+            summary={exp.role && <RoleLine role={exp.role} />}
           >
             <ul className="space-y-2.5 pt-5">
               {exp.bullets.map((b, k) => (
@@ -358,6 +358,11 @@ function ProjectBlock({
   );
 }
 
+/* The role, as the summary of a project's disclosure */
+function RoleLine({ role }: { role: string }) {
+  return <span className="block text-[12px] font-mono text-[var(--pf-mute)]">{role}</span>;
+}
+
 /* ── A project without a recording: same content, quieter layout ── */
 function CompactProject({ exp, t }: { exp: Exp; t: (typeof ui)[PfLang] }) {
   return (
@@ -366,10 +371,10 @@ function CompactProject({ exp, t }: { exp: Exp; t: (typeof ui)[PfLang] }) {
         <h4 className="text-lg font-medium tracking-tight text-[var(--pf-ink)]">{exp.company}</h4>
         <span className="pf-num text-[10px] font-mono text-[var(--pf-mute)] shrink-0">{exp.date}</span>
       </div>
-      {exp.role && <p className="mt-3 text-[12px] font-mono text-[var(--pf-mute)]">{exp.role}</p>}
-      <div className="mt-4">
+      <div className="mt-2">
         <Disclosure
           label={`${t.details} — ${exp.company}`}
+          summary={exp.role && <RoleLine role={exp.role} />}
         >
           <ul className="space-y-2 pt-4">
             {exp.bullets.map((b, k) => (
