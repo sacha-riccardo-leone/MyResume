@@ -7,6 +7,8 @@ import xefiLogo from "../assets/xefilogo.png";
 import sourShotsLogo from "../assets/sourshotslogo.jpg";
 import cpneLogo from "../assets/cpnelogo.png";
 import OrbMini from "./OrbMini";
+import ThemeToggle from "../lib/ThemeToggle";
+import type { Theme } from "../lib/theme";
 
 type Lang = "fr" | "en" | "de" | "it";
 type Phase = "cursor" | "typing" | "done";
@@ -571,22 +573,22 @@ const translations = {
 const skillGroups: { category: Record<Lang, string>; color: string; items: string[] | Record<Lang, string[]> }[] = [
   {
     category: { fr: "IA / LLM", en: "AI / LLM", de: "KI / LLM", it: "IA / LLM" },
-    color: "#22d3ee",
+    color: "var(--skill-1)",
     items: ["Claude", "Claude Code", "ChatGPT", "Prompt engineering", "Classification LLM", "Agents LLM", "LLM evals"],
   },
   {
     category: { fr: "Langages", en: "Languages", de: "Sprachen", it: "Linguaggi" },
-    color: "#34d399",
+    color: "var(--skill-2)",
     items: ["HTML", "CSS", "PHP", "C#", "SQL/NoSQL"],
   },
   {
     category: { fr: "Logiciels", en: "Software", de: "Software", it: "Software" },
-    color: "#60a5fa",
+    color: "var(--skill-3)",
     items: ["Vercel", "GitHub/Git", "Microsoft 365", "VS/VS Code", "WordPress", "Krita", "DaVinci Resolve"],
   },
   {
     category: { fr: "Disciplines", en: "Disciplines", de: "Disziplinen", it: "Discipline" },
-    color: "#a78bfa",
+    color: "var(--skill-4)",
     items: {
       fr: ["POO (programmation orientée objet)", "UI/UX", "Intégration d'API", "Débogage & tests", "Maintenance hardware/software", "Web design", "Gestion de projet (solo)"],
       en: ["OOP (object-oriented programming)", "UI/UX", "API integration", "Debugging & testing", "Hardware/software maintenance", "Web design", "Project management (solo)"],
@@ -629,6 +631,11 @@ const skillExplanations: Record<string, Record<Lang, string>> = {
     it: "Misurare automaticamente la precisione di un modello — es. il mio harness CI con 100 / 94 / 96 / 98 % in FR/DE/IT/EN.",
   },
 };
+
+/* Logos that are pure white artwork on transparency: invisible on a light
+   ground, so CSS inverts these and only these. Keyed by the bundled URL. */
+const MONO_LOGOS = new Set([vrdLogo, r2jcLogo, cpneLogo]);
+const logoClass = (src?: string) => (src && MONO_LOGOS.has(src) ? " logo-mono" : "");
 
 const companyLogos: Record<string, string> = {
   "Magneticlab - XEFI Neuchâtel": xefiLogo,
@@ -796,10 +803,17 @@ function WaveBackground() {
       const h = canvas.height;
       ctx.clearRect(0, 0, w, h);
 
-      // Grey veil at the very top so no bare black shows above the first wave
+      /* The waves read by contrast against the page, so their greys have to
+         invert with the theme: lighter than the ground in the dark, darker in
+         the light. Read once per frame from the same data-theme the CSS uses,
+         so the canvas can never disagree with the page around it. */
+      const light = document.documentElement.getAttribute("data-theme") === "light";
+      const ink = (g: number) => (light ? 255 - g : g);
+
+      // Veil at the very top so no bare ground shows above the first wave
       const topGrad = ctx.createLinearGradient(0, 0, 0, h * 0.22);
-      topGrad.addColorStop(0.0, "rgba(62,62,62,0.55)");
-      topGrad.addColorStop(1.0, "rgba(0,0,0,0)");
+      topGrad.addColorStop(0.0, light ? "rgba(214,214,210,0.55)" : "rgba(62,62,62,0.55)");
+      topGrad.addColorStop(1.0, light ? "rgba(255,255,255,0)" : "rgba(0,0,0,0)");
       ctx.fillStyle = topGrad;
       ctx.fillRect(0, 0, w, h);
 
@@ -832,9 +846,10 @@ function WaveBackground() {
 
         // Gradient fill: bright at crest → near-transparent at canvas bottom
         const grad = ctx.createLinearGradient(0, baseY - wave.baseAmp * 2, 0, h);
-        grad.addColorStop(0.0, `rgba(${wave.g},${wave.g},${wave.g},${wave.a})`);
-        grad.addColorStop(0.4, `rgba(${wave.g},${wave.g},${wave.g},${+(wave.a * 0.3).toFixed(2)})`);
-        grad.addColorStop(1.0, `rgba(10,10,10,0.03)`);
+        const wg = ink(wave.g);
+        grad.addColorStop(0.0, `rgba(${wg},${wg},${wg},${wave.a})`);
+        grad.addColorStop(0.4, `rgba(${wg},${wg},${wg},${+(wave.a * 0.3).toFixed(2)})`);
+        grad.addColorStop(1.0, light ? `rgba(245,245,245,0.03)` : `rgba(10,10,10,0.03)`);
         ctx.fillStyle = grad;
         ctx.fill();
       }
@@ -1029,7 +1044,7 @@ function MandateCard({
       >
         <div className="px-5 py-4 cursor-pointer" onClick={onToggle}>
           <div className="flex items-center gap-3">
-            <img src={logo} alt={exp.company} className="shrink-0" style={{ width: 30, height: 30, objectFit: "contain" }} />
+            <img src={logo} alt={exp.company} className={`shrink-0${logoClass(logo)}`} style={{ width: 30, height: 30, objectFit: "contain" }} />
             <div className="flex-1 min-w-0 flex items-center justify-between gap-3 flex-wrap">
               <div>
                 <a
@@ -1261,7 +1276,13 @@ function SubHead({ title }: { title: string }) {
 /* ────────────────────────────────────────────────────── */
 /* Main component                                         */
 /* ────────────────────────────────────────────────────── */
-export default function MainComponentNameCv() {
+export default function MainComponentNameCv({
+  theme,
+  toggleTheme,
+}: {
+  theme: Theme;
+  toggleTheme: () => void;
+}) {
   const [lang, setLang] = useState<Lang>("fr");
   const [phase, setPhase] = useState<Phase>("cursor");
   const [displayedName, setDisplayedName] = useState("");
@@ -1396,6 +1417,8 @@ export default function MainComponentNameCv() {
         <nav className="sticky top-0 z-50 flex justify-between items-center px-6 sm:px-10 py-4 bg-black/60 backdrop-blur-md border-b border-white/[0.06]">
           <span className="text-[11px] font-mono text-white/20 tracking-widest">srl.dev</span>
           <div className="flex items-center gap-3">
+            <ThemeToggle theme={theme} toggle={toggleTheme}
+              className="h-7 w-7 text-white/60 hover:text-white" />
             <LangSwitcher />
             <div className="w-px h-4 bg-white/15" />
             <button
@@ -1689,7 +1712,7 @@ export default function MainComponentNameCv() {
                             <img
                               src={getCompanyLogo(exp.company)}
                               alt=""
-                              className="shrink-0"
+                              className={`shrink-0${logoClass(getCompanyLogo(exp.company))}`}
                               style={{
                                 width: 28,
                                 height: 28,

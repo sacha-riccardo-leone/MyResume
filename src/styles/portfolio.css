@@ -3,12 +3,28 @@
    Scoped so none of this can reach the CV view.
    ───────────────────────────────────────────────────────────────────────── */
 
-:root {
+:root,
+html[data-theme="dark"] {
   --pf-ground: #0a0a0b;
   --pf-raise: #141416;
   --pf-hair: #26262a;
   --pf-mute: #7c7f86;
   --pf-ink: #f2f2f0;
+  --pf-grain: 0.055;
+}
+
+/* Light is a true inversion of the same five steps, not a different design:
+   ground and ink swap, the raised surface sits just under the ground instead
+   of just above it, and the hairline darkens. Mute is nudged darker rather
+   than mirrored, because mid-greys that read as quiet on black read as washed
+   out on white and would fail contrast. */
+html[data-theme="light"] {
+  --pf-ground: #f4f4f2;
+  --pf-raise: #ebebe8;
+  --pf-hair: #d8d8d3;
+  --pf-mute: #63666d;
+  --pf-ink: #121214;
+  --pf-grain: 0.03;   /* grain reads much louder on a light ground */
 }
 
 /* ─── Film grain ──────────────────────────────────────────────────────────
@@ -26,7 +42,7 @@
   height: 200%;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.055;
+  opacity: var(--pf-grain, 0.055);
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
   will-change: transform;
   animation: grain-jitter 0.7s steps(3) infinite;

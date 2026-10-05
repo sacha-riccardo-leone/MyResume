@@ -3,6 +3,8 @@ import { TextAnimate } from "../components/ui/text-animate";
 import { SmoothCursor } from "../components/ui/smooth-cursor";
 import { InteractiveHoverButton } from "../components/ui/interactive-hover-button";
 import { contact, projects, ui, type PfLang, type Project } from "./content";
+import ThemeToggle from "../lib/ThemeToggle";
+import type { Theme } from "../lib/theme";
 
 const FULL_NAME = "Sacha Riccardo LEONE";
 
@@ -14,11 +16,15 @@ export default function Portfolio({
   setLang,
   onReadCv,
   onBack,
+  theme,
+  toggleTheme,
 }: {
   lang: PfLang;
   setLang: (l: PfLang) => void;
   onReadCv: () => void;
   onBack: () => void;
+  theme: Theme;
+  toggleTheme: () => void;
 }) {
   const t = ui[lang];
   const finePointer = useFinePointer();
@@ -34,16 +40,18 @@ export default function Portfolio({
             so it darkens without blocking anything beneath. */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#0a0a0b] via-[#0a0a0b]/85 to-transparent"
+          className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[var(--pf-ground)] via-[var(--pf-ground)]/85 to-transparent"
         />
         <div className="relative flex items-center justify-between px-5 sm:px-8 py-4">
         <button
           onClick={onBack}
-          className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#7c7f86] hover:text-[#f2f2f0] transition-colors"
+          className="text-[11px] font-mono uppercase tracking-[0.2em] text-[var(--pf-mute)] hover:text-[var(--pf-ink)] transition-colors"
         >
           ← {t.backToGate}
         </button>
         <div className="flex items-center gap-3">
+          <ThemeToggle theme={theme} toggle={toggleTheme}
+            className="h-7 w-7 text-[var(--pf-mute)] hover:text-[var(--pf-ink)]" />
           <div className="hidden sm:flex items-center gap-1">
             {(["fr", "en", "de", "it"] as PfLang[]).map(l => (
               <button
@@ -51,7 +59,7 @@ export default function Portfolio({
                 onClick={() => setLang(l)}
                 aria-current={l === lang}
                 className={`px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest rounded-full transition-colors ${
-                  l === lang ? "text-[#f2f2f0] bg-white/10" : "text-[#7c7f86] hover:text-[#f2f2f0]"
+                  l === lang ? "text-[var(--pf-ink)] bg-white/10" : "text-[var(--pf-mute)] hover:text-[var(--pf-ink)]"
                 }`}
               >
                 {l}
@@ -60,7 +68,7 @@ export default function Portfolio({
           </div>
           <button
             onClick={onReadCv}
-            className="rounded-full border border-[#26262a] px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-[0.15em] text-[#f2f2f0]/80 hover:border-[#f2f2f0]/40 hover:text-[#f2f2f0] transition-colors"
+            className="rounded-full border border-[var(--pf-hair)] px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-[0.15em] text-[var(--pf-ink)]/80 hover:border-[var(--pf-ink)]/40 hover:text-[var(--pf-ink)] transition-colors"
           >
             {t.readCv}
           </button>
@@ -88,7 +96,7 @@ export default function Portfolio({
             duration={0.6}
             delay={0.18}
             once
-            className="text-[clamp(2.4rem,8.5vw,7rem)] font-medium leading-[0.95] tracking-[-0.045em] text-[#7c7f86]"
+            className="text-[clamp(2.4rem,8.5vw,7rem)] font-medium leading-[0.95] tracking-[-0.045em] text-[var(--pf-mute)]"
           >
             {t.heroB}
           </TextAnimate>
@@ -99,7 +107,7 @@ export default function Portfolio({
             by="line"
             delay={0.6}
             once
-            className="mt-10 max-w-[46ch] text-sm sm:text-base leading-relaxed text-[#7c7f86]"
+            className="mt-10 max-w-[46ch] text-sm sm:text-base leading-relaxed text-[var(--pf-mute)]"
           >
             {t.heroSub}
           </TextAnimate>
@@ -109,11 +117,11 @@ export default function Portfolio({
       {/* ── Work ── */}
       <section className="px-5 sm:px-10 lg:px-16 pb-32">
         <div className="flex items-baseline gap-4 mb-14">
-          <h2 className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#7c7f86]">
+          <h2 className="text-[10px] font-mono uppercase tracking-[0.3em] text-[var(--pf-mute)]">
             {t.workEyebrow}
           </h2>
           <hr className="pf-rule flex-1" />
-          <span className="pf-num text-[10px] font-mono text-[#7c7f86]">
+          <span className="pf-num text-[10px] font-mono text-[var(--pf-mute)]">
             {String(projects.length).padStart(2, "0")}
           </span>
         </div>
@@ -128,7 +136,7 @@ export default function Portfolio({
       {/* ── Closing — the page's actual job: make it easy to start a conversation ── */}
       <section className="px-5 sm:px-10 lg:px-16 pb-20">
         <div className="flex items-baseline gap-4 mb-14">
-          <h2 className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#7c7f86]">
+          <h2 className="text-[10px] font-mono uppercase tracking-[0.3em] text-[var(--pf-mute)]">
             {t.contactEyebrow}
           </h2>
           <hr className="pf-rule flex-1" />
@@ -144,7 +152,7 @@ export default function Portfolio({
           {t.closing}
         </TextAnimate>
 
-        <p className="mt-6 max-w-[42ch] text-sm sm:text-base text-[#7c7f86]">{t.closingSub}</p>
+        <p className="mt-6 max-w-[42ch] text-sm sm:text-base text-[var(--pf-mute)]">{t.closingSub}</p>
 
         <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-5">
           <a href={`mailto:${contact.email}`} aria-label={t.emailCta}>
@@ -153,11 +161,11 @@ export default function Portfolio({
                  themed for this page. Remap them here instead of editing the
                  vendored file, so it inverts into the portfolio's own palette. */
               style={{
-                ["--background" as string]: "#f2f2f0",
-                ["--primary" as string]: "#0a0a0b",
-                ["--primary-foreground" as string]: "#f2f2f0",
+                ["--background" as string]: "var(--pf-ink)",
+                ["--primary" as string]: "var(--pf-ground)",
+                ["--primary-foreground" as string]: "var(--pf-ink)",
               } as React.CSSProperties}
-              className="border-transparent text-[#0a0a0b] text-sm"
+              className="border-transparent text-[var(--pf-ground)] text-sm"
             >
               {t.emailCta}
             </InteractiveHoverButton>
@@ -165,7 +173,7 @@ export default function Portfolio({
 
           <a
             href={`mailto:${contact.email}`}
-            className="text-sm text-[#7c7f86] hover:text-[#f2f2f0] transition-colors underline-offset-4 hover:underline"
+            className="text-sm text-[var(--pf-mute)] hover:text-[var(--pf-ink)] transition-colors underline-offset-4 hover:underline"
           >
             {contact.email}
           </a>
@@ -181,7 +189,7 @@ export default function Portfolio({
               href={l.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#7c7f86] hover:text-[#f2f2f0] transition-colors"
+              className="text-[var(--pf-mute)] hover:text-[var(--pf-ink)] transition-colors"
             >
               {l.label} ↗
             </a>
@@ -191,14 +199,14 @@ export default function Portfolio({
               row and would render this link larger than its neighbours. */}
           <button
             onClick={onReadCv}
-            className="text-[11px] font-mono text-[#7c7f86] hover:text-[#f2f2f0] transition-colors uppercase tracking-[0.18em]"
+            className="text-[11px] font-mono text-[var(--pf-mute)] hover:text-[var(--pf-ink)] transition-colors uppercase tracking-[0.18em]"
           >
             {t.readCv} →
           </button>
         </div>
 
         <hr className="pf-rule mt-16" />
-        <p className="mt-5 text-[10px] font-mono tracking-[0.2em] text-[#7c7f86]/60">
+        <p className="mt-5 text-[10px] font-mono tracking-[0.2em] text-[var(--pf-mute)]/60">
           {FULL_NAME} · {contact.place}
         </p>
       </section>
@@ -235,14 +243,14 @@ function ProjectBlock({
       {/* The facts */}
       <div className={`lg:sticky lg:top-28 ${flipped ? "lg:order-2" : "lg:order-1"}`}>
         <div className="flex items-center gap-3 mb-4">
-          <span className="pf-num text-[10px] font-mono text-[#7c7f86]">
+          <span className="pf-num text-[10px] font-mono text-[var(--pf-mute)]">
             {String(index + 1).padStart(2, "0")}
           </span>
           <hr className="pf-rule w-8" />
-          <span className="pf-num text-[10px] font-mono text-[#7c7f86]">{p.year}</span>
+          <span className="pf-num text-[10px] font-mono text-[var(--pf-mute)]">{p.year}</span>
           {p.status === "ongoing" && (
-            <span className="flex items-center gap-1.5 text-[9px] font-mono uppercase tracking-[0.18em] text-[#f2f2f0]/70">
-              <span className="h-1 w-1 rounded-full bg-[#f2f2f0]/70 animate-pulse" />
+            <span className="flex items-center gap-1.5 text-[9px] font-mono uppercase tracking-[0.18em] text-[var(--pf-ink)]/70">
+              <span className="h-1 w-1 rounded-full bg-[var(--pf-ink)]/70 animate-pulse" />
               {t.ongoing}
             </span>
           )}
@@ -258,9 +266,9 @@ function ProjectBlock({
           {p.name}
         </TextAnimate>
 
-        <p className="mt-2 text-[12px] font-mono text-[#7c7f86]">{p.role[lang]}</p>
+        <p className="mt-2 text-[12px] font-mono text-[var(--pf-mute)]">{p.role[lang]}</p>
 
-        <p className="mt-6 max-w-[48ch] text-sm leading-relaxed text-[#7c7f86]">
+        <p className="mt-6 max-w-[48ch] text-sm leading-relaxed text-[var(--pf-mute)]">
           {p.summary[lang]}
         </p>
 
@@ -268,10 +276,10 @@ function ProjectBlock({
         <dl className="mt-8 grid grid-cols-3 gap-4 max-w-[26rem]">
           {p.metrics.map((m, k) => (
             <div key={k}>
-              <dt className="pf-num text-[clamp(1.15rem,2.2vw,1.6rem)] font-medium text-[#f2f2f0]">
+              <dt className="pf-num text-[clamp(1.15rem,2.2vw,1.6rem)] font-medium text-[var(--pf-ink)]">
                 {m.value}
               </dt>
-              <dd className="mt-1 text-[10px] leading-snug text-[#7c7f86]">{m.label[lang]}</dd>
+              <dd className="mt-1 text-[10px] leading-snug text-[var(--pf-mute)]">{m.label[lang]}</dd>
             </div>
           ))}
         </dl>
@@ -280,7 +288,7 @@ function ProjectBlock({
           {p.stack.map(s => (
             <span
               key={s}
-              className="rounded-full border border-[#26262a] px-2.5 py-1 text-[10px] font-mono text-[#7c7f86]"
+              className="rounded-full border border-[var(--pf-hair)] px-2.5 py-1 text-[10px] font-mono text-[var(--pf-mute)]"
             >
               {s}
             </span>
@@ -292,7 +300,7 @@ function ProjectBlock({
             href={p.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.18em] text-[#f2f2f0]/80 hover:text-[#f2f2f0] transition-colors"
+            className="mt-8 inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.18em] text-[var(--pf-ink)]/80 hover:text-[var(--pf-ink)] transition-colors"
           >
             {t.visit}
             <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -348,7 +356,7 @@ function Plate({ project: p }: { project: Project }) {
   return (
     <div
       ref={ref}
-      className="relative overflow-hidden rounded-lg border border-[#26262a] bg-[#141416]"
+      className="relative overflow-hidden rounded-lg border border-[var(--pf-hair)] bg-[var(--pf-raise)]"
       style={{ aspectRatio: "16 / 10" }}
     >
       {p.video && !calm ? (
@@ -376,7 +384,7 @@ function Plate({ project: p }: { project: Project }) {
         />
       ) : (
         <div className="flex h-full w-full items-center justify-center">
-          <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#7c7f86]/60">
+          <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[var(--pf-mute)]/60">
             {p.name}
           </span>
         </div>
@@ -384,7 +392,7 @@ function Plate({ project: p }: { project: Project }) {
 
       {/* Quiet marker that this is the real site in motion, not a mockup */}
       {p.video && !calm && (
-        <span className="pointer-events-none absolute bottom-2.5 right-3 text-[9px] font-mono uppercase tracking-[0.2em] text-[#f2f2f0]/35">
+        <span className="pointer-events-none absolute bottom-2.5 right-3 text-[9px] font-mono uppercase tracking-[0.2em] text-[var(--pf-ink)]/35">
           live
         </span>
       )}
@@ -417,11 +425,11 @@ function SmallCursor() {
     <svg width={20} height={22} viewBox="0 0 50 54" fill="none">
       <path
         d="M42.6817 41.1495L27.5103 6.79925C26.7269 5.02557 24.2082 5.02558 23.3927 6.79925L7.59814 41.1495C6.75833 42.9759 8.52712 44.8902 10.4125 44.1954L24.3757 39.0496C24.8829 38.8627 25.4385 38.8627 25.9422 39.0496L39.8121 44.1954C41.6849 44.8902 43.4884 42.9759 42.6817 41.1495Z"
-        fill="#0a0a0b"
+        fill="var(--pf-ground)"
       />
       <path
         d="M43.7146 40.6933L28.5431 6.34306C27.3556 3.65428 23.5772 3.69516 22.3668 6.32755L6.57226 40.6778C5.3134 43.4156 7.97238 46.298 10.803 45.2549L24.7662 40.109C25.0221 40.0147 25.2999 40.0156 25.5494 40.1082L39.4193 45.254C42.2261 46.2953 44.9254 43.4347 43.7146 40.6933Z"
-        stroke="#f2f2f0"
+        stroke="var(--pf-ink)"
         strokeWidth={2.25825}
       />
     </svg>

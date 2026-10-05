@@ -3,6 +3,7 @@ import MainComponentNameCv from "../imports/MainComponentNameCv";
 import Gate from "../portfolio/Gate";
 import Portfolio from "../portfolio/Portfolio";
 import type { PfLang } from "../portfolio/content";
+import { useTheme } from "../lib/theme";
 import "../styles/portfolio.css";
 
 type View = "gate" | "cv" | "work";
@@ -28,6 +29,9 @@ function readLang(): PfLang {
 export default function App() {
   const [view, setView] = useState<View>(readView);
   const [lang, setLang] = useState<PfLang>(readLang);
+  /* Theme is owned here so all three views share one source of truth and
+     switching it never resets which view you are on. */
+  const [theme, toggleTheme] = useTheme();
 
   /* Keep the URL in step with the view so a refresh or a shared link lands in
      the same place, without adding a router dependency. */
@@ -52,7 +56,8 @@ export default function App() {
   return (
     <>
       {view === "gate" && (
-        <Gate lang={lang} setLang={l => go("gate", l)} onChoose={v => go(v)} />
+        <Gate lang={lang} setLang={l => go("gate", l)} onChoose={v => go(v)}
+              theme={theme} toggleTheme={toggleTheme} />
       )}
 
       {view === "work" && (
@@ -61,11 +66,13 @@ export default function App() {
           setLang={l => go("work", l)}
           onReadCv={() => go("cv")}
           onBack={() => go("gate")}
+          theme={theme}
+          toggleTheme={toggleTheme}
         />
       )}
 
       {/* The CV is untouched; it simply isn't mounted until asked for. */}
-      {view === "cv" && <MainComponentNameCv />}
+      {view === "cv" && <MainComponentNameCv theme={theme} toggleTheme={toggleTheme} />}
 
       {/* Grain sits above everything, on every view. Never printed. */}
       <div className="grain" aria-hidden="true" />

@@ -1,6 +1,8 @@
 import { TextAnimate } from "../components/ui/text-animate";
 import { InteractiveHoverButton } from "../components/ui/interactive-hover-button";
 import { ui, type PfLang } from "./content";
+import ThemeToggle from "../lib/ThemeToggle";
+import type { Theme } from "../lib/theme";
 
 const FULL_NAME = "Sacha Riccardo LEONE";
 
@@ -12,10 +14,14 @@ export default function Gate({
   lang,
   setLang,
   onChoose,
+  theme,
+  toggleTheme,
 }: {
   lang: PfLang;
   setLang: (l: PfLang) => void;
   onChoose: (v: "cv" | "work") => void;
+  theme: Theme;
+  toggleTheme: () => void;
 }) {
   const t = ui[lang];
 
@@ -24,6 +30,8 @@ export default function Gate({
       {/* language — small, out of the way, but reachable before choosing */}
       <div className="flex justify-end px-6 sm:px-10 pt-6">
         <div className="flex items-center gap-1">
+          <ThemeToggle theme={theme} toggle={toggleTheme}
+            className="mr-1 h-7 w-7 text-[var(--pf-mute)] hover:text-[var(--pf-ink)]" />
           {(["fr", "en", "de", "it"] as PfLang[]).map(l => (
             <button
               key={l}
@@ -31,7 +39,7 @@ export default function Gate({
               aria-label={l.toUpperCase()}
               aria-current={l === lang}
               className={`px-2.5 py-1 text-[11px] font-mono uppercase tracking-widest rounded-full transition-colors ${
-                l === lang ? "text-[#f2f2f0] bg-white/10" : "text-[#7c7f86] hover:text-[#f2f2f0]"
+                l === lang ? "text-[var(--pf-ink)] bg-white/10" : "text-[var(--pf-mute)] hover:text-[var(--pf-ink)]"
               }`}
             >
               {l}
@@ -58,12 +66,12 @@ export default function Gate({
           by="word"
           delay={0.35}
           once
-          className="mt-3 text-sm sm:text-base text-[#7c7f86]"
+          className="mt-3 text-sm sm:text-base text-[var(--pf-mute)]"
         >
           {t.role}
         </TextAnimate>
 
-        <p className="mt-14 mb-5 text-[10px] font-mono uppercase tracking-[0.25em] text-[#7c7f86]/70">
+        <p className="mt-14 mb-5 text-[10px] font-mono uppercase tracking-[0.25em] text-[var(--pf-mute)]/70">
           {t.gateHint}
         </p>
 
@@ -75,7 +83,7 @@ export default function Gate({
       </main>
 
       <footer className="px-6 sm:px-10 pb-6 text-center">
-        <p className="text-[10px] font-mono tracking-widest text-[#7c7f86]/50">
+        <p className="text-[10px] font-mono tracking-widest text-[var(--pf-mute)]/50">
           LA CHAUX-DE-FONDS · CH
         </p>
       </footer>
@@ -104,15 +112,15 @@ function GateDoor({
         /* The component styles itself from shadcn tokens that are not themed
            for this page; remap them here rather than edit the vendored file. */
         style={{
-          ["--background" as string]: "#f2f2f0",
-          ["--primary" as string]: "#0a0a0b",
-          ["--primary-foreground" as string]: "#f2f2f0",
+          ["--background" as string]: "var(--pf-ink)",
+          ["--primary" as string]: "var(--pf-ground)",
+          ["--primary-foreground" as string]: "var(--pf-ink)",
         } as React.CSSProperties}
-        className="min-w-[14rem] border-transparent text-[#0a0a0b] text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2f2f0]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+        className="min-w-[14rem] border-transparent text-[var(--pf-ground)] text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--pf-ink)]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--pf-ground)]"
       >
         {label}
       </InteractiveHoverButton>
-      <span className="text-[11px] font-mono tracking-wider text-[#7c7f86]">{meta}</span>
+      <span className="text-[11px] font-mono tracking-wider text-[var(--pf-mute)]">{meta}</span>
     </div>
   );
 }
