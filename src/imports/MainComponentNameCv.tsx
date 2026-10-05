@@ -138,7 +138,7 @@ export const translations = {
       { name: "Anglais", level: "C1" },
       { name: "Allemand", level: "B2" },
     ],
-    softSkills: ["Autonomie", "Esprit d'initiative", "Rigueur & souci du détail", "Orienté solutions", "Persévérance", "Curiosité / apprentissage rapide", "Esprit d'équipe", "Réceptif", "Innovant / créatif"],
+    softSkills: ["Autonomie", "Esprit d'initiative", "Rigueur & souci du détail", "Orienté solutions", "Persévérance", "Curiosité / apprentissage rapide", "Esprit d'équipe", "Réceptif", "Innovant / créatif", "Esprit critique"],
     referencesLine: "Références disponibles sur demande.",
     interestsLine: "Art numérique · Photographie · Guitare électrique · Volleyball · Mode",
     education: [
@@ -276,7 +276,7 @@ export const translations = {
       { name: "English", level: "C1" },
       { name: "German", level: "B2" },
     ],
-    softSkills: ["Autonomy", "Initiative", "Rigor & attention to detail", "Solution-oriented", "Persistence", "Curiosity / fast learner", "Team player", "Receptive", "Innovative / creative"],
+    softSkills: ["Autonomy", "Initiative", "Rigor & attention to detail", "Solution-oriented", "Persistence", "Curiosity / fast learner", "Team player", "Receptive", "Innovative / creative", "Critical thinking"],
     referencesLine: "References available on request.",
     interestsLine: "Digital art · Photography · Electric guitar · Volleyball · Fashion",
     education: [
@@ -414,7 +414,7 @@ export const translations = {
       { name: "Englisch", level: "C1" },
       { name: "Deutsch", level: "B2" },
     ],
-    softSkills: ["Eigenständigkeit", "Eigeninitiative", "Sorgfalt & Detailgenauigkeit", "Lösungsorientiert", "Ausdauer", "Neugier / schnelle Auffassung", "Teamgeist", "Aufgeschlossen", "Innovativ / kreativ"],
+    softSkills: ["Eigenständigkeit", "Eigeninitiative", "Sorgfalt & Detailgenauigkeit", "Lösungsorientiert", "Ausdauer", "Neugier / schnelle Auffassung", "Teamgeist", "Aufgeschlossen", "Innovativ / kreativ", "Kritisches Denken"],
     referencesLine: "Referenzen auf Anfrage verfügbar.",
     interestsLine: "Digitale Kunst · Fotografie · E-Gitarre · Volleyball · Mode",
     education: [
@@ -552,7 +552,7 @@ export const translations = {
       { name: "Inglese", level: "C1" },
       { name: "Tedesco", level: "B2" },
     ],
-    softSkills: ["Autonomia", "Spirito d'iniziativa", "Rigore & attenzione ai dettagli", "Orientato alle soluzioni", "Perseveranza", "Curiosità / apprendimento rapido", "Spirito di squadra", "Ricettivo", "Innovativo / creativo"],
+    softSkills: ["Autonomia", "Spirito d'iniziativa", "Rigore & attenzione ai dettagli", "Orientato alle soluzioni", "Perseveranza", "Curiosità / apprendimento rapido", "Spirito di squadra", "Ricettivo", "Innovativo / creativo", "Spirito critico"],
     referencesLine: "Referenze disponibili su richiesta.",
     interestsLine: "Arte digitale · Fotografia · Chitarra elettrica · Pallavolo · Moda",
     education: [
