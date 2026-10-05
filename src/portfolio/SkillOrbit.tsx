@@ -19,6 +19,7 @@ import { useEffect, useRef } from "react";
 
 const PERIOD_S = 40;          // one full turn
 const NARROW = 640;           // below this, the drum layout
+const RX_MAX = 360;           // widest the ring gets on large screens
 
 export default function SkillOrbit({ skills }: { skills: string[] }) {
   const stage = useRef<HTMLUListElement>(null);
@@ -48,11 +49,11 @@ export default function SkillOrbit({ skills }: { skills: string[] }) {
     const place = () => {
       const narrow = W < NARROW;
       const cx = W / 2, cy = H / 2;
-      // keep the widest pill (at its largest scale) inside the stage
-      const rx = narrow
-        ? Math.max(0, (W - maxW * 1.05) / 2)
-        : (W - maxW * 1.05) / 2;
-      const ry = narrow ? H / 2 - 34 : H / 2 - 40;
+      // a compact ring: capped well inside the stage so the skills stay
+      // close together, and the widest pill (at full scale) never clips
+      const free = Math.max(0, (W - maxW * 1.05) / 2);
+      const rx = Math.min(free, narrow ? free : RX_MAX);
+      const ry = narrow ? H / 2 - 30 : H / 2 - 34;
 
       items.forEach((it, i) => {
         const t = angle + (i * 2 * Math.PI) / n;
@@ -114,16 +115,13 @@ export default function SkillOrbit({ skills }: { skills: string[] }) {
   }, [skills]);
 
   return (
-    <ul ref={stage} className="relative h-[30rem] sm:h-[26rem] overflow-hidden">
+    <ul ref={stage} className="relative h-[26rem] sm:h-[21rem] overflow-hidden">
       {skills.map(s => (
         <li key={s} data-orbit
           className="absolute left-0 top-0 whitespace-nowrap rounded-full border border-[var(--pf-hair)] bg-[var(--pf-raise)] px-4 py-2 text-[13px] sm:px-5 sm:py-2.5 sm:text-[15px] text-[var(--pf-ink)] will-change-transform">
           {s}
         </li>
       ))}
-      <li aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-mono text-[11px] tracking-[0.2em] text-[var(--pf-mute)]">
-        {String(skills.length).padStart(2, "0")}
-      </li>
     </ul>
   );
 }
