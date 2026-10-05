@@ -106,3 +106,21 @@ html[data-theme="light"] {
 @media (prefers-reduced-motion: reduce) {
   .pf-halo { animation: none; box-shadow: 0 0 22px -6px rgba(217, 119, 87, 0.45); }
 }
+
+/* ─── Technical-skill cards ──────────────────────────────────────────────
+   Each card carries its family's accent in --accent. At rest the accent shows
+   only as a dim rule down the left edge; on hover the rule fills, the border
+   picks up the hue and the chips tint with it, so a family reads as one set.
+   Colour is used here and nowhere else on the page, which is what keeps it
+   meaningful rather than decorative. */
+.pf-skill-rule {
+  background: var(--accent);
+  opacity: 0.35;
+  transition: opacity 0.3s ease;
+}
+.pf-skill:hover .pf-skill-rule { opacity: 1; }
+.pf-skill:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.pf-skill:hover .pf-chip {
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--pf-ink);
+}

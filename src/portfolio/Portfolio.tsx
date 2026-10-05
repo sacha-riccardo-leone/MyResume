@@ -101,8 +101,18 @@ export default function Portfolio({
               <h3 className="text-[10px] font-mono uppercase tracking-[0.3em] text-[var(--pf-mute)]">{t.alsoLabel}</h3>
               <hr className="pf-rule flex-1" />
             </div>
-            <div className="grid gap-10 sm:gap-14 md:grid-cols-2">
-              {rest.map(e => <CompactProject key={e.company} exp={e} t={t} />)}
+            {/* Two independent columns rather than a grid. In a grid these share
+                rows, so opening one card grew its row and shoved an unrelated
+                card in the other column downwards. Each column now flows on its
+                own, and opening a card only moves what is beneath it. */}
+            <div className="grid gap-x-10 md:grid-cols-2">
+              {[0, 1].map(col => (
+                <div key={col} className="flex flex-col gap-10 sm:gap-14">
+                  {rest.filter((_, i) => i % 2 === col).map(e => (
+                    <CompactProject key={e.company} exp={e} t={t} />
+                  ))}
+                </div>
+              ))}
             </div>
           </div>
         )}
@@ -110,43 +120,48 @@ export default function Portfolio({
 
       {/* ── Skills ── */}
       <Section title={cv.sections.skills}>
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {skillGroups.map((g, i) => (
-            <div key={i}>
-              <p className="text-[10px] font-mono uppercase tracking-[0.18em] mb-4" style={{ color: g.color }}>
-                {g.category[lang]}
-              </p>
-              <ul className="space-y-1.5">
-                {skillItems(g, lang).map((item, k) => (
-                  <li key={k} className="text-sm text-[var(--pf-mute)]">{item}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        {/* Each family carries its own accent — the one place colour is used on
+            this page. The rule fills on hover and the chips take the accent, so
+            a group reads as a set rather than four lists side by side. */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {skillGroups.map((g, i) => {
+            const items = skillItems(g, lang);
+            return (
+              <div key={i} className="pf-skill group relative overflow-hidden rounded-xl border border-[var(--pf-hair)] bg-[var(--pf-raise)]/40 p-5 transition-colors"
+                style={{ ["--accent" as string]: g.color } as React.CSSProperties}>
+                <span aria-hidden className="pf-skill-rule absolute left-0 top-0 h-full w-[2px]" />
+                <div className="flex items-baseline justify-between gap-3">
+                  <p className="text-[10px] font-mono uppercase tracking-[0.18em]" style={{ color: g.color }}>
+                    {g.category[lang]}
+                  </p>
+                  <span className="pf-num text-[10px] font-mono text-[var(--pf-mute)]/70">
+                    {String(items.length).padStart(2, "0")}
+                  </span>
+                </div>
+                <ul className="mt-5 flex flex-wrap gap-1.5">
+                  {items.map((item, k) => (
+                    <li key={k} className="pf-chip rounded-full border border-[var(--pf-hair)] px-2.5 py-1 text-[12px] text-[var(--pf-mute)] transition-colors">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
         </div>
       </Section>
 
       {/* ── Soft skills ── */}
       <Section title={cv.sections.personalSkills}>
-        {/* Bento: tiles of varying span so the grid reads as composed rather
-            than as a uniform list. The pattern repeats, so it holds whatever
-            number of skills the CV happens to carry. */}
-        <div className="grid auto-rows-[5.5rem] grid-flow-dense grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {cv.softSkills.map((skill, i) => {
-            /* grid-flow-dense lets later tiles backfill the gaps these spans
-               open, so the wall stays solid whatever the number of skills. */
-            const span = [
-              "col-span-2 row-span-2", "col-span-1 row-span-1", "col-span-1 row-span-1",
-              "col-span-1 row-span-1", "col-span-1 row-span-2", "col-span-2 row-span-1",
-              "col-span-1 row-span-1", "col-span-1 row-span-1", "col-span-2 row-span-1",
-            ][i % 9];
-            return (
-              <div key={i}
-                className={`${span} flex items-end rounded-xl border border-[var(--pf-hair)] bg-[var(--pf-raise)]/60 p-4 transition-colors hover:border-[var(--pf-ink)]/30`}>
-                <span className="text-[15px] leading-snug text-[var(--pf-ink)]/85">{skill}</span>
-              </div>
-            );
-          })}
+        {/* One tile per skill, all the same size: the grid is the composition,
+            not the tile sizes. */}
+        <div className="grid auto-rows-[7rem] grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          {cv.softSkills.map((skill, i) => (
+            <div key={i}
+              className="flex items-end rounded-xl border border-[var(--pf-hair)] bg-[var(--pf-raise)]/60 p-4 transition-colors hover:border-[var(--pf-ink)]/30">
+              <span className="text-[15px] leading-snug text-[var(--pf-ink)]/85">{skill}</span>
+            </div>
+          ))}
         </div>
       </Section>
 
