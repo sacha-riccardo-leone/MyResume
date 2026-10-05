@@ -867,7 +867,7 @@ function MandateCard({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={e => e.stopPropagation()}
-                  className="text-base font-medium hover:text-white transition-colors flex items-center gap-1.5"
+                  className="text-base font-light hover:text-white transition-colors flex items-center gap-1.5"
                 >
                   {exp.company}
                   <ExternalLink className="h-3 w-3 opacity-50" />
@@ -920,7 +920,7 @@ function MandateCard({
 function PrintSectionLabel({ title, mb = "3.5mm" }: { title: string; mb?: string }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: "3mm", marginBottom: mb }}>
-      <p style={{ fontSize: "5.5pt", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#999", margin: 0, flexShrink: 0, whiteSpace: "nowrap" }}>{title}</p>
+      <p style={{ fontSize: "5.5pt", fontWeight: 300, letterSpacing: "0.18em", textTransform: "uppercase", color: "#999", margin: 0, flexShrink: 0, whiteSpace: "nowrap" }}>{title}</p>
       <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
     </div>
   );
@@ -930,7 +930,7 @@ function PrintExpEntry({ exp }: { exp: { company: string; role?: string; date: s
   return (
     <div style={{ breakInside: "avoid", pageBreakInside: "avoid" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-        <p style={{ fontSize: "8.5pt", fontWeight: 600, color: "#111", margin: 0 }}>{exp.company}</p>
+        <p style={{ fontSize: "8.5pt", fontWeight: 300, color: "#111", margin: 0 }}>{exp.company}</p>
         <p style={{ fontSize: "6pt", color: "#999", margin: "0 0 0 3mm", flexShrink: 0, fontVariantNumeric: "tabular-nums" }}>{exp.date}</p>
       </div>
       {exp.role && <p style={{ fontSize: "6.5pt", color: "#777", margin: "0.3mm 0 1.2mm", fontStyle: "italic" }}>{exp.role}</p>}
@@ -1017,7 +1017,7 @@ function SkillSection({ groups, lang }: { groups: typeof skillGroups; lang: Lang
           onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
         >
           <p
-            className="text-[10px] uppercase tracking-[0.18em] font-medium mb-3"
+            className="text-[10px] uppercase tracking-[0.18em] font-light mb-3"
             style={{ color: group.color }}
           >
             {group.category[lang]}
@@ -1071,7 +1071,7 @@ function SectionHead({ title, num }: { title: string; num: string }) {
   return (
     <div className="mb-6">
       <p className="text-[10px] font-mono text-white/25 mb-1 tracking-widest">/ {num}</p>
-      <h2 className="text-2xl font-medium">{title}</h2>
+      <h2 className="text-2xl font-light">{title}</h2>
       <div className="w-10 h-[1.5px] bg-white/25 mt-3" />
     </div>
   );
@@ -1082,7 +1082,7 @@ function SectionHead({ title, num }: { title: string; num: string }) {
 function SubHead({ title }: { title: string }) {
   return (
     <div className="flex items-center gap-3 mb-4">
-      <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-white/45 shrink-0">{title}</h3>
+      <h3 className="text-xs font-light uppercase tracking-[0.18em] text-white/45 shrink-0">{title}</h3>
       <div className="flex-1 h-px bg-white/10" />
     </div>
   );
@@ -1210,7 +1210,7 @@ export default function MainComponentNameCv({
           onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
           className={`glass-card glass-card--sm text-[10px] font-[family-name:var(--font-site)] uppercase px-2 py-1 rounded-lg cursor-pointer ${
             lang === l
-              ? "glass-card--active text-white font-medium"
+              ? "glass-card--active text-white font-light"
               : "text-white/50"
           }`}
         >
@@ -1259,7 +1259,7 @@ export default function MainComponentNameCv({
 
                 {/* Text — text-shadow scrim so contrast holds over every phase of the wave animation */}
                 <div className="flex-1 text-center sm:text-left" style={{ textShadow: "0 2px 20px rgba(0,0,0,0.55)" }}>
-                  <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-medium leading-tight tracking-tight">
+                  <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-light leading-tight tracking-tight">
                     {displayedName}{cursor}
                   </h1>
                   <p className="text-base sm:text-lg text-white/65 mt-3" style={fadeIn(100)}>
@@ -1283,7 +1283,7 @@ export default function MainComponentNameCv({
                   <p className="text-[10px] uppercase tracking-[0.18em] text-white/35 mt-6 mb-2" style={fadeIn(260)}>
                     {t.sections.about}
                   </p>
-                  <p className="flex items-start gap-2.5 text-[13px] font-medium max-w-xl text-emerald-300/90" style={fadeIn(280)}>
+                  <p className="flex items-start gap-2.5 text-[13px] font-light max-w-xl text-emerald-300/90" style={fadeIn(280)}>
                     {/* A live indicator, not decoration: it marks the one line a
                         recruiter scans for first. */}
                     <span aria-hidden className="relative mt-[6px] flex h-2 w-2 shrink-0">
@@ -1303,7 +1303,7 @@ export default function MainComponentNameCv({
                   >
                     <button
                       onClick={() => window.print()}
-                      className="glass-card glass-card--primary flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-white cursor-pointer"
+                      className="glass-card glass-card--primary flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-light text-white cursor-pointer"
                       onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
                     >
                       <Printer className="h-3.5 w-3.5" />
@@ -1466,7 +1466,7 @@ export default function MainComponentNameCv({
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={e => e.stopPropagation()}
-                        className="text-base font-semibold hover:text-white transition-colors inline-flex items-center gap-1.5"
+                        className="text-base font-light hover:text-white transition-colors inline-flex items-center gap-1.5"
                       >
                         {ordineAIProject.name}
                         <ExternalLink className="h-3 w-3 opacity-50" />
@@ -1549,13 +1549,13 @@ export default function MainComponentNameCv({
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   onClick={e => e.stopPropagation()}
-                                  className="text-base font-medium hover:text-white/70 transition-colors flex items-center gap-1.5"
+                                  className="text-base font-light hover:text-white/70 transition-colors flex items-center gap-1.5"
                                 >
                                   {exp.company}
                                   <ExternalLink className="h-3 w-3 opacity-50" />
                                 </a>
                               ) : (
-                                <p className="text-base font-medium">{exp.company}</p>
+                                <p className="text-base font-light">{exp.company}</p>
                               )}
                             </div>
                             <p className="text-[12px] text-white/55 mt-0.5">{exp.role}</p>
@@ -1607,7 +1607,7 @@ export default function MainComponentNameCv({
                   className="glass-card px-4 py-4 rounded-2xl"
                   onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
                 >
-                  <p className="text-sm font-medium">{language.name}</p>
+                  <p className="text-sm font-light">{language.name}</p>
                   <p className="text-[11px] text-white/45 mt-1">{language.level}</p>
                 </div>
               ))}
@@ -1625,7 +1625,7 @@ export default function MainComponentNameCv({
                   <div className="relative">
                     <div className="absolute -left-[27px] top-[7px] w-[5px] h-[5px] rounded-full bg-white/25" />
                     <p className="text-[11px] font-mono text-white/25 mb-1">{edu.date}</p>
-                    <p className="text-sm font-medium">{edu.institution}</p>
+                    <p className="text-sm font-light">{edu.institution}</p>
                     <p className="text-sm text-white/40 mt-1 leading-relaxed">{edu.description}</p>
                   </div>
                 </ScrollReveal>
@@ -1652,7 +1652,7 @@ export default function MainComponentNameCv({
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={e => e.stopPropagation()}
-                          className="text-base font-medium hover:text-[#D97757] transition-colors flex items-center gap-1.5"
+                          className="text-base font-light hover:text-[#D97757] transition-colors flex items-center gap-1.5"
                         >
                           Anthropic
                           <ExternalLink className="h-3 w-3 opacity-50" />
@@ -1743,7 +1743,7 @@ export default function MainComponentNameCv({
             <div style={{ flex: 1, minWidth: 0 }}>
               <p style={{
                 fontSize: "19pt",
-                fontWeight: 600,
+                fontWeight: 300,
                 color: "#111",
                 lineHeight: 1.05,
                 letterSpacing: "-0.02em",
@@ -1782,7 +1782,7 @@ export default function MainComponentNameCv({
               lineHeight: 1.3,
             }}>
               {/* Work authorization first — the Swiss recruiter's first question */}
-              <span style={{ justifyContent: "flex-end", fontWeight: 600, color: "#2a2a2a" }}>
+              <span style={{ justifyContent: "flex-end", fontWeight: 300, color: "#2a2a2a" }}>
                 {t.contact.dob} · {t.contact.nationality}
               </span>
               <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
@@ -1821,7 +1821,7 @@ export default function MainComponentNameCv({
           }}>
             <p style={{
               fontSize: "5.5pt",
-              fontWeight: 700,
+              fontWeight: 300,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
               color: "#999",
@@ -1832,7 +1832,7 @@ export default function MainComponentNameCv({
             <p style={{
               fontSize: "7pt",
               color: "#0f6b3d",
-              fontWeight: 600,
+              fontWeight: 300,
               lineHeight: 1.5,
               margin: 0,
             }}>
@@ -1890,7 +1890,7 @@ export default function MainComponentNameCv({
                     <div key={gi}>
                       <p style={{
                         fontSize: "5pt",
-                        fontWeight: 700,
+                        fontWeight: 300,
                         letterSpacing: "0.14em",
                         textTransform: "uppercase",
                         color: group.color,
@@ -1916,7 +1916,7 @@ export default function MainComponentNameCv({
                       alignItems: "center",
                       justifyContent: "space-between",
                     }}>
-                      <p style={{ fontSize: "8pt", fontWeight: 500, color: "#222", margin: 0 }}>
+                      <p style={{ fontSize: "8pt", fontWeight: 300, color: "#222", margin: 0 }}>
                         {language.name}
                       </p>
                       <p style={{ fontSize: "7pt", color: "#666", margin: 0 }}>
@@ -1956,7 +1956,7 @@ export default function MainComponentNameCv({
             marginBottom: "8mm",
             flexShrink: 0,
           }}>
-            <span style={{ fontSize: "8pt", fontWeight: 600, color: "#222", letterSpacing: "-0.01em" }}>{FULL_NAME}</span>
+            <span style={{ fontSize: "8pt", fontWeight: 300, color: "#222", letterSpacing: "-0.01em" }}>{FULL_NAME}</span>
             <span style={{ fontSize: "6pt", color: "#999", letterSpacing: "0.12em", textTransform: "uppercase" }}>{t.title}</span>
           </div>
 
@@ -1996,7 +1996,7 @@ export default function MainComponentNameCv({
                 {t.education.map((edu, i) => (
                   <div key={i} style={{ breakInside: "avoid", pageBreakInside: "avoid" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "1mm" }}>
-                      <p style={{ fontSize: "8.5pt", fontWeight: 600, color: "#111", margin: 0 }}>
+                      <p style={{ fontSize: "8.5pt", fontWeight: 300, color: "#111", margin: 0 }}>
                         {edu.institution}
                       </p>
                       <p style={{ fontSize: "6pt", color: "#999", margin: "0 0 0 3mm", flexShrink: 0, fontVariantNumeric: "tabular-nums" }}>

@@ -1,9 +1,11 @@
 /* Satoshi (Indian Type Foundry, via Fontshare): free, commercial use
-   included. Weights the site actually uses, with real italics (x01) for the role
-   lines rather than a slanted roman; 600 has no cut of its own and
-   resolves to 700. --font-site is the one place the face is named, so the
-   screen view and the PDF can never drift onto different families. */
-@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,501,700&display=swap');
+   included. Two weights only: 400 for running text and 300 for everything
+   that used to be medium/semibold/bold — names, titles, buttons — so the
+   whole site, PDF included, reads thin. Real italics (x01) for the CV's role
+   lines rather than a slanted roman. --font-site is the one place the face is
+   named, so the screen view and the PDF can never drift onto different
+   families. */
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401&display=swap');
 
 :root {
   --font-site: 'Satoshi', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;

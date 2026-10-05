@@ -62,7 +62,7 @@ export default function Portfolio({
       <section className="min-h-[88vh] flex flex-col justify-center items-center text-center px-5 sm:px-10 lg:px-16 pt-24">
         <div className="max-w-[1100px]">
           <TextAnimate as="h1" animation="blurInUp" by="word" duration={0.6} once
-            className="text-[clamp(2.4rem,8.5vw,7rem)] font-medium leading-[0.95] tracking-[-0.045em]">
+            className="text-[clamp(2.4rem,8.5vw,7rem)] font-light leading-[0.95] tracking-[-0.045em]">
             {FULL_NAME}
           </TextAnimate>
           <TextAnimate key={`c-${lang}`} as="p" animation="fadeIn" by="line" delay={0.6} once
@@ -212,7 +212,7 @@ export default function Portfolio({
         </div>
 
         <TextAnimate key={`close-${lang}`} as="p" animation="blurInUp" by="word" once
-          className="text-[clamp(2rem,6.5vw,5rem)] font-medium leading-[0.98] tracking-[-0.04em]">
+          className="text-[clamp(2rem,6.5vw,5rem)] font-light leading-[0.98] tracking-[-0.04em]">
           {t.closing}
         </TextAnimate>
 
@@ -239,7 +239,7 @@ export default function Portfolio({
                 ["--primary" as string]: "var(--pf-ground)",
                 ["--primary-foreground" as string]: "var(--pf-ink)",
               } as React.CSSProperties}
-              className="border-transparent text-[var(--pf-ground)] text-sm"
+              className="font-light border-transparent text-[var(--pf-ground)] text-sm"
             >
               {t.emailCta}
             </InteractiveHoverButton>
@@ -321,7 +321,7 @@ function ProjectBlock({
         </div>
 
         <TextAnimate key={`p-${exp.company}-${lang}`} as="h3" animation="slideUp" by="word" once
-          className="text-[clamp(1.6rem,3.4vw,2.6rem)] font-medium leading-[1.05] tracking-[-0.03em]">
+          className="text-[clamp(1.6rem,3.4vw,2.6rem)] font-light leading-[1.05] tracking-[-0.03em]">
           {exp.company}
         </TextAnimate>
 
@@ -368,7 +368,7 @@ function CompactProject({ exp, t }: { exp: Exp; t: (typeof ui)[PfLang] }) {
   return (
     <article>
       <div className="flex items-baseline justify-between gap-4 border-b border-[var(--pf-hair)] pb-3">
-        <h4 className="text-lg font-medium tracking-tight text-[var(--pf-ink)]">{exp.company}</h4>
+        <h4 className="text-lg font-light tracking-tight text-[var(--pf-ink)]">{exp.company}</h4>
         <span className="pf-num text-[10px] font-mono text-[var(--pf-mute)] shrink-0">{exp.date}</span>
       </div>
       <div className="mt-2">

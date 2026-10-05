@@ -57,7 +57,7 @@ export default function Gate({
           by="character"
           duration={0.45}
           once
-          className="text-[clamp(1.75rem,5vw,3.25rem)] font-medium tracking-[-0.03em]"
+          className="text-[clamp(1.75rem,5vw,3.25rem)] font-light tracking-[-0.03em]"
         >
           {FULL_NAME}
         </TextAnimate>
@@ -114,7 +114,7 @@ function GateDoor({
           ["--primary" as string]: "var(--pf-ground)",
           ["--primary-foreground" as string]: "var(--pf-ink)",
         } as React.CSSProperties}
-        className="min-w-[14rem] border-transparent text-[var(--pf-ground)] text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--pf-ink)]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--pf-ground)]"
+        className="min-w-[14rem] font-light border-transparent text-[var(--pf-ground)] text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--pf-ink)]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--pf-ground)]"
       >
         {label}
       </InteractiveHoverButton>
