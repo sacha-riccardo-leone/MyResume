@@ -73,14 +73,10 @@ export default function Gate({
           {cv.title}
         </TextAnimate>
 
-        <p className="mt-14 mb-5 text-[10px] font-mono uppercase tracking-[0.25em] text-[var(--pf-mute)]/70">
-          {t.gateHint}
-        </p>
-
-        {/* The two doors */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-7 sm:gap-10">
+        {/* One door for now. The "Full experience" view is parked: it still
+            answers on ?work, but the gate no longer offers it. */}
+        <div className="mt-14 flex justify-center">
           <GateDoor label={t.cvLabel} meta={t.cvMeta} onClick={() => onChoose("cv")} />
-          <GateDoor label={t.workLabel} meta={t.workMeta} onClick={() => onChoose("work")} />
         </div>
       </main>
 
