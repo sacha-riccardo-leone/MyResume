@@ -98,3 +98,26 @@ export function Disclosure({
     </div>
   );
 }
+
+/* ── Availability ─────────────────────────────────────────────────────────
+   The one line a recruiter scans for first, so it gets the only colour on the
+   page and a live dot. Same treatment as the CV's, and it appears wherever
+   the availability does rather than being re-styled per site. The emerald
+   token darkens under the light theme, so it stays legible on paper too. */
+export function AvailabilityLine({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <p className={`flex items-start gap-3 text-emerald-300/90 ${className}`}>
+      <span aria-hidden className="relative mt-[0.45em] flex h-2 w-2 shrink-0">
+        <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 motion-safe:animate-ping" />
+        <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+      </span>
+      <span>{children}</span>
+    </p>
+  );
+}

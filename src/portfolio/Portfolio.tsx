@@ -9,7 +9,7 @@ import {
 import {
   contact, media, orderedExperience, ui, type Media, type PfLang,
 } from "./content";
-import { Disclosure, PfButton, PfLink } from "./ui-bits";
+import { AvailabilityLine, Disclosure, PfButton, PfLink } from "./ui-bits";
 
 const FULL_NAME = "Sacha Riccardo LEONE";
 
@@ -77,9 +77,9 @@ export default function Portfolio({
 
       {/* ── À propos: the CV's availability line and bio, verbatim ── */}
       <Section title={cv.sections.about}>
-        <p className="max-w-[70ch] text-base sm:text-lg leading-relaxed text-[var(--pf-ink)]">
+        <AvailabilityLine className="max-w-[70ch] text-base sm:text-lg leading-relaxed">
           {cv.availability}
-        </p>
+        </AvailabilityLine>
         <p className="mt-6 max-w-[70ch] text-sm sm:text-base leading-relaxed text-[var(--pf-mute)]">
           {cv.intro}
         </p>
@@ -213,7 +213,7 @@ export default function Portfolio({
           {t.closing}
         </TextAnimate>
 
-        <p className="mt-6 max-w-[48ch] text-sm sm:text-base text-[var(--pf-mute)]">{cv.availability}</p>
+        <AvailabilityLine className="mt-6 max-w-[48ch] text-sm sm:text-base">{cv.availability}</AvailabilityLine>
 
         {/* Work-authorisation facts, the same ones the CV leads its header with */}
         <dl className="mt-10 grid gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-4 max-w-[70rem] text-sm">
