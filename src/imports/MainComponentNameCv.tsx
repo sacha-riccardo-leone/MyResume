@@ -7,12 +7,12 @@ import xefiLogo from "../assets/xefilogo.png";
 import sourShotsLogo from "../assets/sourshotslogo.jpg";
 import cpneLogo from "../assets/cpnelogo.png";
 import OrbMini from "./OrbMini";
+import { TextAnimate } from "../components/ui/text-animate";
 import ThemeToggle from "../lib/ThemeToggle";
 import Collapse, { COLLAPSE_TRANSITION } from "../lib/Collapse";
 import type { Theme } from "../lib/theme";
 
 export type Lang = "fr" | "en" | "de" | "it";
-type Phase = "cursor" | "typing" | "done";
 
 const FULL_NAME = "Sacha Riccardo LEONE";
 
@@ -1104,8 +1104,7 @@ export default function MainComponentNameCv({
   theme: Theme;
   toggleTheme: () => void;
 }) {
-  const [phase, setPhase] = useState<Phase>("cursor");
-  const [displayedName, setDisplayedName] = useState("");
+  const [done, setDone] = useState(false);
   const [openExp, setOpenExp] = useState<Set<number>>(new Set());
   const [ordineHovered, setOrdineHovered] = useState(false);
   const [openCards, setOpenCards] = useState<Set<string>>(new Set());
@@ -1168,33 +1167,17 @@ export default function MainComponentNameCv({
       return next;
     });
 
+  /* The name rises in letter by letter (same TextAnimate as the landing
+     page); the rest of the header follows it in, on the gate's 0.35 s cue. */
   useEffect(() => {
-    const timer = setTimeout(() => setPhase("typing"), 700);
+    const timer = setTimeout(() => setDone(true), 350);
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    if (phase !== "typing") return;
-    if (displayedName.length < FULL_NAME.length) {
-      const timer = setTimeout(() => {
-        setDisplayedName(FULL_NAME.slice(0, displayedName.length + 1));
-      }, 85);
-      return () => clearTimeout(timer);
-    } else {
-      const timer = setTimeout(() => setPhase("done"), 400);
-      return () => clearTimeout(timer);
-    }
-  }, [phase, displayedName]);
-
-  const done = phase === "done";
   const fadeIn = (delay: number) => ({
     opacity: done ? 1 : 0,
     transition: `opacity 0.7s ease ${delay}ms`,
   });
-
-  const cursor = phase !== "done" && (
-    <span className="cursor-blink inline-block w-[2px] h-[0.85em] bg-white ml-[2px] align-middle" />
-  );
 
   /* Profile picture */
   const ProfilePic = ({ size }: { size: string }) => (
@@ -1264,9 +1247,16 @@ export default function MainComponentNameCv({
 
                 {/* Text — text-shadow scrim so contrast holds over every phase of the wave animation */}
                 <div className="flex-1 text-center sm:text-left" style={{ textShadow: "0 2px 20px rgba(0,0,0,0.55)" }}>
-                  <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-light leading-tight tracking-tight">
-                    {displayedName}{cursor}
-                  </h1>
+                  <TextAnimate
+                    as="h1"
+                    animation="blurInUp"
+                    by="character"
+                    duration={0.45}
+                    once
+                    className="text-4xl sm:text-5xl lg:text-[3.5rem] font-light leading-tight tracking-tight"
+                  >
+                    {FULL_NAME}
+                  </TextAnimate>
                   <p className="text-base sm:text-lg text-white/65 mt-3" style={fadeIn(100)}>
                     {t.title}
                   </p>
