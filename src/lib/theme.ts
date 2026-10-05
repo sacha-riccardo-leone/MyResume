@@ -55,9 +55,15 @@ export function useTheme(): [Theme, () => void] {
     return () => mq.removeEventListener("change", onChange);
   }, []);
 
+  /* Applies the new theme to the DOM synchronously, then updates React.
+     The animated toggle runs this inside a view transition, and the browser
+     snapshots the "after" state as soon as the callback returns — so the
+     attribute has to change right here, not in an effect a frame later. */
   const toggle = useCallback(() => {
     chosen.current = true;
-    setTheme(t => (t === "dark" ? "light" : "dark"));
+    const next: Theme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    applyTheme(next, true);
+    setTheme(next);
   }, []);
   return [theme, toggle];
 }
