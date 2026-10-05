@@ -1208,7 +1208,7 @@ export default function MainComponentNameCv({
           key={l}
           onClick={() => setLang(l)}
           onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
-          className={`glass-card glass-card--sm text-[10px] font-['Geist',sans-serif] uppercase px-2 py-1 rounded-lg cursor-pointer ${
+          className={`glass-card glass-card--sm text-[10px] font-[family-name:var(--font-site)] uppercase px-2 py-1 rounded-lg cursor-pointer ${
             lang === l
               ? "glass-card--active text-white font-medium"
               : "text-white/50"
@@ -1225,7 +1225,7 @@ export default function MainComponentNameCv({
       {/* ═══════════════════════════════════════════════════════
           WEB LAYOUT — portfolio dev, scroll animations
           ═══════════════════════════════════════════════════════ */}
-      <div className="print-hidden text-white font-['Geist',sans-serif]">
+      <div className="print-hidden text-white font-[family-name:var(--font-site)]">
 
         {/* ── Sticky nav ── */}
         <nav className="sticky top-0 z-50 flex justify-between items-center px-6 sm:px-10 py-4 bg-black/60 backdrop-blur-md border-b border-white/[0.06]">
@@ -1704,7 +1704,7 @@ export default function MainComponentNameCv({
       {/* ═══════════════════════════════════════════════════════
           PRINT LAYOUT — A4 portrait, flex-based, monochrome
           ═══════════════════════════════════════════════════════ */}
-      <div className="print-only" aria-hidden="true" style={{ fontFamily: "'Geist', sans-serif", color: "#111", background: "white" }}>
+      <div className="print-only" aria-hidden="true" style={{ fontFamily: "var(--font-site)", color: "#111", background: "white" }}>
 
         {/* ════════════ PAGE 1 — header · à propos · [professional work | sidebar] ════════════
             Each .print-page is exactly one page's content box (sized in index.css). Sections

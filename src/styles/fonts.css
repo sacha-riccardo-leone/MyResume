@@ -1,1 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* Satoshi (Indian Type Foundry, via Fontshare): free, commercial use
+   included. Weights the site actually uses, with real italics (x01) for the role
+   lines rather than a slanted roman; 600 has no cut of its own and
+   resolves to 700. --font-site is the one place the face is named, so the
+   screen view and the PDF can never drift onto different families. */
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,501,700&display=swap');
+
+:root {
+  --font-site: 'Satoshi', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
