@@ -1,4 +1,5 @@
 import { useId, useState } from "react";
+import Collapse, { COLLAPSE_TRANSITION } from "../lib/Collapse";
 
 /* ─────────────────────────────────────────────────────────────────────────
    Shared chrome for the portfolio, so every control looks like one family.
@@ -78,8 +79,8 @@ export function Disclosure({
         {summary && <span className="min-w-0">{summary}</span>}
         <span
           aria-hidden
-          className={`shrink-0 text-[var(--pf-mute)] transition-transform duration-300 group-hover:text-[var(--pf-ink)] ${summary ? "mt-1" : ""}`}
-          style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
+          className={`shrink-0 text-[var(--pf-mute)] transition-colors group-hover:text-[var(--pf-ink)] ${summary ? "mt-1" : ""}`}
+          style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)", transition: COLLAPSE_TRANSITION }}
         >
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
@@ -87,14 +88,9 @@ export function Disclosure({
         </span>
       </button>
 
-      <div
-        id={id}
-        hidden={!open}
-        className="grid transition-[grid-template-rows,opacity] duration-300 ease-out"
-        style={{ gridTemplateRows: open ? "1fr" : "0fr", opacity: open ? 1 : 0 }}
-      >
-        <div className="overflow-hidden">{children}</div>
-      </div>
+      <Collapse open={open} id={id}>
+        {children}
+      </Collapse>
     </div>
   );
 }

@@ -8,6 +8,7 @@ import sourShotsLogo from "../assets/sourshotslogo.jpg";
 import cpneLogo from "../assets/cpnelogo.png";
 import OrbMini from "./OrbMini";
 import ThemeToggle from "../lib/ThemeToggle";
+import Collapse, { COLLAPSE_TRANSITION } from "../lib/Collapse";
 import type { Theme } from "../lib/theme";
 
 export type Lang = "fr" | "en" | "de" | "it";
@@ -803,37 +804,6 @@ function ScrollReveal({
 }
 
 /* ────────────────────────────────────────────────────── */
-/* Collapsible body — smooth height via measured content   */
-/* ────────────────────────────────────────────────────── */
-function Collapsible({ open, children }: { open: boolean; children: React.ReactNode }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [h, setH] = useState(0);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const update = () => setH(el.scrollHeight);
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
-  return (
-    <div
-      style={{
-        maxHeight: open ? h : 0,
-        opacity: open ? 1 : 0,
-        overflow: "hidden",
-        transition: "max-height 0.35s ease, opacity 0.25s ease",
-      }}
-    >
-      <div ref={ref}>{children}</div>
-    </div>
-  );
-}
-
-/* ────────────────────────────────────────────────────── */
 /* Bullets — experience body (bullet list + stack line)   */
 /* ────────────────────────────────────────────────────── */
 function Bullets({ items, stack }: { items: string[]; stack?: string }) {
@@ -930,14 +900,14 @@ function MandateCard({
                     {deliveredBadge[lang]}
                   </span>
                 )}
-                <ChevronDown className="h-4 w-4 text-white/25 transition-transform duration-300" style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }} />
+                <ChevronDown className="h-4 w-4 text-white/25" style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)", transition: COLLAPSE_TRANSITION }} />
               </div>
             </div>
           </div>
         </div>
-        <Collapsible open={open}>
+        <Collapse open={open}>
           <Bullets items={exp.bullets} stack={exp.stack} />
-        </Collapsible>
+        </Collapse>
       </div>
     </ScrollReveal>
   );
@@ -1509,11 +1479,11 @@ export default function MainComponentNameCv({
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
                       {ordineAIProject.status[lang]}
                     </span>
-                    <ChevronDown className="h-4 w-4 text-white/25 transition-transform duration-300" style={{ transform: openCards.has("ordine") ? "rotate(180deg)" : "rotate(0deg)" }} />
+                    <ChevronDown className="h-4 w-4 text-white/25" style={{ transform: openCards.has("ordine") ? "rotate(180deg)" : "rotate(0deg)", transition: COLLAPSE_TRANSITION }} />
                   </div>
                 </div>
               </div>
-              <Collapsible open={openCards.has("ordine")}>
+              <Collapse open={openCards.has("ordine")}>
                 <div className="px-5 pb-5">
                   <p className="text-sm text-white/40 mb-4" style={{ paddingLeft: "calc(22px + 12px)" }}>{ordineAIProject.tagline[lang]}</p>
                   <ul className="space-y-2.5 mb-5">
@@ -1535,7 +1505,7 @@ export default function MainComponentNameCv({
                     ))}
                   </div>
                 </div>
-              </Collapsible>
+              </Collapse>
                   </div>
                 </ScrollReveal>
               </div>
@@ -1593,20 +1563,13 @@ export default function MainComponentNameCv({
                           </div>
                         </div>
                         <ChevronDown
-                          className="h-4 w-4 text-white/25 shrink-0 ml-4 transition-transform duration-300"
-                          style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+                          className="h-4 w-4 text-white/25 shrink-0 ml-4"
+                          style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)", transition: COLLAPSE_TRANSITION }}
                         />
                       </button>
-                      <div
-                        style={{
-                          maxHeight: isOpen ? "340px" : "0px",
-                          opacity: isOpen ? 1 : 0,
-                          transition: "max-height 0.3s ease, opacity 0.25s ease",
-                          overflow: "hidden",
-                        }}
-                      >
+                      <Collapse open={isOpen}>
                         <Bullets items={exp.bullets} stack={exp.stack} />
-                      </div>
+                      </Collapse>
                     </div>
                   </ScrollReveal>
                 );
@@ -1705,13 +1668,13 @@ export default function MainComponentNameCv({
                           </span>
                           {anthropicCert.badge[lang]}
                         </span>
-                        <ChevronDown className="h-4 w-4 text-white/25 transition-transform duration-300" style={{ transform: openCards.has("anthropic") ? "rotate(180deg)" : "rotate(0deg)" }} />
+                        <ChevronDown className="h-4 w-4 text-white/25" style={{ transform: openCards.has("anthropic") ? "rotate(180deg)" : "rotate(0deg)", transition: COLLAPSE_TRANSITION }} />
                       </div>
                     </div>
                   </div>
-                  <Collapsible open={openCards.has("anthropic")}>
+                  <Collapse open={openCards.has("anthropic")}>
                     <p className="px-5 pb-4 text-sm text-white/45 leading-relaxed">{anthropicCert.description[lang]}</p>
-                  </Collapsible>
+                  </Collapse>
                 </div>
               </div>
             </ScrollReveal>
