@@ -60,7 +60,18 @@ export default function NotFound({
             readable "404" in a visually-hidden span. */}
         <KineticText
           text="404"
-          style={{ fontFamily: "var(--font-variable)" }}
+          /* The component also strokes the hovered letter. That stroke is
+             currentcolor — the same colour as the fill — so it never reads as
+             an outline; it only thickens the glyph, which the weight already
+             does. What it does add is a miter spike: where the 4's diagonal
+             meets its bar the angle is sharp enough that the join shoots out
+             past the letter, and CSS gives no way to round it. Zeroing the
+             width here switches it off without touching the vendored file.
+             The weight morph is the effect, and it is untouched. */
+          style={{
+            fontFamily: "var(--font-variable)",
+            ["--text-stroke-width" as string]: "0px",
+          } as React.CSSProperties}
           className="justify-center text-[clamp(5rem,22vw,13rem)] leading-none tracking-[-0.04em] text-[var(--pf-ink)] select-none"
         />
 
