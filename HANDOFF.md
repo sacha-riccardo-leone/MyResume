@@ -6,7 +6,7 @@ Lancer : `npm run dev` → `localhost:5173`. Build : `npm run build`.
 ## Dernière session — 2026-10-05 00:30
 
 **Où j'en suis**
-- Le site a **trois vues** : une porte d'entrée (`/`), le CV (`?cv`) et « Expérience complète » (`?work`). `?cv` et `?work` sont des liens directs qui sautent la porte — c'est l'URL à mettre dans les candidatures.
+- Le site a **trois vues** : une porte d'entrée (`/`), le CV (`/cv`) et « Expérience complète » (`/work`). `/cv` et `/work` sont des liens directs qui sautent la porte — c'est l'URL à mettre dans les candidatures. Les anciens liens `?cv` et `?work` continuent de fonctionner et sont réécrits vers la nouvelle forme au chargement.
 - **Le CV est la seule source de contenu.** Le portfolio lit `translations` depuis `src/imports/MainComponentNameCv.tsx` ; modifier le CV met à jour les deux vues dans les 4 langues. `src/portfolio/content.ts` ne garde que les vidéos et les quelques phrases propres à la page.
 - **PDF refait** en pages explicites (`.print-page`) avec un paginateur mesuré : 2 pages A4, marges ≥ 12,3 mm, rien n'est coupé même si le contenu grandit. Vérifié aussi en US Letter.
 - **Thème clair / sombre** sur les deux vues, choix mémorisé, préférence système respectée. Le PDF n'est pas touché (tout est sous `@media screen`).

@@ -39,7 +39,7 @@ try {
   const page = await browser.newPage();
 
   for (const lang of LANGS) {
-    await page.goto(`${base}/?cv&lang=${lang}`, { waitUntil: "networkidle" });
+    await page.goto(`${base}/cv?lang=${lang}`, { waitUntil: "networkidle" });
 
     /* The paginator measures the off-canvas print DOM and only settles once
        the webfonts have loaded — printing before that yields a clipped or

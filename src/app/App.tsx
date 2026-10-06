@@ -12,13 +12,25 @@ type View = "gate" | "cv" | "work";
 
 /* Deep links bypass the gate entirely — essential, because a job application
    links one URL and a recruiter must never be asked to make a choice to reach
-   the CV. ?cv and ?work are shareable; the gate is only for people arriving
-   cold from GitHub, LinkedIn or a signature. */
+   the CV. /cv and /work are shareable; the gate is only for people arriving
+   cold from GitHub, LinkedIn or a signature.
+
+   These are real paths rather than query strings because the URL goes on a
+   printed CV. That needs the host to serve index.html for paths with no file
+   behind them: vercel.json does it in production, and Vite's dev and preview
+   servers do it by default. */
+const PATH_FOR: Record<Exclude<View, "gate">, string> = { cv: "/cv", work: "/work" };
+
 function readView(): View {
   if (typeof window === "undefined") return "gate";
-  const p = new URLSearchParams(window.location.search);
-  if (p.has("cv")) return "cv";
-  if (p.has("work")) return "work";
+  const path = window.location.pathname.replace(/\/+$/, "").toLowerCase();
+  if (path === PATH_FOR.cv) return "cv";
+  if (path === PATH_FOR.work) return "work";
+  /* The site used ?cv and ?work until Oct 2026 and those links are already out
+     in sent applications, so they keep working. Don't remove this. */
+  const q = new URLSearchParams(window.location.search);
+  if (q.has("cv")) return "cv";
+  if (q.has("work")) return "work";
   return "gate";
 }
 
@@ -42,11 +54,10 @@ export default function App() {
   /* Keep the URL in step with the view so a refresh or a shared link lands in
      the same place, without adding a router dependency. */
   const urlFor = (v: View, l: PfLang) => {
-    const qs: string[] = [];
-    if (v === "cv") qs.push("cv");
-    if (v === "work") qs.push("work");
-    if (l !== "fr") qs.push(`lang=${l}`);
-    return qs.length ? `?${qs.join("&")}` : window.location.pathname;
+    const path = v === "gate" ? "/" : PATH_FOR[v];
+    // Language is a modifier on the view, not a resource of its own, so it
+    // stays a query parameter: /cv?lang=en.
+    return l === "fr" ? path : `${path}?lang=${l}`;
   };
 
   const go = useCallback((next: View, nextLang: PfLang = lang) => {
@@ -70,6 +81,18 @@ export default function App() {
 
   // Screen readers, hyphenation and translation tools read <html lang>.
   useEffect(() => { document.documentElement.lang = lang; }, [lang]);
+
+  /* An old ?cv / ?work link already opened the right view above; quietly swap
+     the address bar for the path form so what the visitor copies, bookmarks or
+     forwards is the current URL. replaceState, not push, so Back still leaves
+     the site rather than landing on the legacy URL again. */
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    if (q.has("cv") || q.has("work")) {
+      window.history.replaceState({}, "", urlFor(readView(), readLang()));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- once, on load
+  }, []);
 
   // Browser back/forward should move between the gate and the views.
   useEffect(() => {
@@ -103,7 +126,7 @@ export default function App() {
       )}
 
       {/* The CV isn't mounted until asked for. Its language comes from here,
-          like the other views, so ?cv&lang=en opens the English CV. */}
+          like the other views, so /cv?lang=en opens the English CV. */}
       {view === "cv" && (
         <MainComponentNameCv lang={lang} setLang={changeLang} intro={!moved}
           theme={theme} toggleTheme={toggleTheme} />

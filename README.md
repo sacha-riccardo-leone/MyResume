@@ -29,6 +29,30 @@ npm run build
 
 The output is written to `dist/`.
 
+## Routing
+
+Three views, at real paths rather than query strings, because this URL goes on
+a printed CV:
+
+| Path | View |
+|------|------|
+| `/` | The gate |
+| `/cv` | The resume — this is the link to put in applications |
+| `/work` | "Full experience" (parked; the gate no longer offers it) |
+
+Language is a modifier on the view, so it stays a query parameter: `/cv?lang=en`.
+French is the default and carries no parameter.
+
+There is no file behind `/cv`, so the host has to serve `index.html` for paths
+it does not recognise — `vercel.json` does that in production, and Vite's dev
+and preview servers do it by default. Vercel checks the filesystem before
+applying the rewrite, which is why the shipped PDFs and build assets still
+resolve. One consequence: an unknown path renders the gate rather than a 404.
+
+The site used `?cv` and `?work` until October 2026 and those links are already
+out in sent applications, so they are still accepted and rewritten to the path
+form on load. **Don't remove that fallback.**
+
 ## Regenerating the downloadable PDFs
 
 The "Download PDF" button serves a static file from `public/`, one per

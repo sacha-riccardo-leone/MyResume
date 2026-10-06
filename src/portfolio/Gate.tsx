@@ -91,7 +91,7 @@ export default function Gate({
         )}
 
         {/* One door for now. The "Full experience" view is parked: it still
-            answers on ?work, but the gate no longer offers it. */}
+            answers on /work, but the gate no longer offers it. */}
         <div className="mt-14 flex justify-center">
           <GateDoor label={t.cvLabel} onClick={() => onChoose("cv")} />
         </div>
