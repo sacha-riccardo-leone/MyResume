@@ -107,8 +107,11 @@ export function AvailabilityLine({
   children: React.ReactNode;
   className?: string;
 }) {
+  /* font-normal rather than the page's font-light: the site carries Satoshi
+     300 and 400 only, so 400 is as heavy as this line can genuinely go —
+     anything above it silently renders as 400 anyway. */
   return (
-    <p className={`flex items-start gap-3 text-emerald-300/90 ${className}`}>
+    <p className={`flex items-start gap-3 font-normal text-emerald-300/90 ${className}`}>
       <span aria-hidden className="relative mt-[0.45em] flex h-2 w-2 shrink-0">
         <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 motion-safe:animate-ping" />
         <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />

@@ -29,7 +29,7 @@ export const translations = {
     intro:
       "Développeur d'applications autonome, je transforme des besoins réels en logiciels livrés en production, du frontend à l'infrastructure. J'ai déjà mis mes compétences en pratique sur des mandats clients et mes propres projets, et je recherche en continu de nouveaux défis pour progresser. Initiative, persévérance, curiosité et maîtrise des outils actuels — l'IA en particulier — sont au cœur de ma façon de travailler.",
     availability:
-      "À la recherche d'une opportunité de développeur d'applications, disponible immédiatement",
+      "Prêt à prendre des responsabilités comme développeur d'applications, avec l'IA dans mes outils quotidiens, disponible immédiatement",
     printCta:
       "Meilleure expérience, projets détaillés et démos sur la version en ligne",
     sections: {
@@ -170,7 +170,7 @@ export const translations = {
     intro:
       "An autonomous application developer, I turn real needs into software delivered to production, from frontend to infrastructure. I've already put my skills to work on client mandates and my own projects, and I'm continually looking for new challenges to grow. Initiative, persistence, curiosity and command of today's tools — AI in particular — are at the core of how I work.",
     availability:
-      "Looking for an application-developer role, available immediately",
+      "Ready to take on responsibility as an application developer, with AI among my everyday tools, available immediately",
     printCta:
       "Best experience, detailed projects and live demos on the online version",
     sections: {
@@ -309,7 +309,7 @@ export const translations = {
     intro:
       "Als eigenständiger Applikationsentwickler verwandle ich echte Bedürfnisse in Software, die in Produktion geht — vom Frontend bis zur Infrastruktur. Meine Fähigkeiten habe ich bereits in Kundenmandaten und eigenen Projekten eingesetzt und suche fortlaufend neue Herausforderungen, um mich weiterzuentwickeln. Initiative, Ausdauer, Neugier und der sichere Umgang mit aktuellen Tools — insbesondere KI — prägen meine Arbeitsweise.",
     availability:
-      "Auf der Suche nach einer Stelle als Applikationsentwickler, sofort verfügbar",
+      "Bereit, als Applikationsentwickler Verantwortung zu übernehmen, mit KI als täglichem Werkzeug, sofort verfügbar",
     printCta:
       "Beste Erfahrung, detaillierte Projekte und Live-Demos in der Online-Version",
     sections: {
@@ -448,7 +448,7 @@ export const translations = {
     intro:
       "Sviluppatore di applicazioni autonomo, trasformo bisogni reali in software portato in produzione, dal frontend all'infrastruttura. Ho già messo in pratica le mie competenze su mandati per clienti e progetti personali, e cerco di continuo nuove sfide per crescere. Iniziativa, perseveranza, curiosità e padronanza degli strumenti attuali — l'IA in particolare — sono al centro del mio modo di lavorare.",
     availability:
-      "In cerca di un'opportunità come sviluppatore di applicazioni, disponibile da subito",
+      "Pronto ad assumermi responsabilità come sviluppatore di applicazioni, con l'IA tra i miei strumenti quotidiani, disponibile da subito",
     printCta:
       "Esperienza migliore, progetti dettagliati e demo sulla versione online",
     sections: {
@@ -1362,7 +1362,7 @@ export default function MainComponentNameCv({
                   <p className="text-[10px] uppercase tracking-[0.18em] text-white/35 mt-6 mb-2" style={fadeIn(260)}>
                     {t.sections.about}
                   </p>
-                  <p className="flex items-start gap-2.5 text-[13px] font-light max-w-xl text-emerald-300/90" style={fadeIn(280)}>
+                  <p className="flex items-start gap-2.5 text-[13px] font-normal max-w-xl text-emerald-300/90" style={fadeIn(280)}>
                     {/* A live indicator, not decoration: it marks the one line a
                         recruiter scans for first. */}
                     <span aria-hidden className="relative mt-[6px] flex h-2 w-2 shrink-0">
@@ -1924,7 +1924,7 @@ export default function MainComponentNameCv({
             <p style={{
               fontSize: "7pt",
               color: "#0f6b3d",
-              fontWeight: 300,
+              fontWeight: 400,
               lineHeight: 1.5,
               margin: 0,
             }}>
