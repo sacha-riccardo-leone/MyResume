@@ -139,6 +139,9 @@ export const translations = {
     ],
     softSkills: ["Autonomie", "Esprit d'initiative", "Rigueur & souci du détail", "Orienté solutions", "Persévérance", "Curiosité / apprentissage rapide", "Esprit d'équipe", "Réceptif", "Innovant / créatif", "Esprit critique"],
     referencesLine: "Références disponibles sur demande.",
+    /* The web has room to say what the references cover; the PDF footer and
+       the portfolio footer are one tight line and keep the short form. */
+    referencesDetail: "Références disponibles sur demande — mandats, formation et séjours linguistiques.",
     interestsLine: "Art numérique · Photographie · Guitare électrique · Volleyball · Mode",
     education: [
       {
@@ -273,6 +276,7 @@ export const translations = {
     ],
     softSkills: ["Autonomy", "Initiative", "Rigor & attention to detail", "Solution-oriented", "Persistence", "Curiosity / fast learner", "Team player", "Receptive", "Innovative / creative", "Critical thinking"],
     referencesLine: "References available on request.",
+    referencesDetail: "References available on request — client mandates, training and language stays.",
     interestsLine: "Digital art · Photography · Electric guitar · Volleyball · Fashion",
     education: [
       {
@@ -407,6 +411,7 @@ export const translations = {
     ],
     softSkills: ["Eigenständigkeit", "Eigeninitiative", "Sorgfalt & Detailgenauigkeit", "Lösungsorientiert", "Ausdauer", "Neugier / schnelle Auffassung", "Teamgeist", "Aufgeschlossen", "Innovativ / kreativ", "Kritisches Denken"],
     referencesLine: "Referenzen auf Anfrage verfügbar.",
+    referencesDetail: "Referenzen auf Anfrage verfügbar — Kundenmandate, Ausbildung und Sprachaufenthalte.",
     interestsLine: "Digitale Kunst · Fotografie · E-Gitarre · Volleyball · Mode",
     education: [
       {
@@ -541,6 +546,7 @@ export const translations = {
     ],
     softSkills: ["Autonomia", "Spirito d'iniziativa", "Rigore & attenzione ai dettagli", "Orientato alle soluzioni", "Perseveranza", "Curiosità / apprendimento rapido", "Spirito di squadra", "Ricettivo", "Innovativo / creativo", "Spirito critico"],
     referencesLine: "Referenze disponibili su richiesta.",
+    referencesDetail: "Referenze disponibili su richiesta — mandati per clienti, formazione e soggiorni linguistici.",
     interestsLine: "Arte digitale · Fotografia · Chitarra elettrica · Pallavolo · Moda",
     education: [
       {
@@ -1825,7 +1831,7 @@ export default function MainComponentNameCv({
           {/* 08 — Références */}
           <ScrollReveal>
             <SectionHead title={t.sections.references} num="08" />
-            <p className="text-sm text-white/50">{t.referencesLine}</p>
+            <p className="text-sm text-white/50">{t.referencesDetail}</p>
           </ScrollReveal>
 
         </div>
