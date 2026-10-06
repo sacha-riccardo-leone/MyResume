@@ -73,6 +73,7 @@ export const translations = {
           "Accessibilité tenue par la CI : audit de contraste WCAG AA bloquant dans la chaîne typecheck → lint → contraste → build.",
           "Hero « portail » : plaque anthracite percée au sigle par masque SVG au défilement — constantes mesurées (limites de rastérisation), pas devinées.",
         ],
+        summary: "Site vitrine 6 pages pour un bureau d’ingénieurs CVCS : Next.js 16 / React 19, toutes les routes prérendues, design system maison sans dépendance runtime, et contraste WCAG AA vérifié à chaque build.",
         stack: "Next.js 16 · React 19 · TypeScript · CSS Modules · Vercel",
       },
       {
@@ -85,6 +86,7 @@ export const translations = {
           "Synchronisation automatique Pixieset → Odoo (contacts, projets, sessions), cron quotidien, secrets masqués.",
           "Réalisé seul, 4 batches livrés en 18 jours, déployé sur Odoo.sh — cliente satisfaite.",
         ],
+        summary: "Addon Odoo 19 Enterprise et extension navigateur pour un studio photo suisse, synchronisant automatiquement Pixieset vers Odoo. Réalisé seul, livré en 18 jours et déployé en production.",
         stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
       },
       {
@@ -100,6 +102,7 @@ export const translations = {
           "Optimisation des performances sans compromis visuel : poids des images divisé par 3 à 6, temps de réponse serveur réduit des deux tiers (≈ 320 → 110 ms), zéro régression.",
           "Coordination continue avec l'équipe (clarification des besoins, suivi, ajustements) et documentation complète : le collectif maintient désormais le site sans développeur.",
         ],
+        summary: "Refonte complète, design et technique, du site bilingue FR/EN d’un collectif de mode, livrée en six semaines sur un site déjà public : images 3 à 6 fois plus légères, réponse serveur réduite des deux tiers (≈ 320 → 110 ms), et une équipe qui maintient désormais le site sans développeur.",
         stack: "WordPress · PHP · API REST · JavaScript · CSS moderne",
       },
       {
@@ -112,6 +115,7 @@ export const translations = {
           "Pipeline de classification Claude Haiku (harness CI FR/DE/IT/EN : 100/94/96/98 %) et conformité FADP (résidence CH/EU, chiffrement AES-GCM-256, DLP PII suisse).",
           "Facturation Stripe à 4 niveaux et audit de sécurité antagoniste auto-mené (5 agents LLM, 30+ problèmes corrigés).",
         ],
+        summary: "Client email IA multi-fournisseurs pour PME suisses, conçu et livré seul, aujourd’hui en beta active : classification Claude Haiku évaluée en continu sur quatre langues (100/94/96/98 %), conformité FADP et facturation Stripe à quatre niveaux.",
         stack: "FastAPI · Next.js · TypeScript · Supabase · Claude API · Stripe · Cloud Run",
       },
       {
@@ -124,6 +128,7 @@ export const translations = {
           "Algorithme de génération de personnages uniques par comparaison de profils ADN + système de rareté vestimentaire.",
           "Note : 5,5/6.",
         ],
+        summary: "Version numérisée du jeu « Qui est-ce ? » en C#/Raylib, avec génération de personnages uniques par comparaison de profils ADN. Note : 5,5/6.",
         stack: "C# · Raylib",
       },
       {
@@ -134,6 +139,7 @@ export const translations = {
         bullets: [
           "Contribution créative pour un groupe local sur 3 ans : photos et démos visuelles pour posts et annonces.",
         ],
+        summary: "Contribution créative pour un groupe local sur trois ans : photos et démos visuelles pour posts et annonces.",
         stack: "Krita",
       },
     ],
@@ -212,6 +218,7 @@ export const translations = {
           "Accessibility enforced by CI: a blocking WCAG AA contrast audit in the typecheck → lint → contrast → build chain.",
           "Signature hero: an anthracite plate pierced by the monogram through an SVG mask on scroll — constants measured (rasterisation limits), not guessed.",
         ],
+        summary: "Six-page site for a building-services engineering firm: Next.js 16 / React 19, every route prerendered, an in-house design system with no runtime dependencies, and WCAG AA contrast checked on every build.",
         stack: "Next.js 16 · React 19 · TypeScript · CSS Modules · Vercel",
       },
       {
@@ -224,6 +231,7 @@ export const translations = {
           "Automated Pixieset → Odoo sync (contacts, projects, sessions), daily cron, masked secrets.",
           "Delivered solo, 4 batches in 18 days, live on Odoo.sh — client satisfied.",
         ],
+        summary: "Odoo 19 Enterprise addon and browser extension for a Swiss photo studio, syncing Pixieset into Odoo automatically. Built alone, delivered in 18 days and deployed to production.",
         stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
       },
       {
@@ -239,6 +247,7 @@ export const translations = {
           "Performance optimization with no visual compromise: image weight cut 3–6×, server response time down by two-thirds (≈ 320 → 110 ms), zero regressions.",
           "Ongoing coordination with the team (clarifying needs, follow-up, adjustments) and full documentation: the collective now maintains the site without a developer.",
         ],
+        summary: "Full redesign, design and engineering, of a fashion collective’s bilingual FR/EN site, delivered in six weeks on an already-public site: images 3 to 6 times lighter, server response cut by two thirds (≈ 320 → 110 ms), and a team that now maintains the site without a developer.",
         stack: "WordPress · PHP · REST API · JavaScript · modern CSS",
       },
       {
@@ -251,6 +260,7 @@ export const translations = {
           "Claude Haiku classification pipeline (CI harness FR/DE/IT/EN: 100/94/96/98%) and FADP compliance (Swiss/EU residency, AES-GCM-256 encryption, Swiss PII DLP).",
           "4-tier Stripe billing and a self-run adversarial security audit (5 LLM agents, 30+ findings resolved).",
         ],
+        summary: "Multi-provider AI email client for Swiss SMEs, designed and shipped alone, now in active beta: a Claude Haiku classification pipeline evaluated continuously across four languages (100/94/96/98 %), FADP compliance and four-tier Stripe billing.",
         stack: "FastAPI · Next.js · TypeScript · Supabase · Claude API · Stripe · Cloud Run",
       },
       {
@@ -263,6 +273,7 @@ export const translations = {
           "Unique character generation algorithm via DNA-profile comparison + a clothing rarity system.",
           "Grade: 5.5/6.",
         ],
+        summary: "A digital version of “Guess Who?” built in C#/Raylib, generating unique characters by comparing DNA profiles. Graded 5.5/6.",
         stack: "C# · Raylib",
       },
       {
@@ -273,6 +284,7 @@ export const translations = {
         bullets: [
           "Creative contribution to a local band over 3 years: photos and visual demos for posts and announcements.",
         ],
+        summary: "Creative contribution to a local band over three years: photography and visual mock-ups for posts and announcements.",
         stack: "Krita",
       },
     ],
@@ -351,6 +363,7 @@ export const translations = {
           "Barrierefreiheit durch die CI gesichert: blockierendes WCAG-AA-Kontrast-Audit in der Kette Typecheck → Lint → Kontrast → Build.",
           "Signatur-Hero: eine Anthrazitplatte, beim Scrollen per SVG-Maske vom Signet durchbrochen — Konstanten gemessen (Rasterisierungsgrenzen), nicht geraten.",
         ],
+        summary: "Sechsseitige Website für ein Ingenieurbüro der Gebäudetechnik: Next.js 16 / React 19, alle Routen vorgerendert, ein eigenes Design-System ohne Runtime-Abhängigkeiten und WCAG-AA-Kontrast bei jedem Build geprüft.",
         stack: "Next.js 16 · React 19 · TypeScript · CSS Modules · Vercel",
       },
       {
@@ -363,6 +376,7 @@ export const translations = {
           "Automatische Pixieset → Odoo-Synchronisation (Kontakte, Projekte, Sessions), Tages-Cron, maskierte Secrets.",
           "Alleine realisiert, 4 Batches in 18 Tagen geliefert, live auf Odoo.sh — Kundin zufrieden.",
         ],
+        summary: "Odoo-19-Enterprise-Addon und Browser-Erweiterung für ein Schweizer Fotostudio, mit automatischer Synchronisation von Pixieset nach Odoo. Allein umgesetzt, in 18 Tagen geliefert und produktiv gesetzt.",
         stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
       },
       {
@@ -378,6 +392,7 @@ export const translations = {
           "Performance-Optimierung ohne visuelle Abstriche: Bildgewicht um das 3- bis 6-Fache reduziert, Server-Antwortzeit um zwei Drittel gesenkt (≈ 320 → 110 ms), null Regressionen.",
           "Laufende Abstimmung mit dem Team (Bedarfsklärung, Nachverfolgung, Anpassungen) und vollständige Dokumentation: Das Kollektiv pflegt die Website nun ohne Entwickler.",
         ],
+        summary: "Komplette Überarbeitung, gestalterisch und technisch, der zweisprachigen FR/EN-Website eines Modekollektivs, in sechs Wochen auf einer bereits öffentlichen Seite geliefert: Bilder 3- bis 6-mal leichter, Serverantwort um zwei Drittel reduziert (≈ 320 → 110 ms), und ein Team, das die Seite heute ohne Entwickler pflegt.",
         stack: "WordPress · PHP · REST-API · JavaScript · modernes CSS",
       },
       {
@@ -390,6 +405,7 @@ export const translations = {
           "Claude-Haiku-Klassifizierungspipeline (CI-Harness FR/DE/IT/EN: 100/94/96/98 %) und FADP-Konformität (CH/EU-Datenwohnsitz, AES-GCM-256-Verschlüsselung, Schweizer PII-DLP).",
           "Stripe-Abrechnung mit 4 Stufen und ein selbst durchgeführtes adversariales Sicherheitsaudit (5 LLM-Agenten, 30+ behobene Findings).",
         ],
+        summary: "Mehranbieter-E-Mail-Client mit KI für Schweizer KMU, allein konzipiert und umgesetzt, aktuell in aktiver Beta: Claude-Haiku-Klassifizierung mit laufender Auswertung in vier Sprachen (100/94/96/98 %), FADP-Konformität und vierstufige Stripe-Abrechnung.",
         stack: "FastAPI · Next.js · TypeScript · Supabase · Claude API · Stripe · Cloud Run",
       },
       {
@@ -402,6 +418,7 @@ export const translations = {
           "Algorithmus zur einzigartigen Charaktergenerierung per DNS-Profilvergleich + Seltenheitssystem für Kleidung.",
           "Note: 5,5/6.",
         ],
+        summary: "Digitale Fassung des Spiels « Wer ist es? » in C#/Raylib, mit Figuren, die über den Vergleich von DNA-Profilen erzeugt werden. Note: 5,5/6.",
         stack: "C# · Raylib",
       },
       {
@@ -412,6 +429,7 @@ export const translations = {
         bullets: [
           "Kreativer Beitrag für eine lokale Band über 3 Jahre: Fotos und visuelle Demos für Posts und Ankündigungen.",
         ],
+        summary: "Kreative Mitarbeit für eine lokale Band über drei Jahre: Fotos und visuelle Entwürfe für Posts und Ankündigungen.",
         stack: "Krita",
       },
     ],
@@ -490,6 +508,7 @@ export const translations = {
           "Accessibilità garantita dalla CI: audit di contrasto WCAG AA bloccante nella catena typecheck → lint → contrasto → build.",
           "Hero distintivo: una lastra antracite forata dal monogramma tramite maschera SVG allo scroll — costanti misurate (limiti di rasterizzazione), non indovinate.",
         ],
+        summary: "Sito vetrina di sei pagine per uno studio di ingegneria impiantistica: Next.js 16 / React 19, tutte le rotte pre-renderizzate, un design system interno senza dipendenze a runtime e il contrasto WCAG AA verificato a ogni build.",
         stack: "Next.js 16 · React 19 · TypeScript · CSS Modules · Vercel",
       },
       {
@@ -502,6 +521,7 @@ export const translations = {
           "Sincronizzazione automatica Pixieset → Odoo (contatti, progetti, sessioni), cron giornaliero, segreti mascherati.",
           "Realizzato in autonomia, 4 batch consegnati in 18 giorni, live su Odoo.sh — cliente soddisfatta.",
         ],
+        summary: "Addon Odoo 19 Enterprise ed estensione browser per uno studio fotografico svizzero, con sincronizzazione automatica da Pixieset a Odoo. Realizzato da solo, consegnato in 18 giorni e messo in produzione.",
         stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
       },
       {
@@ -517,6 +537,7 @@ export const translations = {
           "Ottimizzazione delle performance senza compromessi visivi: peso delle immagini ridotto di 3–6 volte, tempo di risposta del server ridotto di due terzi (≈ 320 → 110 ms), zero regressioni.",
           "Coordinamento continuo con il team (chiarimento dei bisogni, follow-up, aggiustamenti) e documentazione completa: il collettivo ora mantiene il sito senza sviluppatore.",
         ],
+        summary: "Rifacimento completo, grafico e tecnico, del sito bilingue FR/EN di un collettivo di moda, consegnato in sei settimane su un sito già pubblico: immagini da 3 a 6 volte più leggere, risposta del server ridotta di due terzi (≈ 320 → 110 ms) e un team che oggi mantiene il sito senza sviluppatore.",
         stack: "WordPress · PHP · API REST · JavaScript · CSS moderno",
       },
       {
@@ -529,6 +550,7 @@ export const translations = {
           "Pipeline di classificazione Claude Haiku (CI harness FR/DE/IT/EN: 100/94/96/98%) e conformità FADP (residenza CH/EU, cifratura AES-GCM-256, DLP PII svizzero).",
           "Fatturazione Stripe a 4 livelli e audit di sicurezza avversariale auto-condotto (5 agenti LLM, 30+ problemi corretti).",
         ],
+        summary: "Client email con IA multi-fornitore per PMI svizzere, ideato e realizzato da solo, oggi in beta attiva: classificazione Claude Haiku valutata di continuo su quattro lingue (100/94/96/98 %), conformità FADP e fatturazione Stripe a quattro livelli.",
         stack: "FastAPI · Next.js · TypeScript · Supabase · Claude API · Stripe · Cloud Run",
       },
       {
@@ -541,6 +563,7 @@ export const translations = {
           "Algoritmo di generazione di personaggi unici tramite confronto di profili DNA + sistema di rarità dell'abbigliamento.",
           "Voto: 5,5/6.",
         ],
+        summary: "Versione digitale del gioco « Indovina chi? » in C#/Raylib, con generazione di personaggi unici tramite confronto di profili DNA. Voto: 5,5/6.",
         stack: "C# · Raylib",
       },
       {
@@ -551,6 +574,7 @@ export const translations = {
         bullets: [
           "Contributo creativo per un gruppo locale su 3 anni: foto e demo visive per post e annunci.",
         ],
+        summary: "Contributo creativo per un gruppo locale per tre anni: foto e bozze visive per post e annunci.",
         stack: "Krita",
       },
     ],
@@ -992,7 +1016,13 @@ function PrintSectionLabel({ title, sub, mb = "3.5mm" }: { title: string; sub?: 
   );
 }
 
-function PrintExpEntry({ exp }: { exp: { company: string; role?: string; date: string; bullets: string[]; stack?: string } }) {
+/* The PDF carries a summary where the web carries bullets. A recruiter skims
+   the page before deciding to read it, and four bullets of implementation
+   detail per project is more than that first pass wants — the detail is still
+   a click away on the site. `summary` is therefore print-only; the web view
+   keeps rendering `bullets`, and an entry with no summary falls back to them
+   so nothing disappears if one is ever missing. */
+function PrintExpEntry({ exp }: { exp: { company: string; role?: string; date: string; bullets: string[]; summary?: string; stack?: string } }) {
   return (
     <div style={{ breakInside: "avoid", pageBreakInside: "avoid" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
@@ -1000,13 +1030,17 @@ function PrintExpEntry({ exp }: { exp: { company: string; role?: string; date: s
         <p style={{ fontSize: "6pt", color: "#999", margin: "0 0 0 3mm", flexShrink: 0, fontVariantNumeric: "tabular-nums" }}>{exp.date}</p>
       </div>
       {exp.role && <p style={{ fontSize: "6.5pt", color: "#777", margin: "0.3mm 0 1.2mm", fontStyle: "italic" }}>{exp.role}</p>}
-      <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
-        {exp.bullets.map((b, j) => (
-          <li key={j} style={{ fontSize: "7.5pt", color: "#555", lineHeight: 1.45, margin: "0 0 0.8mm", paddingLeft: "2.8mm", position: "relative" }}>
-            <span style={{ position: "absolute", left: 0, color: "#bbb" }}>–</span>{b}
-          </li>
-        ))}
-      </ul>
+      {exp.summary ? (
+        <p style={{ fontSize: "7.5pt", color: "#555", lineHeight: 1.45, margin: 0 }}>{exp.summary}</p>
+      ) : (
+        <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
+          {exp.bullets.map((b, j) => (
+            <li key={j} style={{ fontSize: "7.5pt", color: "#555", lineHeight: 1.45, margin: "0 0 0.8mm", paddingLeft: "2.8mm", position: "relative" }}>
+              <span style={{ position: "absolute", left: 0, color: "#bbb" }}>–</span>{b}
+            </li>
+          ))}
+        </ul>
+      )}
       {exp.stack && <p style={{ fontSize: "6pt", color: "#999", margin: "1mm 0 0" }}>{exp.stack}</p>}
     </div>
   );
@@ -1044,7 +1078,7 @@ type PrintProEntry = {
   section: string;                                   // stable key, e.g. "mandates"
   title: string;                                     // localised section label
   sub?: string;                                      // optional second line under it
-  exp: { company: string; role?: string; date: string; bullets: string[]; stack?: string };
+  exp: { company: string; role?: string; date: string; bullets: string[]; summary?: string; stack?: string };
 };
 
 /* Renders a run of entries, grouping consecutive ones under their section
@@ -1852,14 +1886,10 @@ export default function MainComponentNameCv({
               }}>
                 {t.title}
               </p>
-              <p style={{
-                fontSize: "7pt",
-                color: "#555",
-                margin: "2mm 0 0",
-                letterSpacing: "0.04em",
-              }}>
-                {langBadges.map((b) => `${badgeGlyph(b, flagsSupported)} ${b.label[lang]}`).join("  ·  ")}
-              </p>
+              {/* No language line here: the Langues block in the right-hand
+                  column already states all four with their levels, and saying
+                  it twice on a page this tight earns nothing. The web hero
+                  keeps its badges — there, the levels are far below the fold. */}
             </div>
 
             {/* Contact details — right-aligned column */}
