@@ -26,7 +26,6 @@ export const PROJECT_ORDER = [
   "Magneticlab - XEFI Neuchâtel",
   "Ordine AI",
   "CPNE-TI – TPI",
-  "SourShots",
 ];
 
 export function orderedExperience(lang: PfLang) {

@@ -4,7 +4,6 @@ import profilePic from "../assets/pfplinkedin-removebg-preview.png";
 import r2jcLogo from "../assets/r2jcLogo.png";
 import vrdLogo from "../assets/vrdlogo.png";
 import xefiLogo from "../assets/xefilogo.png";
-import sourShotsLogo from "../assets/sourshotslogo.jpg";
 import cpneLogo from "../assets/cpnelogo.png";
 import OrbMini from "./OrbMini";
 import { TextAnimate } from "../components/ui/text-animate";
@@ -130,17 +129,6 @@ export const translations = {
         ],
         summary: "Version numérisée du jeu « Qui est-ce ? » en C#/Raylib, avec génération de personnages uniques par comparaison de profils ADN. Note : 5,5/6.",
         stack: "C# · Raylib",
-      },
-      {
-        date: "2023 – en cours",
-        company: "SourShots",
-        role: "Création de contenus visuels",
-        url: "https://www.instagram.com/thesourshots",
-        bullets: [
-          "Contribution créative pour un groupe local sur 3 ans : photos et démos visuelles pour posts et annonces.",
-        ],
-        summary: "Contribution créative pour un groupe local sur trois ans : photos et démos visuelles pour posts et annonces.",
-        stack: "Krita",
       },
     ],
     languages: [
@@ -276,17 +264,6 @@ export const translations = {
         summary: "A digital version of “Guess Who?” built in C#/Raylib, generating unique characters by comparing DNA profiles. Graded 5.5/6.",
         stack: "C# · Raylib",
       },
-      {
-        date: "2023 – Present",
-        company: "SourShots",
-        role: "Visual content creation",
-        url: "https://www.instagram.com/thesourshots",
-        bullets: [
-          "Creative contribution to a local band over 3 years: photos and visual demos for posts and announcements.",
-        ],
-        summary: "Creative contribution to a local band over three years: photography and visual mock-ups for posts and announcements.",
-        stack: "Krita",
-      },
     ],
     languages: [
       { name: "French", level: "Native" },
@@ -420,17 +397,6 @@ export const translations = {
         ],
         summary: "Digitale Fassung des Spiels « Wer ist es? » in C#/Raylib, mit Figuren, die über den Vergleich von DNA-Profilen erzeugt werden. Note: 5,5/6.",
         stack: "C# · Raylib",
-      },
-      {
-        date: "2023 – laufend",
-        company: "SourShots",
-        role: "Visuelle Content-Erstellung",
-        url: "https://www.instagram.com/thesourshots",
-        bullets: [
-          "Kreativer Beitrag für eine lokale Band über 3 Jahre: Fotos und visuelle Demos für Posts und Ankündigungen.",
-        ],
-        summary: "Kreative Mitarbeit für eine lokale Band über drei Jahre: Fotos und visuelle Entwürfe für Posts und Ankündigungen.",
-        stack: "Krita",
       },
     ],
     languages: [
@@ -566,17 +532,6 @@ export const translations = {
         summary: "Versione digitale del gioco « Indovina chi? » in C#/Raylib, con generazione di personaggi unici tramite confronto di profili DNA. Voto: 5,5/6.",
         stack: "C# · Raylib",
       },
-      {
-        date: "2023 – in corso",
-        company: "SourShots",
-        role: "Creazione di contenuti visivi",
-        url: "https://www.instagram.com/thesourshots",
-        bullets: [
-          "Contributo creativo per un gruppo locale su 3 anni: foto e demo visive per post e annunci.",
-        ],
-        summary: "Contributo creativo per un gruppo locale per tre anni: foto e bozze visive per post e annunci.",
-        stack: "Krita",
-      },
     ],
     languages: [
       { name: "Francese", level: "Madrelingua" },
@@ -676,18 +631,12 @@ const logoClass = (src?: string) => (src && MONO_LOGOS.has(src) ? " logo-mono" :
 
 const companyLogos: Record<string, string> = {
   "Magneticlab - XEFI Neuchâtel": xefiLogo,
-  "SourShots": sourShotsLogo,
 };
 
 export function getCompanyLogo(company: string): string | undefined {
   if (companyLogos[company]) return companyLogos[company];
   if (company.startsWith("CPNE")) return cpneLogo;
   return undefined;
-}
-
-const roundLogos = new Set(["SourShots"]);
-function isRoundLogo(company: string) {
-  return roundLogos.has(company);
 }
 
 export const ordineAIProject = {
@@ -1239,6 +1188,12 @@ export default function MainComponentNameCv({
     ...t.experience
       .filter(e => e.company === "Ordine AI")
       .map(exp => ({ section: "entrepreneurship", title: t.sections.entrepreneurship, exp })),
+    /* The TPI goes through the paginator too, so it sits on page 1 while there
+       is room for it and falls to page 2 on its own if the mandates above ever
+       grow. Hard-coding it onto page 1 would clip it instead. */
+    ...t.experience
+      .filter(e => e.company.startsWith("CPNE"))
+      .map(exp => ({ section: "projects", title: t.sections.projects, exp })),
   ];
   const [page1Pro, setPage1Pro] = useState(proEntries.length);
   const [fontsReady, setFontsReady] = useState(false);
@@ -1662,8 +1617,7 @@ export default function MainComponentNameCv({
                               style={{
                                 width: 28,
                                 height: 28,
-                                objectFit: isRoundLogo(exp.company) ? "cover" : "contain",
-                                borderRadius: isRoundLogo(exp.company) ? "50%" : undefined,
+                                objectFit: "contain",
                               }}
                             />
                           )}
@@ -2093,22 +2047,14 @@ export default function MainComponentNameCv({
           {/* Two independent short columns; the row fills the page so the footer pins to the bottom */}
           <div style={{ flex: 1, minHeight: 0, display: "flex", gap: "10mm", overflow: "hidden" }}>
 
-            {/* ── Projets personnels ── */}
+            {/* ── Centres d'intérêt ──
+                Projets personnels used to lead this column; the TPI is now
+                paginated onto page 1 with the rest of the experience. */}
             <div style={{ flex: 1, minWidth: 0 }}>
-              <PrintSectionLabel title={t.sections.projects} mb="4mm" />
-              <div style={{ display: "flex", flexDirection: "column", gap: "4.5mm" }}>
-                {t.experience
-                  .filter(e => e.company.startsWith("CPNE") || e.company === "SourShots")
-                  .map((exp, i) => <PrintExpEntry key={i} exp={exp} />)}
-              </div>
-
-              {/* ── Centres d'intérêt ── */}
-              <div style={{ marginTop: "8mm" }}>
-                <PrintSectionLabel title={t.sections.interests} mb="3mm" />
-                <p style={{ fontSize: "6.5pt", color: "#444", lineHeight: 1.65, margin: 0 }}>
-                  {t.interestsLine}
-                </p>
-              </div>
+              <PrintSectionLabel title={t.sections.interests} mb="3mm" />
+              <p style={{ fontSize: "6.5pt", color: "#444", lineHeight: 1.65, margin: 0 }}>
+                {t.interestsLine}
+              </p>
             </div>
 
             {/* ── Formations / Diplômes ── */}
