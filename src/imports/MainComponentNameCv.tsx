@@ -1005,7 +1005,11 @@ function PrintEducation({ items, title }: { items: { institution: string; date: 
       <PrintSectionLabel title={title} />
       <div style={{ display: "flex", flexDirection: "column", gap: "3mm" }}>
         {items.map((edu, i) => (
-          <div key={i} style={{ breakInside: "avoid", pageBreakInside: "avoid" }}>
+          /* One marker per diploma, hung in the left margin so both of the
+             entry's lines stay flush with each other — the same "–" the
+             experience entries are set with, so the page has one bullet. */
+          <div key={i} style={{ breakInside: "avoid", pageBreakInside: "avoid", position: "relative", paddingLeft: "4.2mm" }}>
+            <span aria-hidden style={{ position: "absolute", left: 0, top: 0, fontSize: "8.5pt", fontWeight: 300, color: "#bbb" }}>–</span>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "0.6mm" }}>
               <p style={{ fontSize: "8.5pt", fontWeight: 300, color: "#111", margin: 0 }}>{edu.institution}</p>
               <p style={{ fontSize: "6pt", color: "#999", margin: "0 0 0 3mm", flexShrink: 0, fontVariantNumeric: "tabular-nums" }}>{edu.date}</p>
