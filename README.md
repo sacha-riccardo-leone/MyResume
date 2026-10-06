@@ -39,6 +39,7 @@ a printed CV:
 | `/` | The gate |
 | `/cv` | The resume — this is the link to put in applications |
 | `/work` | "Full experience" (parked; the gate no longer offers it) |
+| anything else | The 404 |
 
 Language is a modifier on the view, so it stays a query parameter: `/cv?lang=en`.
 French is the default and carries no parameter.
@@ -47,7 +48,13 @@ There is no file behind `/cv`, so the host has to serve `index.html` for paths
 it does not recognise — `vercel.json` does that in production, and Vite's dev
 and preview servers do it by default. Vercel checks the filesystem before
 applying the rewrite, which is why the shipped PDFs and build assets still
-resolve. One consequence: an unknown path renders the gate rather than a 404.
+resolve.
+
+An unmatched path therefore reaches the app rather than the host's 404, and is
+answered by `NotFound`. Because the host already replied 200, the page adds a
+`noindex` meta while it is on screen so a crawler does not index a dead URL as
+a real page — a true 404 status would need a server function, which this site
+does not have.
 
 The site used `?cv` and `?work` until October 2026 and those links are already
 out in sent applications, so they are still accepted and rewritten to the path

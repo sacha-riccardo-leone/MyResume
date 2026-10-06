@@ -52,6 +52,8 @@ export const ui: Record<PfLang, {
   emailCta: string;
   alsoLabel: string;
   details: string;
+  notFound: string;
+  notFoundHome: string;
 }> = {
   fr: {
     gateHint: "Deux façons de visiter",
@@ -65,6 +67,8 @@ export const ui: Record<PfLang, {
     emailCta: "Écrire un e-mail",
     alsoLabel: "Également",
     details: "Détails",
+    notFound: "Cette page n’existe pas.",
+    notFoundHome: "Retour à l’accueil",
   },
   en: {
     gateHint: "Two ways to visit",
@@ -78,6 +82,8 @@ export const ui: Record<PfLang, {
     emailCta: "Send an email",
     alsoLabel: "Also",
     details: "Details",
+    notFound: "This page doesn’t exist.",
+    notFoundHome: "Back to home",
   },
   de: {
     gateHint: "Zwei Arten zu besuchen",
@@ -91,6 +97,8 @@ export const ui: Record<PfLang, {
     emailCta: "E-Mail schreiben",
     alsoLabel: "Ausserdem",
     details: "Details",
+    notFound: "Diese Seite existiert nicht.",
+    notFoundHome: "Zurück zur Startseite",
   },
   it: {
     gateHint: "Due modi di visitare",
@@ -104,6 +112,8 @@ export const ui: Record<PfLang, {
     emailCta: "Scrivere un'e-mail",
     alsoLabel: "Inoltre",
     details: "Dettagli",
+    notFound: "Questa pagina non esiste.",
+    notFoundHome: "Torna alla home",
   },
 };
 

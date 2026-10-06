@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import MainComponentNameCv from "../imports/MainComponentNameCv";
 import Gate from "../portfolio/Gate";
+import NotFound from "../portfolio/NotFound";
 import Portfolio from "../portfolio/Portfolio";
 import type { PfLang } from "../portfolio/content";
 import { useTheme } from "../lib/theme";
@@ -8,7 +9,7 @@ import CustomCursor from "../lib/CustomCursor";
 import { withPageTransition } from "../lib/pageTransition";
 import "../styles/portfolio.css";
 
-type View = "gate" | "cv" | "work";
+type View = "gate" | "cv" | "work" | "notfound";
 
 /* Deep links bypass the gate entirely — essential, because a job application
    links one URL and a recruiter must never be asked to make a choice to reach
@@ -19,7 +20,7 @@ type View = "gate" | "cv" | "work";
    printed CV. That needs the host to serve index.html for paths with no file
    behind them: vercel.json does it in production, and Vite's dev and preview
    servers do it by default. */
-const PATH_FOR: Record<Exclude<View, "gate">, string> = { cv: "/cv", work: "/work" };
+const PATH_FOR = { cv: "/cv", work: "/work" } as const;
 
 function readView(): View {
   if (typeof window === "undefined") return "gate";
@@ -31,7 +32,9 @@ function readView(): View {
   const q = new URLSearchParams(window.location.search);
   if (q.has("cv")) return "cv";
   if (q.has("work")) return "work";
-  return "gate";
+  /* Everything else is the 404. The host rewrites every unmatched path to the
+     app, so this is where a mistyped or dead URL arrives. */
+  return path === "" || path === "/index.html" ? "gate" : "notfound";
 }
 
 function readLang(): PfLang {
@@ -54,7 +57,11 @@ export default function App() {
   /* Keep the URL in step with the view so a refresh or a shared link lands in
      the same place, without adding a router dependency. */
   const urlFor = (v: View, l: PfLang) => {
-    const path = v === "gate" ? "/" : PATH_FOR[v];
+    /* The 404 keeps whatever wrong path the visitor arrived on — rewriting it
+       to / would make a refresh show the gate instead of the 404. */
+    const path = v === "cv" || v === "work" ? PATH_FOR[v]
+      : v === "notfound" ? window.location.pathname
+      : "/";
     // Language is a modifier on the view, not a resource of its own, so it
     // stays a query parameter: /cv?lang=en.
     return l === "fr" ? path : `${path}?lang=${l}`;
@@ -81,6 +88,18 @@ export default function App() {
 
   // Screen readers, hyphenation and translation tools read <html lang>.
   useEffect(() => { document.documentElement.lang = lang; }, [lang]);
+
+  /* The host answers every unmatched path with the app, so a dead URL returns
+     200 and a crawler would otherwise index the 404 as a real page. Tell it not
+     to, and take the tag back off when leaving the view. */
+  useEffect(() => {
+    if (view !== "notfound") return;
+    const meta = document.createElement("meta");
+    meta.name = "robots";
+    meta.content = "noindex";
+    document.head.appendChild(meta);
+    return () => { meta.remove(); };
+  }, [view]);
 
   /* An old ?cv / ?work link already opened the right view above; quietly swap
      the address bar for the path form so what the visitor copies, bookmarks or
@@ -112,6 +131,11 @@ export default function App() {
       {view === "gate" && (
         <Gate lang={lang} setLang={changeLang} onChoose={v => go(v)} intro={!moved}
               theme={theme} toggleTheme={toggleTheme} />
+      )}
+
+      {view === "notfound" && (
+        <NotFound lang={lang} setLang={changeLang} onHome={() => go("gate")}
+                  theme={theme} toggleTheme={toggleTheme} />
       )}
 
       {view === "work" && (

@@ -16,7 +16,11 @@ export const SHARED = {
 } as const satisfies Record<string, React.CSSProperties>;
 
 type VTDocument = Document & {
-  startViewTransition?: (cb: () => void) => { finished: Promise<void> };
+  startViewTransition?: (cb: () => void) => {
+    ready: Promise<void>;
+    finished: Promise<void>;
+    updateCallbackDone: Promise<void>;
+  };
 };
 
 export function withPageTransition(update: () => void) {
@@ -31,5 +35,11 @@ export function withPageTransition(update: () => void) {
   // the theme reveal (which drives its own animation).
   root.dataset.pageVt = "active";
   const vt = doc.startViewTransition(() => { flushSync(update); });
+  /* Starting a transition while one is still running aborts it, and every one
+     of these promises then rejects. Each needs its own handler or the abort
+     surfaces as an uncaught rejection in the console — which it did, when the
+     theme was switched and a view changed before the reveal had finished. */
+  vt.ready.catch(() => {});
+  vt.updateCallbackDone.catch(() => {});
   vt.finished.finally(() => { delete root.dataset.pageVt; }).catch(() => {});
 }
