@@ -1,5 +1,5 @@
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
-import { Linkedin, Github, Printer, MapPin, Mail, Phone, ChevronDown, ExternalLink, Globe, Info } from "lucide-react";
+import { Linkedin, Github, Download, MapPin, Mail, Phone, ChevronDown, ExternalLink, Globe, Info } from "lucide-react";
 import profilePic from "../assets/pfplinkedin-removebg-preview.png";
 import r2jcLogo from "../assets/r2jcLogo.png";
 import vrdLogo from "../assets/vrdlogo.png";
@@ -751,6 +751,15 @@ export function badgeGlyph(b: { flag: string; fallback?: string }, flagsOk: bool
 export const permitLabel: Record<Lang, string> = { fr: "Permis C", en: "Permit C", de: "Ausweis C", it: "Permesso C" };
 export const deliveredBadge: Record<Lang, string> = { fr: "Livré", en: "Delivered", de: "Geliefert", it: "Consegnato" };
 export const inProgressBadge: Record<Lang, string> = { fr: "En cours", en: "In progress", de: "Laufend", it: "In corso" };
+
+/* The CV downloads as a file that ships with the site, not as something the
+   visitor's browser renders: window.print() hands the job to the device, and
+   iOS Safari re-lays-out the print DOM into a broken PDF. Every recruiter now
+   gets the identical, verified document whatever they are reading on.
+
+   These files are built by `npm run pdf` (scripts/export-pdf.mjs) — re-run it
+   after changing CV content or the print layout, or the download goes stale. */
+export const cvPdfHref = (lang: Lang) => `/CV-Sacha-Riccardo-Leone-${lang.toUpperCase()}.pdf`;
 /* The professional mandates, in display order (most recent first). Single source
    of truth: the web Mandats section, the PDF, and the "everything else is a
    personal project" filter all derive from this, so adding a mandate here can't
@@ -1292,14 +1301,15 @@ export default function MainComponentNameCv({
               className="h-7 w-7 text-white/60 hover:text-white" />
             <LangSwitcher />
             <div className="w-px h-4 bg-white/15" />
-            <button
-              onClick={() => window.print()}
+            <a
+              href={cvPdfHref(lang)}
+              download
               className="glass-card glass-card--sm flex items-center gap-1.5 text-[10px] uppercase px-2.5 py-1.5 rounded-lg text-white/60 hover:text-white cursor-pointer"
               onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
             >
-              <Printer className="h-3 w-3" />
+              <Download className="h-3 w-3" />
               PDF
-            </button>
+            </a>
           </div>
         </nav>
 
@@ -1370,14 +1380,15 @@ export default function MainComponentNameCv({
                     className="mt-8 flex flex-wrap justify-center sm:justify-start gap-3"
                     style={fadeIn(400)}
                   >
-                    <button
-                      onClick={() => window.print()}
+                    <a
+                      href={cvPdfHref(lang)}
+                      download
                       className="glass-card glass-card--primary flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-light text-white cursor-pointer"
                       onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
                     >
-                      <Printer className="h-3.5 w-3.5" />
+                      <Download className="h-3.5 w-3.5" />
                       {t.downloadPdf}
-                    </button>
+                    </a>
                     <a
                       href={`https://${t.contact.linkedin}`}
                       target="_blank"
