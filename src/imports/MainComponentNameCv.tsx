@@ -1283,7 +1283,7 @@ export default function MainComponentNameCv({
       <div className="print-hidden text-white font-[family-name:var(--font-site)]">
 
         {/* ── Sticky nav ── */}
-        <nav className="sticky top-0 z-50 flex justify-between items-center px-6 sm:px-10 py-4">
+        <nav className="site-header sticky top-0 z-50 flex justify-between items-center px-6 sm:px-10 py-4">
           <span className="text-[11px] font-mono text-white/20 tracking-widest">sachaleone.dev</span>
           <div className="flex items-center gap-3">
             <ThemeToggle theme={theme} toggle={toggleTheme}
@@ -2010,6 +2010,17 @@ export default function MainComponentNameCv({
                   {t.softSkills.join(" · ")}
                 </p>
               </div>
+
+              {/* ── Section: Centres d'intérêt ──
+                  Sits with the soft skills rather than on page 2: both say
+                  something about the person rather than the work, and the
+                  sidebar has the room. */}
+              <div>
+                <PrintSectionLabel title={t.sections.interests} />
+                <p style={{ fontSize: "6.5pt", color: "#444", lineHeight: 1.65, margin: 0 }}>
+                  {t.interestsLine}
+                </p>
+              </div>
               {/* Références lives at the end of page 2: keeps this sidebar inside
                   page 1 on Letter as well as A4, with real headroom. */}
 
@@ -2047,17 +2058,10 @@ export default function MainComponentNameCv({
           {/* Two independent short columns; the row fills the page so the footer pins to the bottom */}
           <div style={{ flex: 1, minHeight: 0, display: "flex", gap: "10mm", overflow: "hidden" }}>
 
-            {/* ── Centres d'intérêt ──
-                Projets personnels used to lead this column; the TPI is now
-                paginated onto page 1 with the rest of the experience. */}
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <PrintSectionLabel title={t.sections.interests} mb="3mm" />
-              <p style={{ fontSize: "6.5pt", color: "#444", lineHeight: 1.65, margin: 0 }}>
-                {t.interestsLine}
-              </p>
-            </div>
-
-            {/* ── Formations / Diplômes ── */}
+            {/* ── Formations / Diplômes ──
+                This column used to be shared with Projets personnels and then
+                Centres d'intérêt; the TPI is now paginated onto page 1 and the
+                interests sit in the page-1 sidebar, so education leads here. */}
             <div style={{ flex: 1, minWidth: 0 }}>
               <PrintSectionLabel title={t.sections.education} mb="4mm" />
               <div style={{ display: "flex", flexDirection: "column", gap: "5.5mm" }}>

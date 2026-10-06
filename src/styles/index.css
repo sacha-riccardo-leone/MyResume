@@ -22,6 +22,11 @@
     --color-white: #fff;
     --color-black: #000;
     --glass-tint: 255, 255, 255;
+    /* The page ground as an rgb triple, so the header veil can tint itself
+       with it at partial opacity. Kept as a triple rather than going through
+       color-mix(): Lightning CSS mangles color-mix() when it contains a
+       var(), which has already cost us one silent regression here. */
+    --header-tint: 10, 10, 11;
     --skill-1: #22d3ee;
     --skill-2: #34d399;
     --skill-3: #60a5fa;
@@ -34,6 +39,7 @@
     --color-white: #16161a;     /* "white" becomes ink */
     --color-black: #f4f4f2;     /* …and "black" becomes paper, for the nav bar */
     --glass-tint: 0, 0, 0;
+    --header-tint: 244, 244, 242;
     --cursor-fill: #f4f4f2;
     --cursor-stroke: #121214;
     /* Accents are tuned to glow on near-black; on paper the same values wash
@@ -81,6 +87,37 @@
   ::-webkit-scrollbar-thumb:hover { background-color: rgba(var(--glass-tint), 0.34); }
   ::-webkit-scrollbar-thumb:active { background-color: rgba(var(--glass-tint), 0.46); }
   ::-webkit-scrollbar-corner { background: transparent; }
+}
+
+/* ─── Site header ─────────────────────────────────────────────────────────
+   The nav holds still while the page travels under it. Rather than a solid
+   bar, content dissolves as it passes behind: a blurred veil tinted with the
+   page ground, so the controls stay legible over whatever is underneath.
+
+   The veil lives on a pseudo-element that overshoots the nav's own box at the
+   bottom, and is masked to fade out — that overshoot is what gives the fade
+   somewhere to happen, so the effect ends in nothing rather than on a line.
+   A hard-edged frosted bar is the obvious version of this and reads as a
+   component; this reads as the page going quiet at the top.
+
+   backdrop-filter only shows where something is actually behind it, so at
+   scroll 0 this costs nothing visually and needs no scroll listener. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -1.75rem 0;
+  z-index: -1;
+  pointer-events: none;
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--header-tint), 0.80) 0%,
+    rgba(var(--header-tint), 0.55) 58%,
+    rgba(var(--header-tint), 0) 100%
+  );
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 100%);
 }
 
 /* ─── Liquid Glass ─── */
