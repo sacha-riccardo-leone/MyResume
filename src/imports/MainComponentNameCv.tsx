@@ -36,6 +36,9 @@ export const translations = {
       contact: "Contact",
       about: "À propos",
       experience: "Expérience",
+      /* Print-only: the heading an ATS matches against its own dictionary of
+         section names. "Mandats professionnels" is not in those dictionaries. */
+      experiencePro: "Expérience professionnelle",
       mandates: "Mandats professionnels",
       entrepreneurship: "Projets & entrepreneuriat",
       projects: "Projets personnels",
@@ -60,7 +63,7 @@ export const translations = {
     },
     experience: [
       {
-        date: "Août 2026 — en cours",
+        date: "Août 2026 – en cours",
         company: "VRD - Ingénieurs conseils",
         role: "Développeur web — site vitrine",
         url: "https://vrd-ingenieurs.vercel.app/",
@@ -85,7 +88,7 @@ export const translations = {
         stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
       },
       {
-        date: "Juin – Août 2026",
+        date: "Juin 2026 – Août 2026",
         company: "R2JC",
         role: "Développeur web — mandat client",
         url: "https://r2jc.ch",
@@ -100,7 +103,7 @@ export const translations = {
         stack: "WordPress · PHP · API REST · JavaScript · CSS moderne",
       },
       {
-        date: "2025 — en cours",
+        date: "2025 – en cours",
         company: "Ordine AI",
         role: "Fondateur & développeur",
         url: "https://www.ordine-ai.ch/",
@@ -124,7 +127,7 @@ export const translations = {
         stack: "C# · Raylib",
       },
       {
-        date: "2023 – présent",
+        date: "2023 – en cours",
         company: "SourShots",
         role: "Création de contenus visuels",
         url: "https://www.instagram.com/thesourshots",
@@ -174,6 +177,7 @@ export const translations = {
       contact: "Contact",
       about: "About",
       experience: "Experience",
+      experiencePro: "Professional experience",
       mandates: "Professional Mandates",
       entrepreneurship: "Projects & Entrepreneurship",
       projects: "Personal Projects",
@@ -198,7 +202,7 @@ export const translations = {
     },
     experience: [
       {
-        date: "August 2026 — ongoing",
+        date: "August 2026 – Present",
         company: "VRD - Ingénieurs conseils",
         role: "Web developer — company website",
         url: "https://vrd-ingenieurs.vercel.app/",
@@ -223,7 +227,7 @@ export const translations = {
         stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
       },
       {
-        date: "June – August 2026",
+        date: "June 2026 – August 2026",
         company: "R2JC",
         role: "Web developer — client mandate",
         url: "https://r2jc.ch",
@@ -238,7 +242,7 @@ export const translations = {
         stack: "WordPress · PHP · REST API · JavaScript · modern CSS",
       },
       {
-        date: "2025 — in progress",
+        date: "2025 – Present",
         company: "Ordine AI",
         role: "Founder & developer",
         url: "https://www.ordine-ai.ch/",
@@ -262,7 +266,7 @@ export const translations = {
         stack: "C# · Raylib",
       },
       {
-        date: "2023 – present",
+        date: "2023 – Present",
         company: "SourShots",
         role: "Visual content creation",
         url: "https://www.instagram.com/thesourshots",
@@ -312,6 +316,7 @@ export const translations = {
       contact: "Kontakt",
       about: "Über mich",
       experience: "Erfahrung",
+      experiencePro: "Berufserfahrung",
       mandates: "Berufliche Mandate",
       entrepreneurship: "Projekte & Unternehmertum",
       projects: "Persönliche Projekte",
@@ -336,7 +341,7 @@ export const translations = {
     },
     experience: [
       {
-        date: "August 2026 — laufend",
+        date: "August 2026 – laufend",
         company: "VRD - Ingénieurs conseils",
         role: "Webentwickler — Unternehmenswebsite",
         url: "https://vrd-ingenieurs.vercel.app/",
@@ -361,7 +366,7 @@ export const translations = {
         stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
       },
       {
-        date: "Juni – August 2026",
+        date: "Juni 2026 – August 2026",
         company: "R2JC",
         role: "Webentwickler — Kundenmandat",
         url: "https://r2jc.ch",
@@ -376,7 +381,7 @@ export const translations = {
         stack: "WordPress · PHP · REST-API · JavaScript · modernes CSS",
       },
       {
-        date: "2025 — laufend",
+        date: "2025 – laufend",
         company: "Ordine AI",
         role: "Gründer & Entwickler",
         url: "https://www.ordine-ai.ch/",
@@ -400,7 +405,7 @@ export const translations = {
         stack: "C# · Raylib",
       },
       {
-        date: "2023 – heute",
+        date: "2023 – laufend",
         company: "SourShots",
         role: "Visuelle Content-Erstellung",
         url: "https://www.instagram.com/thesourshots",
@@ -450,6 +455,7 @@ export const translations = {
       contact: "Contatto",
       about: "Chi sono",
       experience: "Esperienza",
+      experiencePro: "Esperienza professionale",
       mandates: "Mandati professionali",
       entrepreneurship: "Progetti & imprenditoria",
       projects: "Progetti personali",
@@ -474,7 +480,7 @@ export const translations = {
     },
     experience: [
       {
-        date: "Agosto 2026 — in corso",
+        date: "Agosto 2026 – in corso",
         company: "VRD - Ingénieurs conseils",
         role: "Sviluppatore web — sito vetrina",
         url: "https://vrd-ingenieurs.vercel.app/",
@@ -499,7 +505,7 @@ export const translations = {
         stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
       },
       {
-        date: "Giugno – Agosto 2026",
+        date: "Giugno 2026 – Agosto 2026",
         company: "R2JC",
         role: "Sviluppatore web — mandato cliente",
         url: "https://r2jc.ch",
@@ -514,7 +520,7 @@ export const translations = {
         stack: "WordPress · PHP · API REST · JavaScript · CSS moderno",
       },
       {
-        date: "2025 — in corso",
+        date: "2025 – in corso",
         company: "Ordine AI",
         role: "Fondatore & sviluppatore",
         url: "https://www.ordine-ai.ch/",
@@ -538,7 +544,7 @@ export const translations = {
         stack: "C# · Raylib",
       },
       {
-        date: "2023 – presente",
+        date: "2023 – in corso",
         company: "SourShots",
         role: "Creazione di contenuti visivi",
         url: "https://www.instagram.com/thesourshots",
@@ -953,11 +959,26 @@ function MandateCard({
 /* Print helpers — section label, bulleted experience,    */
 /* per-page footer                                        */
 /* ────────────────────────────────────────────────────── */
-function PrintSectionLabel({ title, mb = "3.5mm" }: { title: string; mb?: string }) {
+/* Tracking is capped at 0.08em on every uppercase print label. Above roughly
+   0.13em the inter-glyph gap exceeds the font's space advance, and PDF text
+   extractors then insert a space between every letter — "MANDATS" comes out of
+   the file as "M A N D A T S". ATS parsers segment a CV by matching its section
+   headings, so a tracked-out heading is an unlabelled section to them: the
+   entries under it may never be registered as jobs. Keep this value low. */
+const PRINT_LABEL_TRACKING = "0.08em";
+
+function PrintSectionLabel({ title, sub, mb = "3.5mm" }: { title: string; sub?: string; mb?: string }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "3mm", marginBottom: mb }}>
-      <p style={{ fontSize: "5.5pt", fontWeight: 300, letterSpacing: "0.18em", textTransform: "uppercase", color: "#999", margin: 0, flexShrink: 0, whiteSpace: "nowrap" }}>{title}</p>
-      <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
+    <div style={{ marginBottom: mb }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "3mm" }}>
+        <p style={{ fontSize: "5.5pt", fontWeight: 300, letterSpacing: PRINT_LABEL_TRACKING, textTransform: "uppercase", color: "#999", margin: 0, flexShrink: 0, whiteSpace: "nowrap" }}>{title}</p>
+        <div style={{ flex: 1, height: "0.5px", background: "#ddd" }} />
+      </div>
+      {/* The heading above carries the name a parser looks for; this keeps our
+          own framing of the section underneath it. */}
+      {sub && (
+        <p style={{ fontSize: "5pt", fontWeight: 300, letterSpacing: PRINT_LABEL_TRACKING, textTransform: "uppercase", color: "#b0b0b0", margin: "1.4mm 0 0" }}>{sub}</p>
+      )}
     </div>
   );
 }
@@ -1013,6 +1034,7 @@ function PrintFooter({ cta, site, page, total }: { cta: string; site: string; pa
 type PrintProEntry = {
   section: string;                                   // stable key, e.g. "mandates"
   title: string;                                     // localised section label
+  sub?: string;                                      // optional second line under it
   exp: { company: string; role?: string; date: string; bullets: string[]; stack?: string };
 };
 
@@ -1020,17 +1042,20 @@ type PrintProEntry = {
    label. `continued` lists sections that already started on the previous
    page, so their label here gets the "(suite)" marker. */
 function PrintProGroups({ entries, continued, lang }: { entries: PrintProEntry[]; continued: Set<string>; lang: Lang }) {
-  const groups: { section: string; title: string; items: PrintProEntry[] }[] = [];
+  const groups: { section: string; title: string; sub?: string; items: PrintProEntry[] }[] = [];
   for (const e of entries) {
     const last = groups[groups.length - 1];
     if (last && last.section === e.section) last.items.push(e);
-    else groups.push({ section: e.section, title: e.title, items: [e] });
+    else groups.push({ section: e.section, title: e.title, sub: e.sub, items: [e] });
   }
   return (
     <>
       {groups.map(g => (
         <div key={g.section}>
-          <PrintSectionLabel title={continued.has(g.section) ? `${g.title} ${printContinued[lang]}` : g.title} />
+          <PrintSectionLabel
+            title={continued.has(g.section) ? `${g.title} ${printContinued[lang]}` : g.title}
+            sub={g.sub}
+          />
           <div style={{ display: "flex", flexDirection: "column", gap: "4.5mm" }}>
             {g.items.map((e, i) => <PrintExpEntry key={i} exp={e.exp} />)}
           </div>
@@ -1164,7 +1189,10 @@ export default function MainComponentNameCv({
     ...t.experience
       .filter(e => MANDATE_COMPANIES.includes(e.company))
       .sort((a, b) => MANDATE_COMPANIES.indexOf(a.company) - MANDATE_COMPANIES.indexOf(b.company))
-      .map(exp => ({ section: "mandates", title: t.sections.mandates, exp })),
+      /* The PDF leads this group with the canonical header an ATS looks for and
+         keeps "Mandats professionnels" as the sub-line; the web view keeps its
+         own wording. */
+      .map(exp => ({ section: "mandates", title: t.sections.experiencePro, sub: t.sections.mandates, exp })),
     ...t.experience
       .filter(e => e.company === "Ordine AI")
       .map(exp => ({ section: "entrepreneurship", title: t.sections.entrepreneurship, exp })),
@@ -1875,7 +1903,7 @@ export default function MainComponentNameCv({
             <p style={{
               fontSize: "5.5pt",
               fontWeight: 300,
-              letterSpacing: "0.18em",
+              letterSpacing: PRINT_LABEL_TRACKING,
               textTransform: "uppercase",
               color: "#999",
               margin: "0 0 1.8mm",
@@ -1944,7 +1972,7 @@ export default function MainComponentNameCv({
                       <p style={{
                         fontSize: "5pt",
                         fontWeight: 300,
-                        letterSpacing: "0.14em",
+                        letterSpacing: PRINT_LABEL_TRACKING,
                         textTransform: "uppercase",
                         color: group.color,
                         margin: "0 0 2mm 0",

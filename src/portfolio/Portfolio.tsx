@@ -302,7 +302,10 @@ function ProjectBlock({
 }) {
   const m = media[exp.company] ?? {};
   const flipped = index % 2 === 1;
-  const ongoing = /en cours|ongoing|laufend|in corso/i.test(exp.date);
+  /* Each language settled on one ongoing token ("en cours" / "Present" /
+     "laufend" / "in corso"); the older wordings stay matched so a date that
+     still says "présent" or "heute" keeps its badge. */
+  const ongoing = /en cours|ongoing|in progress|present|pr[ée]sent|laufend|heute|in corso|presente/i.test(exp.date);
 
   return (
     <article className={`grid gap-8 lg:gap-14 items-start ${
