@@ -95,7 +95,7 @@ export default function Portfolio({
         {rest.length > 0 && (
           <div className="mt-28 sm:mt-40">
             <div className="flex items-baseline gap-4 mb-12">
-              <h3 className="text-[10px] font-mono uppercase tracking-[0.3em] text-[var(--pf-mute)]">{t.alsoLabel}</h3>
+              <h3 className="text-[10px] font-mono font-medium uppercase tracking-[0.3em] text-[var(--pf-mute)]">{t.alsoLabel}</h3>
               <hr className="pf-rule flex-1" />
             </div>
             {/* Two independent columns rather than a grid. In a grid these share
@@ -207,7 +207,7 @@ export default function Portfolio({
       {/* ── Closing: contact details from the CV, then the ways to reach out ── */}
       <section className="px-5 sm:px-10 lg:px-16 pb-20">
         <div className="flex items-baseline gap-4 mb-14">
-          <h2 className="text-[10px] font-mono uppercase tracking-[0.3em] text-[var(--pf-mute)]">{cv.sections.contact}</h2>
+          <h2 className="text-[10px] font-mono font-medium uppercase tracking-[0.3em] text-[var(--pf-mute)]">{cv.sections.contact}</h2>
           <hr className="pf-rule flex-1" />
         </div>
 
@@ -272,7 +272,7 @@ export default function Portfolio({
 function SectionHead({ title, count }: { title: string; count?: number }) {
   return (
     <div className="flex items-baseline gap-4 mb-14">
-      <h2 className="text-[10px] font-mono uppercase tracking-[0.3em] text-[var(--pf-mute)]">{title}</h2>
+      <h2 className="text-[10px] font-mono font-medium uppercase tracking-[0.3em] text-[var(--pf-mute)]">{title}</h2>
       <hr className="pf-rule flex-1" />
       {count !== undefined && (
         <span className="pf-num text-[10px] font-mono text-[var(--pf-mute)]">{String(count).padStart(2, "0")}</span>

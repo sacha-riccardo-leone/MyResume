@@ -53,7 +53,7 @@ export const translations = {
       phone: "+41 78 400 01 68",
       linkedin: "linkedin.com/in/sacha-leone",
       github: "@sacha-riccardo-leone",
-      website: "resume-sacha-leone.vercel.app",
+      website: "sachaleone.dev",
       dob: "31.01.2006",
       nationality: "Italien — Permis C (CH)",
       mobility: "Mobilité nationale",
@@ -191,7 +191,7 @@ export const translations = {
       phone: "+41 78 400 01 68",
       linkedin: "linkedin.com/in/sacha-leone",
       github: "@sacha-riccardo-leone",
-      website: "resume-sacha-leone.vercel.app",
+      website: "sachaleone.dev",
       dob: "31.01.2006",
       nationality: "Italian — Permit C (CH)",
       mobility: "Nationwide mobility",
@@ -329,7 +329,7 @@ export const translations = {
       phone: "+41 78 400 01 68",
       linkedin: "linkedin.com/in/sacha-leone",
       github: "@sacha-riccardo-leone",
-      website: "resume-sacha-leone.vercel.app",
+      website: "sachaleone.dev",
       dob: "31.01.2006",
       nationality: "Italienisch — Ausweis C (CH)",
       mobility: "Schweizweite Mobilität",
@@ -467,7 +467,7 @@ export const translations = {
       phone: "+41 78 400 01 68",
       linkedin: "linkedin.com/in/sacha-leone",
       github: "@sacha-riccardo-leone",
-      website: "resume-sacha-leone.vercel.app",
+      website: "sachaleone.dev",
       dob: "31.01.2006",
       nationality: "Italiano — Permesso C (CH)",
       mobility: "Mobilità nazionale",
@@ -1107,7 +1107,7 @@ function SectionHead({ title, num }: { title: string; num: string }) {
   return (
     <div className="mb-6">
       <p className="text-[10px] font-mono text-white/25 mb-1 tracking-widest">/ {num}</p>
-      <h2 className="text-2xl font-light">{title}</h2>
+      <h2 className="text-2xl font-normal">{title}</h2>
       <div className="w-10 h-[1.5px] bg-white/25 mt-3" />
     </div>
   );
@@ -1258,7 +1258,7 @@ export default function MainComponentNameCv({
 
         {/* ── Sticky nav ── */}
         <nav className="sticky top-0 z-50 flex justify-between items-center px-6 sm:px-10 py-4">
-          <span className="text-[11px] font-mono text-white/20 tracking-widest">srl.dev</span>
+          <span className="text-[11px] font-mono text-white/20 tracking-widest">sachaleone.dev</span>
           <div className="flex items-center gap-3">
             <ThemeToggle theme={theme} toggle={toggleTheme}
               className="h-7 w-7 text-white/60 hover:text-white" />
