@@ -22,7 +22,11 @@ import fs from "node:fs/promises";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = path.join(ROOT, "public");
 const LANGS = ["fr", "en", "de", "it"];
-const EXPECTED_PAGES = 2;
+/* The CV is meant to be one sheet. If the paginator ever has to open a second
+   page the content still survives — it spills rather than being clipped — but
+   this export fails, so the regression cannot ship unnoticed. Raise it only
+   with a deliberate decision that the CV is now two pages. */
+const EXPECTED_PAGES = 1;
 
 /** Public path of the shipped PDF for a language. Mirrored in the app by
  *  cvPdfHref() — keep the two in step. */

@@ -995,10 +995,37 @@ function PrintExpEntry({ exp }: { exp: { company: string; role?: string; date: s
   );
 }
 
+/* Formations, as a block, so page 1 can carry it without the markup existing
+   twice. It sits under the experience rather than in its own column: the CFC
+   is the qualification the mandates above are evidence for, so it reads in
+   sequence with them. */
+function PrintEducation({ items, title }: { items: { institution: string; date: string; description: string }[]; title: string }) {
+  return (
+    <div>
+      <PrintSectionLabel title={title} />
+      <div style={{ display: "flex", flexDirection: "column", gap: "3mm" }}>
+        {items.map((edu, i) => (
+          <div key={i} style={{ breakInside: "avoid", pageBreakInside: "avoid" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "0.6mm" }}>
+              <p style={{ fontSize: "8.5pt", fontWeight: 300, color: "#111", margin: 0 }}>{edu.institution}</p>
+              <p style={{ fontSize: "6pt", color: "#999", margin: "0 0 0 3mm", flexShrink: 0, fontVariantNumeric: "tabular-nums" }}>{edu.date}</p>
+            </div>
+            <p style={{ fontSize: "7pt", color: "#555", lineHeight: 1.5, margin: 0 }}>{edu.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* Pinned to the bottom of each explicit print page (the page is a flex
    column whose body has flex:1, so this always lands on the page's last
-   line): name · online-version nudge · page counter. */
-function PrintFooter({ cta, site, page, total }: { cta: string; site: string; page: number; total: number }) {
+   line): name · online-version nudge · references.
+
+   The page counter only appears once there is more than one page to count —
+   "1 / 1" is noise, and on a CV that fits on a single sheet the space is
+   better spent saying references are available. */
+function PrintFooter({ cta, site, note, page, total }: { cta: string; site: string; note?: string; page: number; total: number }) {
   return (
     <div style={{
       flexShrink: 0,
@@ -1016,7 +1043,10 @@ function PrintFooter({ cta, site, page, total }: { cta: string; site: string; pa
         <Globe style={{ width: "2.6mm", height: "2.6mm", opacity: 0.7 }} />
         {cta} — {site}
       </span>
-      <span style={{ textAlign: "right", fontVariantNumeric: "tabular-nums" }}>{page} / {total}</span>
+      <span style={{ textAlign: "right", fontVariantNumeric: "tabular-nums" }}>
+        {note && <span style={{ fontStyle: "italic", color: "#aaa" }}>{note}</span>}
+        {total > 1 && <>{note ? " · " : ""}{page} / {total}</>}
+      </span>
     </div>
   );
 }
@@ -1048,7 +1078,7 @@ function PrintProGroups({ entries, continued, lang }: { entries: PrintProEntry[]
             title={continued.has(g.section) ? `${g.title} ${printContinued[lang]}` : g.title}
             sub={g.sub}
           />
-          <div style={{ display: "flex", flexDirection: "column", gap: "4.5mm" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "3.5mm" }}>
             {g.items.map((e, i) => <PrintExpEntry key={i} exp={e.exp} />)}
           </div>
         </div>
@@ -1188,12 +1218,9 @@ export default function MainComponentNameCv({
     ...t.experience
       .filter(e => e.company === "Ordine AI")
       .map(exp => ({ section: "entrepreneurship", title: t.sections.entrepreneurship, exp })),
-    /* The TPI goes through the paginator too, so it sits on page 1 while there
-       is room for it and falls to page 2 on its own if the mandates above ever
-       grow. Hard-coding it onto page 1 would clip it instead. */
-    ...t.experience
-      .filter(e => e.company.startsWith("CPNE"))
-      .map(exp => ({ section: "projects", title: t.sections.projects, exp })),
+    /* No personal projects in the PDF: the TPI is school work and the diploma
+       it belongs to is already listed under Formations, so the page says it
+       twice for the space of a whole entry. The web keeps it, with its repo. */
   ];
   const [page1Pro, setPage1Pro] = useState(proEntries.length);
   const [fontsReady, setFontsReady] = useState(false);
@@ -1206,19 +1233,34 @@ export default function MainComponentNameCv({
     return () => { alive = false; };
   }, []);
 
-  // New language / content → start over with everything on page 1.
-  useLayoutEffect(() => { setPage1Pro(proEntries.length); }, [lang, proEntries.length]);
+  /* Everything that changes how the column wraps — the language, the number of
+     entries, and the webfonts arriving — forms the basis the current count was
+     measured against. When the basis changes we start over with everything on
+     page 1 and measure again on the next commit.
 
-  // Measure the left column; demote its last entry while it overflows.
+     Restarting matters because this loop only ever removes entries. The first
+     paint happens in the fallback face, which sets wider than Satoshi; the
+     overflow it reports is real for that face but not for the one that ships,
+     and without the restart that first spurious demotion was permanent — an
+     entry sat on page 2 with 37 mm free underneath it. */
+  const measureBasis = `${lang}|${proEntries.length}|${fontsReady}`;
+  const measuredAgainst = useRef(measureBasis);
+
   useLayoutEffect(() => {
+    if (measuredAgainst.current !== measureBasis) {
+      measuredAgainst.current = measureBasis;
+      setPage1Pro(proEntries.length);
+      return;                       // measure on the next commit, not this one
+    }
     const col = page1LeftRef.current;
     if (!col) return;
     if (col.scrollHeight > col.clientHeight + 1 && page1Pro > 0) setPage1Pro(n => n - 1);
-  }, [page1Pro, lang, fontsReady]);
+  }, [measureBasis, page1Pro, proEntries.length]);
 
   const page1Entries = proEntries.slice(0, page1Pro);
   const page2Entries = proEntries.slice(page1Pro);
   const sectionsOnPage1 = new Set(page1Entries.map(e => e.section));
+  const totalPrintPages = page2Entries.length > 0 ? 2 : 1;
 
   const toggleExp = (i: number) =>
     setOpenExp(prev => {
@@ -1940,9 +1982,10 @@ export default function MainComponentNameCv({
               paddingRight: "8mm",
               display: "flex",
               flexDirection: "column",
-              gap: "8mm",
+              gap: "5mm",
             }}>
               <PrintProGroups entries={page1Entries} continued={new Set()} lang={lang} />
+              <PrintEducation items={t.education} title={t.sections.education} />
             </div>
 
             {/* SIDEBAR — skills · languages · soft skills · references (page 1 only) */}
@@ -2027,10 +2070,15 @@ export default function MainComponentNameCv({
             </div>
           </div>
 
-          <PrintFooter cta={t.printCta} site={t.contact.website} page={1} total={2} />
+          <PrintFooter cta={t.printCta} site={t.contact.website} note={t.referencesLine} page={1} total={totalPrintPages} />
         </div>
 
         {/* ════════════ PAGE 2 — [projets personnels | formations] ════════════ */}
+        {/* Page 2 exists only when the experience outgrows page 1. The CV is
+            meant to be a single sheet, but the paginator spilling onto a second
+            one is still better than clipping an entry — and `npm run pdf` fails
+            when that happens, so it cannot go unnoticed. */}
+        {page2Entries.length > 0 && (
         <div className="print-page">
 
           {/* Running header — a detached page 2 stays identifiable */}
@@ -2047,54 +2095,16 @@ export default function MainComponentNameCv({
             <span style={{ fontSize: "6pt", color: "#999", letterSpacing: "0.12em", textTransform: "uppercase" }}>{t.title}</span>
           </div>
 
-          {/* Professional entries that didn't fit page 1 continue here first, in reading
-              order, under their own labels (marked "(suite)" when a section was split). */}
-          {page2Entries.length > 0 && (
-            <div style={{ display: "flex", flexDirection: "column", gap: "8mm", marginBottom: "8mm", flexShrink: 0 }}>
-              <PrintProGroups entries={page2Entries} continued={sectionsOnPage1} lang={lang} />
-            </div>
-          )}
-
-          {/* Two independent short columns; the row fills the page so the footer pins to the bottom */}
-          <div style={{ flex: 1, minHeight: 0, display: "flex", gap: "10mm", overflow: "hidden" }}>
-
-            {/* ── Formations / Diplômes ──
-                This column used to be shared with Projets personnels and then
-                Centres d'intérêt; the TPI is now paginated onto page 1 and the
-                interests sit in the page-1 sidebar, so education leads here. */}
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <PrintSectionLabel title={t.sections.education} mb="4mm" />
-              <div style={{ display: "flex", flexDirection: "column", gap: "5.5mm" }}>
-                {t.education.map((edu, i) => (
-                  <div key={i} style={{ breakInside: "avoid", pageBreakInside: "avoid" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "1mm" }}>
-                      <p style={{ fontSize: "8.5pt", fontWeight: 300, color: "#111", margin: 0 }}>
-                        {edu.institution}
-                      </p>
-                      <p style={{ fontSize: "6pt", color: "#999", margin: "0 0 0 3mm", flexShrink: 0, fontVariantNumeric: "tabular-nums" }}>
-                        {edu.date}
-                      </p>
-                    </div>
-                    <p style={{ fontSize: "7pt", color: "#555", lineHeight: 1.5, margin: 0 }}>
-                      {edu.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              {/* ── Références — the CV's conventional last line ── */}
-              <div style={{ marginTop: "8mm" }}>
-                <PrintSectionLabel title={t.sections.references} mb="3mm" />
-                <p style={{ fontSize: "6.5pt", color: "#777", margin: 0, fontStyle: "italic" }}>
-                  {t.referencesLine}
-                </p>
-              </div>
-            </div>
-
+          {/* Whatever the experience could not fit on page 1, in reading order,
+              under its own labels (marked "(suite)" when a section was split).
+              Nothing else lives here: every fixed section is on page 1. */}
+          <div style={{ flex: 1, minHeight: 0, display: "flex", flexDirection: "column", gap: "8mm", overflow: "hidden" }}>
+            <PrintProGroups entries={page2Entries} continued={sectionsOnPage1} lang={lang} />
           </div>
 
-          <PrintFooter cta={t.printCta} site={t.contact.website} page={2} total={2} />
+          <PrintFooter cta={t.printCta} site={t.contact.website} note={t.referencesLine} page={2} total={totalPrintPages} />
         </div>
+        )}
       </div>
     </>
   );

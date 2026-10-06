@@ -76,8 +76,13 @@ npm run pdf
 ```
 
 It builds the site, serves the production bundle, prints all four languages
-through Chrome, and fails loudly if the paginator stops producing exactly two
-pages. Commit the regenerated PDFs along with your change.
+through Chrome, and **fails if the CV no longer fits on a single page**.
+Commit the regenerated PDFs along with your change.
+
+That check is the one guarding the one-page CV. If the experience outgrows the
+page the paginator opens a second one rather than clipping an entry, so nothing
+is ever lost — but the export fails, so it cannot ship unnoticed. Either cut
+something or raise `EXPECTED_PAGES` deliberately.
 
 Keep the uppercase labels in the print layout at or below
 `PRINT_LABEL_TRACKING` (0.08em). Above roughly 0.13em the letter-spacing
