@@ -975,7 +975,11 @@ function PrintExpEntry({ exp }: { exp: { company: string; role?: string; date: s
   return (
     <div style={{ breakInside: "avoid", pageBreakInside: "avoid" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-        <p style={{ fontSize: "8.5pt", fontWeight: 300, color: "#111", margin: 0 }}>{exp.company}</p>
+        {/* 400, not more: the site carries Satoshi 300 and 400 only, so any
+            heavier value here silently renders as 400 anyway. Against the 300
+            everything else is set in, this is what makes the names the thing
+            the eye lands on first. */}
+        <p style={{ fontSize: "8.5pt", fontWeight: 400, color: "#000", margin: 0 }}>{exp.company}</p>
         <p style={{ fontSize: "6pt", color: "#999", margin: "0 0 0 3mm", flexShrink: 0, fontVariantNumeric: "tabular-nums" }}>{exp.date}</p>
       </div>
       {exp.role && <p style={{ fontSize: "6.5pt", color: "#777", margin: "0.3mm 0 1.2mm", fontStyle: "italic" }}>{exp.role}</p>}
