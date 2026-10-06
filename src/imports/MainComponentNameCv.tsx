@@ -977,15 +977,24 @@ function PrintSectionLabel({ title, sub, mb = "3.5mm" }: { title: string; sub?: 
    a click away on the site. `summary` is therefore print-only; the web view
    keeps rendering `bullets`, and an entry with no summary falls back to them
    so nothing disappears if one is ever missing. */
-function PrintExpEntry({ exp }: { exp: { company: string; role?: string; date: string; bullets: string[]; summary?: string; stack?: string } }) {
+function PrintExpEntry({ exp }: { exp: { company: string; role?: string; date: string; url?: string; bullets: string[]; summary?: string; stack?: string } }) {
   return (
     <div style={{ breakInside: "avoid", pageBreakInside: "avoid" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
         {/* 400, not more: the site carries Satoshi 300 and 400 only, so any
             heavier value here silently renders as 400 anyway. Against the 300
             everything else is set in, this is what makes the names the thing
-            the eye lands on first. */}
-        <p style={{ fontSize: "8.5pt", fontWeight: 400, color: "#000", margin: 0 }}>{exp.company}</p>
+            the eye lands on first.
+
+            The name is also the link to the thing itself where there is one,
+            so a reader on screen reaches the live site from the entry rather
+            than having to go via the portfolio. Nothing about it looks
+            different — the underline is dropped and the colour inherited. */}
+        <p style={{ fontSize: "8.5pt", fontWeight: 400, color: "#000", margin: 0 }}>
+          {exp.url
+            ? <a href={exp.url} style={{ color: "inherit", textDecoration: "none" }}>{exp.company}</a>
+            : exp.company}
+        </p>
         <p style={{ fontSize: "6pt", color: "#999", margin: "0 0 0 3mm", flexShrink: 0, fontVariantNumeric: "tabular-nums" }}>{exp.date}</p>
       </div>
       {exp.role && <p style={{ fontSize: "6.5pt", color: "#777", margin: "0.3mm 0 1.2mm", fontStyle: "italic" }}>{exp.role}</p>}
@@ -1004,6 +1013,21 @@ function PrintExpEntry({ exp }: { exp: { company: string; role?: string; date: s
     </div>
   );
 }
+
+/* One contact row in the PDF header. Shared by the anchors and the one plain
+   span so a link is indistinguishable from text on the page — the colour and
+   the missing underline are inherited, the clickability is not visible. */
+const PRINT_ROW: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end",
+  gap: "2mm",
+  color: "inherit",
+  textDecoration: "none",
+};
+
+/* tel: wants digits and a leading +, not the spaces we print for legibility. */
+const telHref = (phone: string) => `tel:${phone.replace(/[^+\d]/g, "")}`;
 
 /* Formations, as a block, so page 1 can carry it without the markup existing
    twice. It sits under the experience rather than in its own column: the CFC
@@ -1053,10 +1077,13 @@ function PrintFooter({ cta, site, note, page, total }: { cta: string; site: stri
       color: "#999",
     }}>
       <span style={{ color: "#bbb" }}>{FULL_NAME}</span>
-      <span style={{ display: "flex", alignItems: "center", gap: "2mm" }}>
-        <Globe style={{ width: "2.6mm", height: "2.6mm", opacity: 0.7 }} />
-        {cta} — {site}
-      </span>
+      {/* The one line whose job is to send the reader to the site, so it is not
+          the faintest thing on the page: the invitation stays grey, the address
+          is set in ink and is a real link. */}
+      <a href={`https://${site}`} style={{ display: "flex", alignItems: "center", gap: "2mm", color: "#777", textDecoration: "none" }}>
+        <Globe style={{ width: "2.6mm", height: "2.6mm", opacity: 0.85 }} />
+        {cta} — <span style={{ color: "#111", fontWeight: 400 }}>{site}</span>
+      </a>
       <span style={{ textAlign: "right", fontVariantNumeric: "tabular-nums" }}>
         {note && <span style={{ fontStyle: "italic", color: "#aaa" }}>{note}</span>}
         {total > 1 && <>{note ? " · " : ""}{page} / {total}</>}
@@ -1071,7 +1098,7 @@ type PrintProEntry = {
   section: string;                                   // stable key, e.g. "mandates"
   title: string;                                     // localised section label
   sub?: string;                                      // optional second line under it
-  exp: { company: string; role?: string; date: string; bullets: string[]; summary?: string; stack?: string };
+  exp: { company: string; role?: string; date: string; url?: string; bullets: string[]; summary?: string; stack?: string };
 };
 
 /* Renders a run of entries, grouping consecutive ones under their section
@@ -1917,30 +1944,38 @@ export default function MainComponentNameCv({
               <span style={{ justifyContent: "flex-end", fontWeight: 300, color: "#2a2a2a" }}>
                 {t.contact.dob} · {t.contact.nationality}
               </span>
-              <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
+              {/* Real anchors, not spans. Chrome only writes a PDF link
+                  annotation for an actual <a href>, and a CV is read on screen
+                  far more often than on paper — before this nothing in the
+                  document was clickable, the address of the site included.
+                  printLink inherits colour and drops the underline, so the page
+                  looks exactly as it did. */}
+              <a href={`mailto:${t.contact.email}`} style={PRINT_ROW}>
                 <Mail style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
                 {t.contact.email}
-              </span>
-              <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
+              </a>
+              <a href={telHref(t.contact.phone)} style={PRINT_ROW}>
                 <Phone style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
                 {t.contact.phone}
-              </span>
-              <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
+              </a>
+              <span style={PRINT_ROW}>
                 <MapPin style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
                 {t.contact.location} · {t.contact.mobility}
               </span>
-              <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
+              <a href={`https://${t.contact.linkedin}`} style={PRINT_ROW}>
                 <Linkedin style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
                 {t.contact.linkedin}
-              </span>
-              <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
+              </a>
+              <a href={`https://github.com/${t.contact.github.replace(/^@/, "")}`} style={PRINT_ROW}>
                 <Github style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
                 {t.contact.github}
-              </span>
-              <span style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "2mm" }}>
-                <Globe style={{ width: "2.8mm", height: "2.8mm", opacity: 0.5 }} />
+              </a>
+              {/* The site is the one destination this document exists to send
+                  people to, so it is the only row set in ink rather than grey. */}
+              <a href={`https://${t.contact.website}`} style={{ ...PRINT_ROW, color: "#111", fontWeight: 400 }}>
+                <Globe style={{ width: "2.8mm", height: "2.8mm", opacity: 0.8 }} />
                 {t.contact.website}
-              </span>
+              </a>
             </div>
           </div>
 
