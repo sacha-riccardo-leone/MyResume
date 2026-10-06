@@ -7,6 +7,31 @@
    families. */
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401&display=swap');
 
+/* The same typeface as a variable face, under its own name, for the one place
+   that animates weight: the 404's kinetic lettering. It is deliberately NOT
+   the site default.
+
+   Chrome cannot embed a variable font in a PDF as a TrueType subset — it
+   falls back to Type3, where every glyph becomes a drawing procedure. Making
+   this the site font turned the CV from three Type0 subsets at 175 kB into
+   one Type3 blob at 376 kB. The text still extracted here, but Type3 is a
+   known weak spot for the simpler parsers an ATS is built on, and the PDF is
+   the artifact that has to survive those. So the variable axis stays off the
+   printed page.
+
+   Nothing but the 404 names this family, so the file is fetched only when
+   that page renders. Its fallback is the static Satoshi above — same
+   typeface, so the swap is invisible. */
+@font-face {
+  font-family: 'Satoshi Variable';
+  src: url('/fonts/Satoshi-Variable.woff2') format('woff2');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --font-site: 'Satoshi', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Continuous 300-900. Only for animating weight — see the note above. */
+  --font-variable: 'Satoshi Variable', var(--font-site);
 }

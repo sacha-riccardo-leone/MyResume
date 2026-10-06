@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { KineticText } from "../components/ui/kinetic-text";
 import { InteractiveHoverButton } from "../components/ui/interactive-hover-button";
 import { ui, type PfLang } from "./content";
@@ -10,10 +9,11 @@ import type { Theme } from "../lib/theme";
    a dead end. Colours come from the .pf tokens, which are already themed, so
    this follows light and dark without a second definition.
 
-   The site loads Satoshi 300 and 400 only. The kinetic hover runs 300 -> 900,
-   which would barely show on two weights, so this page asks for the heavier
-   ones when it mounts — a request no ordinary visitor ever pays for. */
-const HEAVY_WEIGHTS = "https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap";
+   The kinetic hover runs 300 -> 900, which only reads as motion on a
+   continuous weight axis — against fixed cuts the browser snaps to the
+   nearest one and the letter jumps in a handful of steps. So this is the one
+   place that asks for --font-variable; the rest of the site, and the PDF,
+   stay on the static cuts (see styles/fonts.css for why that matters). */
 
 export default function NotFound({
   lang,
@@ -29,14 +29,6 @@ export default function NotFound({
   toggleTheme: () => void;
 }) {
   const t = ui[lang];
-
-  useEffect(() => {
-    if (document.querySelector(`link[href="${HEAVY_WEIGHTS}"]`)) return;
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = HEAVY_WEIGHTS;
-    document.head.appendChild(link);
-  }, []);
 
   return (
     <div className="pf min-h-screen flex flex-col">
@@ -68,6 +60,7 @@ export default function NotFound({
             readable "404" in a visually-hidden span. */}
         <KineticText
           text="404"
+          style={{ fontFamily: "var(--font-variable)" }}
           className="justify-center text-[clamp(5rem,22vw,13rem)] leading-none tracking-[-0.04em] text-[var(--pf-ink)] select-none"
         />
 

@@ -11,7 +11,7 @@ Online resume available in four languages (FR / EN / DE / IT), with a print-read
 | Build tool | [Vite](https://vite.dev) |
 | Styling | [Tailwind CSS](https://tailwindcss.com) v4 |
 | Icons | [Lucide React](https://lucide.dev) |
-| Font | [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) |
+| Font | [Satoshi](https://www.fontshare.com/fonts/satoshi) — static 300/400 site-wide, plus a self-hosted variable face used only by the 404 |
 | Hosting | [Vercel](https://vercel.com) — auto-deploys from `main` |
 
 ## Getting started
