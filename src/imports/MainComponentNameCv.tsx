@@ -1,6 +1,9 @@
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { Linkedin, Github, Download, MapPin, Mail, Phone, ChevronDown, ExternalLink, Globe, Info, Check } from "lucide-react";
-import profilePic from "../assets/pfplinkedin-removebg-preview.png";
+/* Square already, at the crop object-fit: cover would show anyway, so the web
+   and the PDF both get the framing without shipping pixels that are always
+   cut. The PDF embeds it, so its weight is the document's weight. */
+import profilePic from "../assets/profile.jpg";
 import r2jcLogo from "../assets/r2jcLogo.png";
 import vrdLogo from "../assets/vrdlogo.png";
 import xefiLogo from "../assets/xefilogo.png";
