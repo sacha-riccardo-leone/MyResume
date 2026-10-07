@@ -26,6 +26,7 @@ export const translations = {
     title: "Développeur d'applications",
     downloadPdf: "Télécharger le CV",
     linkCopied: "Lien copié",
+    emailLabel: "E-mail",
     intro:
       "Développeur d'applications autonome, je transforme des besoins réels en logiciels livrés en production, du frontend à l'infrastructure. J'ai déjà mis mes compétences en pratique sur des mandats clients et mes propres projets, et je recherche en continu de nouveaux défis pour progresser. Initiative, persévérance, curiosité et maîtrise des outils actuels — l'IA en particulier — sont au cœur de ma façon de travailler.",
     availability:
@@ -77,17 +78,19 @@ export const translations = {
         stack: "Next.js 16 · React 19 · TypeScript · CSS Modules · Vercel",
       },
       {
-        date: "Mai 2026",
+        date: "4–22 mai 2026",
         company: "Magneticlab - XEFI Neuchâtel",
-        role: "Développeur — mandat freelance",
+        role: "Développeur — stage",
         url: "https://www.xefi.ch/fr/agence/xefi-neuchatel/",
         bullets: [
-          "Addon Odoo 19 Enterprise (pixieset_sync) + extension Chrome/Firefox pour un studio photo suisse.",
-          "Synchronisation automatique Pixieset → Odoo (contacts, projets, sessions), cron quotidien, secrets masqués.",
-          "Réalisé seul, 4 batches livrés en 18 jours, déployé sur Odoo.sh — cliente satisfaite.",
+          "Première étape d'un module Odoo 19 de synchronisation avec Pixieset Studio, pour une photographe indépendante cliente, afin d'automatiser sa comptabilité.",
+          "Analyse de l'API non documentée de Pixieset et conception de l'architecture du module : extension navigateur retenue plutôt qu'un traitement serveur.",
+          "Import des clients vers les contacts Odoo (dédoublonnage, multi-sociétés), puis des factures, remises, paiements et commandes de la boutique vers la comptabilité, avec rapprochement des paiements.",
+          "Extension Chrome déclenchée au démarrage du navigateur : détection des changements de format de l'API, gestion des erreurs et des alertes d'authentification, suite de tests automatisés.",
+          "Documentation : guide utilisateur, mise en route comptable (Stripe, banque), procédure d'installation et audit en vue d'une réutilisation multi-clients. En production depuis juillet 2026.",
         ],
-        summary: "Addon Odoo 19 Enterprise et extension navigateur pour un studio photo suisse, synchronisant automatiquement Pixieset vers Odoo. Réalisé seul, livré en 18 jours et déployé en production.",
-        stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
+        summary: "Première étape d'un module Odoo 19 reliant Pixieset Studio à la comptabilité d'une photographe indépendante, via une extension Chrome. En production depuis juillet 2026.",
+        stack: "Odoo 19 · Python 3.12 · pydantic v2 · pytest · Manifest V3",
       },
       {
         date: "Juin 2026 – Août 2026",
@@ -166,6 +169,7 @@ export const translations = {
     title: "Application Developer",
     downloadPdf: "Download PDF",
     linkCopied: "Link copied",
+    emailLabel: "Email",
     intro:
       "An autonomous application developer, I turn real needs into software delivered to production, from frontend to infrastructure. I've already put my skills to work on client mandates and my own projects, and I'm continually looking for new challenges to grow. Initiative, persistence, curiosity and command of today's tools — AI in particular — are at the core of how I work.",
     availability:
@@ -215,17 +219,19 @@ export const translations = {
         stack: "Next.js 16 · React 19 · TypeScript · CSS Modules · Vercel",
       },
       {
-        date: "May 2026",
+        date: "4–22 May 2026",
         company: "Magneticlab - XEFI Neuchâtel",
-        role: "Developer — freelance mandate",
+        role: "Developer — internship",
         url: "https://www.xefi.ch/fr/agence/xefi-neuchatel/",
         bullets: [
-          "Odoo 19 Enterprise addon (pixieset_sync) + Chrome/Firefox extension for a Swiss photography studio.",
-          "Automated Pixieset → Odoo sync (contacts, projects, sessions), daily cron, masked secrets.",
-          "Delivered solo, 4 batches in 18 days, live on Odoo.sh — client satisfied.",
+          "First phase of an Odoo 19 module syncing with Pixieset Studio for an independent photographer client, to automate her accounting.",
+          "Analysis of Pixieset's undocumented API and the module's architecture: a browser extension chosen over server-side processing.",
+          "Clients imported into Odoo contacts (deduplication, multi-company), then invoices, discounts, payments and store orders into the accounts, with payment reconciliation.",
+          "Chrome extension triggered at browser startup: API format-change detection, error and authentication-alert handling, automated test suite.",
+          "Documentation: user guide, accounting setup (Stripe, bank), installation procedure and an audit for multi-client reuse. In production since July 2026.",
         ],
-        summary: "Odoo 19 Enterprise addon and browser extension for a Swiss photo studio, syncing Pixieset into Odoo automatically. Built alone, delivered in 18 days and deployed to production.",
-        stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
+        summary: "First phase of an Odoo 19 module linking Pixieset Studio to an independent photographer's accounting, through a Chrome extension. In production since July 2026.",
+        stack: "Odoo 19 · Python 3.12 · pydantic v2 · pytest · Manifest V3",
       },
       {
         date: "June 2026 – August 2026",
@@ -302,6 +308,7 @@ export const translations = {
     title: "Applikationsentwickler",
     downloadPdf: "PDF herunterladen",
     linkCopied: "Link kopiert",
+    emailLabel: "E-Mail",
     intro:
       "Als eigenständiger Applikationsentwickler verwandle ich echte Bedürfnisse in Software, die in Produktion geht — vom Frontend bis zur Infrastruktur. Meine Fähigkeiten habe ich bereits in Kundenmandaten und eigenen Projekten eingesetzt und suche fortlaufend neue Herausforderungen, um mich weiterzuentwickeln. Initiative, Ausdauer, Neugier und der sichere Umgang mit aktuellen Tools — insbesondere KI — prägen meine Arbeitsweise.",
     availability:
@@ -351,17 +358,19 @@ export const translations = {
         stack: "Next.js 16 · React 19 · TypeScript · CSS Modules · Vercel",
       },
       {
-        date: "Mai 2026",
+        date: "4.–22. Mai 2026",
         company: "Magneticlab - XEFI Neuchâtel",
-        role: "Entwickler — Freelance-Mandat",
+        role: "Entwickler — Praktikum",
         url: "https://www.xefi.ch/fr/agence/xefi-neuchatel/",
         bullets: [
-          "Odoo-19-Enterprise-Addon (pixieset_sync) + Chrome/Firefox-Erweiterung für ein Schweizer Fotostudio.",
-          "Automatische Pixieset → Odoo-Synchronisation (Kontakte, Projekte, Sessions), Tages-Cron, maskierte Secrets.",
-          "Alleine realisiert, 4 Batches in 18 Tagen geliefert, live auf Odoo.sh — Kundin zufrieden.",
+          "Erste Etappe eines Odoo-19-Moduls zur Synchronisation mit Pixieset Studio für eine selbstständige Fotografin, um ihre Buchhaltung zu automatisieren.",
+          "Analyse der undokumentierten Pixieset-API und Entwurf der Modularchitektur: Browser-Erweiterung statt serverseitiger Verarbeitung.",
+          "Import der Kundschaft in die Odoo-Kontakte (Dublettenbereinigung, Mandantenfähigkeit), danach der Rechnungen, Rabatte, Zahlungen und Shop-Bestellungen in die Buchhaltung, mit Zahlungsabgleich.",
+          "Chrome-Erweiterung mit automatischem Start beim Öffnen des Browsers: Erkennung von API-Formatänderungen, Fehler- und Authentifizierungsbehandlung, automatisierte Testsuite.",
+          "Dokumentation: Benutzerhandbuch, buchhalterische Inbetriebnahme (Stripe, Bank), Installationsanleitung und Audit für die Mehrfachnutzung. Seit Juli 2026 in Produktion.",
         ],
-        summary: "Odoo-19-Enterprise-Addon und Browser-Erweiterung für ein Schweizer Fotostudio, mit automatischer Synchronisation von Pixieset nach Odoo. Allein umgesetzt, in 18 Tagen geliefert und produktiv gesetzt.",
-        stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
+        summary: "Erste Etappe eines Odoo-19-Moduls, das Pixieset Studio über eine Chrome-Erweiterung an die Buchhaltung einer selbstständigen Fotografin anbindet. Seit Juli 2026 in Produktion.",
+        stack: "Odoo 19 · Python 3.12 · pydantic v2 · pytest · Manifest V3",
       },
       {
         date: "Juni 2026 – August 2026",
@@ -438,6 +447,7 @@ export const translations = {
     title: "Sviluppatore di applicazioni",
     downloadPdf: "Scarica il CV",
     linkCopied: "Link copiato",
+    emailLabel: "Email",
     intro:
       "Sviluppatore di applicazioni autonomo, trasformo bisogni reali in software portato in produzione, dal frontend all'infrastruttura. Ho già messo in pratica le mie competenze su mandati per clienti e progetti personali, e cerco di continuo nuove sfide per crescere. Iniziativa, perseveranza, curiosità e padronanza degli strumenti attuali — l'IA in particolare — sono al centro del mio modo di lavorare.",
     availability:
@@ -487,17 +497,19 @@ export const translations = {
         stack: "Next.js 16 · React 19 · TypeScript · CSS Modules · Vercel",
       },
       {
-        date: "Maggio 2026",
+        date: "4–22 maggio 2026",
         company: "Magneticlab - XEFI Neuchâtel",
-        role: "Sviluppatore — mandato freelance",
+        role: "Sviluppatore — tirocinio",
         url: "https://www.xefi.ch/fr/agence/xefi-neuchatel/",
         bullets: [
-          "Addon Odoo 19 Enterprise (pixieset_sync) + estensione Chrome/Firefox per uno studio fotografico svizzero.",
-          "Sincronizzazione automatica Pixieset → Odoo (contatti, progetti, sessioni), cron giornaliero, segreti mascherati.",
-          "Realizzato in autonomia, 4 batch consegnati in 18 giorni, live su Odoo.sh — cliente soddisfatta.",
+          "Prima tappa di un modulo Odoo 19 di sincronizzazione con Pixieset Studio per una fotografa indipendente, per automatizzare la sua contabilità.",
+          "Analisi dell'API non documentata di Pixieset e progettazione dell'architettura: estensione browser anziché elaborazione lato server.",
+          "Import dei clienti nei contatti Odoo (deduplicazione, multi-società), poi di fatture, sconti, pagamenti e ordini del negozio nella contabilità, con riconciliazione dei pagamenti.",
+          "Estensione Chrome avviata all'apertura del browser: rilevamento dei cambi di formato dell'API, gestione degli errori e degli avvisi di autenticazione, suite di test automatizzati.",
+          "Documentazione: guida utente, avvio contabile (Stripe, banca), procedura d'installazione e audit per il riutilizzo multi-cliente. In produzione da luglio 2026.",
         ],
-        summary: "Addon Odoo 19 Enterprise ed estensione browser per uno studio fotografico svizzero, con sincronizzazione automatica da Pixieset a Odoo. Realizzato da solo, consegnato in 18 giorni e messo in produzione.",
-        stack: "Python 3.12 · pydantic v2 · pytest · Manifest V3",
+        summary: "Prima tappa di un modulo Odoo 19 che collega Pixieset Studio alla contabilità di una fotografa indipendente tramite un'estensione Chrome. In produzione da luglio 2026.",
+        stack: "Odoo 19 · Python 3.12 · pydantic v2 · pytest · Manifest V3",
       },
       {
         date: "Giugno 2026 – Agosto 2026",
@@ -1506,17 +1518,18 @@ export default function MainComponentNameCv({
                       <Github className="h-3.5 w-3.5" />
                       GitHub
                     </a>
-                    {/* The address in full rather than "E-mail": a recruiter
-                        reading on a phone can copy it without opening a mail
-                        client, and it is the one thing on the page they most
-                        likely want to take away. */}
+                    {/* Short label so the four buttons stay on one line; the
+                        address itself is on hover, in the accessible name, and
+                        in full in the Contact section at the foot of the page. */}
                     <a
                       href={`mailto:${t.contact.email}`}
+                      title={t.contact.email}
+                      aria-label={`${t.emailLabel} — ${t.contact.email}`}
                       className="glass-card flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm text-white/60 hover:text-white/90"
                       onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
                     >
                       <Mail className="h-3.5 w-3.5" />
-                      {t.contact.email}
+                      {t.emailLabel}
                     </a>
                   </div>
                 </div>
