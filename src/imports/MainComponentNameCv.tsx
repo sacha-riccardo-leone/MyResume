@@ -1,5 +1,5 @@
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
-import { Linkedin, Github, Download, MapPin, Mail, Phone, ChevronDown, ExternalLink, Globe, Info } from "lucide-react";
+import { Linkedin, Github, Download, MapPin, Mail, Phone, ChevronDown, ExternalLink, Globe, Info, Check } from "lucide-react";
 import profilePic from "../assets/pfplinkedin-removebg-preview.png";
 import r2jcLogo from "../assets/r2jcLogo.png";
 import vrdLogo from "../assets/vrdlogo.png";
@@ -25,6 +25,7 @@ export const translations = {
   fr: {
     title: "Développeur d'applications",
     downloadPdf: "Télécharger le CV",
+    linkCopied: "Lien copié",
     intro:
       "Développeur d'applications autonome, je transforme des besoins réels en logiciels livrés en production, du frontend à l'infrastructure. J'ai déjà mis mes compétences en pratique sur des mandats clients et mes propres projets, et je recherche en continu de nouveaux défis pour progresser. Initiative, persévérance, curiosité et maîtrise des outils actuels — l'IA en particulier — sont au cœur de ma façon de travailler.",
     availability:
@@ -164,6 +165,7 @@ export const translations = {
   en: {
     title: "Application Developer",
     downloadPdf: "Download PDF",
+    linkCopied: "Link copied",
     intro:
       "An autonomous application developer, I turn real needs into software delivered to production, from frontend to infrastructure. I've already put my skills to work on client mandates and my own projects, and I'm continually looking for new challenges to grow. Initiative, persistence, curiosity and command of today's tools — AI in particular — are at the core of how I work.",
     availability:
@@ -299,6 +301,7 @@ export const translations = {
   de: {
     title: "Applikationsentwickler",
     downloadPdf: "PDF herunterladen",
+    linkCopied: "Link kopiert",
     intro:
       "Als eigenständiger Applikationsentwickler verwandle ich echte Bedürfnisse in Software, die in Produktion geht — vom Frontend bis zur Infrastruktur. Meine Fähigkeiten habe ich bereits in Kundenmandaten und eigenen Projekten eingesetzt und suche fortlaufend neue Herausforderungen, um mich weiterzuentwickeln. Initiative, Ausdauer, Neugier und der sichere Umgang mit aktuellen Tools — insbesondere KI — prägen meine Arbeitsweise.",
     availability:
@@ -434,6 +437,7 @@ export const translations = {
   it: {
     title: "Sviluppatore di applicazioni",
     downloadPdf: "Scarica il CV",
+    linkCopied: "Link copiato",
     intro:
       "Sviluppatore di applicazioni autonomo, trasformo bisogni reali in software portato in produzione, dal frontend all'infrastruttura. Ho già messo in pratica le mie competenze su mandati per clienti e progetti personali, e cerco di continuo nuove sfide per crescere. Iniziativa, perseveranza, curiosità e padronanza degli strumenti attuali — l'IA in particolare — sono al centro del mio modo di lavorare.",
     availability:
@@ -1303,6 +1307,27 @@ export default function MainComponentNameCv({
   const sectionsOnPage1 = new Set(page1Entries.map(e => e.section));
   const totalPrintPages = page2Entries.length > 0 ? 2 : 1;
 
+  /* The site row in Contact used to link to the page the reader is already on,
+     which did nothing at all. It copies the direct link to this CV instead —
+     what someone actually wants from it is to pass it on. The canonical
+     address, not window.location, so a link copied while the dev server is
+     running is still the one that works. */
+  const CV_LINK = `https://${t.contact.website}/cv`;
+  const [copiedLink, setCopiedLink] = useState(false);
+  const copyTimer = useRef<number | null>(null);
+  useEffect(() => () => { if (copyTimer.current) window.clearTimeout(copyTimer.current); }, []);
+
+  const copyCvLink = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // No clipboard (an insecure context, say): leave the href to navigate.
+    if (!navigator.clipboard) return;
+    e.preventDefault();
+    navigator.clipboard.writeText(CV_LINK).then(() => {
+      setCopiedLink(true);
+      if (copyTimer.current) window.clearTimeout(copyTimer.current);
+      copyTimer.current = window.setTimeout(() => setCopiedLink(false), 2200);
+    }).catch(() => { window.location.href = CV_LINK; });
+  };
+
   const toggleExp = (i: number) =>
     setOpenExp(prev => {
       const next = new Set(prev);
@@ -1481,6 +1506,18 @@ export default function MainComponentNameCv({
                       <Github className="h-3.5 w-3.5" />
                       GitHub
                     </a>
+                    {/* The address in full rather than "E-mail": a recruiter
+                        reading on a phone can copy it without opening a mail
+                        client, and it is the one thing on the page they most
+                        likely want to take away. */}
+                    <a
+                      href={`mailto:${t.contact.email}`}
+                      className="glass-card flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm text-white/60 hover:text-white/90"
+                      onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
+                    >
+                      <Mail className="h-3.5 w-3.5" />
+                      {t.contact.email}
+                    </a>
                   </div>
                 </div>
               </div>
@@ -1496,47 +1533,10 @@ export default function MainComponentNameCv({
         {/* ── Content sections ── */}
         <div className="w-full max-w-5xl mx-auto px-6 sm:px-10 pb-24 space-y-14">
 
-          {/* 01 — Contact */}
-          <ScrollReveal>
-            <SectionHead title={t.sections.contact} num="01" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              {(
-                [
-                  { Icon: MapPin, label: t.contact.location, href: undefined },
-                  { Icon: Mail, label: t.contact.email, href: `mailto:${t.contact.email}` },
-                  { Icon: Phone, label: t.contact.phone, href: `tel:${t.contact.phone}` },
-                  { Icon: Linkedin, label: t.contact.linkedin, href: `https://${t.contact.linkedin}` },
-                  { Icon: Github, label: t.contact.github, href: `https://github.com/${t.contact.github.replace("@", "")}` },
-                  { Icon: Globe, label: t.contact.website, href: `https://${t.contact.website}` },
-                ] as const
-              ).map(({ Icon, label, href }, i) => {
-                const cls =
-                  "glass-card flex items-center gap-3 px-4 py-3 rounded-2xl text-sm text-white/70 hover:text-white/90 group";
-                const inner = (
-                  <>
-                    <Icon className="h-3.5 w-3.5 shrink-0 text-white/25 group-hover:text-white/55 transition-colors" />
-                    <span className="truncate">{label}</span>
-                  </>
-                );
-                return href ? (
-                  <a key={i} href={href} target="_blank" rel="noopener noreferrer" className={cls}
-                    onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}>
-                    {inner}
-                  </a>
-                ) : (
-                  <div key={i} className={cls}
-                    onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}>
-                    {inner}
-                  </div>
-                );
-              })}
-            </div>
-          </ScrollReveal>
-
-          {/* 02 — Expérience (Mandats · Entrepreneuriat · Projets personnels) */}
+          {/* 01 — Expérience (Mandats · Entrepreneuriat · Projets personnels) */}
           <div>
             <ScrollReveal>
-              <SectionHead title={t.sections.experience} num="02" />
+              <SectionHead title={t.sections.experience} num="01" />
             </ScrollReveal>
             <div className="space-y-10">
               {/* Mandats professionnels */}
@@ -1742,15 +1742,15 @@ export default function MainComponentNameCv({
             </div>
           </div>
 
-          {/* 03 — Compétences techniques */}
+          {/* 02 — Compétences techniques */}
           <ScrollReveal>
-            <SectionHead title={t.sections.skills} num="03" />
+            <SectionHead title={t.sections.skills} num="02" />
             <SkillSection groups={skillGroups} lang={lang} />
           </ScrollReveal>
 
-          {/* 04 — Compétences personnelles */}
+          {/* 03 — Compétences personnelles */}
           <ScrollReveal>
-            <SectionHead title={t.sections.personalSkills} num="04" />
+            <SectionHead title={t.sections.personalSkills} num="03" />
             <div className="flex flex-wrap gap-2.5">
               {t.softSkills.map((s, i) => (
                 <span key={i} className="text-[15px] px-4 py-2 rounded-full bg-white/[0.06] border border-white/[0.12] text-white/80">
@@ -1760,9 +1760,9 @@ export default function MainComponentNameCv({
             </div>
           </ScrollReveal>
 
-          {/* 05 — Langues */}
+          {/* 04 — Langues */}
           <ScrollReveal>
-            <SectionHead title={t.sections.languages} num="05" />
+            <SectionHead title={t.sections.languages} num="04" />
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {t.languages.map((language, i) => (
                 <div
@@ -1777,10 +1777,10 @@ export default function MainComponentNameCv({
             </div>
           </ScrollReveal>
 
-          {/* 06 — Education */}
+          {/* 05 — Education */}
           <div>
             <ScrollReveal>
-              <SectionHead title={t.sections.education} num="06" />
+              <SectionHead title={t.sections.education} num="05" />
             </ScrollReveal>
             <div className="border-l border-white/10 pl-6 space-y-7">
               {t.education.map((edu, i) => (
@@ -1843,15 +1843,65 @@ export default function MainComponentNameCv({
             </ScrollReveal>
           </div>
 
-          {/* 07 — Centres d'intérêt */}
+          {/* 06 — Centres d'intérêt */}
           <ScrollReveal>
-            <SectionHead title={t.sections.interests} num="07" />
+            <SectionHead title={t.sections.interests} num="06" />
             <div className="flex flex-wrap gap-2.5">
               {t.interestsLine.split(" · ").map((item, i) => (
                 <span key={i} className="text-[15px] px-4 py-2 rounded-full bg-white/[0.06] border border-white/[0.12] text-white/80">
                   {item}
                 </span>
               ))}
+            </div>
+          </ScrollReveal>
+
+          {/* 07 — Contact */}
+          <ScrollReveal>
+            <SectionHead title={t.sections.contact} num="07" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              {(
+                [
+                  { Icon: MapPin, label: t.contact.location, href: undefined },
+                  { Icon: Mail, label: t.contact.email, href: `mailto:${t.contact.email}` },
+                  { Icon: Phone, label: t.contact.phone, href: `tel:${t.contact.phone}` },
+                  { Icon: Linkedin, label: t.contact.linkedin, href: `https://${t.contact.linkedin}` },
+                  { Icon: Github, label: t.contact.github, href: `https://github.com/${t.contact.github.replace("@", "")}` },
+                  { Icon: Globe, label: t.contact.website, href: CV_LINK, copy: true },
+                ] as const
+              ).map((item, i) => {
+                const { Icon, label, href } = item;
+                const copy = "copy" in item && item.copy;
+                const cls =
+                  "glass-card flex items-center gap-3 px-4 py-3 rounded-2xl text-sm text-white/70 hover:text-white/90 group";
+                const done = copy && copiedLink;
+                const inner = (
+                  <>
+                    {done
+                      ? <Check className="h-3.5 w-3.5 shrink-0 text-emerald-400" />
+                      : <Icon className="h-3.5 w-3.5 shrink-0 text-white/25 group-hover:text-white/55 transition-colors" />}
+                    <span className="truncate">{done ? t.linkCopied : label}</span>
+                  </>
+                );
+                return href ? (
+                  <a
+                    key={i}
+                    href={href}
+                    {...(copy
+                      /* Stays an anchor: without JS, or without a clipboard, it
+                         is still a working link to the CV. */
+                      ? { onClick: copyCvLink, "aria-live": "polite" as const }
+                      : { target: "_blank", rel: "noopener noreferrer" })}
+                    className={cls}
+                    onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}>
+                    {inner}
+                  </a>
+                ) : (
+                  <div key={i} className={cls}
+                    onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}>
+                    {inner}
+                  </div>
+                );
+              })}
             </div>
           </ScrollReveal>
 
