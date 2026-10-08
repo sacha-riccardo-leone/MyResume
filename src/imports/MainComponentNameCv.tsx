@@ -124,11 +124,11 @@ export const translations = {
         role: "Fondateur & développeur",
         url: "https://www.ordine-ai.ch/",
         bullets: [
-          "Client email IA multi-fournisseurs pour PME suisses, conçu et livré seul — en beta active.",
+          "Client email IA multi-fournisseurs pour PME suisses, conçu et livré seul — en bêta active.",
           "Pipeline de classification Claude Haiku (harness CI FR/DE/IT/EN : 100/94/96/98 %) et conformité FADP (résidence CH/EU, chiffrement AES-GCM-256, DLP PII suisse).",
           "Facturation Stripe à 4 niveaux et audit de sécurité antagoniste auto-mené (5 agents LLM, 30+ problèmes corrigés).",
         ],
-        summary: "Client email IA multi-fournisseurs pour PME suisses, conçu et livré seul, aujourd’hui en beta active : classification Claude Haiku évaluée en continu sur quatre langues (100/94/96/98 %), conformité FADP et facturation Stripe à quatre niveaux.",
+        summary: "Client email IA multi-fournisseurs pour PME suisses, conçu et livré seul, aujourd’hui en bêta active : classification Claude Haiku évaluée en continu sur quatre langues (100/94/96/98 %), conformité FADP et facturation Stripe à quatre niveaux.",
         stack: "FastAPI · Next.js · TypeScript · Supabase · Claude API · Stripe · Cloud Run",
       },
       {
@@ -645,26 +645,41 @@ export function skillItems(group: (typeof skillGroups)[number], lang: Lang): str
 
 /* Plain-language explanations for the more technical skill chips — shown as a
    hover tooltip, each grounded in a concrete thing actually built (Ordine AI). */
+/* A chip's tooltip used to be looked up by the chip's own text, so
+   translating a chip silently lost its tooltip — German lost all four, on
+   nothing more than the capital E of "Prompt Engineering". Explanations are
+   keyed by a stable id now, and every spelling resolves to one. A new
+   translation has to be added here, but it fails visibly rather than
+   quietly. */
+const SKILL_KEY: Record<string, string> = {
+  "Prompt engineering": "prompt", "Prompt Engineering": "prompt",
+  "Classification LLM": "classification", "LLM classification": "classification",
+  "LLM-Klassifizierung": "classification", "Classificazione LLM": "classification",
+  "Agents LLM": "agents", "LLM agents": "agents",
+  "LLM-Agenten": "agents", "Agenti LLM": "agents",
+  "LLM evals": "evals", "LLM-Evals": "evals",
+};
+
 const skillExplanations: Record<string, Record<Lang, string>> = {
-  "Prompt engineering": {
+  "prompt": {
     fr: "Affiner la formulation des prompts pour obtenir les meilleurs résultats d'un LLM — ex. un brouillon étoffé avec ChatGPT, corrigé avec Claude, puis le prompt final envoyé.",
     en: "Refining how prompts are worded to get the best results from an LLM — e.g. a draft expanded with ChatGPT, corrected with Claude, then the final prompt sent.",
     de: "Die Formulierung von Prompts verfeinern, um die besten Ergebnisse aus einem LLM zu erhalten — z. B. ein Entwurf, mit ChatGPT erweitert, mit Claude korrigiert, dann der finale Prompt gesendet.",
     it: "Affinare la formulazione dei prompt per ottenere i migliori risultati da un LLM — es. una bozza ampliata con ChatGPT, corretta con Claude, poi il prompt finale inviato.",
   },
-  "Classification LLM": {
+  "classification": {
     fr: "Trier automatiquement du texte en catégories avec un LLM — ex. mon pipeline Claude Haiku qui classe les emails par ton, intention, catégorie et priorité.",
     en: "Using an LLM to automatically sort text into categories — e.g. my Claude Haiku pipeline classifying emails by tone, intent, category and priority.",
     de: "Text automatisch mit einem LLM in Kategorien einordnen — z. B. meine Claude-Haiku-Pipeline, die E-Mails nach Ton, Absicht, Kategorie und Priorität klassifiziert.",
     it: "Ordinare automaticamente il testo in categorie con un LLM — es. la mia pipeline Claude Haiku che classifica le email per tono, intento, categoria e priorità.",
   },
-  "Agents LLM": {
+  "agents": {
     fr: "Orchestrer plusieurs agents IA pour accomplir une tâche — ex. mon audit de sécurité mené par 5 agents LLM (30+ problèmes corrigés).",
     en: "Orchestrating several AI agents to accomplish a task — e.g. my security audit run by 5 LLM agents (30+ issues fixed).",
     de: "Mehrere KI-Agenten für eine Aufgabe orchestrieren — z. B. mein Sicherheitsaudit mit 5 LLM-Agenten (30+ behobene Probleme).",
     it: "Orchestrare più agenti IA per svolgere un compito — es. il mio audit di sicurezza con 5 agenti LLM (30+ problemi risolti).",
   },
-  "LLM evals": {
+  "evals": {
     fr: "Mesurer automatiquement la précision d'un modèle — ex. mon harness CI en FR/DE/IT/EN scorant 100 / 94 / 96 / 98 %.",
     en: "Automatically measuring a model's accuracy — e.g. my CI harness scoring 100 / 94 / 96 / 98 % across FR/DE/IT/EN.",
     de: "Die Genauigkeit eines Modells automatisch messen — z. B. mein CI-Harness mit 100 / 94 / 96 / 98 % in FR/DE/IT/EN.",
@@ -690,7 +705,7 @@ export function getCompanyLogo(company: string): string | undefined {
 export const ordineAIProject = {
   name: "Ordine AI",
   url: "https://www.ordine-ai.ch/",
-  status: { fr: "Beta active", en: "Active beta", de: "Aktive Beta", it: "Beta attiva" } as Record<Lang, string>,
+  status: { fr: "Bêta active", en: "Active beta", de: "Aktive Beta", it: "Beta attiva" } as Record<Lang, string>,
   tagline: {
     fr: "Client email IA multi-fournisseurs pour PME suisses — conçu et livré seul de A à Z",
     en: "AI-powered multi-provider email client for Swiss SMEs — solo-built end-to-end",
@@ -1198,7 +1213,7 @@ function SkillSection({ groups, lang }: { groups: typeof skillGroups; lang: Lang
           </p>
           <div className="flex flex-wrap gap-1.5">
             {skillItems(group, lang).map((item, si) => {
-              const info = skillExplanations[item];
+              const info = skillExplanations[SKILL_KEY[item]];
               if (!info) {
                 return (
                   <span key={si} className="text-[13px] px-2.5 py-1 rounded-full bg-white/[0.05] border border-white/[0.09] text-white/70">
