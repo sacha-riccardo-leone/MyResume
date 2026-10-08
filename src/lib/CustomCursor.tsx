@@ -10,9 +10,16 @@ import { SmoothCursor } from "../components/ui/smooth-cursor";
      native behaviour;
    - it only hides the native cursor while it is actually mounted, by toggling
      a class on <html>. If this component ever fails to render, the visitor is
-     never left with no cursor at all. */
+     never left with no cursor at all.
+
+   It also stands down while a modal <dialog> is open. A modal paints in the
+   top layer, above anything the page can draw, so this pointer cannot be seen
+   over it at any z-index — it would only show as a blurred smudge through the
+   backdrop while the visitor hunts for a cursor that is not there. Giving the
+   native pointer back for the duration is the one thing that works. */
 export default function CustomCursor() {
   const [fine, setFine] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -22,13 +29,26 @@ export default function CustomCursor() {
     return () => mq.removeEventListener("change", apply);
   }, []);
 
+  /* Watch for any modal opening or closing. Nothing dispatches an event for
+     this, so the open attribute is observed directly — and watching every
+     dialog rather than one keeps the rule true for whatever gets added next. */
+  useEffect(() => {
+    const read = () => setModalOpen(!!document.querySelector("dialog[open]"));
+    read();
+    const mo = new MutationObserver(read);
+    mo.observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ["open"] });
+    return () => mo.disconnect();
+  }, []);
+
+  const active = fine && !modalOpen;
+
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.toggle("cursor-custom", fine);
+    root.classList.toggle("cursor-custom", active);
     return () => root.classList.remove("cursor-custom");
-  }, [fine]);
+  }, [active]);
 
-  if (!fine) return null;
+  if (!active) return null;
   /* Stiffer and better damped than the component's default, so the pointer
      catches up to the mouse quickly instead of trailing it. */
   return <SmoothCursor cursor={<SmallCursor />} springConfig={{ damping: 45, stiffness: 600, mass: 0.6, restDelta: 0.001 }} />;

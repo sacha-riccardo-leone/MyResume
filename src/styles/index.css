@@ -165,6 +165,12 @@
 }
 .photo-dialog__close:hover { background: rgba(255, 255, 255, 0.2); }
 
+/* With the native pointer back (CustomCursor stands down for modals), say what
+   each area does: anywhere off the photograph closes it. */
+.photo-dialog[open] { cursor: zoom-out; }
+.photo-dialog__img { cursor: default; }
+.photo-dialog__close { cursor: pointer; }
+
 /* The page behind a modal dialog still scrolls in several browsers. */
 html:has(.photo-dialog[open]) { overflow: hidden; }
 
