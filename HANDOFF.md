@@ -31,4 +31,5 @@ Lancer : `npm run dev` → `localhost:5173`. Build : `npm run build`. PDF : `npm
 - La console du panneau Browser **garde les messages d'une navigation à l'autre** : encadrer un test avec des `console.log` repères, sinon on débogue une erreur déjà corrigée.
 - Un `<dialog>` modal est dans le **top layer** : le curseur personnalisé ne peut pas s'afficher au-dessus, quel que soit le z-index.
 - Les **backticks dans un message de commit** sont mangés par bash → `git commit -F -` avec un heredoc.
+- **Toute modification de contenu du CV se termine par `npm run pdf` + commit des 4 PDF.** Ils sont des artefacts versionnés : sinon le site sert des PDF périmés sans que rien ne prévienne (arrivé le 08.10 : les compétences changées dans la source, les PDF inchangés pendant deux commits).
 - Fermer le PDF dans le visualiseur avant `npm run pdf` : sinon **EBUSY** et l'export échoue (bruyamment, au moins).
