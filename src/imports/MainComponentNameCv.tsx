@@ -56,7 +56,7 @@ export const translations = {
       languages: "Langues",
       skills: "Compétences techniques",
       education: "Formations / Diplômes",
-      certifications: "Certifications en cours",
+      certifications: "Formation continue",
       personalSkills: "Compétences personnelles",
       references: "Références",
       interests: "Centres d'intérêt",
@@ -200,7 +200,7 @@ export const translations = {
       languages: "Languages",
       skills: "Technical Skills",
       education: "Education",
-      certifications: "Certifications in progress",
+      certifications: "Continuing education",
       personalSkills: "Personal Skills",
       references: "References",
       interests: "Interests",
@@ -342,7 +342,7 @@ export const translations = {
       languages: "Sprachen",
       skills: "Technische Kompetenzen",
       education: "Ausbildung",
-      certifications: "Zertifizierungen in Arbeit",
+      certifications: "Weiterbildung",
       personalSkills: "Persönliche Kompetenzen",
       references: "Referenzen",
       interests: "Interessen",
@@ -484,7 +484,7 @@ export const translations = {
       languages: "Lingue",
       skills: "Competenze tecniche",
       education: "Formazione",
-      certifications: "Certificazioni in corso",
+      certifications: "Formazione continua",
       personalSkills: "Competenze personali",
       references: "Referenze",
       interests: "Interessi",
@@ -806,14 +806,18 @@ const demoLabel: Record<Lang, string> = { fr: "Démo", en: "Demo", de: "Demo", i
    section on page 2 (e.g. "Mandats professionnels (suite)"). */
 const printContinued: Record<Lang, string> = { fr: "(suite)", en: "(cont.)", de: "(Forts.)", it: "(segue)" };
 
+/* Anthropic Academy's courses, which are free and open to anyone — not the
+   certification exams, which are open only to partner organisations. This
+   used to say "la certification officielle", which claimed a credential
+   that is not being earned. Keep the wording on the courses. */
 export const anthropicCert = {
   date: { fr: "2026 — en cours", en: "2026 — in progress", de: "2026 — laufend", it: "2026 — in corso" } as Record<Lang, string>,
   badge: { fr: "en cours", en: "in progress", de: "laufend", it: "in corso" } as Record<Lang, string>,
   description: {
-    fr: "Préparation de la certification officielle Anthropic — prompt engineering, tool use, systèmes multi-agents.",
-    en: "Preparing the official Anthropic certification — prompt engineering, tool use, multi-agent systems.",
-    de: "Vorbereitung der offiziellen Anthropic-Zertifizierung — Prompt-Engineering, Tool Use, Multi-Agent-Systeme.",
-    it: "Preparazione della certificazione ufficiale Anthropic — prompt engineering, tool use, sistemi multi-agente.",
+    fr: "Cours Anthropic Academy — prompt engineering, tool use, systèmes multi-agents.",
+    en: "Anthropic Academy courses — prompt engineering, tool use, multi-agent systems.",
+    de: "Kurse der Anthropic Academy — Prompt-Engineering, Tool Use, Multi-Agent-Systeme.",
+    it: "Corsi Anthropic Academy — prompt engineering, tool use, sistemi multi-agente.",
   } as Record<Lang, string>,
 };
 
@@ -1906,7 +1910,7 @@ export default function MainComponentNameCv({
             <ScrollReveal>
               <div className="mt-8 pt-5 border-t border-white/[0.06]">
                 <p className="text-[10px] uppercase tracking-[0.18em] text-white/25 mb-3">{t.sections.certifications}</p>
-                {/* Anthropic certification — original orange pulsing card, now under Formation */}
+                {/* Anthropic Academy courses — orange card, under Formation */}
                 <div
                   className="glass-card glass-card--anthropic rounded-2xl overflow-hidden"
                   onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}
