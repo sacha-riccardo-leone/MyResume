@@ -120,6 +120,62 @@
   mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 100%);
 }
 
+/* ─── Profile photo, full size ─────────────────────────────────────────────
+   A native <dialog>: Escape, the focus trap and the top layer are the
+   platform's job, not ours. The box fills the viewport so that any click not
+   on the photograph is a click on the backdrop. */
+.photo-dialog[open] {
+  display: grid;
+  place-items: center;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overscroll-behavior: contain;
+}
+.photo-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.74);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.photo-dialog__img {
+  max-width: min(92vw, 1100px);
+  max-height: 88dvh;
+  border-radius: 1rem;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
+}
+.photo-dialog__close {
+  position: fixed;
+  top: max(1rem, env(safe-area-inset-top));
+  right: max(1rem, env(safe-area-inset-right));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  color: #f2f2f0;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.photo-dialog__close:hover { background: rgba(255, 255, 255, 0.2); }
+
+/* The page behind a modal dialog still scrolls in several browsers. */
+html:has(.photo-dialog[open]) { overflow: hidden; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .photo-dialog[open] { animation: photo-in 0.22s ease-out; }
+  @keyframes photo-in {
+    from { opacity: 0; transform: scale(0.985); }
+    to   { opacity: 1; transform: none; }
+  }
+}
+
 /* ─── Liquid Glass ─── */
 .glass-card {
   --mouse-x: 50%;

@@ -153,7 +153,7 @@ export default function App() {
           like the other views, so /cv?lang=en opens the English CV. */}
       {view === "cv" && (
         <MainComponentNameCv lang={lang} setLang={changeLang} intro={!moved}
-          theme={theme} toggleTheme={toggleTheme} />
+          theme={theme} toggleTheme={toggleTheme} onBack={() => go("gate")} />
       )}
 
       {/* One pointer for the whole site, so it survives moving between views. */}

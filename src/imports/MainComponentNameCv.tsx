@@ -1,9 +1,13 @@
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
-import { Linkedin, Github, Download, MapPin, Mail, Phone, ChevronDown, ExternalLink, Globe, Info, Check } from "lucide-react";
+import { Linkedin, Github, Download, MapPin, Mail, Phone, ChevronDown, ExternalLink, Globe, Info, Check, X } from "lucide-react";
 /* Square already, at the crop object-fit: cover would show anyway, so the web
    and the PDF both get the framing without shipping pixels that are always
    cut. The PDF embeds it, so its weight is the document's weight. */
 import profilePic from "../assets/profile.jpg";
+/* The frame above is an 88% crop. This is the whole photograph, loaded only
+   if someone asks to see it — see the lightbox below. */
+import profileFull from "../assets/profile-full.jpg";
+import { InteractiveHoverButton } from "../components/ui/interactive-hover-button";
 import r2jcLogo from "../assets/r2jcLogo.png";
 import vrdLogo from "../assets/vrdlogo.png";
 import xefiLogo from "../assets/xefilogo.png";
@@ -30,6 +34,9 @@ export const translations = {
     downloadPdf: "Télécharger le CV",
     linkCopied: "Lien copié",
     emailLabel: "E-mail",
+    viewPhoto: "Voir la photo en grand",
+    closeLabel: "Fermer",
+    backToGate: "Retour",
     intro:
       "Développeur d'applications autonome, je transforme des besoins réels en logiciels livrés en production, du frontend à l'infrastructure. J'ai déjà mis mes compétences en pratique sur des mandats clients et mes propres projets, et je recherche en continu de nouveaux défis pour progresser. Initiative, persévérance, curiosité et maîtrise des outils actuels — l'IA en particulier — sont au cœur de ma façon de travailler.",
     availability:
@@ -173,6 +180,9 @@ export const translations = {
     downloadPdf: "Download PDF",
     linkCopied: "Link copied",
     emailLabel: "Email",
+    viewPhoto: "View the photo full size",
+    closeLabel: "Close",
+    backToGate: "Back",
     intro:
       "An autonomous application developer, I turn real needs into software delivered to production, from frontend to infrastructure. I've already put my skills to work on client mandates and my own projects, and I'm continually looking for new challenges to grow. Initiative, persistence, curiosity and command of today's tools — AI in particular — are at the core of how I work.",
     availability:
@@ -312,6 +322,9 @@ export const translations = {
     downloadPdf: "PDF herunterladen",
     linkCopied: "Link kopiert",
     emailLabel: "E-Mail",
+    viewPhoto: "Foto in voller Grösse ansehen",
+    closeLabel: "Schliessen",
+    backToGate: "Zurück",
     intro:
       "Als eigenständiger Applikationsentwickler verwandle ich echte Bedürfnisse in Software, die in Produktion geht — vom Frontend bis zur Infrastruktur. Meine Fähigkeiten habe ich bereits in Kundenmandaten und eigenen Projekten eingesetzt und suche fortlaufend neue Herausforderungen, um mich weiterzuentwickeln. Initiative, Ausdauer, Neugier und der sichere Umgang mit aktuellen Tools — insbesondere KI — prägen meine Arbeitsweise.",
     availability:
@@ -451,6 +464,9 @@ export const translations = {
     downloadPdf: "Scarica il CV",
     linkCopied: "Link copiato",
     emailLabel: "Email",
+    viewPhoto: "Vedi la foto a dimensione intera",
+    closeLabel: "Chiudi",
+    backToGate: "Indietro",
     intro:
       "Sviluppatore di applicazioni autonomo, trasformo bisogni reali in software portato in produzione, dal frontend all'infrastruttura. Ho già messo in pratica le mie competenze su mandati per clienti e progetti personali, e cerco di continuo nuove sfide per crescere. Iniziativa, perseveranza, curiosità e padronanza degli strumenti attuali — l'IA in particolare — sono al centro del mio modo di lavorare.",
     availability:
@@ -1239,6 +1255,7 @@ export default function MainComponentNameCv({
   setLang,
   theme,
   toggleTheme,
+  onBack,
   intro = true,
 }: {
   /* Owned by App (from ?lang= and the gate), not local state: a local
@@ -1247,6 +1264,8 @@ export default function MainComponentNameCv({
   setLang: (l: Lang) => void;
   theme: Theme;
   toggleTheme: () => void;
+  /* Back to the gate. Optional so the CV still renders if mounted alone. */
+  onBack?: () => void;
   /* false when arriving from the landing page: the name and title are
      already on screen, travelling into place, so they render still and the
      header is shown at once (the page transition fades it in). */
@@ -1322,6 +1341,14 @@ export default function MainComponentNameCv({
   const sectionsOnPage1 = new Set(page1Entries.map(e => e.section));
   const totalPrintPages = page2Entries.length > 0 ? 2 : 1;
 
+  /* A native <dialog>, so Escape, the focus trap, returning focus on close and
+     the top layer all come from the platform instead of from us. The full
+     photograph is only put in the DOM once someone reaches for it. */
+  const photoDialog = useRef<HTMLDialogElement>(null);
+  const [fullPhotoWanted, setFullPhotoWanted] = useState(false);
+  const wantFullPhoto = () => setFullPhotoWanted(true);
+  const openPhoto = () => { setFullPhotoWanted(true); photoDialog.current?.showModal(); };
+
   /* The site row in Contact used to link to the page the reader is already on,
      which did nothing at all. It copies the direct link to this CV instead —
      what someone actually wants from it is to pass it on. The canonical
@@ -1369,12 +1396,28 @@ export default function MainComponentNameCv({
     transition: `opacity 0.7s ease ${delay}ms`,
   });
 
-  /* Profile picture */
+  /* Profile picture — the cropped frame, which opens the whole photograph.
+     Web only: the print header renders `profilePic` directly and knows nothing
+     about any of this. */
   const ProfilePic = ({ size }: { size: string }) => (
     <div className={`relative shrink-0 ${size}`} data-name="Elements">
-      <div className="absolute inset-0 overflow-hidden rounded-2xl ring-2 ring-white/20">
-        <img src={profilePic} alt={FULL_NAME} className="size-full object-cover" />
-      </div>
+      <button
+        type="button"
+        onClick={openPhoto}
+        /* Fetch the full file on approach rather than on click, so the
+           lightbox is already painted when it opens — and never fetched at
+           all for the visitors who don't reach for it. */
+        onPointerEnter={wantFullPhoto}
+        onFocus={wantFullPhoto}
+        aria-label={t.viewPhoto}
+        className="group absolute inset-0 overflow-hidden rounded-2xl ring-2 ring-white/20 cursor-zoom-in transition-[box-shadow] hover:ring-white/40 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60"
+      >
+        <img
+          src={profilePic}
+          alt={FULL_NAME}
+          className="size-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.04]"
+        />
+      </button>
     </div>
   );
 
@@ -1407,7 +1450,25 @@ export default function MainComponentNameCv({
 
         {/* ── Sticky nav ── */}
         <nav className="site-header sticky top-0 z-50 flex justify-between items-center px-6 sm:px-10 py-4">
-          <span className="text-[11px] font-mono text-white/20 tracking-widest">sachaleone.dev</span>
+          <div className="flex items-center gap-4">
+            <span className="text-[11px] font-mono text-white/20 tracking-widest">sachaleone.dev</span>
+            {/* The same pill as the gate's door, so leaving the CV is the same
+                gesture as entering it — scaled to the nav, and with the icon
+                brought down from the component's default 24px. */}
+            {onBack && (
+              <InteractiveHoverButton
+                onClick={onBack}
+                style={{
+                  ["--background" as string]: "var(--pf-ink)",
+                  ["--primary" as string]: "var(--pf-ground)",
+                  ["--primary-foreground" as string]: "var(--pf-ink)",
+                } as React.CSSProperties}
+                className="min-w-[7.5rem] px-4 py-1 text-[11px] font-light border-transparent text-[var(--pf-ground)] [&_svg]:h-3.5 [&_svg]:w-3.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              >
+                {t.backToGate}
+              </InteractiveHoverButton>
+            )}
+          </div>
           <div className="flex items-center gap-3">
             <ThemeToggle theme={theme} toggle={toggleTheme}
               className="h-7 w-7 text-white/60 hover:text-white" />
@@ -1928,6 +1989,29 @@ export default function MainComponentNameCv({
           </ScrollReveal>
 
         </div>
+
+        {/* Lives here, outside ProfilePic: that component is redefined on every
+            render, so anything stateful inside it would be torn down and the
+            dialog would close by itself. A click that lands on the dialog
+            rather than on the photo is a click on the backdrop. */}
+        <dialog
+          ref={photoDialog}
+          className="photo-dialog"
+          aria-label={t.viewPhoto}
+          onClick={e => { if (e.target === e.currentTarget) e.currentTarget.close(); }}
+        >
+          {fullPhotoWanted && (
+            <img src={profileFull} alt={FULL_NAME} className="photo-dialog__img" />
+          )}
+          <button
+            type="button"
+            onClick={() => photoDialog.current?.close()}
+            aria-label={t.closeLabel}
+            className="photo-dialog__close"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </dialog>
       </div>
 
       {/* ═══════════════════════════════════════════════════════
