@@ -612,12 +612,22 @@ export const skillGroups: { category: Record<Lang, string>; color: string; items
   {
     category: { fr: "Langages", en: "Languages", de: "Sprachen", it: "Linguaggi" },
     color: "var(--skill-2)",
-    items: ["HTML", "CSS", "PHP", "C#", "SQL/NoSQL", "Python", "JavaScript"],
+    items: ["Python", "HTML", "CSS", "JavaScript", "PHP", "C#", "SQL/NoSQL"],
   },
   {
     category: { fr: "Logiciels", en: "Software", de: "Software", it: "Software" },
     color: "var(--skill-3)",
     items: ["Vercel", "GitHub/Git", "Microsoft 365", "VS/VS Code", "WordPress", "Krita", "DaVinci Resolve"],
+  },
+  {
+    category: { fr: "Disciplines", en: "Disciplines", de: "Disziplinen", it: "Discipline" },
+    color: "var(--skill-4)",
+    items: {
+      fr: ["UI/UX", "Intégration d'API", "Débogage & tests", "Maintenance hardware/software", "Web design", "Gestion de projet (solo)"],
+      en: ["UI/UX", "API integration", "Debugging & testing", "Hardware/software maintenance", "Web design", "Project management (solo)"],
+      de: ["UI/UX", "API-Integration", "Debugging & Tests", "Hardware-/Software-Wartung", "Web design", "Projektmanagement (solo)"],
+      it: ["UI/UX", "Integrazione di API", "Debug & test", "Manutenzione hardware/software", "Web design", "Gestione di progetti (solo)"],
+    },
   },
 ];
 
