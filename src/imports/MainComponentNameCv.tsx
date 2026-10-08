@@ -619,12 +619,12 @@ export const skillGroups: { category: Record<Lang, string>; color: string; items
   {
     category: { fr: "Langages", en: "Languages", de: "Sprachen", it: "Linguaggi" },
     color: "var(--skill-2)",
-    items: ["Python", "HTML", "CSS", "JavaScript", "PHP", "C#", "SQL/NoSQL"],
+    items: ["Python", "TypeScript", "JavaScript", "HTML", "CSS", "PHP", "C#", "SQL/NoSQL"],
   },
   {
     category: { fr: "Logiciels", en: "Software", de: "Software", it: "Software" },
     color: "var(--skill-3)",
-    items: ["Vercel", "GitHub/Git", "Microsoft 365", "VS/VS Code", "WordPress", "Krita", "DaVinci Resolve"],
+    items: ["Vercel", "Supabase", "GitHub/Git", "Microsoft 365", "VS/VS Code", "WordPress", "Krita", "DaVinci Resolve"],
   },
   {
     category: { fr: "Disciplines", en: "Disciplines", de: "Disziplinen", it: "Discipline" },
