@@ -947,8 +947,16 @@ function MandateCard({
                   </a>
                 )}
                 {inProgress ? (
-                  <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/25">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-300 animate-pulse inline-block" />
+                  /* The same three jumping dots as the certification in
+                     progress, in amber rather than Anthropic's orange: both
+                     badges say "still running", so they should say it the
+                     same way. */
+                  <span className="flex items-center gap-2 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/25">
+                    <span className="flex items-end gap-[3px]">
+                      <span className="w-1 h-1 rounded-full bg-amber-300 inline-block dot-jump-1" />
+                      <span className="w-1 h-1 rounded-full bg-amber-300 inline-block dot-jump-2" />
+                      <span className="w-1 h-1 rounded-full bg-amber-300 inline-block dot-jump-3" />
+                    </span>
                     {inProgressBadge[lang]}
                   </span>
                 ) : (

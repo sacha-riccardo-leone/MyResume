@@ -6,6 +6,12 @@ import Portfolio from "../portfolio/Portfolio";
 import type { PfLang } from "../portfolio/content";
 import { useTheme } from "../lib/theme";
 import CustomCursor from "../lib/CustomCursor";
+/* Vercel Web Analytics. The /react entry, not /next — this is Vite. It injects
+   Vercel's own script from /_vercel/insights on our own origin, so there is no
+   third-party request, no cookie and nothing to consent to, and it counts the
+   pushState navigations between /, /cv and /work on its own. Inert anywhere
+   that is not a Vercel deployment, localhost included. */
+import { Analytics } from "@vercel/analytics/react";
 import { withPageTransition } from "../lib/pageTransition";
 import "../styles/portfolio.css";
 
@@ -158,6 +164,8 @@ export default function App() {
 
       {/* One pointer for the whole site, so it survives moving between views. */}
       <CustomCursor />
+
+      <Analytics />
 
       {/* Grain sits above everything, on every view. Never printed. */}
       <div className="grain" aria-hidden="true" />
