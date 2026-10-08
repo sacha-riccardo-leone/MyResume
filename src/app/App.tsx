@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import MainComponentNameCv from "../imports/MainComponentNameCv";
+import MainComponentNameCv, { translations } from "../imports/MainComponentNameCv";
 import Gate from "../portfolio/Gate";
 import NotFound from "../portfolio/NotFound";
 import Portfolio from "../portfolio/Portfolio";
@@ -92,8 +92,14 @@ export default function App() {
     setLang(l);
   }, [view]);
 
-  // Screen readers, hyphenation and translation tools read <html lang>.
-  useEffect(() => { document.documentElement.lang = lang; }, [lang]);
+  /* Screen readers, hyphenation and translation tools read <html lang>. The
+     tab title follows too: index.html ships a French one for the first paint
+     and for anything reading the raw HTML, but a visitor who switches to
+     German should not keep a French tab. */
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    document.title = `Sacha Riccardo Leone — ${translations[lang].title}`;
+  }, [lang]);
 
   /* The host answers every unmatched path with the app, so a dead URL returns
      200 and a crawler would otherwise index the 404 as a real page. Tell it not

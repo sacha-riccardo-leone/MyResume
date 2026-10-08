@@ -423,8 +423,8 @@ export const translations = {
         role: "Individuelle praktische Arbeit (IPA)",
         url: "https://github.com/sacha-riccardo-leone/GuessWho",
         bullets: [
-          "Digitalisierte Version von \"Wer bin ich?\" in C#/Raylib entwickelt.",
-          "Algorithmus zur einzigartigen Charaktergenerierung per DNS-Profilvergleich + Seltenheitssystem für Kleidung.",
+          "Digitalisierte Version von « Wer ist es? » in C#/Raylib entwickelt.",
+          "Algorithmus zur einzigartigen Charaktergenerierung per Vergleich von DNA-Profilen + Seltenheitssystem für Kleidung.",
           "Note: 5,5/6.",
         ],
         summary: "Digitale Fassung des Spiels « Wer ist es? » in C#/Raylib, mit Figuren, die über den Vergleich von DNA-Profilen erzeugt werden. Note: 5,5/6.",
@@ -607,7 +607,14 @@ export const skillGroups: { category: Record<Lang, string>; color: string; items
   {
     category: { fr: "IA / LLM", en: "AI / LLM", de: "KI / LLM", it: "IA / LLM" },
     color: "var(--skill-1)",
-    items: ["Claude", "Claude Code", "ChatGPT", "Prompt engineering", "Classification LLM", "Agents LLM", "LLM evals"],
+    /* Two of these read in French word order, so EN/DE/IT showed French.
+       The type allows per-language items; Disciplines already uses it. */
+    items: {
+      fr: ["Claude", "Claude Code", "ChatGPT", "Prompt engineering", "Classification LLM", "Agents LLM", "LLM evals"],
+      en: ["Claude", "Claude Code", "ChatGPT", "Prompt engineering", "LLM classification", "LLM agents", "LLM evals"],
+      de: ["Claude", "Claude Code", "ChatGPT", "Prompt Engineering", "LLM-Klassifizierung", "LLM-Agenten", "LLM-Evals"],
+      it: ["Claude", "Claude Code", "ChatGPT", "Prompt engineering", "Classificazione LLM", "Agenti LLM", "LLM evals"],
+    },
   },
   {
     category: { fr: "Langages", en: "Languages", de: "Sprachen", it: "Linguaggi" },
