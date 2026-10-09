@@ -1,4 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/CV-Sacha-Riccardo-Leone-(FR|EN|DE|IT)\\.pdf", "destination": "/Sacha-Leone-CV-$1.pdf", "permanent": true }
+  ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }

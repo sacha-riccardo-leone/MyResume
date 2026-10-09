@@ -36,7 +36,7 @@ const SIDEBAR_SLACK_MM = 1;
 
 /** Public path of the shipped PDF for a language. Mirrored in the app by
  *  cvPdfHref() — keep the two in step. */
-const fileFor = (lang) => `CV-Sacha-Riccardo-Leone-${lang.toUpperCase()}.pdf`;
+const fileFor = (lang) => `Sacha-Leone-CV-${lang.toUpperCase()}.pdf`;
 
 const server = await preview({ preview: { port: 4173, open: false } });
 const base = server.resolvedUrls.local[0].replace(/\/$/, "");

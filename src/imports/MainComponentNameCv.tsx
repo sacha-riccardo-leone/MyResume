@@ -798,7 +798,7 @@ export const inProgressBadge: Record<Lang, string> = { fr: "En cours", en: "In p
 
    These files are built by `npm run pdf` (scripts/export-pdf.mjs) — re-run it
    after changing CV content or the print layout, or the download goes stale. */
-export const cvPdfHref = (lang: Lang) => `/CV-Sacha-Riccardo-Leone-${lang.toUpperCase()}.pdf`;
+export const cvPdfHref = (lang: Lang) => `/Sacha-Leone-CV-${lang.toUpperCase()}.pdf`;
 /* The professional mandates, in display order (most recent first). Single source
    of truth: the web Mandats section, the PDF, and the "everything else is a
    personal project" filter all derive from this, so adding a mandate here can't
