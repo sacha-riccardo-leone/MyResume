@@ -119,7 +119,7 @@ export const translations = {
         stack: "WordPress · PHP · API REST · JavaScript · CSS moderne",
       },
       {
-        date: "2025 – en cours",
+        date: "Mars 2026 – en cours",
         company: "Ordine AI",
         role: "Fondateur & développeur",
         url: "https://www.ordine-ai.ch/",
@@ -263,7 +263,7 @@ export const translations = {
         stack: "WordPress · PHP · REST API · JavaScript · modern CSS",
       },
       {
-        date: "2025 – Present",
+        date: "March 2026 – Present",
         company: "Ordine AI",
         role: "Founder & developer",
         url: "https://www.ordine-ai.ch/",
@@ -405,7 +405,7 @@ export const translations = {
         stack: "WordPress · PHP · REST-API · JavaScript · modernes CSS",
       },
       {
-        date: "2025 – laufend",
+        date: "März 2026 – laufend",
         company: "Ordine AI",
         role: "Gründer & Entwickler",
         url: "https://www.ordine-ai.ch/",
@@ -547,7 +547,7 @@ export const translations = {
         stack: "WordPress · PHP · API REST · JavaScript · CSS moderno",
       },
       {
-        date: "2025 – in corso",
+        date: "Marzo 2026 – in corso",
         company: "Ordine AI",
         role: "Fondatore & sviluppatore",
         url: "https://www.ordine-ai.ch/",
