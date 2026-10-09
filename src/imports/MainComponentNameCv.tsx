@@ -2209,7 +2209,7 @@ export default function MainComponentNameCv({
                 The paginator measures THIS column (not the row): the row's height is
                 the taller of the two columns, so measuring it would let a tall sidebar
                 drain the left column to nothing. */}
-            <div ref={page1LeftRef} style={{
+            <div ref={page1LeftRef} data-print-col="main" style={{
               flex: 1,
               minWidth: 0,
               paddingRight: "8mm",
@@ -2221,8 +2221,9 @@ export default function MainComponentNameCv({
               <PrintEducation items={t.education} title={t.sections.education} />
             </div>
 
-            {/* SIDEBAR — skills · languages · soft skills · references (page 1 only) */}
-            <div style={{
+            {/* SIDEBAR — skills · languages · soft skills · references (page 1 only).
+                The paginator never measures it; `npm run pdf` does (data-print-col). */}
+            <div data-print-col="sidebar" style={{
               width: "60mm",
               flexShrink: 0,
               alignSelf: "stretch",

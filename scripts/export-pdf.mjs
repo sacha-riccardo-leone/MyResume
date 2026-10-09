@@ -27,6 +27,12 @@ const LANGS = ["fr", "en", "de", "it"];
    this export fails, so the regression cannot ship unnoticed. Raise it only
    with a deliberate decision that the CV is now two pages. */
 const EXPECTED_PAGES = 1;
+/* The paginator only watches the left column. The sidebar has no such net:
+   one line too many and its grey box quietly grows toward the footer, still
+   on one page, so the page count above cannot see it. Its last line box
+   already dips 0.2 mm into the 6 mm bottom padding (the ink does not: that
+   is half-leading), and any extra line costs ~3.5 mm — so allow 1 mm. */
+const SIDEBAR_SLACK_MM = 1;
 
 /** Public path of the shipped PDF for a language. Mirrored in the app by
  *  cvPdfHref() — keep the two in step. */
@@ -61,6 +67,24 @@ try {
       continue;
     }
 
+    /* Room left under each column of page 1, in mm, measured on the same
+       off-canvas print DOM the paginator measures. Printed every run, so the
+       next "will this fit?" starts from a number instead of a guess. */
+    const room = await page.evaluate(() => {
+      const mm = (px) => (px * 25.4) / 96;
+      const free = (col) => mm(
+        col.getBoundingClientRect().bottom
+        - parseFloat(getComputedStyle(col).paddingBottom)
+        - col.lastElementChild.getBoundingClientRect().bottom,
+      );
+      const col = (name) => document.querySelector(`.print-page [data-print-col="${name}"]`);
+      return { main: free(col("main")), sidebar: free(col("sidebar")) };
+    });
+    if (room.sidebar < -SIDEBAR_SLACK_MM) {
+      failures.push(`${lang}: sidebar runs ${(-room.sidebar).toFixed(1)} mm into its bottom padding (limit ${SIDEBAR_SLACK_MM} mm)`);
+      continue;
+    }
+
     const file = path.join(OUT, fileFor(lang));
     await page.pdf({
       path: file,
@@ -68,7 +92,7 @@ try {
       preferCSSPageSize: true, // honour the @page rule in index.css
     });
     const { size } = await fs.stat(file);
-    console.log(`  ${fileFor(lang).padEnd(34)} ${(size / 1024).toFixed(0)} kB`);
+    console.log(`  ${fileFor(lang).padEnd(34)} ${(size / 1024).toFixed(0)} kB · room: main ${room.main.toFixed(1)} mm, sidebar ${room.sidebar.toFixed(1)} mm`);
   }
 } finally {
   await browser?.close();
