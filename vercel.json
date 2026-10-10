@@ -4,7 +4,7 @@
     { "source": "/CV-Sacha-Riccardo-Leone-(FR|EN|DE|IT)\\.pdf", "destination": "/Sacha-Leone-CV-$1.pdf", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/vnv", "destination": "/vnv/index.html" },
+    { "source": "/(vnv|VNV|Vnv)/?", "destination": "/vnv/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
