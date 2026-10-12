@@ -419,9 +419,10 @@
     /* ---------- the site's arrow, in VNV's orange ----------
        A cursor image, as on the main site (src/styles/portfolio.css): the
        system draws it, so it keeps up with the mouse and clicks where its tip
-       is (10 1). The script-drawn version trailed the mouse on a spring. */
+       is (2 0, the arrow is tilted 25° like a system pointer). The
+       script-drawn version trailed the mouse on a spring. */
     @media (hover: hover) and (pointer: fine) {
-      html { cursor: url("/cursors/arrow-vnv.svg") 10 1, url("/cursors/arrow-vnv.png") 10 1, auto; }
+      html { cursor: url("/cursors/arrow-vnv.svg") 2 0, url("/cursors/arrow-vnv.png") 2 0, auto; }
     }
 
     @media (prefers-reduced-motion: reduce) {
