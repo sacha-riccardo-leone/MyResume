@@ -31,8 +31,9 @@
     --skill-2: #34d399;
     --skill-3: #60a5fa;
     --skill-4: #a78bfa;
-    --cursor-fill: #0a0a0b;
-    --cursor-stroke: #f2f2f0;
+    /* The site's arrow as a cursor image (public/cursors/, tip at 10 1). An
+       image cannot read these tokens, so each theme names its own file. */
+    --cursor-arrow: url("/cursors/arrow-dark.svg") 10 1, url("/cursors/arrow-dark.png") 10 1, auto;
     background: var(--pf-ground);
   }
   html[data-theme="light"] {
@@ -40,8 +41,7 @@
     --color-black: #f4f4f2;     /* …and "black" becomes paper, for the nav bar */
     --glass-tint: 0, 0, 0;
     --header-tint: 244, 244, 242;
-    --cursor-fill: #f4f4f2;
-    --cursor-stroke: #121214;
+    --cursor-arrow: url("/cursors/arrow-light.svg") 10 1, url("/cursors/arrow-light.png") 10 1, auto;
     /* Accents are tuned to glow on near-black; on paper the same values wash
        out. Shift each to its ~700 weight so badges and labels keep their hue
        and their legibility. These are the tokens Tailwind's own utilities
@@ -165,10 +165,9 @@
 }
 .photo-dialog__close:hover { background: rgba(255, 255, 255, 0.2); }
 
-/* With the native pointer back (CustomCursor stands down for modals), say what
-   each area does: anywhere off the photograph closes it. */
+/* Say what each area does: anywhere off the photograph closes it. */
 .photo-dialog[open] { cursor: zoom-out; }
-.photo-dialog__img { cursor: default; }
+.photo-dialog__img { cursor: var(--cursor-arrow, default); }
 .photo-dialog__close { cursor: pointer; }
 
 /* The page behind a modal dialog still scrolls in several browsers. */

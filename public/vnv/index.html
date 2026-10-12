@@ -416,19 +416,13 @@
     .mark .ch { animation: none; transition: font-weight .5s var(--ease); }
     .mark .dotc { color: var(--mute); }
 
-    /* ---------- the site's custom pointer, in VNV's orange ----------
-       Same arrow and spring as the main site (src/lib/CustomCursor.tsx). The
-       native cursor is hidden only while this one is mounted, so a script
-       failure never leaves the visitor without a cursor. */
+    /* ---------- the site's arrow, in VNV's orange ----------
+       A cursor image, as on the main site (src/styles/portfolio.css): the
+       system draws it, so it keeps up with the mouse and clicks where its tip
+       is (10 1). The script-drawn version trailed the mouse on a spring. */
     @media (hover: hover) and (pointer: fine) {
-      html.cursor-custom, html.cursor-custom * { cursor: none; }
+      html { cursor: url("/cursors/arrow-vnv.svg") 10 1, url("/cursors/arrow-vnv.png") 10 1, auto; }
     }
-    .cursor {
-      position: fixed; left: 0; top: 0; z-index: 101; pointer-events: none;
-      opacity: 0; transition: opacity .15s ease; will-change: transform;
-    }
-    .cursor.on { opacity: 1; }
-    .cursor svg { display: block; }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -743,7 +737,7 @@
       onScroll();
 
       /* Hero field: a grid of dots that flicker, a few of them orange.
-         Cheap by design, so it never steals frames from the cursor:
+         Cheap by design, so it never steals frames from scrolling:
          - one full draw at setup, then each tick repaints only the ~3% of dots
            that change (redrawing all ~26k dots took 17-36 ms, 12 times a second);
          - the radial fade is a per-dot weight, and dots it would hide are never
@@ -847,68 +841,6 @@
         host.addEventListener("pointermove", function (e) { px = e.clientX; py = e.clientY; if (!f) f = requestAnimationFrame(paint); });
         host.addEventListener("pointerleave", function () { letters.forEach(function (c) { c.style.fontWeight = ""; }); });
       }
-
-      /* Custom pointer: a port of the main site's SmoothCursor (motion springs)
-         to plain rAF springs, same settings. Mouse and trackpad only. */
-      if (finePointer) (function () {
-        var el = document.createElement("div");
-        el.className = "cursor"; el.setAttribute("aria-hidden", "true");
-        el.innerHTML = '<svg width="20" height="22" viewBox="0 0 50 54" fill="none">' +
-          '<path d="M42.6817 41.1495L27.5103 6.79925C26.7269 5.02557 24.2082 5.02558 23.3927 6.79925L7.59814 41.1495C6.75833 42.9759 8.52712 44.8902 10.4125 44.1954L24.3757 39.0496C24.8829 38.8627 25.4385 38.8627 25.9422 39.0496L39.8121 44.1954C41.6849 44.8902 43.4884 42.9759 42.6817 41.1495Z" fill="var(--vnv)"/>' +
-          '<path d="M43.7146 40.6933L28.5431 6.34306C27.3556 3.65428 23.5772 3.69516 22.3668 6.32755L6.57226 40.6778C5.3134 43.4156 7.97238 46.298 10.803 45.2549L24.7662 40.109C25.0221 40.0147 25.2999 40.0156 25.5494 40.1082L39.4193 45.254C42.2261 46.2953 44.9254 43.4347 43.7146 40.6933Z" stroke="var(--vnv)" stroke-width="2.25825"/>' +
-          "</svg>";
-        document.body.appendChild(el);
-        document.documentElement.classList.add("cursor-custom");
-
-        // A damped spring per channel: { x, v, to, k, c, m }.
-        function spring(k, c, m, x) { return { x: x, v: 0, to: x, k: k, c: c, m: m }; }
-        var sx = spring(600, 45, .6, 0), sy = spring(600, 45, .6, 0);
-        var sr = spring(300, 60, .6, 0), ss = spring(500, 35, .6, 1);
-        var all = [sx, sy, sr, ss];
-        function stepSpring(s, dt) {
-          var a = (-s.k * (s.x - s.to) - s.c * s.v) / s.m;
-          s.v += a * dt; s.x += s.v * dt;
-        }
-        var last = { x: 0, y: 0, t: 0 }, prevAngle = 0, turned = 0, shrink = 0, seen = false, raf = 0, prevTs = 0;
-
-        function loop(ts) {
-          var dt = Math.min(.05, prevTs ? (ts - prevTs) / 1000 : 1 / 60);
-          prevTs = ts;
-          for (var n = 0; n < 4; n++) all.forEach(function (s) { stepSpring(s, dt / 4); });
-          el.style.transform = "translate3d(" + sx.x + "px," + sy.x + "px,0) translate(-50%,-50%) rotate(" + sr.x + "deg) scale(" + ss.x + ")";
-          var moving = all.some(function (s) { return Math.abs(s.x - s.to) > .01 || Math.abs(s.v) > .01; });
-          raf = moving ? requestAnimationFrame(loop) : 0;
-          if (!moving) prevTs = 0;
-        }
-        function kick() { if (!raf) raf = requestAnimationFrame(loop); }
-
-        addEventListener("pointermove", function (e) {
-          if (e.pointerType === "touch") return;
-          var now = performance.now();
-          if (!seen) {
-            // First sighting: appear where the pointer is, don't fly in from the corner.
-            seen = true; sx.x = sx.to = e.clientX; sy.x = sy.to = e.clientY;
-            el.classList.add("on");
-          }
-          var dt = now - last.t;
-          var vx = dt > 0 ? (e.clientX - last.x) / dt : 0, vy = dt > 0 ? (e.clientY - last.y) / dt : 0;
-          last = { x: e.clientX, y: e.clientY, t: now };
-          sx.to = e.clientX; sy.to = e.clientY;
-          if (!reduce && Math.sqrt(vx * vx + vy * vy) > .1) {
-            // Point the arrow where it is heading, turning the short way round.
-            var angle = Math.atan2(vy, vx) * 180 / Math.PI + 90;
-            var diff = angle - prevAngle;
-            if (diff > 180) diff -= 360;
-            if (diff < -180) diff += 360;
-            turned += diff; prevAngle = angle; sr.to = turned;
-            ss.to = .95;
-            clearTimeout(shrink);
-            shrink = setTimeout(function () { ss.to = 1; kick(); }, 150);
-          }
-          kick();
-        }, { passive: true });
-        document.documentElement.addEventListener("pointerleave", function () { el.classList.remove("on"); seen = false; });
-      })();
 
       /* Theme switch, ported from src/lib/ThemeToggle.tsx and src/lib/theme.ts:
          same icons (Lucide sun / moon), same 600 ms circular reveal, same

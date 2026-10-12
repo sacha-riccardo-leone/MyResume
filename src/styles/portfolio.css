@@ -74,13 +74,14 @@ html[data-theme="light"] {
   min-height: 100vh;
 }
 
-/* The custom pointer is site-wide, so the native cursor is hidden on <html>
-   rather than inside one view. The class is only present while the custom
-   cursor is actually mounted, so a failure there can never leave the visitor
-   with no cursor at all. */
+/* The site's arrow is a cursor image (--cursor-arrow, index.css), so the
+   system draws it: it keeps up with the mouse, clicks where its tip is, and
+   links, grab handles and the photo viewer keep their own cursors. It used to
+   be drawn by script on a spring, trailing the mouse by ~75 ms and clicking
+   from its centre, 9 px below the tip — heavy to steer. Set once on <html>;
+   everything inherits it unless it asks for another cursor. */
 @media (hover: hover) and (pointer: fine) {
-  html.cursor-custom,
-  html.cursor-custom * { cursor: none; }
+  html { cursor: var(--cursor-arrow); }
 }
 
 /* Hairline rule used to separate movements of the page. */
