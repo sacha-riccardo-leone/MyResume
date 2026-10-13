@@ -758,6 +758,7 @@ export const ordineAIProject = {
    post.js, perf.js, fight.js. */
 export const eldenCodeProject = {
   name: "Elden Code",
+  url: "https://elden-code.vercel.app/",
   date: { fr: "Octobre 2026", en: "October 2026", de: "Oktober 2026", it: "Ottobre 2026" } as Record<Lang, string>,
   role: {
     fr: "Projet personnel — visualiseur de sessions Claude Code",
@@ -1885,7 +1886,16 @@ export default function MainComponentNameCv({
                         <img src={eldenIcon} alt="" className="shrink-0 rounded-md" style={{ width: 30, height: 30 }} />
                         <div className="flex-1 min-w-0 flex items-center justify-between gap-3">
                           <div className="min-w-0">
-                            <p className="text-base font-light">{eldenCodeProject.name}</p>
+                            <a
+                              href={eldenCodeProject.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={e => e.stopPropagation()}
+                              className="text-base font-light hover:text-white transition-colors inline-flex items-center gap-1.5"
+                            >
+                              {eldenCodeProject.name}
+                              <ExternalLink className="h-3 w-3 opacity-50" />
+                            </a>
                             <p className="text-[12px] text-white/55 mt-0.5">{eldenCodeProject.role[lang]}</p>
                             <p className="text-[11px] font-mono text-white/30 mt-0.5">{eldenCodeProject.date[lang]}</p>
                           </div>
