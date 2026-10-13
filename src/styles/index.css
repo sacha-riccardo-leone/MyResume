@@ -409,6 +409,31 @@ html:has(.photo-dialog[open]) { overflow: hidden; }
   .dot-jump-1, .dot-jump-2, .dot-jump-3 { animation: none !important; }
 }
 
+/* ─── Pixel-art loops (SpriteLoop, the Elden Code card) ──────────────────
+   A strip of --n frames of --fw x --fh art pixels, stepped through at --fps.
+   One art pixel is --u * --k CSS px. The Ronin draws at 1x and Fenrath at
+   1.5x (the game's proportions), so on a 2x screen both land on whole device
+   pixels. --u is 1px wherever the pair fits, and shrinks to fit otherwise:
+   together they need 430 art pixels (112 + 212 x 1.5) plus the 16px gap. */
+.elden-duel { container-type: inline-size; }
+.sprite-loop {
+  --u: min(1px, (100cqw - 16px) / 430);
+  --px: calc(var(--u) * var(--k, 1));
+  width: calc(var(--fw) * var(--px));
+  height: calc(var(--fh) * var(--px));
+  background-repeat: no-repeat;
+  background-size: calc(var(--fw) * var(--n) * var(--px)) 100%;
+  image-rendering: pixelated;
+  animation: sprite-loop calc(var(--n) / var(--fps) * 1s) steps(var(--n)) infinite;
+}
+@keyframes sprite-loop {
+  to { background-position: calc(var(--fw) * var(--n) * var(--px) * -1) 0; }
+}
+/* Reduced motion: the first frame, standing still. */
+@media (prefers-reduced-motion: reduce) {
+  .sprite-loop { animation: none; }
+}
+
 /* ─── Print geometry (shared by screen and print) ─────────────────────────
    Paper is A4 with real @page margins (12mm top, 14mm sides/bottom).
    To print on US Letter change these two values AND the @page size below:

@@ -12,6 +12,9 @@ import r2jcLogo from "../assets/r2jcLogo.png";
 import vrdLogo from "../assets/vrdlogo.png";
 import xefiLogo from "../assets/xefilogo.png";
 import cpneLogo from "../assets/cpnelogo.png";
+import eldenIcon from "../assets/elden-code-icon.png";
+import roninIdle from "../assets/elden-ronin-idle.png";
+import fenrathIdle from "../assets/elden-fenrath-idle.png";
 import OrbMini from "./OrbMini";
 import { TextAnimate } from "../components/ui/text-animate";
 import { SHARED } from "../lib/pageTransition";
@@ -748,6 +751,72 @@ export const ordineAIProject = {
   stack: ["FastAPI", "Next.js 14", "TypeScript", "Supabase", "Claude API", "Stripe", "Cloud Run", "Vercel", "Sentry", "PostHog"],
 };
 
+/* Elden Code — web only. It is not in `translations.experience`, so neither the
+   PDF (which takes the mandates and Ordine) nor "Projets personnels" (which
+   takes whatever else is there) can pick it up. Every claim below was checked
+   against its code (C:\Users\leone\Desktop\IT\Elden-Code): bridge.js, emit.js,
+   post.js, perf.js, fight.js. */
+export const eldenCodeProject = {
+  name: "Elden Code",
+  date: { fr: "Octobre 2026", en: "October 2026", de: "Oktober 2026", it: "Ottobre 2026" } as Record<Lang, string>,
+  role: {
+    fr: "Projet personnel — visualiseur de sessions Claude Code",
+    en: "Personal project — Claude Code session visualiser",
+    de: "Persönliches Projekt — Visualisierung von Claude-Code-Sitzungen",
+    it: "Progetto personale — visualizzatore di sessioni Claude Code",
+  } as Record<Lang, string>,
+  tagline: {
+    fr: "Mes sessions Claude Code deviennent un monde dark fantasy en pixel art dans le navigateur, façon Elden Ring en HD-2D. Purement cosmétique : il écoute sans jamais rien renvoyer, et n'appelle aucune IA ni API.",
+    en: "My Claude Code sessions become a dark-fantasy pixel-art world in the browser, in the style of Elden Ring with an HD-2D look. Purely cosmetic: it listens without ever sending anything back, and calls no AI or API.",
+    de: "Meine Claude-Code-Sitzungen werden zu einer Dark-Fantasy-Welt in Pixel Art im Browser, im Stil von Elden Ring mit HD-2D-Look. Rein kosmetisch: Es hört nur zu, sendet nie etwas zurück und ruft weder KI noch API auf.",
+    it: "Le mie sessioni Claude Code diventano un mondo dark fantasy in pixel art nel browser, nello stile di Elden Ring con un look HD-2D. Puramente estetico: ascolta senza mai rimandare nulla e non chiama alcuna IA né API.",
+  } as Record<Lang, string>,
+  highlights: {
+    fr: [
+      "Hooks Claude Code → pont Node local (127.0.0.1) : jeton secret, liste blanche d'événements, flux à sens unique. Ni prompts, ni chemins, ni contenus de fichiers ne quittent le hook.",
+      "Rendu HD-2D en Three.js, sans étape de build : bloom, flou tilt-shift et étalonnage ; la qualité baisse d'elle-même sur les machines lentes.",
+      "Une île par projet, avec des stations qui reflètent l'activité réelle : modifications, lectures, commandes, outils web et MCP, plans, attente de permission.",
+      "Personnages générés avec ChatGPT, puis grille de pixels détectée, fond retiré, palette commune et rigs qui les animent pixel par pixel.",
+      "Combats de boss liés aux vraies sessions : trois échecs d'outil d'affilée, ou une quête de plus de dix minutes, font venir Fenrath.",
+      "Conçu et construit en deux jours avec Claude Code, à partir de mes sprites et de ma direction.",
+    ],
+    en: [
+      "Claude Code hooks → a local Node bridge (127.0.0.1): secret token, event allowlist, one-way stream. No prompt, file path or file content ever leaves the hook.",
+      "HD-2D rendering in Three.js with no build step: bloom, tilt-shift blur and colour grading; quality lowers itself on slow machines.",
+      "One island per project, with stations that mirror real activity: edits, reads, shell commands, web and MCP tools, plans, waiting for permission.",
+      "Characters generated with ChatGPT, then pixel grid detected, background removed, a shared palette and rigs that animate them pixel by pixel.",
+      "Boss fights tied to real sessions: three failed tool calls in a row, or a quest running past ten minutes, brings Fenrath.",
+      "Designed and built in two days with Claude Code, from my sprites and direction.",
+    ],
+    de: [
+      "Claude-Code-Hooks → lokale Node-Bridge (127.0.0.1): geheimes Token, Event-Allowlist, Einweg-Stream. Weder Prompts noch Dateipfade oder -inhalte verlassen den Hook.",
+      "HD-2D-Rendering in Three.js ohne Build-Schritt: Bloom, Tilt-Shift-Unschärfe und Farbkorrektur; auf langsamen Rechnern senkt sich die Qualität von selbst.",
+      "Eine Insel pro Projekt, mit Stationen, die die echte Aktivität spiegeln: Bearbeiten, Lesen, Shell-Befehle, Web- und MCP-Tools, Pläne, Warten auf Freigabe.",
+      "Figuren mit ChatGPT generiert, dann Pixelraster erkannt, Hintergrund entfernt, gemeinsame Palette und Rigs, die sie Pixel für Pixel animieren.",
+      "Bosskämpfe aus echten Sitzungen: Drei fehlgeschlagene Tool-Aufrufe in Folge oder eine Quest über zehn Minuten rufen Fenrath herbei.",
+      "In zwei Tagen mit Claude Code konzipiert und gebaut, aus meinen Sprites und nach meiner Regie.",
+    ],
+    it: [
+      "Hook di Claude Code → bridge Node locale (127.0.0.1): token segreto, allowlist degli eventi, flusso a senso unico. Né prompt, né percorsi, né contenuti dei file lasciano l'hook.",
+      "Rendering HD-2D in Three.js senza build: bloom, sfocatura tilt-shift e color grading; la qualità si abbassa da sola sulle macchine lente.",
+      "Un'isola per progetto, con stazioni che rispecchiano l'attività reale: modifiche, letture, comandi shell, strumenti web e MCP, piani, attesa dei permessi.",
+      "Personaggi generati con ChatGPT, poi griglia dei pixel rilevata, sfondo rimosso, palette comune e rig che li animano pixel per pixel.",
+      "Combattimenti con il boss legati alle sessioni reali: tre chiamate a strumenti fallite di fila, o una missione oltre i dieci minuti, evocano Fenrath.",
+      "Ideato e costruito in due giorni con Claude Code, a partire dai miei sprite e dalla mia direzione.",
+    ],
+  } as Record<Lang, string[]>,
+  stack: ["Three.js", "WebGL", "Node.js", "JavaScript", "Claude Code hooks", "ChatGPT"],
+  /* The two idle loops at the bottom of the open card. Strips exported once
+     from Elden Code's own rigs (heroes/ronin.js and boss.js through core.js
+     buildFrames): 6 frames at 4 fps, cropped to the area any idle frame uses,
+     feet on the bottom row. `scale` keeps the game's proportions: Fenrath's
+     art pixel is 1.49x the Ronin's in the world (px 6.2/162 vs 2.05/80). */
+  duel: {
+    ronin: { src: roninIdle, name: "Ronin of the Iron Kasa", frameW: 112, frameH: 116, frames: 6, fps: 4, scale: 1 },
+    boss: { src: fenrathIdle, name: "Fenrath, the Crimson Fang", frameW: 212, frameH: 161, frames: 6, fps: 4, scale: 1.5 },
+  },
+};
+
 /* Language badge data — flag + level per UI language. `fallback` is shown when
    the platform can't render the emoji flag (e.g. Windows renders 🇬🇧 as "GB",
    but for English we want "EN", not the country code). */
@@ -900,6 +969,26 @@ function WithPreview({ text, preview, side }: { text: React.ReactNode; preview: 
       <div className={side === "left" ? "md:order-first" : "md:order-last"}>{preview}</div>
       <div className="min-w-0">{text}</div>
     </div>
+  );
+}
+
+/* A pixel-art loop: one horizontal strip of equal frames, stepped through by
+   CSS (.sprite-loop, index.css). Its size is the frame's in art pixels times
+   --u, the CSS size of one art pixel, which the parent sets per breakpoint;
+   `scale` sizes one sprite against another. */
+function SpriteLoop({ src, frameW, frameH, frames, fps, scale = 1, flip = false }: {
+  src: string; frameW: number; frameH: number; frames: number; fps: number; scale?: number; flip?: boolean;
+}) {
+  return (
+    <div
+      aria-hidden="true"
+      className="sprite-loop shrink-0"
+      style={{
+        backgroundImage: `url(${src})`,
+        transform: flip ? "scaleX(-1)" : undefined,
+        "--fw": frameW, "--fh": frameH, "--n": frames, "--fps": fps, "--k": scale,
+      } as React.CSSProperties}
+    />
   );
 }
 
@@ -1784,6 +1873,56 @@ export default function MainComponentNameCv({
                   </>}
                 />
               </Collapse>
+                  </div>
+                </ScrollReveal>
+
+                {/* Elden Code — web only (see eldenCodeProject) */}
+                <ScrollReveal className="mt-2">
+                  <div className="glass-card rounded-2xl overflow-hidden"
+                    onMouseMove={glassMove} onMouseEnter={glassEnter} onMouseLeave={glassLeave}>
+                    <div className="px-5 py-4 cursor-pointer" onClick={() => toggleCard("elden")}>
+                      <div className="flex items-center gap-3">
+                        <img src={eldenIcon} alt="" className="shrink-0 rounded-md" style={{ width: 30, height: 30 }} />
+                        <div className="flex-1 min-w-0 flex items-center justify-between gap-3">
+                          <div className="min-w-0">
+                            <p className="text-base font-light">{eldenCodeProject.name}</p>
+                            <p className="text-[12px] text-white/55 mt-0.5">{eldenCodeProject.role[lang]}</p>
+                            <p className="text-[11px] font-mono text-white/30 mt-0.5">{eldenCodeProject.date[lang]}</p>
+                          </div>
+                          <ChevronDown className="h-4 w-4 text-white/25 shrink-0" style={{ transform: openCards.has("elden") ? "rotate(180deg)" : "rotate(0deg)", transition: COLLAPSE_TRANSITION }} />
+                        </div>
+                      </div>
+                    </div>
+                    <Collapse open={openCards.has("elden")}>
+                      <div className="px-5 pb-5">
+                        <p className="text-sm text-white/40 mb-4">{eldenCodeProject.tagline[lang]}</p>
+                        <ul className="space-y-2.5 mb-5">
+                          {eldenCodeProject.highlights[lang].map((h, i) => (
+                            <li key={i} className="flex gap-3 text-sm text-white/50 leading-relaxed">
+                              <span className="text-white/15 shrink-0 select-none mt-[3px]">—</span>
+                              <span>{h}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="pt-4 border-t border-white/[0.06] flex flex-wrap gap-1.5">
+                          {eldenCodeProject.stack.map((tech, i) => (
+                            <span key={i} className="text-[9px] px-2 py-0.5 rounded-md bg-white/[0.05] border border-white/10 text-white/45 font-mono">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                        {/* The duel: the Ronin, as drawn, faces right; Fenrath, drawn facing
+                            right too, is mirrored so the two face each other. */}
+                        <div className="elden-duel mt-6 flex items-end justify-between gap-4 border-b border-white/[0.08]">
+                          <SpriteLoop {...eldenCodeProject.duel.ronin} />
+                          <SpriteLoop {...eldenCodeProject.duel.boss} flip />
+                        </div>
+                        <p className="mt-2 flex justify-between gap-4 text-[10px] font-mono text-white/30">
+                          <span>{eldenCodeProject.duel.ronin.name}</span>
+                          <span className="text-right">{eldenCodeProject.duel.boss.name}</span>
+                        </p>
+                      </div>
+                    </Collapse>
                   </div>
                 </ScrollReveal>
               </div>
