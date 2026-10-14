@@ -778,7 +778,7 @@ export const eldenCodeProject = {
       "Rendu HD-2D en Three.js, sans étape de build : bloom, flou tilt-shift et étalonnage ; la qualité baisse d'elle-même sur les machines lentes.",
       "Une île par projet, avec des stations qui reflètent l'activité réelle : modifications, lectures, commandes, outils web et MCP, plans, attente de permission.",
       "Personnages générés avec ChatGPT, puis grille de pixels détectée, fond retiré, palette commune et rigs qui les animent pixel par pixel.",
-      "Combats de boss liés aux vraies sessions : trois échecs d'outil d'affilée, ou une quête de plus de dix minutes, font venir Fenrath.",
+      "Combats de boss liés aux vraies sessions : trois échecs d'outil d'affilée, ou une quête de plus de dix minutes, font venir un boss.",
       "Conçu et construit en deux jours avec Claude Code, à partir de mes sprites et de ma direction.",
     ],
     en: [
@@ -786,7 +786,7 @@ export const eldenCodeProject = {
       "HD-2D rendering in Three.js with no build step: bloom, tilt-shift blur and colour grading; quality lowers itself on slow machines.",
       "One island per project, with stations that mirror real activity: edits, reads, shell commands, web and MCP tools, plans, waiting for permission.",
       "Characters generated with ChatGPT, then pixel grid detected, background removed, a shared palette and rigs that animate them pixel by pixel.",
-      "Boss fights tied to real sessions: three failed tool calls in a row, or a quest running past ten minutes, brings Fenrath.",
+      "Boss fights tied to real sessions: three failed tool calls in a row, or a quest running past ten minutes, brings a boss.",
       "Designed and built in two days with Claude Code, from my sprites and direction.",
     ],
     de: [
@@ -794,7 +794,7 @@ export const eldenCodeProject = {
       "HD-2D-Rendering in Three.js ohne Build-Schritt: Bloom, Tilt-Shift-Unschärfe und Farbkorrektur; auf langsamen Rechnern senkt sich die Qualität von selbst.",
       "Eine Insel pro Projekt, mit Stationen, die die echte Aktivität spiegeln: Bearbeiten, Lesen, Shell-Befehle, Web- und MCP-Tools, Pläne, Warten auf Freigabe.",
       "Figuren mit ChatGPT generiert, dann Pixelraster erkannt, Hintergrund entfernt, gemeinsame Palette und Rigs, die sie Pixel für Pixel animieren.",
-      "Bosskämpfe aus echten Sitzungen: Drei fehlgeschlagene Tool-Aufrufe in Folge oder eine Quest über zehn Minuten rufen Fenrath herbei.",
+      "Bosskämpfe aus echten Sitzungen: Drei fehlgeschlagene Tool-Aufrufe in Folge oder eine Quest über zehn Minuten rufen einen Boss herbei.",
       "In zwei Tagen mit Claude Code konzipiert und gebaut, aus meinen Sprites und nach meiner Regie.",
     ],
     it: [
@@ -802,7 +802,7 @@ export const eldenCodeProject = {
       "Rendering HD-2D in Three.js senza build: bloom, sfocatura tilt-shift e color grading; la qualità si abbassa da sola sulle macchine lente.",
       "Un'isola per progetto, con stazioni che rispecchiano l'attività reale: modifiche, letture, comandi shell, strumenti web e MCP, piani, attesa dei permessi.",
       "Personaggi generati con ChatGPT, poi griglia dei pixel rilevata, sfondo rimosso, palette comune e rig che li animano pixel per pixel.",
-      "Combattimenti con il boss legati alle sessioni reali: tre chiamate a strumenti fallite di fila, o una missione oltre i dieci minuti, evocano Fenrath.",
+      "Combattimenti con il boss legati alle sessioni reali: tre chiamate a strumenti fallite di fila, o una missione oltre i dieci minuti, evocano un boss.",
       "Ideato e costruito in due giorni con Claude Code, a partire dai miei sprite e dalla mia direzione.",
     ],
   } as Record<Lang, string[]>,
