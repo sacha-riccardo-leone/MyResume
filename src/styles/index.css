@@ -440,38 +440,40 @@ html:has(.photo-dialog[open]) { overflow: hidden; }
    its reading time; here the Ronin speaks, Fenrath answers, both fade, and
    the exchange comes back 20 s later: one 26 s cycle, so 1% = 0.26 s.
    The font is the game's (OFL, public/fonts/CormorantGaramond-OFL.txt); a
-   static weight, and only ever drawn on screen, never in the PDF. */
+   static weight, and only ever drawn on screen, never in the PDF.
+   Every size is the game's x 0.75: next to sprites this small, the game's
+   own bubbles read too large. */
 @font-face {
   font-family: "Cormorant Garamond";
   src: url("/fonts/CormorantGaramond-500.woff2") format("woff2");
   font-weight: 500;
   font-display: swap;
 }
-.elden-duel { padding-top: 72px; }
+.elden-duel { padding-top: 56px; }
 .elden-say {
   position: absolute;
-  bottom: calc(100% + 10px);
+  bottom: calc(100% + 8px);
   width: max-content;
-  max-width: min(240px, 60cqw);
-  padding: 6px 11px 7px;
-  font: 500 16px/1.25 "Cormorant Garamond", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  max-width: min(180px, 60cqw);
+  padding: 4.5px 8px 5px;
+  font: 500 12px/1.25 "Cormorant Garamond", "Palatino Linotype", "Book Antiqua", Georgia, serif;
   color: #ece5d4;
   background: rgba(13, 11, 16, 0.9);
   border: 1px solid rgba(201, 164, 90, 0.5);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.55);
   pointer-events: none;
   opacity: 0;
-  transform: translate(-50%, 6px);
+  transform: translate(-50%, 5px);
   animation: elden-say-first 26s ease-out infinite;
 }
 .elden-say::after {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -6px;
-  width: 9px;
-  height: 9px;
-  margin-left: -5px;
+  bottom: -4.5px;
+  width: 7px;
+  height: 7px;
+  margin-left: -4px;
   background: rgba(13, 11, 16, 0.95);
   border-right: 1px solid rgba(201, 164, 90, 0.5);
   border-bottom: 1px solid rgba(201, 164, 90, 0.5);
@@ -479,23 +481,23 @@ html:has(.photo-dialog[open]) { overflow: hidden; }
 }
 /* a great enemy's words: larger, in red, on deep crimson */
 .elden-say--boss {
-  max-width: min(280px, 60cqw);
-  font-size: 18px;
+  max-width: min(210px, 60cqw);
+  font-size: 13.5px;
   color: #ffd9cf;
   background: rgba(30, 6, 6, 0.92);
   border-color: rgba(220, 70, 50, 0.7);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6), 0 0 14px rgba(200, 40, 25, 0.35);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.6), 0 0 10px rgba(200, 40, 25, 0.35);
   animation-name: elden-say-reply;
 }
 .elden-say--boss::after { background: rgba(30, 6, 6, 0.95); border-color: rgba(220, 70, 50, 0.7); }
 /* the Ronin at 0.8 s, Fenrath at 2.6 s, both gone by 6.3 s */
 @keyframes elden-say-first {
-  0%, 3.08% { opacity: 0; transform: translate(-50%, 6px); }
+  0%, 3.08% { opacity: 0; transform: translate(-50%, 5px); }
   4.04%, 23.08% { opacity: 1; transform: translate(-50%, 0); }
   24.23%, 100% { opacity: 0; transform: translate(-50%, 0); }
 }
 @keyframes elden-say-reply {
-  0%, 10% { opacity: 0; transform: translate(-50%, 6px); }
+  0%, 10% { opacity: 0; transform: translate(-50%, 5px); }
   10.96%, 23.08% { opacity: 1; transform: translate(-50%, 0); }
   24.23%, 100% { opacity: 0; transform: translate(-50%, 0); }
 }
