@@ -811,10 +811,17 @@ export const eldenCodeProject = {
      from Elden Code's own rigs (heroes/ronin.js and boss.js through core.js
      buildFrames): 6 frames at 4 fps, cropped to the area any idle frame uses,
      feet on the bottom row. `scale` keeps the game's proportions: Fenrath's
-     art pixel is 1.49x the Ronin's in the world (px 6.2/162 vs 2.05/80). */
+     art pixel is 1.49x the Ronin's in the world (px 6.2/162 vs 2.05/80).
+     `line` is what each says over his head: the Ronin's from his battle lines
+     against a great enemy (voices.js), Fenrath's as Sacha wrote it (the game's
+     fight.js has "Thy death is close at hand."). `head` is where the top of
+     the drawing sits across the frame, measured on the strip, before any
+     mirroring. */
   duel: {
-    ronin: { src: roninIdle, name: "Ronin of the Iron Kasa", frameW: 112, frameH: 116, frames: 6, fps: 4, scale: 1 },
-    boss: { src: fenrathIdle, name: "Fenrath, the Crimson Fang", frameW: 212, frameH: 161, frames: 6, fps: 4, scale: 1.5 },
+    ronin: { src: roninIdle, name: "Ronin of the Iron Kasa", frameW: 112, frameH: 116, frames: 6, fps: 4, scale: 1,
+      line: "One cut.", head: 0.37 },
+    boss: { src: fenrathIdle, name: "Fenrath, the Crimson Fang", frameW: 212, frameH: 161, frames: 6, fps: 4, scale: 1.5,
+      line: "Thy death resteth close at hand.", head: 0.58 },
   },
 };
 
@@ -990,6 +997,24 @@ function SpriteLoop({ src, frameW, frameH, frames, fps, scale = 1, flip = false 
         "--fw": frameW, "--fh": frameH, "--n": frames, "--fps": fps, "--k": scale,
       } as React.CSSProperties}
     />
+  );
+}
+
+/* One side of the Elden Code duel: the sprite, with its line over its head in
+   the game's own speech bubble (.elden-say, index.css). The bubble sits outside
+   the mirrored sprite so its text never reads backwards. */
+function DuelFighter({ line, head, boss = false, flip = false, ...sprite }: {
+  src: string; frameW: number; frameH: number; frames: number; fps: number; scale?: number;
+  line: string; head: number; boss?: boolean; flip?: boolean;
+}) {
+  return (
+    <div className="relative shrink-0">
+      <SpriteLoop {...sprite} flip={flip} />
+      <span aria-hidden="true" className={`elden-say${boss ? " elden-say--boss" : ""}`}
+        style={{ left: `${(flip ? 1 - head : head) * 100}%` }}>
+        {line}
+      </span>
+    </div>
   );
 }
 
@@ -1922,10 +1947,11 @@ export default function MainComponentNameCv({
                           ))}
                         </div>
                         {/* The duel: the Ronin, as drawn, faces right; Fenrath, drawn facing
-                            right too, is mirrored so the two face each other. */}
-                        <div className="elden-duel mt-6 flex items-end justify-between gap-4 border-b border-white/[0.08]">
-                          <SpriteLoop {...eldenCodeProject.duel.ronin} />
-                          <SpriteLoop {...eldenCodeProject.duel.boss} flip />
+                            right too, is mirrored so the two face each other. The top
+                            padding (index.css) is the room for Fenrath's bubble. */}
+                        <div className="elden-duel mt-2 flex items-end justify-between gap-4 border-b border-white/[0.08]">
+                          <DuelFighter {...eldenCodeProject.duel.ronin} />
+                          <DuelFighter {...eldenCodeProject.duel.boss} flip boss />
                         </div>
                         <p className="mt-2 flex justify-between gap-4 text-[10px] font-mono text-white/30">
                           <span>{eldenCodeProject.duel.ronin.name}</span>

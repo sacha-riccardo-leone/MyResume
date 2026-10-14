@@ -434,6 +434,76 @@ html:has(.photo-dialog[open]) { overflow: hidden; }
   .sprite-loop { animation: none; }
 }
 
+/* ─── Elden Code speech bubbles (DuelFighter) ────────────────────────────
+   Copied from Elden Code's client/css/game.css (.bubble, .bubble.boss): its
+   font, colours, gold rim, tail and 0.25 s rise. The game keeps a line up for
+   its reading time; here the Ronin speaks, Fenrath answers, both fade, and
+   the exchange comes back 20 s later: one 26 s cycle, so 1% = 0.26 s.
+   The font is the game's (OFL, public/fonts/CormorantGaramond-OFL.txt); a
+   static weight, and only ever drawn on screen, never in the PDF. */
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-500.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+.elden-duel { padding-top: 72px; }
+.elden-say {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  width: max-content;
+  max-width: min(240px, 60cqw);
+  padding: 6px 11px 7px;
+  font: 500 16px/1.25 "Cormorant Garamond", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  color: #ece5d4;
+  background: rgba(13, 11, 16, 0.9);
+  border: 1px solid rgba(201, 164, 90, 0.5);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 6px);
+  animation: elden-say-first 26s ease-out infinite;
+}
+.elden-say::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 9px;
+  height: 9px;
+  margin-left: -5px;
+  background: rgba(13, 11, 16, 0.95);
+  border-right: 1px solid rgba(201, 164, 90, 0.5);
+  border-bottom: 1px solid rgba(201, 164, 90, 0.5);
+  transform: rotate(45deg);
+}
+/* a great enemy's words: larger, in red, on deep crimson */
+.elden-say--boss {
+  max-width: min(280px, 60cqw);
+  font-size: 18px;
+  color: #ffd9cf;
+  background: rgba(30, 6, 6, 0.92);
+  border-color: rgba(220, 70, 50, 0.7);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6), 0 0 14px rgba(200, 40, 25, 0.35);
+  animation-name: elden-say-reply;
+}
+.elden-say--boss::after { background: rgba(30, 6, 6, 0.95); border-color: rgba(220, 70, 50, 0.7); }
+/* the Ronin at 0.8 s, Fenrath at 2.6 s, both gone by 6.3 s */
+@keyframes elden-say-first {
+  0%, 3.08% { opacity: 0; transform: translate(-50%, 6px); }
+  4.04%, 23.08% { opacity: 1; transform: translate(-50%, 0); }
+  24.23%, 100% { opacity: 0; transform: translate(-50%, 0); }
+}
+@keyframes elden-say-reply {
+  0%, 10% { opacity: 0; transform: translate(-50%, 6px); }
+  10.96%, 23.08% { opacity: 1; transform: translate(-50%, 0); }
+  24.23%, 100% { opacity: 0; transform: translate(-50%, 0); }
+}
+/* Reduced motion: the exchange, held still. */
+@media (prefers-reduced-motion: reduce) {
+  .elden-say { animation: none; opacity: 1; transform: translate(-50%, 0); }
+}
+
 /* ─── Print geometry (shared by screen and print) ─────────────────────────
    Paper is A4 with real @page margins (12mm top, 14mm sides/bottom).
    To print on US Letter change these two values AND the @page size below:
