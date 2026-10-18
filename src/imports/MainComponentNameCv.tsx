@@ -128,10 +128,10 @@ export const translations = {
         url: "https://www.ordine-ai.ch/",
         bullets: [
           "Client email IA multi-fournisseurs pour PME suisses, conçu et livré seul — en bêta active.",
-          "Pipeline de classification Claude Haiku (harness CI FR/DE/IT/EN : 100/94/96/98 %) et conformité FADP (résidence CH/EU, chiffrement AES-GCM-256, DLP PII suisse).",
+          "Pipeline de classification Claude Haiku (jeu d'évaluation : ton 100 %, intention 94 %, catégorie 96 %, priorité 98 %) et conformité FADP (résidence CH/EU, chiffrement AES-GCM-256, DLP PII suisse).",
           "Facturation Stripe à 4 niveaux et audit de sécurité antagoniste auto-mené (5 agents LLM, 30+ problèmes corrigés).",
         ],
-        summary: "Client email IA multi-fournisseurs pour PME suisses, conçu et livré seul, aujourd’hui en bêta active : classification Claude Haiku évaluée en continu sur quatre langues (100/94/96/98 %), conformité FADP et facturation Stripe à quatre niveaux.",
+        summary: "Client email IA multi-fournisseurs pour PME suisses, conçu et livré seul, aujourd’hui en bêta active : classification Claude Haiku testée sur un jeu d'évaluation (ton, intention, catégorie, priorité : 100/94/96/98 %), conformité FADP et facturation Stripe à quatre niveaux.",
         stack: "FastAPI · Next.js · TypeScript · Supabase · Claude API · Stripe · Cloud Run",
       },
       {
@@ -272,10 +272,10 @@ export const translations = {
         url: "https://www.ordine-ai.ch/",
         bullets: [
           "AI multi-provider email client for Swiss SMEs, designed and shipped solo — in active beta.",
-          "Claude Haiku classification pipeline (CI harness FR/DE/IT/EN: 100/94/96/98%) and FADP compliance (Swiss/EU residency, AES-GCM-256 encryption, Swiss PII DLP).",
+          "Claude Haiku classification pipeline (eval set: tone 100%, intent 94%, category 96%, priority 98%) and FADP compliance (Swiss/EU residency, AES-GCM-256 encryption, Swiss PII DLP).",
           "4-tier Stripe billing and a self-run adversarial security audit (5 LLM agents, 30+ findings resolved).",
         ],
-        summary: "Multi-provider AI email client for Swiss SMEs, designed and shipped alone, now in active beta: a Claude Haiku classification pipeline evaluated continuously across four languages (100/94/96/98 %), FADP compliance and four-tier Stripe billing.",
+        summary: "Multi-provider AI email client for Swiss SMEs, designed and shipped alone, now in active beta: a Claude Haiku classification pipeline tested on an eval set (tone, intent, category, priority: 100/94/96/98 %), FADP compliance and four-tier Stripe billing.",
         stack: "FastAPI · Next.js · TypeScript · Supabase · Claude API · Stripe · Cloud Run",
       },
       {
@@ -414,10 +414,10 @@ export const translations = {
         url: "https://www.ordine-ai.ch/",
         bullets: [
           "KI-Multi-Provider-E-Mail-Client für Schweizer KMU, allein konzipiert und geliefert — in aktiver Beta.",
-          "Claude-Haiku-Klassifizierungspipeline (CI-Harness FR/DE/IT/EN: 100/94/96/98 %) und FADP-Konformität (CH/EU-Datenwohnsitz, AES-GCM-256-Verschlüsselung, Schweizer PII-DLP).",
+          "Claude-Haiku-Klassifizierungspipeline (Eval-Set: Ton 100 %, Absicht 94 %, Kategorie 96 %, Priorität 98 %) und FADP-Konformität (CH/EU-Datenwohnsitz, AES-GCM-256-Verschlüsselung, Schweizer PII-DLP).",
           "Stripe-Abrechnung mit 4 Stufen und ein selbst durchgeführtes adversariales Sicherheitsaudit (5 LLM-Agenten, 30+ behobene Findings).",
         ],
-        summary: "Mehranbieter-E-Mail-Client mit KI für Schweizer KMU, allein konzipiert und umgesetzt, aktuell in aktiver Beta: Claude-Haiku-Klassifizierung mit laufender Auswertung in vier Sprachen (100/94/96/98 %), FADP-Konformität und vierstufige Stripe-Abrechnung.",
+        summary: "Mehranbieter-E-Mail-Client mit KI für Schweizer KMU, allein konzipiert und umgesetzt, aktuell in aktiver Beta: Claude-Haiku-Klassifizierung, geprüft mit einem Eval-Set (Ton, Absicht, Kategorie, Priorität: 100/94/96/98 %), FADP-Konformität und vierstufige Stripe-Abrechnung.",
         stack: "FastAPI · Next.js · TypeScript · Supabase · Claude API · Stripe · Cloud Run",
       },
       {
@@ -556,10 +556,10 @@ export const translations = {
         url: "https://www.ordine-ai.ch/",
         bullets: [
           "Client email IA multi-provider per PMI svizzere, progettato e consegnato in autonomia — in beta attiva.",
-          "Pipeline di classificazione Claude Haiku (CI harness FR/DE/IT/EN: 100/94/96/98%) e conformità FADP (residenza CH/EU, cifratura AES-GCM-256, DLP PII svizzero).",
+          "Pipeline di classificazione Claude Haiku (set di valutazione: tono 100%, intento 94%, categoria 96%, priorità 98%) e conformità FADP (residenza CH/EU, cifratura AES-GCM-256, DLP PII svizzero).",
           "Fatturazione Stripe a 4 livelli e audit di sicurezza avversariale auto-condotto (5 agenti LLM, 30+ problemi corretti).",
         ],
-        summary: "Client email con IA multi-fornitore per PMI svizzere, ideato e realizzato da solo, oggi in beta attiva: classificazione Claude Haiku valutata di continuo su quattro lingue (100/94/96/98 %), conformità FADP e fatturazione Stripe a quattro livelli.",
+        summary: "Client email con IA multi-fornitore per PMI svizzere, ideato e realizzato da solo, oggi in beta attiva: classificazione Claude Haiku verificata su un set di valutazione (tono, intento, categoria, priorità: 100/94/96/98 %), conformità FADP e fatturazione Stripe a quattro livelli.",
         stack: "FastAPI · Next.js · TypeScript · Supabase · Claude API · Stripe · Cloud Run",
       },
       {
@@ -686,10 +686,10 @@ const skillExplanations: Record<string, Record<Lang, string>> = {
     it: "Orchestrare più agenti IA per svolgere un compito — es. il mio audit di sicurezza con 5 agenti LLM (30+ problemi risolti).",
   },
   "evals": {
-    fr: "Mesurer automatiquement la précision d'un modèle — ex. mon harness CI en FR/DE/IT/EN scorant 100 / 94 / 96 / 98 %.",
-    en: "Automatically measuring a model's accuracy — e.g. my CI harness scoring 100 / 94 / 96 / 98 % across FR/DE/IT/EN.",
-    de: "Die Genauigkeit eines Modells automatisch messen — z. B. mein CI-Harness mit 100 / 94 / 96 / 98 % in FR/DE/IT/EN.",
-    it: "Misurare automaticamente la precisione di un modello — es. il mio harness CI con 100 / 94 / 96 / 98 % in FR/DE/IT/EN.",
+    fr: "Mesurer la précision d'un modèle — ex. mon jeu d'évaluation Ordine : ton 100 %, intention 94 %, catégorie 96 %, priorité 98 %.",
+    en: "Measuring a model's accuracy — e.g. my Ordine eval set: tone 100%, intent 94%, category 96%, priority 98%.",
+    de: "Die Genauigkeit eines Modells messen — z. B. mein Ordine-Eval-Set: Ton 100 %, Absicht 94 %, Kategorie 96 %, Priorität 98 %.",
+    it: "Misurare la precisione di un modello — es. il mio set di valutazione Ordine: tono 100%, intento 94%, categoria 96%, priorità 98%.",
   },
 };
 
@@ -720,28 +720,28 @@ export const ordineAIProject = {
   } as Record<Lang, string>,
   highlights: {
     fr: [
-      "Pipeline de classification IA (ton × intention × catégorie × priorité) sur Claude Haiku — harness CI multilingue FR/DE/IT/EN : 100% / 94% / 96% / 98%",
+      "Pipeline de classification IA (ton × intention × catégorie × priorité) sur Claude Haiku — jeu d'évaluation : ton 100 %, intention 94 %, catégorie 96 %, priorité 98 %",
       "Parité fonctionnelle Gmail & Microsoft Graph derrière un protocole EmailProvider unifié : envoi/réception, fils, brouillons, recherche, snooze, envoi différé, pièces jointes",
       "Conformité FADP dès le premier jour — résidence Suisse & EU (Cloud Run Zurich + Supabase Frankfurt), chiffrement AES-GCM-256, DLP PII suisse (IBAN, AVS, CB Luhn), droit à l'effacement",
       "Audit de sécurité antagoniste auto-mené (5 agents LLM) — 30+ problèmes corrigés : injection de prompt, SSRF, confusion algo JWT, mXSS via DOMPurify, JWKS OAuth, durcissement RLS, IDOR",
       "Facturation Stripe complète — 4 niveaux (Starter / Pro / Business / Enterprise), essai 14 jours, portail client, idempotence des webhooks",
     ],
     en: [
-      "AI classification pipeline (tone × intent × category × priority) on Claude Haiku — CI eval harness, FR/DE/IT/EN: 100% / 94% / 96% / 98%",
+      "AI classification pipeline (tone × intent × category × priority) on Claude Haiku — eval set: tone 100%, intent 94%, category 96%, priority 98%",
       "Gmail & Microsoft Graph feature parity behind a unified EmailProvider protocol: send/receive, threads, drafts, search, snooze, scheduled send, attachments",
       "FADP-compliant from day one — Swiss & EU data residency (Cloud Run Zurich + Supabase Frankfurt), AES-GCM-256 token encryption, Swiss PII DLP (IBAN, AHV, Luhn CC), right-to-erasure",
       "Self-run adversarial security audit (5 LLM agents) — 30+ findings resolved: prompt injection, SSRF, JWT algorithm confusion, mXSS via DOMPurify, OAuth JWKS verification, RLS hardening, IDOR",
       "Full Stripe billing — 4-tier model (Starter / Pro / Business / Enterprise), 14-day trial, customer portal, webhook idempotency",
     ],
     de: [
-      "KI-Klassifizierungspipeline (Ton × Absicht × Kategorie × Priorität) auf Claude Haiku — CI-Eval-Harness FR/DE/IT/EN: 100% / 94% / 96% / 98%",
+      "KI-Klassifizierungspipeline (Ton × Absicht × Kategorie × Priorität) auf Claude Haiku — Eval-Set: Ton 100 %, Absicht 94 %, Kategorie 96 %, Priorität 98 %",
       "Gmail & Microsoft Graph Funktionsparität hinter einem einheitlichen EmailProvider-Protokoll: Senden/Empfangen, Threads, Entwürfe, Suche, Snooze, geplanter Versand, Anhänge",
       "FADP-konform von Anfang an — Schweizer & EU-Datenwohnsitz (Cloud Run Zürich + Supabase Frankfurt), AES-GCM-256-Verschlüsselung, PII-DLP (IBAN, AHV, Luhn-KK), Recht auf Löschung",
       "Selbst durchgeführtes adversariales Sicherheitsaudit (5 LLM-Agenten) — 30+ Findings: Prompt Injection, SSRF, JWT-Algorithmusverwirrung, mXSS via DOMPurify, OAuth-JWKS-Verifikation, RLS-Härtung, IDOR",
       "Vollständiges Stripe-Billing — 4 Stufen (Starter / Pro / Business / Enterprise), 14-Tage-Test, Kundenportal, Webhook-Idempotenz",
     ],
     it: [
-      "Pipeline di classificazione IA (tono × intento × categoria × priorità) su Claude Haiku — CI eval harness FR/DE/IT/EN: 100% / 94% / 96% / 98%",
+      "Pipeline di classificazione IA (tono × intento × categoria × priorità) su Claude Haiku — set di valutazione: tono 100%, intento 94%, categoria 96%, priorità 98%",
       "Parità funzionale Gmail & Microsoft Graph dietro un protocollo EmailProvider unificato: invio/ricezione, thread, bozze, ricerca, snooze, invio programmato, allegati",
       "Conforme FADP fin dal primo giorno — residenza Svizzera & EU (Cloud Run Zurigo + Supabase Francoforte), cifratura AES-GCM-256, DLP PII svizzero (IBAN, AVS, Luhn CC), diritto alla cancellazione",
       "Audit di sicurezza avversariale auto-condotto (5 agenti LLM) — 30+ findings risolti: prompt injection, SSRF, confusione algoritmo JWT, mXSS via DOMPurify, verifica JWKS OAuth, hardening RLS, IDOR",
