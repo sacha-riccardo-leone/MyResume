@@ -779,7 +779,7 @@ export const eldenCodeProject = {
       "Une île par projet, avec des stations qui reflètent l'activité réelle : modifications, lectures, commandes, outils web et MCP, plans, attente de permission.",
       "Personnages générés avec ChatGPT, puis grille de pixels détectée, fond retiré, palette commune et rigs qui les animent pixel par pixel.",
       "Combats de boss liés aux vraies sessions : trois échecs d'outil d'affilée, ou une quête de plus de dix minutes, font venir un boss.",
-      "Conçu et construit en deux jours avec Claude Code, à partir de mes sprites et de ma direction.",
+      "Conçu et construit avec Claude Code, à partir de mes sprites et de ma direction.",
     ],
     en: [
       "Claude Code hooks → a local Node bridge (127.0.0.1): secret token, event allowlist, one-way stream. No prompt, file path or file content ever leaves the hook.",
@@ -787,7 +787,7 @@ export const eldenCodeProject = {
       "One island per project, with stations that mirror real activity: edits, reads, shell commands, web and MCP tools, plans, waiting for permission.",
       "Characters generated with ChatGPT, then pixel grid detected, background removed, a shared palette and rigs that animate them pixel by pixel.",
       "Boss fights tied to real sessions: three failed tool calls in a row, or a quest running past ten minutes, brings a boss.",
-      "Designed and built in two days with Claude Code, from my sprites and direction.",
+      "Designed and built with Claude Code, from my sprites and direction.",
     ],
     de: [
       "Claude-Code-Hooks → lokale Node-Bridge (127.0.0.1): geheimes Token, Event-Allowlist, Einweg-Stream. Weder Prompts noch Dateipfade oder -inhalte verlassen den Hook.",
@@ -795,7 +795,7 @@ export const eldenCodeProject = {
       "Eine Insel pro Projekt, mit Stationen, die die echte Aktivität spiegeln: Bearbeiten, Lesen, Shell-Befehle, Web- und MCP-Tools, Pläne, Warten auf Freigabe.",
       "Figuren mit ChatGPT generiert, dann Pixelraster erkannt, Hintergrund entfernt, gemeinsame Palette und Rigs, die sie Pixel für Pixel animieren.",
       "Bosskämpfe aus echten Sitzungen: Drei fehlgeschlagene Tool-Aufrufe in Folge oder eine Quest über zehn Minuten rufen einen Boss herbei.",
-      "In zwei Tagen mit Claude Code konzipiert und gebaut, aus meinen Sprites und nach meiner Regie.",
+      "Mit Claude Code konzipiert und gebaut, aus meinen Sprites und nach meiner Regie.",
     ],
     it: [
       "Hook di Claude Code → bridge Node locale (127.0.0.1): token segreto, allowlist degli eventi, flusso a senso unico. Né prompt, né percorsi, né contenuti dei file lasciano l'hook.",
@@ -803,7 +803,7 @@ export const eldenCodeProject = {
       "Un'isola per progetto, con stazioni che rispecchiano l'attività reale: modifiche, letture, comandi shell, strumenti web e MCP, piani, attesa dei permessi.",
       "Personaggi generati con ChatGPT, poi griglia dei pixel rilevata, sfondo rimosso, palette comune e rig che li animano pixel per pixel.",
       "Combattimenti con il boss legati alle sessioni reali: tre chiamate a strumenti fallite di fila, o una missione oltre i dieci minuti, evocano un boss.",
-      "Ideato e costruito in due giorni con Claude Code, a partire dai miei sprite e dalla mia direzione.",
+      "Ideato e costruito con Claude Code, a partire dai miei sprite e dalla mia direzione.",
     ],
   } as Record<Lang, string[]>,
   stack: ["Three.js", "WebGL", "Node.js", "JavaScript", "Claude Code hooks", "ChatGPT"],
